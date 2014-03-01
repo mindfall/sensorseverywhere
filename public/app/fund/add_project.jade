@@ -1,0 +1,17 @@
+.container(ng-controller="wFFundCtrl")
+	.well
+		form.form-horizontal(name="addProjectForm")
+			fieldset
+				legend Contributions
+
+					.form-group
+						.col-md-8
+							input.form-control(name="project_name", type="text", placeholder="Project Name" ng-model="project_name" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="project_description", type="text", placeholder="Project Description" ng-model="project_Description" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="project_amount", type="text", placeholder="Funding Required" ng-model="project_amount" required)
+			button Add the Project
+//- button.btn.btn-primary(ng-click="projectAdd()") Add the Project

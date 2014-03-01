@@ -1,0 +1,27 @@
+.container(ng-controller="wFFundCtrl")
+	.well
+		form.form-horizontal(name="contributeForm")
+			fieldset
+				legend Contributions
+					.form-group
+						.col-md-8
+							input.form-control(name="name", type="text", placeholder="Project Name" ng-model="name" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="amount", type="text", placeholder="Funding Required" ng-model="amount" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="cc_number", type="text", placeholder="Credit Card Number" ng-model="cc_number" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="cc_exp_month", type="number", placeholder="Credit Card Expiration Month" min="0" max="12" ng-model="cc_exp_month" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="cc_exp_year", type="number", placeholder="Credit Card Expiration Year" min="2014" max="2020" ng-model="cc_exp_year" required)
+					.form-group
+						.col-md-8
+							input.form-control(name="cc_csv", type="number", placeholder="Credit Card CSV" ng-model="cc_csv" required)
+		button Pay with Credit Card		
+
+//- button.btn.btn-primary(ng-click="Contribute()")Contribute
+//- action="/pay/balanced" method="POST"

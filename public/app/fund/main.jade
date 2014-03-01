@@ -1,0 +1,15 @@
+.container
+	.row
+		.col-md-8(id="center-pane")
+			h3 Current Projects
+			div(ng-controller="wFFundCtrl")
+				div(class="projectOutline" ng-repeat="project in projects track by $index")
+					button(ng-click="projectDelete(project.id)") Remove
+					p
+					b Name: 
+					{{project.project_name}}<br>
+					b Description: 
+					{{project.project_description}}<br> 
+					b Amount Required: 
+					{{project.project_amount}}<br> 
+					a(ng-href="contribute") Contribute

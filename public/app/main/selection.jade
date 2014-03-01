@@ -1,0 +1,16 @@
+p
+	.toolbar-layout
+		div#mainContainer(ng-controller="wFMainCtrl")
+			form.selectAnimalInput(ng-submit="submitWildlife()")
+				input(id='wildlife_search' 
+					type='search' 
+					ng-model="wildlifeSelect" 
+					typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+					class="form-control" 
+					placeholder="Search for wildlife...")
+
+		div.selectedWildlife(ng-controller="wFSelectionCtrl")
+			div(ng-repeat="creature in wildlife track by $index")
+				input.wildlifeCount(type="number" value="1" min="0")
+				<img ng-src="{{creature.image_thumb}}"> {{creature.name}}
+				button(ng-click='removeSelectedWildlife()'){{}}x

@@ -1,0 +1,21 @@
+{
+  "name": "multivision",
+  "version": "0.0.0",
+  "description": "Extreme Tech Training",
+  "license": "MIT",
+  "private": true,
+  "authors": "Wade Mansell",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular-route": "~1.2.13",
+    "angular-mocks": "1.2.13"
+  }
+}

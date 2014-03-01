@@ -1,0 +1,4 @@
+angular.module('app')
+				.controller('whUserListCtrl', function($scope, whUser){
+					$scope.users = whUser.query();
+				})
