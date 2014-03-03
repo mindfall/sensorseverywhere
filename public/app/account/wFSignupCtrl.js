@@ -7,7 +7,8 @@ angular.module('app')
 						username: $scope.email,
 						password: $scope.password,
 						firstname: $scope.fname,
-						lastname: $scope.lname
+						lastname: $scope.lname,
+						role: $scope.role
 					};
 					wFAuth.createUser(newUserData).then(function(){
 						wFNotifier.notify('User account created!');

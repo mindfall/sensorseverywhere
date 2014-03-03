@@ -20,6 +20,14 @@
           .col-md-10
             input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
         .form-group
+          label.col-md-2.control-label(for="role") Will you be:
+          .col-md-10
+            input.form-control(name="role", type="text", placeholder="Define your role", ng-model="role", required)
+        //- .form-group
+        //-   label.col-md-2.control-label(for="usericon") Will you be:
+        //-   .col-md-10
+        //-     input.form-control(name="usericon", type="text", placeholder="Define your role", ng-model="role", required)
+        .form-group
           .col-md-10.col-md-offset-2
             .pull-right
               button.btn.btn-primary(ng-click="signup()", ng-disabled="signupForm.$invalid") Submit

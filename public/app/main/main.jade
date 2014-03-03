@@ -1,11 +1,41 @@
-.container
-	.row
-		.col-md-9
-			div(ng-include="'/partials/main/map'")
-		.col-md-3
-			div(ng-include="'/partials/main/selection'")
-	.row
-		.col-md-12
-			div(ng-include="'/partials/main/friends'")
+div(ng-controller="wFMainCtrl")
+
+	.container(ng-if="isLoggedIn")
+		.row
+			.col-md-9
+				div(ng-controller="wFMapCtrl" id="map" class="map")
+					leaflet
+					h3(class="saveProjectButton") Save
+			.col-md-3
+				p
+					.selection-layout
+						div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
+							form.selectAnimalInput(ng-submit="submitWildlife()")
+								input(id='wildlife_search' 
+									type='search' 
+									ng-model="wildlifeSelect" 
+									typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+									class="form-control" 
+									placeholder="Search for wildlife...")
+
+						div.selectedWildlife
+							div(ng-repeat="creature in selectedWildlife track by $index")
+								.well
+									button(ng-click='removeSelectedWildlife()'){{}}x
+									div(ng-mouseover="getWildlifePopup('show', creature)" ng-mouseleave="getWildlifePopup('hide')")<img ng-src="{{creature.image_thumb}}"> {{creature.name}}
+									input.wildlifeCount(type="number" value="1" min="0")
+
+						div.wildlifePopup(ng-show="getWildlifePopup()")
+							div{{wildlifeDetails.name}}<br>
+							div<img ng-src="{{wildlifeDetails.image_full}}">
+		.row
+			.col-md-12
+				h1 Friends
+
+	.container(ng-if="!isLoggedIn")
+		.row
+			.col-md-12
+				div(ng-controller="wFMapCtrl" id="map" class="map" style="margin-left: 15px; width: 98%; margin-right: 15px;")
+					leaflet
 
 		

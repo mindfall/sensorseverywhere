@@ -24,7 +24,7 @@ angular.module('app').config(function($routeProvider, $locationProvider){
 	$routeProvider
 		.when('/', 
 				{templateUrl: '/partials/main/main', 
-				controller: 'wFMainCtrl'
+				controller: 'wFWildlifeSelectCtrl'
 		})
 		.when('/fund/main', 
 				{templateUrl: '/partials/fund/main', 

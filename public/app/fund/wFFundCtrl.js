@@ -27,6 +27,7 @@ angular.module('app')
 				console.log('Error: ' + data);
 			});
 		};
+		
 		/*
 		$scope.projectDelete = function(id) {
 			$http.delete('/api/project/' + id)

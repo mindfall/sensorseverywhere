@@ -1,4 +1,4 @@
-angular.module('app').controller('wFMapCtrl', function($rootScope, $scope, wFMapFactory, wFIdentity, wFWildlifeFactory){
+angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory){
 	
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
@@ -26,13 +26,16 @@ angular.module('app').controller('wFMapCtrl', function($rootScope, $scope, wFMap
     * the save project button.
     *
     */
-
-
-    var marker = L.marker([-25, 135]).addTo(map);
+    var mammalIcon = L.icon({
+    	iconUrl: '../../img/icons/marker_video_green.png',
+    	iconSize: [32, 32],
+    	iconAnchor: [15, 15],
+    	popupAnchor: [-3, -10]
+    });
+    var marker = L.marker([-25, 135], {icon: mammalIcon}).addTo(map);
 
 
     if(userIsLoggedIn == true){
-    	$scope.isLoggedIn = userIsLoggedIn;
     	console.log('The user is: ' + $scope.isLoggedIn);
 		mapControls = wFMapFactory.getMapControls();
 	   	drawnItems = mapControls[0];
