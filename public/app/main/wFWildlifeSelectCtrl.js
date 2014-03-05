@@ -2,13 +2,12 @@ angular.module('app')
 	.controller('wFWildlifeSelectCtrl', function($scope, $http, $q, wFWildlifeFactory){
 
 		this.toggle = true;
-		var showWildlifePopup = false; //used for wildlife popup in selection list
-		var getWildlifeList = []; //retrieving animal list from express via api
+		var wildlifePopup = false; //used for wildlife popup in selection list
 		var wildlifeArray = []; //Used to build list for animal search input
 		var selectedWildlife = []; //Used in submitAnimal to find if animal already exists in list
 	    
 	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
-	    $scope.selectedWildlife = wFWildlifeFactory.wildlifeList();
+	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
 
 	    /**
 	    * Create a promise to return the wildlife list
@@ -16,12 +15,12 @@ angular.module('app')
 	    * WildlifeFactory service.
 	    */
 
-	   	getWildlifeList = wFWildlifeFactory.getWildlife();
+	   	var getWildlifeDBList = wFWildlifeFactory.getWildlifeFromDB();
 
-	   	getWildlifeList.then(function(getWildlifeList){
+	   	getWildlifeDBList.then(function(getWildlifeDBList){
 
-	   		for(var i = 0; i < getWildlifeList.length; i++){
-				wildlifeArray.push(getWildlifeList[i]);
+	   		for(var i = 0; i < getWildlifeDBList.length; i++){
+				wildlifeArray.push(getWildlifeDBList[i]);
 			}
 			wildlife = wildlifeArray.filter(function(elem, pos){
 				return wildlifeArray.indexOf(elem) == pos;
@@ -53,17 +52,22 @@ angular.module('app')
 	    		//create an array of selected animals
 				selectedWildlife.push(this.wildlifeSelect);
 				selectedName = this.wildlifeSelect;
-				wFWildlifeFactory.addName(selectedWildlife);
+				wFWildlifeFactory.checkIfUniqueAndAddName(selectedWildlife);
 	    	}
 	 	}
 
-	 	$scope.getWildlifePopup = function(parseString, wildlife){
-	 		if(parseString == 'show') {
-	 			showWildlifePopup = true;
-	 			$scope.wildlifeDetails = wildlife;
+	 	$scope.wildlifePopup = function(state, wildlife){
+	 		console.log(state);
+	 		if(state == 'show'){
+	 			wildlifePopup = true;
+ 				$scope.wildlifeDetails = wildlife;
 	 		}
-	 		if(parseString == 'hide') showWildlifePopup = false;
-	 		return showWildlifePopup;
+	 		if(state == 'hide') wildlifePopup = false;
+
+	 		return wildlifePopup;
 	 	}
+
+
+
 
 	});

@@ -1,4 +1,4 @@
-angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory){
+angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 	
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
@@ -8,6 +8,7 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 	var mapControls = {};
 	var drawnItems = {};
 	var drawControl = {};
+	var wkt = {};
 
 	var map = new L.Map('map', {
 		layers: [basemap],
@@ -21,11 +22,6 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
         position: 'topcenter'
     }).addTo(map);
 
-    /**
-    * If a user is logged in display the draw control and 
-    * the save project button.
-    *
-    */
     var mammalIcon = L.icon({
     	iconUrl: '../../img/icons/marker_video_green.png',
     	iconSize: [32, 32],
@@ -34,9 +30,12 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
     });
     var marker = L.marker([-25, 135], {icon: mammalIcon}).addTo(map);
 
-
+    /**
+    * If a user is logged in display the mapping controls
+    *
+    */
     if(userIsLoggedIn == true){
-    	console.log('The user is: ' + $scope.isLoggedIn);
+    	
 		mapControls = wFMapFactory.getMapControls();
 	   	drawnItems = mapControls[0];
 	   	drawControl = mapControls[1];
@@ -63,8 +62,8 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 			layer.bindPopup('A popup!');
 		}
 		var geojson = e.layer.toGeoJSON();
-    	var wkt = Terraformer.WKT.convert(geojson.geometry);
-    	console.log(wkt);
+    	wkt = Terraformer.WKT.convert(geojson.geometry);
+    	wFMapFactory.setMapData(wkt);
     	drawnItems.addLayer(e.layer);
 	});
 
@@ -76,7 +75,6 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 		});
 		console.log("Edited " + countOfEditedLayers + " layers");
 	});
-
 });
 
 

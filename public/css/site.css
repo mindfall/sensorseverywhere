@@ -1,9 +1,16 @@
 body {
   padding-top: 61px;
 }
+.container {
+  height: 5% !important;
+}
 footer {
   padding-left: 15px;
   padding-right: 15px;
+  bottom: 0;
+  position: absolute;
+  height: 20px;
+  background-color: #fff;
 }
 footer p {
   border-top: 1px solid #d7e0e2;
@@ -76,9 +83,10 @@ ul.nav.navbar-nav a.navbar-nav-link {
   width: 100%;
   float: right;
 }
-.selectedWildlife {
+.selectedWildlifeContainer {
   border: 1px solid #d7e0e2;
   -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   float: right;
   width: 100%;
@@ -86,8 +94,42 @@ ul.nav.navbar-nav a.navbar-nav-link {
   display: block;
   margin-top: 1%;
 }
-.wildlifeCount {
-  width: 8% !important;
+.selectedWildlife {
+  clear: both;
+  display: block;
+  width: 100%;
+}
+.wildlifeCell {
+  width: 25%;
+}
+.wildlifeBtnCell {
+  width: 25%;
+  float: right;
+}
+.wildlifeCounter {
+  float: left !important;
+  width: 40px !important;
+}
+.selectedWildlifeName {
+  float: left;
+}
+.removeSelectedWildlilfeBtn,
+.closePopUp {
+  clear: both;
+  margin-top: 2px;
+  border: 1px solid #808080;
+  text-align: center;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.closePopUp {
+  width: 20px;
+  float: right;
+}
+.selectedThumb {
+  margin-right: 10px;
+  cursor: pointer;
 }
 .wildlifePopup {
   width: 300px;
@@ -97,9 +139,10 @@ ul.nav.navbar-nav a.navbar-nav-link {
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
+  border: 1px solid #d7e0e2;
   position: absolute;
   background-color: #fff;
-  border: 1px solid #d7e0e2;
+  padding: 10px;
 }
 /* END ANIMAL SELECTION AREA */
 /* MAP */
@@ -117,20 +160,19 @@ ul.nav.navbar-nav a.navbar-nav-link {
   height: 750px;
 }
 .saveProjectButton {
-  border: 5px solid #fff;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
-  width: 33%;
-  height: 75px;
-  background-color: #09f;
+  background-image: url("../../img/buttons/btn_save_project.png");
+  background-repeat: no-repeat;
   display: block;
-  margin: 46% 0% 0 33%;
+  width: 345px;
+  height: 75px;
+  margin: -5% 0% 0 25%;
+  z-index: 9999;
+  position: relative;
+}
+.saveProjectButtonText {
   text-align: center;
   vertical-align: middle;
   line-height: 65px;
-  z-index: 9999;
-  position: relative;
 }
 /* END MAP */
 /* END MAIN PAGE */
@@ -139,9 +181,11 @@ ul.nav.navbar-nav a.navbar-nav-link {
   border: 3px solid #d3d3d3;
   border-radius: 5px;
   float: left;
-  margin: 20px;
+  margin: 40px;
   padding: 10px;
-  max-width: 186px;
+  max-width: 200px;
+  max-height: 250px;
+  position: relative;
 }
 #center-pane {
   margin-left: 15%;

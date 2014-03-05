@@ -1,11 +1,9 @@
 div(ng-controller="wFMainCtrl")
-
 	.container(ng-if="isLoggedIn")
 		.row
 			.col-md-9
 				div(ng-controller="wFMapCtrl" id="map" class="map")
 					leaflet
-					h3(class="saveProjectButton") Save
 			.col-md-3
 				p
 					.selection-layout
@@ -18,16 +16,25 @@ div(ng-controller="wFMainCtrl")
 									class="form-control" 
 									placeholder="Search for wildlife...")
 
-						div.selectedWildlife
+						div.selectedWildlifeContainer
 							div(ng-repeat="creature in selectedWildlife track by $index")
 								.well
-									button(ng-click='removeSelectedWildlife()'){{}}x
-									div(ng-mouseover="getWildlifePopup('show', creature)" ng-mouseleave="getWildlifePopup('hide')")<img ng-src="{{creature.image_thumb}}"> {{creature.name}}
-									input.wildlifeCount(type="number" value="1" min="0")
+									table.selectedWildlife
+										tr
+											td.wildlifeCell
+												input.wildlifeCount(class="wildlifeCounter" type="number" value="1" min="0")
+											td.wildlifeCell
+												div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
+											td.wildlifeCell
+												div(class="selectedWildlifeName") {{creature.name}}
+											td.wildlifeBtnCell
+												div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()'){{}}X
 
-						div.wildlifePopup(ng-show="getWildlifePopup()")
+						div.wildlifePopup(ng-show="wildlifePopup()")
+							div.closePopUp(ng-click="wildlifePopup('hide')") X 
 							div{{wildlifeDetails.name}}<br>
 							div<img ng-src="{{wildlifeDetails.image_full}}">
+		h3(class="saveProjectButton" ng-click="saveProject(identity.currentUser._id)") 
 		.row
 			.col-md-12
 				h1 Friends

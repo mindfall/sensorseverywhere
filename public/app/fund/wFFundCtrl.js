@@ -1,12 +1,15 @@
 angular.module('app')
 	.controller('wFFundCtrl', function($scope, $http, $q, wFProjectFactory){
-		
-		$scope.formData = {};
 
 		var projectList = [];
 		var projectArray = [];
+		var projectAdd = {};
+		/**
+		*	Main projects page, shows all projects.
+		*/
 
 		projectList = wFProjectFactory.getProjects();
+
 		projectList.then(function(projectList){
 			for(var i = 0; i < projectList.length; i++){
 				projectArray.push(projectList[i]);
@@ -15,18 +18,9 @@ angular.module('app')
 		}, function(status){
 			console.log(status);
 		});
-
-		$scope.projectAdd = function(){
-			$http.post('api/projectAdd', $scope.formData)
-				.success(function(data) {
-					$scope.formData = {}; // clear the form so our user is ready to enter another
-					$scope.project = data;
-					console.log(data);
-			})
-			.error(function(data) {
-				console.log('Error: ' + data);
-			});
-		};
+/*
+		projectAdd = wFProjectFactory.addProject();
+		console.log(projectAdd);*/
 		
 		/*
 		$scope.projectDelete = function(id) {
@@ -59,21 +53,5 @@ angular.module('app')
 		*/
 
 
-	}).factory('wFProjectFactory', function($rootScope, $http, $q){
-
-		return {
-				getProjects : function(){
-					var dfd = $q.defer();
-					$http({method: 'GET', url: '/api/projects'})
-						.success(function(data, status, headers, config) {
-							dfd.resolve(data);
-						}).
-						error(function(data, status, headers, config){
-							dfd.reject(status);
-						});
-					return dfd.promise;
-
-				}
-		} 
 	});
 

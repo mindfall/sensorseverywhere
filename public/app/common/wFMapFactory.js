@@ -36,12 +36,19 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 				}
 			});
 			mapControls = [drawnItems, drawControl];
-			console.log('submitted');
+
 			return mapControls;
 			
+		},
+
+		setMapData : function(wkt){
+				//console.log('getMapData' + wkt);
+				mapData = wkt;
+		},
+
+		getMapData : function(){
+			return mapData;
 		}
-
-
 
 	}
 

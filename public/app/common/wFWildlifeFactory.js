@@ -4,7 +4,7 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 
 	return {
 
-		getWildlife : function(){
+		getWildlifeFromDB : function(){
 			var deferred = $q.defer();
 			$http({method: 'GET', url: 'api/wildlife'}).
 				success(function(data, status, headers, config){
@@ -18,15 +18,15 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 
 		},
 
-	    wildlifeList : function() {
-	    	var list = selectedWildlife;
-			return list;
+	    getSelectedWildlife : function() {
+	    	selectedWildlifeArray = selectedWildlife;
+			return selectedWildlifeArray;
 		},
 		/**
 			Test to see if the animal already exists in the array.
 			If it does, don't include in the list again.
 		*/
-		addName : function(nameToAdd){
+		checkIfUniqueAndAddName : function(nameToAdd){
 			
 			//declare a new array for comparisons, get the original arrays length, boolean found and 2 loop integers
 		    var nameLength = nameToAdd.length,

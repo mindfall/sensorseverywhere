@@ -6,3 +6,8 @@ exports.getProjects = function(req, res){
 		res.send(collection);
 	})
 };
+
+exports.createProject = function(req, res){
+	var projectData = req.body;
+	console.log(projectData);
+};
