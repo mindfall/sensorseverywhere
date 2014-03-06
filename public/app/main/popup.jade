@@ -1,0 +1,10 @@
+div.wildlifePopup
+	div.closePopUp(ng-click="wildlifePopup('hide')") X 
+	div{{wildlifeDetails.name}}<br>
+	div<img ng-src="{{wildlifeDetails.image_full}}">
+	div Some sample description text for each wildlife item
+	label.col-md-2.control-label(for="hasMonitor") Monitored?
+		input.hasMonitor(type="checkbox" value="1" ng-model="hasMonitor")
+
+	select(class="form-control" ng-model="monitors.type", ng-options="monitor.value as monitor.name for monitor in monitorTypes")
+

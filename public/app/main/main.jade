@@ -30,12 +30,10 @@ div(ng-controller="wFMainCtrl")
 											td.wildlifeBtnCell
 												div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()'){{}}X
 
-						div.wildlifePopup(ng-show="wildlifePopup()")
-							div.closePopUp(ng-click="wildlifePopup('hide')") X 
-							div{{wildlifeDetails.name}}<br>
-							div<img ng-src="{{wildlifeDetails.image_full}}">
+							popup(ng-show="wildlifePopup()" draggability wFPopupInfo="{{creature}}") 
+
 		h3(class="saveProjectButton" ng-click="saveProject(identity.currentUser._id)") 
-		.row
+		.row(id="friends")
 			.col-md-12
 				h1 Friends
 

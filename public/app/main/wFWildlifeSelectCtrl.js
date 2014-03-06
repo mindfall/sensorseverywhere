@@ -6,8 +6,15 @@ angular.module('app')
 		var wildlifeArray = []; //Used to build list for animal search input
 		var selectedWildlife = []; //Used in submitAnimal to find if animal already exists in list
 	    
+	    $scope.hasMonitor = 0;
 	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
 	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
+
+	    $scope.monitorTypes = [
+					{name: 'video', value: 'video'},
+					{name: 'audio', value: 'audio'}
+				];
+		$scope.monitors = {type: $scope.monitorTypes[0].value};
 
 	    /**
 	    * Create a promise to return the wildlife list
@@ -57,7 +64,6 @@ angular.module('app')
 	 	}
 
 	 	$scope.wildlifePopup = function(state, wildlife){
-	 		console.log(state);
 	 		if(state == 'show'){
 	 			wildlifePopup = true;
  				$scope.wildlifeDetails = wildlife;
@@ -67,7 +73,50 @@ angular.module('app')
 	 		return wildlifePopup;
 	 	}
 
+	}).directive('draggability', function($document){
+		return function(scope, element, attr){
+			var startX = 0, startY = 0, x = 0, y = 0;
 
+			element.css({
+				position: 'relative',
+				cursor: 'pointer',
+				zindex: '8888'
+			});
 
+			element.on('mousedown', function(event){
+				console.log('mousedown');
+				event.preventDefault();
+				startX = event.pageX - x;
+				startY = event.pageY - y;
+				$document.on('mousemove', mousemove);
+				$document.on('mouseup', mouseup);
+			});
 
+			function mousemove(event){
+				y = event.pageY - startY;
+				x = event.pageX - startX;
+				element.css({
+					top: y + 'px',
+					left: x + 'px'
+				});
+			}
+
+			function mouseup(){
+				$document.unbind('mousemove', mousemove);
+				$document.unbind('mouseup', mouseup);
+			}
+		};
+	}).directive('popup', function(){
+		return {
+			restrict: 'E',
+			transclude: true,
+			templateUrl: '/partials/main/popup',
+			replace: true,
+
+		}
 	});
+
+
+		//- div.closePopUp(ng-click="wildlifePopup('hide')") X 
+							//- div{{wildlifeDetails.name}}<br>
+							//- div<img ng-src="{{wildlifeDetails.image_full}}">
