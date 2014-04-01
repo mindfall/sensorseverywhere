@@ -19,8 +19,6 @@ angular.module('app')
 						//usericon: $scope.usericon
 					};
 
-					console.log(newUserData);
-
 					wFAuth.createUser(newUserData).then(function(){
 						wFNotifier.notify('User account created!');
 						$location.path('/');

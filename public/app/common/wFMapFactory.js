@@ -23,12 +23,12 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 							color: '#bada55'
 						}
 					},
-					circle: {
+				/*	circle: {
 						shapeOptions: {
 							color: '#662d91'
 						}
-					},
-					marker: false
+					},*/
+					marker: true,
 				},
 				edit: {
 					featureGroup: drawnItems,
@@ -41,15 +41,53 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 			
 		},
 
-		setMapData : function(wkt){
-				//console.log('getMapData' + wkt);
-				mapData = wkt;
+		setMapData : function(geojson){
+
+				var xPts = [];
+				var yPts = [];
+				var numPoints = 0;
+
+				for(var i = 0; i < geojson.geometry.coordinates[0].length; i++){
+					xPts.push(geojson.geometry.coordinates[0][i][0]);
+					yPts.push(geojson.geometry.coordinates[0][i][1]);
+					numPoints = i + 1;
+				}
+
+				var area = polygonArea(xPts, yPts, numPoints);
+				mapData = geojson;
 		},
 
 		getMapData : function(){
+			if(mapData == ''){
+		 		mapData = 'There is no map data';
+		 	}
 			return mapData;
+		}, 
+
+		addCustomMarker: function(wildlifeClass, monitorType){
+
+		    var customMarker = L.icon({
+		    	iconUrl: '../../img/icons/marker_' + wildlifeClass + '.png',
+		    	iconSize: [32, 32],
+		    	iconAnchor: [15, 15],
+		    	popupAnchor: [-3, -10]
+		    });
+
+		    return customMarker;
 		}
 
 	}
 
 });
+
+function polygonArea(X, Y, numPoints) 
+{ 
+  area = 0;         // Accumulates area in the loop
+  j = numPoints-1;  // The last vertex is the 'previous' one to the first
+
+  for (i=0; i<numPoints; i++)
+    { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]); 
+      j = i;  //j is previous vertex to i
+    }
+  return (area/2) * 10000000000;
+}

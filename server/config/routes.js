@@ -16,7 +16,7 @@ module.exports = function(app){
 	app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
 
 	app.post('/api/users', users.createUser);
-	app.post('/api/projectAdd', projects.createProject);
+	app.post('/api/createProject', projects.createProject);
 
 	app.get('/partials/*', function(req, res){
 		res.render('../../public/app/' + req.params);

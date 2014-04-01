@@ -15,14 +15,12 @@ angular.module('app')
 				projectArray.push(projectList[i]);
 			}
 			$scope.projects = projectArray;
+			console.log(projectArray);
 		}, function(status){
 			console.log(status);
 		});
-/*
-		projectAdd = wFProjectFactory.addProject();
-		console.log(projectAdd);*/
 		
-		/*
+		
 		$scope.projectDelete = function(id) {
 			$http.delete('/api/project/' + id)
 				.success(function(data) {
@@ -33,7 +31,7 @@ angular.module('app')
 					console.log('Error: ' + data);
 				});
 		};
-		var requiredFunding = $http.get('api/fundAmount');
+/*		var requiredFunding = $http.get('api/fundAmount');
 
 		requiredFunding.success(function(data, status, headers, config) {
 			

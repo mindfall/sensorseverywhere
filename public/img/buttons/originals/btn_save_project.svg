@@ -7,36 +7,20 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="250"
-   height="75"
-   id="svg2"
+   id="svg3039"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="btn_save_project.png">
-  <defs
-     id="defs4" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="5.112513"
-     inkscape:cx="149.5925"
-     inkscape:cy="33.067815"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1056"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1" />
+   width="218"
+   height="46"
+   sodipodi:docname="btn_save_project.png"
+   inkscape:export-filename="/home/miriad/codes/wildfire/public/img/buttons/btn_save_corridor.png"
+   inkscape:export-xdpi="88.32"
+   inkscape:export-ydpi="88.32">
   <metadata
-     id="metadata7">
+     id="metadata3045">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -47,30 +31,91 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-977.36218)">
-    <rect
-       style="opacity:0.96000001;fill:#0099ff;fill-opacity:1;stroke:#ffffff;stroke-width:3.26363826;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect2985"
-       width="246.73637"
-       height="71.736359"
-       x="1.6943481"
-       y="979.13696"
-       ry="14.347539" />
-    <text
-       xml:space="preserve"
-       style="font-size:36.0517807px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       x="97.464493"
-       y="952.29193"
-       id="text3755"
-       sodipodi:linespacing="125%"
-       transform="scale(0.9282891,1.0772506)"><tspan
-         sodipodi:role="line"
-         id="tspan3757"
-         x="97.464493"
-         y="952.29193">save</tspan></text>
-  </g>
+  <defs
+     id="defs3043">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3827">
+      <stop
+         style="stop-color:#909989;stop-opacity:1;"
+         offset="0"
+         id="stop3829" />
+      <stop
+         style="stop-color:#909989;stop-opacity:0;"
+         offset="1"
+         id="stop3831" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3819">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3821" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3823" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3819"
+       id="linearGradient3825"
+       x1="170.59975"
+       y1="9.3704405"
+       x2="170.79141"
+       y2="61.696342"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-46.083261,-9.879394)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3827"
+       id="linearGradient3833"
+       x1="170.79141"
+       y1="61.696342"
+       x2="170.59975"
+       y2="9.3704405"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-46.083261,-9.879394)" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="3.5355339"
+     inkscape:cx="169"
+     inkscape:cy="37"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3039" />
+  <rect
+     style="opacity:0.96000001;fill:url(#linearGradient3833);fill-opacity:1;stroke:url(#linearGradient3825);stroke-width:5;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3817"
+     width="213.82909"
+     height="41.012192"
+     x="2.2828431"
+     y="2.4608955"
+     ry="14.347539" />
+  <text
+     xml:space="preserve"
+     style="font-size:36.0517807px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:NanumGothic;-inkscape-font-specification:NanumGothic"
+     x="28.304371"
+     y="31.593693"
+     id="text3835"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3837"
+       x="28.304371"
+       y="31.593693"
+       style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:2.44000006px;font-family:Arial;-inkscape-font-specification:Arial">save corridor</tspan></text>
 </svg>

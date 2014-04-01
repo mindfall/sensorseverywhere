@@ -8,7 +8,7 @@ footer
 	padding-left: 15px
 	padding-right: 15px
 	bottom: 0
-	position: absolute
+	position: fixed
 	height: 20px
 	background-color: white
 	p
@@ -102,7 +102,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 	width: 25%
 	float: right
 
-.wildlifeCounter
+.wildlifeCounter, .monitorCounter
 	float: left !important
 	width: 40px !important
 
@@ -122,7 +122,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 .closePopUp
 	width: 20px	
 	height: 20px
-	margin-left: 256px
+	right: 10px
 	position: absolute
 
 .selectedThumb
@@ -131,7 +131,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 .wildlifePopup {
 	width: 300px;
-	height: 400px;
+	height: 450px;
 	margin-left: -70%;
 	margin-top: 15%;
 	border-radius: 15px
@@ -142,6 +142,90 @@ ul.nav.navbar-nav a.navbar-nav-link
 	background-color: white;
 	padding: 10px
 }
+
+.commentPopup {
+	width: 600px;
+	height: 300px;
+	margin-left: -70%;
+	margin-top: 15%;
+	border-radius: 15px
+	-moz-border-radius: 15px
+	-webkit-border-radius: 15px
+	border: 1px solid #d7e0e2
+	position: absolute;
+	background-color: white;
+	padding: 10px
+}
+
+.commentPopup label
+	display: inline
+	margin-left: 10px
+
+.commentTextarea
+	position: absolute
+	left: -18px
+	top: 30px
+
+.labelComments
+	position: absolute
+	top: 80%
+
+.savedWildlifeComments
+	position: absolute
+	top: 16px
+	width: 260px
+	height: 80px
+	word-wrap: normal
+	overflow: hidden
+
+
+.popupRow
+	padding-top: 50px
+	position: relative
+
+.popupCancel, .popupComments
+	width: 80px
+	height: 22px
+	border: 1px solid grey
+	text-align: center
+	border-radius: 3px
+	-moz-border-radius: 3px
+	-webkit-border-radius: 3px
+	bottom: 10px
+	left: 30px
+	position: absolute
+
+.popupComments
+	width: 120px
+
+.popupSave
+	width: 40px
+	height: 22px
+	border: 1px solid grey
+	text-align: center
+	border-radius: 3px
+	-moz-border-radius: 3px
+	-webkit-border-radius: 3px
+	bottom: 10px
+	right: 30px
+	position: absolute
+
+.projectFormPopup {
+	width: 600px
+	height: 900px
+	margin-top: 50px
+	margin-left: 25%
+	border-radius: 15px
+	-moz-border-radius: 15px
+	-webkit-border-radius: 15px
+	border: 1px solid #d7e0e2
+	position: absolute
+	background-color: white
+	padding: 10px
+	z-index: 100
+}
+
+
 
 /* END ANIMAL SELECTION AREA */
 /* MAP */
@@ -160,13 +244,13 @@ ul.nav.navbar-nav a.navbar-nav-link
 	height: 750px
 
 .saveProjectButton
-	background-image: url('../../img/buttons/btn_save_project.png')
+	background-image: url('../../img/buttons/btn_save_corridor.png')
 	background-repeat: no-repeat
 	display: block
-	width: 345px
-	height: 75px
-	margin: 38% 0% 0 25%
-	z-index: 9999
+	width: 215px
+	height: 45px
+	margin: 38% 0% 0 30%
+	z-index: 99
 	position: absolute
 
 .saveProjectButtonText{

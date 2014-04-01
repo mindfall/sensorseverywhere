@@ -20,6 +20,7 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 
 	    getSelectedWildlife : function() {
 	    	selectedWildlifeArray = selectedWildlife;
+	    //	console.log('selectedWildlife: ' + selectedWildlife[0]);
 			return selectedWildlifeArray;
 		},
 		/**

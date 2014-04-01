@@ -26,17 +26,27 @@ angular.module('app')
 					return wildlifeData;
 				},
 
-				addProject : function(){
+				addProject : function(projectData){
+/*					console.log('wFProjectFactory' + projectData);
+					console.log(projectData.project_owner);
+					console.log(projectData.project_name);
+					console.log(projectData.project_description);
+					console.log(projectData.project_start);
+					console.log(projectData.project_type);
+					console.log(projectData.project_funding_required);
+					console.log(projectData.project_wildlife);
+					console.log(projectData.project_location);*/
+
 					var dfd = $q.defer();
-					$http.post('api/projectAdd')
+					$http.post('/api/createProject', projectData)
 						.success(function(data) {
-					
 							project = data;
-							console.log(data);
-					})
-					.error(function(data) {
-						console.log('Error: ' + data);
-					});
+							console.log('project: ' + JSON.stringify(project));
+						})
+						.error(function(data) {
+							console.log('Error: ' + projectData);
+						});
+					return dfd.promise;
 				}
 		} 
 	})

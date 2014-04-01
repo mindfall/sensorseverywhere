@@ -16,6 +16,6 @@ module.exports = function(config){
 
 	userModel.createDefaultUsers();
 	wildlifeModel.createDefaultWildlife();
-	projectModel.createDefaultProjects();
+	//projectModel.createDefaultProjects();
 
 };

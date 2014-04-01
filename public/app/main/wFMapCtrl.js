@@ -5,30 +5,25 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 	
 	var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/b8505041f78249b2bb279b2c58013a2e/997/256/{z}/{x}/{y}.png';
 	var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+	var selectedWildlife = [];
+	var markerWildlifeIcons = ['mammal', 'bird', 'reptile'];
+	var markerMonitorIcons = ['audio', 'video'];
 	var mapControls = {};
 	var drawnItems = {};
 	var drawControl = {};
-	var wkt = {};
+	var marker;
 
 	var map = new L.Map('map', {
 		layers: [basemap],
 		center: new L.LatLng(-25, 135), //25, 135
 		zoom: 5,
-		scrollWheelZoom: false
+		scrollWheelZoom: true
 	});
 
     new L.Control.GeoSearch({
         provider: new L.GeoSearch.Provider.OpenStreetMap(),
         position: 'topcenter'
     }).addTo(map);
-
-    var mammalIcon = L.icon({
-    	iconUrl: '../../img/icons/marker_video_green.png',
-    	iconSize: [32, 32],
-    	iconAnchor: [15, 15],
-    	popupAnchor: [-3, -10]
-    });
-    var marker = L.marker([-25, 135], {icon: mammalIcon}).addTo(map);
 
     /**
     * If a user is logged in display the mapping controls
@@ -39,7 +34,7 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 		mapControls = wFMapFactory.getMapControls();
 	   	drawnItems = mapControls[0];
 	   	drawControl = mapControls[1];
-   		map.addLayer(drawnItems);
+	   	map.addLayer(drawnItems);
    		map.addControl(drawControl);
    	}else{
    		try{
@@ -62,8 +57,34 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 			layer.bindPopup('A popup!');
 		}
 		var geojson = e.layer.toGeoJSON();
-    	wkt = Terraformer.WKT.convert(geojson.geometry);
-    	wFMapFactory.setMapData(wkt);
+		selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
+		var customMarker;
+		if(selectedWildlife != ''){
+			console.log(selectedWildlife);
+			switch(selectedWildlife[0].classification){
+				case 'bird':
+					customMarker = 'bird';
+					break;
+				case 'reptile':
+					customMarker = 'reptile';
+					break;
+				case 'fish':
+					customMarker = 'fish';
+					break;
+				case 'mammal':
+					customMarker = 'mammal';
+					break;
+				default:
+
+					break;
+
+			}
+			customMarker = wFMapFactory.addCustomMarker(customMarker);
+			marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
+		}
+		
+
+    	wFMapFactory.setMapData(geojson);
     	drawnItems.addLayer(e.layer);
 	});
 

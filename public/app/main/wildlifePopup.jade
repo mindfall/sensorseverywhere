@@ -1,0 +1,18 @@
+div.wildlifePopup
+	div.closePopUp(ng-click="wildlifePopup('hide')") X 
+	div {{wildlifeDetails.name}} <br>
+	div<img ng-src="{{wildlifeDetails.image_full}}">
+	div Some sample description text for each wildlife item<br>
+	label.col-md-2.control-label(for="hasMonitor") Monitored?
+		input(class="hasMonitor" type="checkbox" value="1" ng-model="hasMonitor")
+	div.popupRow(ng-if="hasMonitor")
+		label.col-md-2.control-label(for="hasMonitor") Audio
+			input(class="monitorCounter" type="number" ng-model="audioMonitors" value="0")
+		label.col-md-2.control-label(for="hasMonitor") Video
+			input(class="monitorCounter" type="number" ng-model="videoMonitors" value="0")
+
+	div(class="labelComments") Comments
+		div(class="savedWildlifeComments")
+	div
+		div(class="popupComments" ng-click="commentPopup('show')") Add Comment
+		div(class="popupSave") Save

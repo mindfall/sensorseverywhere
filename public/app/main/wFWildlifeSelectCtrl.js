@@ -3,18 +3,16 @@ angular.module('app')
 
 		this.toggle = true;
 		var wildlifePopup = false; //used for wildlife popup in selection list
+		var commentPopup = false;
 		var wildlifeArray = []; //Used to build list for animal search input
-		var selectedWildlife = []; //Used in submitAnimal to find if animal already exists in list
-	    
-	    $scope.hasMonitor = 0;
-	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
-	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
+		var submittedWildlife = []; //Used in submitAnimal to find if animal already exists in list
 
-	    $scope.monitorTypes = [
-					{name: 'video', value: 'video'},
-					{name: 'audio', value: 'audio'}
-				];
-		$scope.monitors = {type: $scope.monitorTypes[0].value};
+	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
+	    $scope.wildlifeCounter = 1;
+	    $scope.audioMonitors = 1;
+	    $scope.videoMonitors = 1;
+	    $scope.monitorCount = $scope.audioMonitors + $scope.videoMonitors;
+	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
 
 	    /**
 	    * Create a promise to return the wildlife list
@@ -53,25 +51,39 @@ angular.module('app')
 		*   display it on selected list
 	    */
 		
-	    $scope.submitWildlife = function(){
-
+	    $scope.submitWildlife = function(wildlife){
 	    	if(this.wildlifeSelect){
 	    		//create an array of selected animals
-				selectedWildlife.push(this.wildlifeSelect);
+				submittedWildlife.push(this.wildlifeSelect);
 				selectedName = this.wildlifeSelect;
-				wFWildlifeFactory.checkIfUniqueAndAddName(selectedWildlife);
+				wFWildlifeFactory.checkIfUniqueAndAddName(submittedWildlife);
 	    	}
 	 	}
 
 	 	$scope.wildlifePopup = function(state, wildlife){
-	 		if(state == 'show'){
+	 		if(state === 'show'){
 	 			wildlifePopup = true;
  				$scope.wildlifeDetails = wildlife;
 	 		}
-	 		if(state == 'hide') wildlifePopup = false;
+	 		if(state === 'hide') wildlifePopup = false;
 
 	 		return wildlifePopup;
 	 	}
+
+	 	$scope.commentPopup = function(state){
+	 		if(state === 'show')	commentPopup = true;
+
+	 		if(state === 'hide') commentPopup = false;
+
+	 		return commentPopup;
+	 	}
+
+	 	$scope.saveWildlifeComments = function(comments){
+	 		$scope.wildlifeComments = comments;
+	 		commentPopup = false;
+	 		return $scope.saveWildlifeComments, commentPopup;
+	 	}
+
 
 	}).directive('draggability', function($document){
 		return function(scope, element, attr){
@@ -84,8 +96,8 @@ angular.module('app')
 			});
 
 			element.on('mousedown', function(event){
-				console.log('mousedown');
-				event.preventDefault();
+				//console.log('mousedown');
+				//event.preventDefault();
 				startX = event.pageX - x;
 				startY = event.pageY - y;
 				$document.on('mousemove', mousemove);
@@ -106,17 +118,29 @@ angular.module('app')
 				$document.unbind('mouseup', mouseup);
 			}
 		};
-	}).directive('popup', function(){
+	}).directive('wildlifePopup', function(){
+		//$scope.wildlifeDetails = wildlife;
 		return {
+			priority: 1000,
 			restrict: 'E',
-			transclude: true,
-			templateUrl: '/partials/main/popup',
+			transclude: 'element',
+			templateUrl: '/partials/main/wildlifePopup',
+			link: function($scope, $element, $attr){
+				//put in a $watch expression here
+				var audio = $scope.audioMonitors;
+				var video = $scope.videoMonitors;
+			//	var monitorCount = audio + video;
+
+			},
 			replace: true,
 
 		}
+	}).directive('commentPopup', function(){
+		return {
+			restrict: 'E',
+			transclude: true,
+			templateUrl: '/partials/main/commentPopup',
+			replace: true,
+
+		};
 	});
-
-
-		//- div.closePopUp(ng-click="wildlifePopup('hide')") X 
-							//- div{{wildlifeDetails.name}}<br>
-							//- div<img ng-src="{{wildlifeDetails.image_full}}">
