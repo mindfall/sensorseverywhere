@@ -1,11 +1,19 @@
 angular.module('app')
-	.factory('wFProjectFactory', function($rootScope, $http, $q){
+	.factory('wFProjectFactory', function($rootScope, $http, $q, $routeParams, $location, wFNotifier){
 
 		var mapData = [];
 		var wildlifeData = [];
 
 		return {
-				getProjects : function(){
+				setWildlifeData : function(wildlife) {
+					wildlifeData = wildlife;
+				},
+
+				getWildlifeData : function() {
+					return wildlifeData;
+				},
+
+				getProjects : function() {
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/projects'})
 						.success(function(data, status, headers, config) {
@@ -18,35 +26,43 @@ angular.module('app')
 
 				}, 
 
-				setWildlifeData : function(wildlife){
-					wildlifeData = wildlife;
-				},
-
-				getWildlifeData : function(){
-					return wildlifeData;
-				},
-
-				addProject : function(projectData){
-/*					console.log('wFProjectFactory' + projectData);
-					console.log(projectData.project_owner);
-					console.log(projectData.project_name);
-					console.log(projectData.project_description);
-					console.log(projectData.project_start);
-					console.log(projectData.project_type);
-					console.log(projectData.project_funding_required);
-					console.log(projectData.project_wildlife);
-					console.log(projectData.project_location);*/
-
+				viewProjectDetails : function(id) {
 					var dfd = $q.defer();
-					$http.post('/api/createProject', projectData)
-						.success(function(data) {
-							project = data;
-							console.log('project: ' + JSON.stringify(project));
-						})
-						.error(function(data) {
-							console.log('Error: ' + projectData);
+					$http({method: 'GET', url:'/api/projects/' + id})
+						.success(function(data, status, headers, config){
+							dfd.resolve(data);
+						}).error(function(data, status, headers, config){
+							dfd.reject(status);
 						});
 					return dfd.promise;
-				}
+				},
+
+				addProject : function(projectData) {
+					var dfd = $q.defer();
+					$http.post('/api/createProject', projectData)
+						.success(function(data, status, headers, config) {
+							project = data;
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				}, 
+
+				contributeToProject: function(id, amount, name) {
+					console.log(amount);
+					var dfd = $q.defer();
+					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
+						.success(function(data, status, headers, config) {
+							wFNotifier.notify('Thanks. You\'ve just contribution of $' + amount + ' to project ' + name + ' was successfully recieved.');
+							$location.path('/fund/' + id);
+						})
+						.error(function(data, status, headers, config){
+							console.log(status);
+						});
+					return dfd.promise;
+					
+				},
 		} 
 	})

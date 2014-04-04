@@ -16,8 +16,10 @@ angular.module('app').config(function($routeProvider, $locationProvider){
 	var routeRoleChecks = {
 		admin: {	auth: function(wFAuth){
 				return wFAuth.authorizeCurrentUserForRoute('admin')
-			}
-		}
+		}},
+		user: {	auth: function(wFAuth){
+				return wFAuth.authorizeAuthenticatedUserForRoute()
+		}},
 	}
 
 	$locationProvider.html5Mode(true);
@@ -30,12 +32,12 @@ angular.module('app').config(function($routeProvider, $locationProvider){
 				{templateUrl: '/partials/fund/main', 
 				controller: 'wFFundCtrl'
 		})
-		.when('/fund/contribute', 
+		.when('/fund/contribute/:id', 
 				{templateUrl: '/partials/fund/contribute', 
-				controller: 'wFFundCtrl'
+				controller: 'wFFundContributeCtrl'
 		})
-		.when('/fund/add_project', 
-				{templateUrl: '/partials/fund/add_project', 
+		.when('/fund/:id', 
+				{templateUrl: '/partials/fund/fund-details', 
 				controller: 'wFFundCtrl'
 		})
 		.when('/monitor/main', 
@@ -49,7 +51,12 @@ angular.module('app').config(function($routeProvider, $locationProvider){
 		})
 		.when('/signup',
 				{templateUrl: '/partials/account/signup',
-				controller: 'wFSignupCtrl'
+				controller: 'wFSignupCtrl', 
+		})
+		.when('/profile',
+				{templateUrl: '/partials/account/profile',
+				controller: 'wFProfileCtrl',
+				resolve: routeRoleChecks.user
 		});
 });
 

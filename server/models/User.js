@@ -9,11 +9,25 @@ var userSchema = mongoose.Schema({
 	username: {type: String, required: true, unique: true, index: true }, 
 	salt: String, 
 	hashed_pwd: String,
-	roles: [String]
+	roles: [String],
+	/*has_projects: [{
+		project_id: {type: Number},
+		status: Boolean,
+		funded: Boolean
+	}],
+	contributes_to: [{
+        project_id: {type: Number},
+        contribution_amount: {type: Number}
+    }],
+    total_contributions: {type: Number}*/
+
 },{strict: true});
 userSchema.methods = {
 	authenticate: function(passwordToMatch){
 		return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
+	},
+	hasRole: function(role){
+		return this.roles.indexOf(role) > -1;
 	}
 }
 

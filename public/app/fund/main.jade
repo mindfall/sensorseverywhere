@@ -1,13 +1,19 @@
 .container
+	.pull-right
+		form.form-inline
+			.form-group
+				input.form-control(ng-model="searchText", placeholder="filter")
+			.form-group
+				select.form-control(ng-model="sortOrder", ng-option="project.project_name")
 	.row
 		.col-md-8(id="center-pane")
 			h3 Current Projects
 			div(ng-controller="wFFundCtrl")
-				div(class="projectOutline" ng-repeat="project in projects track by $index")
-					button(ng-click="projectDelete(project.id)") Remove
+				div(class="projectOutline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+					//button(ng-click="viewProject(project._id)") Remove
 					p
 					b Name: 
-					{{project.project_name}}<br>
+					a(href="/fund/{{project._id}}") {{project.project_name}}<br>
 					b Description: 
 					{{project.project_description}}<br> 
 					b Amount Required: 
@@ -15,5 +21,5 @@
 					b Total to Date:
 					{{project.total_contributions}}<br>
 					b End Date:
-					{{project.end_date}}<br>
-					a(ng-href="contribute") Contribute
+					{{project.project_end_date | date}}<br>
+					a(ng-href="contribute/{{project._id}}") Contribute

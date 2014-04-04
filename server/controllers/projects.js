@@ -1,13 +1,12 @@
 var mongoose = require('mongoose'),
-	Project = mongoose.model('Project');
+	Project = mongoose.model('Project'),
+	User = mongoose.model('User');
 
 exports.getProjects = function(req, res){
 	Project.find({}).exec(function(err, collection){
 		res.send(collection);
 	})
 };
-
-
 
 exports.createProject = function(req, res, next){
 	var projectData = req.body;
@@ -35,7 +34,7 @@ exports.createProject = function(req, res, next){
 	for(var i = 0; i < geopointsLength; i++){
 		projectLocationPoints.push(req.body.project_location.geometry.coordinates[0][i][0], req.body.project_location.geometry.coordinates[0][i][1])
 	}
-	console.log(projectLocationPoints);
+	
 	var saveProject = Project.create ({
 
 		    //id: Number,
@@ -52,25 +51,49 @@ exports.createProject = function(req, res, next){
 		    "project_geopoints": [{
 		    	"points": {type: projectLocationPoints}
 		    }],
-	
 		    "project_description": projectDescription,
 	        "project_start_date": projectStartDate,
 	        "project_end_date": projectEndDate,
 	        "project_funding_required": projectFundingRequired,
 	        "total_contributions":0,
 	        "project_image":"/project_thumbs/1.jpg"
-
-
 	}, 
-	 function(){
+	function(){
 	 	res.send(saveProject);
-	 });
+	});
 
-
-/*		    project_contributors: {
-		        contributor_name: String,
-		        contribution_type: String,
-		        contribution_amount: Number, 
-		        contributor_gravatar: String
-		    },*/
+/*		    
+		project_contributors: {
+	        contributor_name: String,
+	        contribution_type: String,
+	        contribution_amount: Number, 
+	        contributor_gravatar: String
+		}
+*/
 };
+
+exports.updateTotalContributions = function(req, res){
+	var contributionAmount = req.body.amount;
+	var addAmount = parseInt(contributionAmount);
+	console.log('Thie amount is: ' + contributionAmount);
+	Project.update(
+		{_id:req.params.id},
+		{
+			$inc: {
+				total_contributions: addAmount
+			}
+		}, function(){
+			res.send('success' + contributionAmount);
+	});
+
+}
+
+exports.getProjectById = function(req, res){
+	Project.findOne({_id:req.params.id}).exec(function(err, project) {
+		res.send(project);
+	});
+}
+
+exports.removeProject = function(req, res, next){
+	console.log(req);
+}
