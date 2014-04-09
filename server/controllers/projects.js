@@ -62,14 +62,6 @@ exports.createProject = function(req, res, next){
 	 	res.send(saveProject);
 	});
 
-/*		    
-		project_contributors: {
-	        contributor_name: String,
-	        contribution_type: String,
-	        contribution_amount: Number, 
-	        contributor_gravatar: String
-		}
-*/
 };
 
 exports.updateTotalContributions = function(req, res){

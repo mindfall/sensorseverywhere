@@ -11,6 +11,7 @@ module.exports = function(app, config) {
 	app.configure(function(){
 		app.set('views', config.rootPath + '/server/views');
 		app.set('view engine', 'jade');
+		app.set('view options', { pretty: false });
 		app.use(express.logger('dev'));
 		app.use(express.cookieParser());
 		app.use(express.bodyParser());

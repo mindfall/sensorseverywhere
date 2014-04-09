@@ -7,11 +7,13 @@ angular.module('app')
 				if(success){
 					wFNotifier.notify('You have successfully signed in!');
 					var loggedIn = true;
-
+					$location.path('/main')
 				} else {
 					wFNotifier.notify('Username/Password combination incorrect.');
 				}
 			});
+			
+
 		}
 		$scope.signout = function(){
 			wFAuth.logoutUser().then(function(){

@@ -1,49 +1,61 @@
 div(ng-controller="wFMainCtrl")
 	.container(ng-if="isLoggedIn")
-		.row
-			.col-md-9
-				div(ng-controller="wFMapCtrl" id="map" class="map")
-					leaflet
-			.col-md-3
-				p
-					.selection-layout
-						div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
-							form.selectAnimalInput(ng-submit="submitWildlife()")
-								input(id='wildlife_search' 
-									type='search' 
-									ng-model="wildlifeSelect" 
-									typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
-									class="form-control" 
-									placeholder="Search for wildlife...")
+			.row
+				.col-md-9
+					div(ng-controller="wFMapCtrl" id="map" class="map")
+						leaflet
+				h3(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) 
+				.col-md-3
+					p
+						.selection-layout
+							div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
+								form.selectAnimalInput(ng-submit="submitWildlife()")
+									input(id='wildlife_search' 
+										type='search' 
+										ng-model="wildlifeSelect" 
+										typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+										class="form-control" 
+										placeholder="Search for wildlife...")
 
-						div.selectedWildlifeContainer
-							div(ng-repeat="creature in selectedWildlife track by $index")
-								.well
-									table.selectedWildlife
-										tr
-											td.wildlifeCell
-												input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
-											td.wildlifeCell
-												div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
-											td.wildlifeCell
-												div(class="selectedWildlifeName") {{creature.name}}
-											td.wildlifeBtnCell
-												div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+							div.selectedWildlifeContainer
+								div(ng-repeat="creature in selectedWildlife track by $index")
+									.well
+										table.selectedWildlife
+											tr
+												td.wildlifeCell
+													input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
+												td.wildlifeCell
+													div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
+												td.wildlifeCell
+													div(class="selectedWildlifeName") {{creature.name}}
+												td.wildlifeBtnCell
+													div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+					
+								wildlife-popup(ng-show="wildlifePopup()" draggability)
+								comment-popup(ng-show="commentPopup()" draggability)
 				
-							wildlife-popup(ng-show="wildlifePopup()" draggability)
-							comment-popup(ng-show="commentPopup()" draggability)
+			project-popup(class="projectFormPopup" ng-show="projectPopup()")
 
+			.row(id="groups" ng-controller="wFGroupCtrl")
+				
+				.col-md-9
 
-		h3(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) 
-		project-popup(class="projectFormPopup" ng-show="projectPopup()")
-		.row(id="friends")
-			.col-md-12
-				h1 Friends
+					ul(class="nav nav-tabs")
+						li
+							a(ui-sref=".members") Members
+						li
+							a(ui-sref=".invite") Invite
+						li
+							a(ui-sref=".timeline") Timeline
+					<div ui-view></div>
+					
 
-	.container(ng-if="!isLoggedIn")
-		.row
-			.col-md-12
-				div(ng-controller="wFMapCtrl" id="map" class="map" style="margin-left: 15px; width: 98%; margin-right: 15px;")
-					leaflet
-
-		
+				.col-md-3(class='chat-panel')
+					h3 Chat
+					div
+						div sample text to go into the chat panel
+						ul 
+							li One
+							li Two
+							li Three
+					

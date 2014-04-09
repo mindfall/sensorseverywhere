@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('wFMainCtrl', function($scope, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
+	.controller('wFMainCtrl', function($scope, $location, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
 
 	var projectPopup = false;
 	var corridorData = {};
@@ -24,6 +24,8 @@ angular.module('app')
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 	if(userIsLoggedIn == true){
     	$scope.isLoggedIn = userIsLoggedIn;
+   	}else{
+   		$location.url('/');
    	}
 
 

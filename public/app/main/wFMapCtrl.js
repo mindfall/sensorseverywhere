@@ -17,12 +17,12 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 		layers: [basemap],
 		center: new L.LatLng(-25, 135), //25, 135
 		zoom: 5,
-		scrollWheelZoom: true
+		scrollWheelZoom: false
 	});
 
     new L.Control.GeoSearch({
         provider: new L.GeoSearch.Provider.OpenStreetMap(),
-        position: 'topcenter'
+        position: 'topleft'
     }).addTo(map);
 
     /**

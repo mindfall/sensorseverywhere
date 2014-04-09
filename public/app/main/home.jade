@@ -1,0 +1,8 @@
+div(ng-controller="wFMainCtrl")
+	.container(ng-if="!isLoggedIn")
+		.row
+			.col-md-12
+				div(ng-controller="wFMapCtrl" id="map" class="map" style="margin-left: 15px; width: 98%; margin-right: 15px;")
+					leaflet
+
+		

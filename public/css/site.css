@@ -233,8 +233,10 @@ ul.nav.navbar-nav a.navbar-nav-link {
 /* MAP */
 .leaflet-control-geosearch,
 .leaflet-control-geosearch ul {
-  top: 60px !important;
-  margin-left: 700px !important;
+  margin-left: 50px !important;
+  width: 400px !important;
+  position: absolute;
+  z-index: 100 !important;
 }
 #map {
   border-top: 1px solid #e5e5e5;
@@ -250,7 +252,8 @@ ul.nav.navbar-nav a.navbar-nav-link {
   display: block;
   width: 215px;
   height: 45px;
-  margin: 38% 0% 0 30%;
+  bottom: 230px;
+  left: 35%;
   z-index: 99;
   position: absolute;
 }
@@ -277,7 +280,19 @@ ul.nav.navbar-nav a.navbar-nav-link {
 }
 /* END PROJECT / FUND LIST PAGE */
 /* FRIENDS */
-#friends {
-  bottom: 5%;
+#groups {
+  margin-top: 10px;
+  bottom: 125px;
   position: absolute;
+  border-top: 2px solid #808080;
+  width: 100%;
+}
+.chat-panel {
+  border: 1px solid #d7e0e2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: 200px;
+  position: absolute;
+  margin-left: 1560px;
 }
