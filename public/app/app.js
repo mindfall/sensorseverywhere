@@ -67,17 +67,17 @@ angular.module('app').config(function($locationProvider, $stateProvider, $urlRou
 				controller: 'wFProfileCtrl',
 				resolve: routeRoleChecks.user
 		})
-		.state('main.members', {
+		.state('.members', {
 				url: '/members',
-				templateUrl: '/partials/main/main-members',
+				templateUrl: '/partials/group/group-members',
 		})
 		.state('main.timeline', {
 				url: '/timeline',
-				templateUrl: '/partials/main/main-timeline',
+				templateUrl: '/partials/group/group-timeline',
 		})
 		.state('main.invite', {
 				url: '/invite',
-				templateUrl: '/partials/main/main-invite',
+				templateUrl: '/partials/group/group-invite',
 		});
 
 });
@@ -89,26 +89,3 @@ angular.module('app').run(function($rootScope, $location){
 		}
 	})
 })
-/*
-views: {
-				'members': {
-					template: '<h4> Hello </h4>',
-					//templateUrl: "partials/group/group.members.jade",
-					controller: function($scope){ 
-						$scope.name = 'Members'; 
-						console.log('members');
-					}
-				},
-				'timeline': {
-					templateUrl: "partials/group/group.timeline.jade",
-					controller: function($scope){ $scope.name = 'timeline';}
-				},
-				'invite': {
-					templateUrl: "partials/group/group.invite.jade",
-					controller: function($scope){ $scope.name = 'invite'; }
-				},
-				'upload': {
-					templateUrl: "partials/group/group.upload.jade",
-					controller: function($scope){ $scope.name = 'upload'; }
-				}
-			}*/

@@ -5,4 +5,4 @@ div.commentPopup
 			textarea(cols="80" rows="10" ng-model="wildlifeComments") 
 	div
 		b(class="popupCancel") Clear
-		b(class="popupSave" ng-click="saveWildlifeComments(wildlifeComments)") Save
+		b(class="popupSave" ng-click="saveWildlifeComments(wildlifeComments); commentPopup('hide')") Save
