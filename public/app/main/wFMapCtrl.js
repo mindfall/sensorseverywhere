@@ -1,5 +1,7 @@
 angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 	
+	setMapHeight();
+
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
 	
@@ -97,6 +99,13 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 		console.log("Edited " + countOfEditedLayers + " layers");
 	});
 });
+
+function setMapHeight(){
+	
+	var map = document.getElementById('map');
+	map.style.height = '100%';
+
+}
 
 
 

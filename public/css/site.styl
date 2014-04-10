@@ -1,4 +1,16 @@
+html, .row-map-container, .content, .main-container
+	height: 100%
+
+.col-9-map-container, .col-3-selection-container
+	height: 75%
+	margin-bottom: 1%
+	position: absolute
+
+.col-3-selection-container
+	margin-left: 75%
+
 body 
+	height: 700px
 	padding-top: 61px
 
 .container
@@ -67,12 +79,31 @@ ul.nav.navbar-nav a.navbar-nav-link
 	background-color #cdcdcd
 
 /* END NAVBAR */
+
+/* GROUPS */
+
+.group-collaboration-elements
+	margin-top: 43%
+	position: absolute
+	border-top: 2px solid grey
+	width: 100%
+
+.chat-panel
+	border: 1px solid #d7e0e2
+	-moz-border-radius: 5px
+	-webkit-border-radius: 5px
+	border-radius: 5px
+	height: 200px
+	position: absolute
+	margin-left: 1560px
+
+
 /* ANIMAL SELECTION AREA (.toolbar) */
 
 .selection-layout
 	p
 		border-top 1px solid #d7e0e2
-	height: 30px
+	height: 100%
 	width: 95%
 	input
 		width: 100%
@@ -87,7 +118,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 	border-radius: 5px
 	float: right
 	width: 100%
-	height: 758px
+	height: 100%
 	display: block
 	margin-top: 1%
 
@@ -230,8 +261,6 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 /* END ANIMAL SELECTION AREA */
 /* MAP */
-
-
 .leaflet-control-geosearch, .leaflet-control-geosearch ul
 	margin-left: 50px !important
 	width: 400px !important
@@ -244,7 +273,8 @@ ul.nav.navbar-nav a.navbar-nav-link
 	left: 0 
 	margin-top: 3.5%
 	width: 100%
-	height: 750px
+	height: 100%
+	display: block
 
 .saveProjectButton
 	background-image: url('../../img/buttons/btn_save_corridor.png')
@@ -252,7 +282,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 	display: block
 	width: 215px
 	height: 45px
-	bottom: 230px
+	margin-top: 40%
 	left: 35%
 	z-index: 99
 	position: absolute
@@ -284,21 +314,5 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 /* END PROJECT / FUND LIST PAGE */
 
-/* FRIENDS */
 
-#groups
-	margin-top: 10px
-	bottom: 125px
-	position: absolute
-	border-top: 2px solid grey
-	width: 100%
-
-.chat-panel
-	border: 1px solid #d7e0e2
-	-moz-border-radius: 5px
-	-webkit-border-radius: 5px
-	border-radius: 5px
-	height: 200px
-	position: absolute
-	margin-left: 1560px
 

@@ -1,11 +1,11 @@
-div(ng-controller="wFMainCtrl")
+div(class="main-container" ng-controller="wFMainCtrl")
 	.container(ng-if="isLoggedIn")
-			.row
-				.col-md-9
+			.row(class="row-map-container")
+				.col-md-9(class="col-9-map-container")
 					div(ng-controller="wFMapCtrl" id="map" class="map")
 						leaflet
 				h3(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) 
-				.col-md-3
+				.col-md-3(class="col-3-selection-container")
 					p
 						.selection-layout
 							div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
@@ -36,7 +36,7 @@ div(ng-controller="wFMainCtrl")
 				
 			project-popup(class="projectFormPopup" ng-show="projectPopup()")
 
-			.row(id="groups" ng-controller="wFGroupCtrl")
+			.row(id="groups" ng-controller="wFGroupCtrl" class="group-collaboration-elements")
 				
 				.col-md-9
 
