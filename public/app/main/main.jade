@@ -1,61 +1,58 @@
 div(class="main-container" ng-controller="wFMainCtrl")
 	.container(ng-if="isLoggedIn")
-			.row(class="row-map-container")
-				.col-md-9(class="col-9-map-container")
-					div(ng-controller="wFMapCtrl" id="map" class="map")
-						leaflet
-				h3(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) 
-				.col-md-3(class="col-3-selection-container")
-					p
-						.selection-layout
-							div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
-								form.selectAnimalInput(ng-submit="submitWildlife()")
-									input(id='wildlife_search' 
-										type='search' 
-										ng-model="wildlifeSelect" 
-										typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
-										class="form-control" 
-										placeholder="Search for wildlife...")
+		bg-splitter(orientation="vertical" )
+			bg-pane
+				.row(class="row-map-container")
+					.col-md-9(class="col-9-map-container")
+						div(ng-controller="wFMapCtrl" id="map" class="map")
+							leaflet
+							h3(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) 
+					.col-md-3(class="col-3-selection-container")
+						p
+							.selection-layout
+								div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
+									form.selectAnimalInput(ng-submit="submitWildlife()")
+										input(id='wildlife_search' 
+											type='search' 
+											ng-model="wildlifeSelect" 
+											typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+											class="form-control" 
+											placeholder="Search for wildlife...")
 
-							div.selectedWildlifeContainer
-								div(ng-repeat="creature in selectedWildlife track by $index")
-									.well
-										table.selectedWildlife
-											tr
-												td.wildlifeCell
-													input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
-												td.wildlifeCell
-													div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
-												td.wildlifeCell
-													div(class="selectedWildlifeName") {{creature.name}}
-												td.wildlifeBtnCell
-													div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+								div.selectedWildlifeContainer
+									div(ng-repeat="creature in selectedWildlife track by $index")
+										.well
+											table.selectedWildlife
+												tr
+													td.wildlifeCell
+														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
+													td.wildlifeCell
+														div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
+													td.wildlifeCell
+														div(class="selectedWildlifeName") {{creature.name}}
+													td.wildlifeBtnCell
+														div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+						
+									wildlife-popup(ng-show="wildlifePopup()" draggability)
+									comment-popup(ng-show="commentPopup()" draggability)
 					
-								wildlife-popup(ng-show="wildlifePopup()" draggability)
-								comment-popup(ng-show="commentPopup()" draggability)
-				
-			project-popup(class="projectFormPopup" ng-show="projectPopup()")
-
-			.row(id="groups" ng-controller="wFGroupCtrl" class="group-collaboration-elements")
-				
-				.col-md-9
-
-					ul(class="nav nav-tabs")
-						li
-							a(ui-sref=".members") Members
-						li
-							a(ui-sref=".invite") Invite
-						li
-							a(ui-sref=".timeline") Timeline
-					<div ui-view></div>
-					
-
-				.col-md-3(class='chat-panel')
-					h3 Chat
-					div
-						div sample text to go into the chat panel
-						ul 
-							li One
-							li Two
-							li Three
-					
+						project-popup(class="projectFormPopup" ng-show="projectPopup()")
+			bg-pane
+				.row(id="groups" ng-controller="wFGroupCtrl" class="group-collaboration-elements")
+					.col-md-9
+						ul(class="nav nav-tabs")
+							li
+								a(ui-sref=".members") Members
+							li
+								a(ui-sref=".invite") Invite
+							li
+								a(ui-sref=".timeline") Timeline
+						<div ui-view></div>
+					.col-md-3(class='chat-panel')
+						h3 Chat
+						div
+							div sample text to go into the chat panel
+							ul 
+								li One
+								li Two
+								li Three

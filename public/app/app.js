@@ -3,7 +3,8 @@ angular.module('app', [
 	'ngRoute',
 	'leaflet-directive',
 	'ui.bootstrap',
-	'ui.router'
+	'ui.router',
+	'bgDirectives'
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
