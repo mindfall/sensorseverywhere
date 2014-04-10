@@ -12,7 +12,7 @@ div.wildlifePopup
 			input(class="monitorCounter" type="number" ng-model="videoMonitors" value="0")
 
 	div(class="labelComments") Comments
-		div(class="savedWildlifeComments")
+		div(class="savedWildlifeComments") {{wildlifeComments}}
 	div
 		div(class="popupComments" ng-click="commentPopup('show')") Add Comment
 		div(class="popupSave" ng-click="wildlifePopup('hide')") Save
