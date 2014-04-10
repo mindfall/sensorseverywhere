@@ -1,4 +1,5 @@
-angular.module('app').controller('wFFundContributeCtrl', function($scope, $routeParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
+angular.module('app').controller('wFFundContributeCtrl', function($scope, $stateParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
+
 
 
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -19,9 +20,9 @@ angular.module('app').controller('wFFundContributeCtrl', function($scope, $route
 	var cc_exp_year = $scope.cc_exp_year;
 	var cc_csv = $scope.cc_csv;
 
-	$scope.project_id = $routeParams.id;
+	$scope.project_id = $stateParams.id;
 
-	var contribute = wFProjectFactory.viewProjectDetails($routeParams.id);
+	var contribute = wFProjectFactory.viewProjectDetails($stateParams.id);
 
 	contribute.then(function(contribute){
 		$scope.project_name = contribute.project_name;
@@ -31,7 +32,8 @@ angular.module('app').controller('wFFundContributeCtrl', function($scope, $route
 
 
 	$scope.contribution = function(amount, name) {
-		var contribtionAmount = wFProjectFactory.contributeToProject($routeParams.id, amount, name);
+
+		var contribtionAmount = wFProjectFactory.contributeToProject($stateParams.id, amount, name);
 
 		contribtionAmount.then(function(contribtionAmount){
 			console.log('The amount you have contributed is: ' + contributionAmount);
@@ -39,7 +41,7 @@ angular.module('app').controller('wFFundContributeCtrl', function($scope, $route
 			console.log(status);
 		});
 	//	console.log("Thanks for contributing " + amount + ", your cc will be debited upon success of the funding application.");
-	//	$location.url('/fund/' + $routeParams.id);
+	//	$location.url('/fund/' + $stateParams.id);
 	}
 
 

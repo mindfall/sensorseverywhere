@@ -1,5 +1,5 @@
 angular.module('app')
-	.factory('wFProjectFactory', function($rootScope, $http, $q, $routeParams, $location, wFNotifier){
+	.factory('wFProjectFactory', function($rootScope, $http, $q, $location, wFNotifier){
 
 		var mapData = [];
 		var wildlifeData = [];
@@ -51,11 +51,11 @@ angular.module('app')
 				}, 
 
 				contributeToProject: function(id, amount, name) {
-					console.log(amount);
+					console.log(id);
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
 						.success(function(data, status, headers, config) {
-							wFNotifier.notify('Thanks. You\'ve just contribution of $' + amount + ' to project ' + name + ' was successfully recieved.');
+							wFNotifier.notify('Thanks. You\'ve just made a contribution of $' + amount + ' to project ' + name + ' was successfully recieved.');
 							$location.path('/fund/' + id);
 						})
 						.error(function(data, status, headers, config){
