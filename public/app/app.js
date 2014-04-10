@@ -6,7 +6,7 @@ angular.module('app', [
 	'ui.router'
 ]);
 
-angular.module('app').config(function($locationProvider, $stateProvider, $urlRouterProvider){
+angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 
 	$locationProvider.html5Mode(true);
 	var routeRoleChecks = {

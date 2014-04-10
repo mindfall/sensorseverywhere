@@ -1,8 +1,8 @@
-angular.module('app').controller('wFFundDetailsCtrl', function($scope, $routeParams, wFProjectFactory){
+angular.module('app').controller('wFFundDetailsCtrl', function($scope, $stateParams, wFProjectFactory){
 
 	var viewProject = {};
 	
-	viewProject = wFProjectFactory.viewProjectDetails($routeParams.id);
+	viewProject = wFProjectFactory.viewProjectDetails($stateParams.id);
 
 	viewProject.then(function(viewProject){
 		console.log(viewProject);
