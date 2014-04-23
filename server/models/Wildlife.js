@@ -43,371 +43,371 @@ function createDefaultWildlife(){
     "name":"Abudefduf bengalensis",
     "image_thumb":"/img/wildlife_thumbs/Abudefduf_bengalensis.jpg",
     "image_full":"/img/wildlife_full/Abudefduf_bengalensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":5,
     "name":"Abudefduf sexfasciatus",
     "image_thumb":"/img/wildlife_thumbs/Abudefduf-sexfasciatus.jpg",
     "image_full":"/img/wildlife_full/Abudefduf-sexfasciatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":6,
     "name":"Abudefduf vaigiensis",
     "image_thumb":"/img/wildlife_thumbs/Abudefduf-vaigiensis.jpg",
     "image_full":"/img/wildlife_full/Abudefduf-vaigiensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":7,
     "name":"Acanthistius ocellatus",
     "image_thumb":"/img/wildlife_thumbs/Acanthistius-ocellatus.jpg",
     "image_full":"/img/wildlife_full/Acanthistius-ocellatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":8,
     "name":"acanthiza apicalis",
     "image_thumb":"/img/wildlife_thumbs/acanthiza-apicalis.jpg",
     "image_full":"/img/wildlife_full/acanthiza-apicalis.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":9,
     "name":"Acanthiza chrysorrhoa",
     "image_thumb":"/img/wildlife_thumbs/Acanthiza_chrysorrhoa.jpg",
     "image_full":"/img/wildlife_full/Acanthiza_chrysorrhoa.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":10,
     "name":"Acanthiza ewingii",
     "image_thumb":"/img/wildlife_thumbs/Acanthiza_ewingii.jpg",
     "image_full":"/img/wildlife_full/Acanthiza_ewingii.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":11,
     "name":"Acanthorhynchus superciliosus",
     "image_thumb":"/img/wildlife_thumbs/Acanthorhynchus-superciliosus.jpg",
     "image_full":"/img/wildlife_full/Acanthorhynchus-superciliosus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":12,
     "name":"Acanthoscelides obtectus damage",
     "image_thumb":"/img/wildlife_thumbs/Acanthoscelides_obtectus-damage.jpg",
     "image_full":"/img/wildlife_full/Acanthoscelides_obtectus-damage.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":13,
     "name":"Acanthoscelides obtectus",
     "image_thumb":"/img/wildlife_thumbs/Acanthoscelides_obtectus.jpg",
     "image_full":"/img/wildlife_full/Acanthoscelides_obtectus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":14,
     "name":"Acanthurus blochii",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-blochii.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-blochii.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":15,
     "name":"Acanthurus dussumieri",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-dussumieri.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-dussumieri.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":16,
     "name":"Acanthurus dussumier",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-dussumier.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-dussumier.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":17,
     "name":"Acanthurus nigrofuscus",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-nigrofuscus.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-nigrofuscus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":18,
     "name":"Acanthurus olivaceus",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-olivaceus.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-olivaceus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":19,
     "name":"Acanthurus triostegus",
     "image_thumb":"/img/wildlife_thumbs/Acanthurus-triostegus.jpg",
     "image_full":"/img/wildlife_full/Acanthurus-triostegus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":20,
     "name":"Acanturus lineatus",
     "image_thumb":"/img/wildlife_thumbs/Acanturus-lineatus.jpg",
     "image_full":"/img/wildlife_full/Acanturus-lineatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":21,
     "name":"Accipiter cirrocephalus",
     "image_thumb":"/img/wildlife_thumbs/Accipiter_cirrocephalus.jpg",
     "image_full":"/img/wildlife_full/Accipiter_cirrocephalus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":22,
     "name":"Achoerodus viridis",
     "image_thumb":"/img/wildlife_thumbs/Achoerodus-viridis.jpg",
     "image_full":"/img/wildlife_full/Achoerodus-viridis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":23,
     "name":"Achroia grisella",
     "image_thumb":"/img/wildlife_thumbs/Achroia-grisella.jpg",
     "image_full":"/img/wildlife_full/Achroia-grisella.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":24,
     "name":"Actitis hypoleucos",
     "image_thumb":"/img/wildlife_thumbs/Actitis-hypoleucos.jpg",
     "image_full":"/img/wildlife_full/Actitis-hypoleucos.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":25,
     "name":"Adelie Penguin",
     "image_thumb":"/img/wildlife_thumbs/Adelie_Penguin.jpg",
     "image_full":"/img/wildlife_full/Adelie_Penguin.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":26,
     "name":"Adelie Penguins",
     "image_thumb":"/img/wildlife_thumbs/Adelie_Penguins.jpg",
     "image_full":"/img/wildlife_full/Adelie_Penguins.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":27,
     "name":"Aedes aegypti",
     "image_thumb":"/img/wildlife_thumbs/Aedes-aegypti.jpg",
     "image_full":"/img/wildlife_full/Aedes-aegypti.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":28,
     "name":"Aedes albopictus",
     "image_thumb":"/img/wildlife_thumbs/Aedes-albopictus.jpg",
     "image_full":"/img/wildlife_full/Aedes-albopictus.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":29,
     "name":"Aedes Albopictus",
     "image_thumb":"/img/wildlife_thumbs/Aedes-Albopictus.jpg",
     "image_full":"/img/wildlife_full/Aedes-Albopictus.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":30,
     "name":"Aegotheles cristatus",
     "image_thumb":"/img/wildlife_thumbs/Aegotheles_cristatus.jpg",
     "image_full":"/img/wildlife_full/Aegotheles_cristatus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":31,
     "name":"Aeoliscus strigatus",
     "image_thumb":"/img/wildlife_thumbs/Aeoliscus-strigatus.jpg",
     "image_full":"/img/wildlife_full/Aeoliscus-strigatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":32,
     "name":"Aeroplane",
     "image_thumb":"/img/wildlife_thumbs/Aeroplane.jpg",
     "image_full":"/img/wildlife_full/Aeroplane.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":33,
     "name":"Aetobatus narinari",
     "image_thumb":"/img/wildlife_thumbs/Aetobatus-narinari.jpg",
     "image_full":"/img/wildlife_full/Aetobatus-narinari.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":34,
     "name":"Agrotis infusa",
     "image_thumb":"/img/wildlife_thumbs/Agrotis_infusa.jpg",
     "image_full":"/img/wildlife_full/Agrotis_infusa.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":35,
     "name":"agrotis munda",
     "image_thumb":"/img/wildlife_thumbs/agrotis-munda.jpg",
     "image_full":"/img/wildlife_full/agrotis-munda.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":36,
     "name":"Agrotis munda",
     "image_thumb":"/img/wildlife_thumbs/Agrotis_munda.jpg",
     "image_full":"/img/wildlife_full/Agrotis_munda.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":37,
     "name":"Alauda arvensis eggs",
     "image_thumb":"/img/wildlife_thumbs/Alauda-arvensis-eggs.jpg",
     "image_full":"/img/wildlife_full/Alauda-arvensis-eggs.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":38,
     "name":"Alauda arvensis",
     "image_thumb":"/img/wildlife_thumbs/Alauda-arvensis.jpg",
     "image_full":"/img/wildlife_full/Alauda-arvensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":39,
     "name":"Alauda arvensis nest",
     "image_thumb":"/img/wildlife_thumbs/Alauda-arvensis-nest.jpg",
     "image_full":"/img/wildlife_full/Alauda-arvensis-nest.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":40,
     "name":"Alcedo azurea",
     "image_thumb":"/img/wildlife_thumbs/Alcedo-azurea.jpg",
     "image_full":"/img/wildlife_full/Alcedo-azurea.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":41,
     "name":"Alcedo pusilla",
     "image_thumb":"/img/wildlife_thumbs/Alcedo-pusilla.jpg",
     "image_full":"/img/wildlife_full/Alcedo-pusilla.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":42,
     "name":"Alectis ciliaris",
     "image_thumb":"/img/wildlife_thumbs/Alectis-ciliaris.jpg",
     "image_full":"/img/wildlife_full/Alectis-ciliaris.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":43,
     "name":"Allied Rock Wallaby",
     "image_thumb":"/img/wildlife_thumbs/Allied-Rock-Wallaby.jpg",
     "image_full":"/img/wildlife_full/Allied-Rock-Wallaby.jpg",
-    "classification":""
+    "classification":"mammal"
   },
   {
     "id":44,
     "name":"Almaco jack",
     "image_thumb":"/img/wildlife_thumbs/Almaco-jack.jpg",
     "image_full":"/img/wildlife_full/Almaco-jack.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":45,
     "name":"Alopias pelagicus",
     "image_thumb":"/img/wildlife_thumbs/Alopias-pelagicus.jpg",
     "image_full":"/img/wildlife_full/Alopias-pelagicus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":46,
     "name":"Alopias superciliosus",
     "image_thumb":"/img/wildlife_thumbs/Alopias-superciliosus.jpg",
     "image_full":"/img/wildlife_full/Alopias-superciliosus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":47,
     "name":"Alopias vulpinus",
     "image_thumb":"/img/wildlife_thumbs/Alopias-vulpinus.jpg",
     "image_full":"/img/wildlife_full/Alopias-vulpinus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":48,
     "name":"Alphitobius diaperinus",
     "image_thumb":"/img/wildlife_thumbs/Alphitobius-diaperinus.jpg",
     "image_full":"/img/wildlife_full/Alphitobius-diaperinus.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":49,
     "name":"Aluterus monoceros",
     "image_thumb":"/img/wildlife_thumbs/Aluterus-monoceros.jpg",
     "image_full":"/img/wildlife_full/Aluterus-monoceros.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":50,
     "name":"Aluterus scriptus",
     "image_thumb":"/img/wildlife_thumbs/Aluterus-scriptus.jpg",
     "image_full":"/img/wildlife_full/Aluterus-scriptus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":51,
     "name":"Amata trigonophora",
     "image_thumb":"/img/wildlife_thumbs/Amata-trigonophora.jpg",
     "image_full":"/img/wildlife_full/Amata-trigonophora.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":52,
     "name":"Amblyeleotris steinitzi",
     "image_thumb":"/img/wildlife_thumbs/Amblyeleotris-steinitzi.jpg",
     "image_full":"/img/wildlife_full/Amblyeleotris-steinitzi.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":53,
     "name":"Amblyglyphidodon curacao",
     "image_thumb":"/img/wildlife_thumbs/Amblyglyphidodon-curacao.jpg",
     "image_full":"/img/wildlife_full/Amblyglyphidodon-curacao.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":54,
     "name":"American cockroach",
     "image_thumb":"/img/wildlife_thumbs/American-cockroach.jpg",
     "image_full":"/img/wildlife_full/American-cockroach.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":55,
     "name":"Amethystine Python",
     "image_thumb":"/img/wildlife_thumbs/Amethystine-Python.jpg",
     "image_full":"/img/wildlife_full/Amethystine-Python.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":56,
     "name":"Amphiprion akindynos",
     "image_thumb":"/img/wildlife_thumbs/Amphiprion-akindynos.jpg",
     "image_full":"/img/wildlife_full/Amphiprion-akindynos.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":57,
@@ -421,301 +421,301 @@ function createDefaultWildlife(){
     "name":"Amphiprion clarkii",
     "image_thumb":"/img/wildlife_thumbs/Amphiprion-clarkii.jpg",
     "image_full":"/img/wildlife_full/Amphiprion-clarkii.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":59,
     "name":"Amphiprion clarki sipadan",
     "image_thumb":"/img/wildlife_thumbs/Amphiprion-clarki-sipadan.jpg",
     "image_full":"/img/wildlife_full/Amphiprion-clarki-sipadan.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":60,
     "name":"Amphiprion melanopus",
     "image_thumb":"/img/wildlife_thumbs/Amphiprion-melanopus.jpg",
     "image_full":"/img/wildlife_full/Amphiprion-melanopus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":61,
     "name":"Anas clypeata",
     "image_thumb":"/img/wildlife_thumbs/Anas-clypeata.jpg",
     "image_full":"/img/wildlife_full/Anas-clypeata.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":62,
     "name":"Anas gracilis",
     "image_thumb":"/img/wildlife_thumbs/Anas_gracilis.jpg",
     "image_full":"/img/wildlife_full/Anas_gracilis.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":63,
     "name":"Anas rhynchotis variegata",
     "image_thumb":"/img/wildlife_thumbs/Anas-rhynchotis-variegata.jpg",
     "image_full":"/img/wildlife_full/Anas-rhynchotis-variegata.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":64,
     "name":"Anemonefish Closeup,jpg",
     "image_thumb":"/img/wildlife_thumbs/Anemonefish_Closeup,jpg.jpg",
     "image_full":"/img/wildlife_full/Anemonefish_Closeup,jpg.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":65,
     "name":"Anguilla reinhardtii",
     "image_thumb":"/img/wildlife_thumbs/Anguilla-reinhardtii.jpg",
     "image_full":"/img/wildlife_full/Anguilla-reinhardtii.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":66,
     "name":"Anhinga melanogaster",
     "image_thumb":"/img/wildlife_thumbs/Anhinga-melanogaster.jpg",
     "image_full":"/img/wildlife_full/Anhinga-melanogaster.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":67,
     "name":"Animal Rose",
     "image_thumb":"/img/wildlife_thumbs/Animal-Rose.jpg",
     "image_full":"/img/wildlife_full/Animal-Rose.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":68,
     "name":"Anobium punctatum",
     "image_thumb":"/img/wildlife_thumbs/Anobium-punctatum.jpg",
     "image_full":"/img/wildlife_full/Anobium-punctatum.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":69,
     "name":"Anoplogaster cornuta",
     "image_thumb":"/img/wildlife_thumbs/Anoplogaster-cornuta.jpg",
     "image_full":"/img/wildlife_full/Anoplogaster-cornuta.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":70,
     "name":"anoplolepis gracilipes",
     "image_thumb":"/img/wildlife_thumbs/anoplolepis_gracilipes.jpg",
     "image_full":"/img/wildlife_full/anoplolepis_gracilipes.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":71,
     "name":"Anous stolidus",
     "image_thumb":"/img/wildlife_thumbs/Anous-stolidus.jpg",
     "image_full":"/img/wildlife_full/Anous-stolidus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":72,
     "name":"Anous stolidus nesting",
     "image_thumb":"/img/wildlife_thumbs/Anous-stolidus-nesting.jpg",
     "image_full":"/img/wildlife_full/Anous-stolidus-nesting.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":73,
     "name":"Anous tenuirostris",
     "image_thumb":"/img/wildlife_thumbs/Anous-tenuirostris.jpg",
     "image_full":"/img/wildlife_full/Anous-tenuirostris.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":74,
     "name":"Antarctic adelie penguins",
     "image_thumb":"/img/wildlife_thumbs/Antarctic_adelie_penguins.jpg",
     "image_full":"/img/wildlife_full/Antarctic_adelie_penguins.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":75,
     "name":"Antarctic, gentoo penguin",
     "image_thumb":"/img/wildlife_thumbs/Antarctic,_gentoo_penguin.jpg",
     "image_full":"/img/wildlife_full/Antarctic,_gentoo_penguin.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":76,
     "name":"Antarctic tern",
     "image_thumb":"/img/wildlife_thumbs/Antarctic_tern.jpg",
     "image_full":"/img/wildlife_full/Antarctic_tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":77,
     "name":"Antarctic Tern",
     "image_thumb":"/img/wildlife_thumbs/Antarctic_Tern.jpg",
     "image_full":"/img/wildlife_full/Antarctic_Tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":78,
     "name":"Antaresia childreni",
     "image_thumb":"/img/wildlife_thumbs/Antaresia-childreni.jpg",
     "image_full":"/img/wildlife_full/Antaresia-childreni.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":79,
     "name":"Antaresia maculosa",
     "image_thumb":"/img/wildlife_thumbs/Antaresia_maculosa.jpg",
     "image_full":"/img/wildlife_full/Antaresia_maculosa.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":80,
     "name":"Antaresia perthensis",
     "image_thumb":"/img/wildlife_thumbs/Antaresia-perthensis.jpg",
     "image_full":"/img/wildlife_full/Antaresia-perthensis.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":81,
     "name":"Antaresia stimsoni",
     "image_thumb":"/img/wildlife_thumbs/Antaresia-stimsoni.jpg",
     "image_full":"/img/wildlife_full/Antaresia-stimsoni.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":82,
     "name":"Antechinus agilis",
     "image_thumb":"/img/wildlife_thumbs/Antechinus-agilis.jpg",
     "image_full":"/img/wildlife_full/Antechinus-agilis.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":83,
     "name":"Antechinus flavipes",
     "image_thumb":"/img/wildlife_thumbs/Antechinus-flavipes.jpg",
     "image_full":"/img/wildlife_full/Antechinus-flavipes.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":84,
     "name":"Antechinus swainsonii",
     "image_thumb":"/img/wildlife_thumbs/Antechinus-swainsonii.jpg",
     "image_full":"/img/wildlife_full/Antechinus-swainsonii.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":85,
     "name":"Antennarius pictus",
     "image_thumb":"/img/wildlife_thumbs/Antennarius-pictus.jpg",
     "image_full":"/img/wildlife_full/Antennarius-pictus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":86,
     "name":"Antennarius striatus",
     "image_thumb":"/img/wildlife_thumbs/Antennarius-striatus.jpg",
     "image_full":"/img/wildlife_full/Antennarius-striatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":87,
     "name":"Anthela nicothoe",
     "image_thumb":"/img/wildlife_thumbs/Anthela-nicothoe.jpg",
     "image_full":"/img/wildlife_full/Anthela-nicothoe.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":88,
     "name":"Anthrenus museorum",
     "image_thumb":"/img/wildlife_thumbs/Anthrenus-museorum.jpg",
     "image_full":"/img/wildlife_full/Anthrenus-museorum.jpg",
-    "classification":""
+    "classification":"Insect"
   },
   {
     "id":89,
     "name":"Anthrenus verbasci",
     "image_thumb":"/img/wildlife_thumbs/Anthrenus_verbasci.jpg",
     "image_full":"/img/wildlife_full/Anthrenus_verbasci.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":90,
     "name":"Anthrenus verbasci larva",
     "image_thumb":"/img/wildlife_thumbs/Anthrenus-verbasci-larva.jpg",
     "image_full":"/img/wildlife_full/Anthrenus-verbasci-larva.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":91,
     "name":"Anthus cervinus",
     "image_thumb":"/img/wildlife_thumbs/Anthus-cervinus.jpg",
     "image_full":"/img/wildlife_full/Anthus-cervinus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":92,
     "name":"Anthus novaeseelandiae",
     "image_thumb":"/img/wildlife_thumbs/Anthus_novaeseelandiae.jpg",
     "image_full":"/img/wildlife_full/Anthus_novaeseelandiae.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":93,
     "name":"Antonio Barzaghi boh",
     "image_thumb":"/img/wildlife_thumbs/Antonio-Barzaghi-boh.jpg",
     "image_full":"/img/wildlife_full/Antonio-Barzaghi-boh.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":94,
     "name":"Aphis gossypii",
     "image_thumb":"/img/wildlife_thumbs/Aphis_gossypii.jpg",
     "image_full":"/img/wildlife_full/Aphis_gossypii.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":95,
     "name":"Apogon aureus",
     "image_thumb":"/img/wildlife_thumbs/Apogon-aureus.jpg",
     "image_full":"/img/wildlife_full/Apogon-aureus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":96,
     "name":"Apostlebird",
     "image_thumb":"/img/wildlife_thumbs/Apostlebird.jpg",
     "image_full":"/img/wildlife_full/Apostlebird.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":97,
     "name":"Aprasia parapulchella",
     "image_thumb":"/img/wildlife_thumbs/Aprasia-parapulchella.jpg",
     "image_full":"/img/wildlife_full/Aprasia-parapulchella.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":98,
     "name":"Aptenodytes patagonicus",
     "image_thumb":"/img/wildlife_thumbs/Aptenodytes_patagonicus.jpg",
     "image_full":"/img/wildlife_full/Aptenodytes_patagonicus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":99,
     "name":"Apus Pacificus",
     "image_thumb":"/img/wildlife_thumbs/Apus-Pacificus.jpg",
     "image_full":"/img/wildlife_full/Apus-Pacificus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":100,
     "name":"Aquila audax",
     "image_thumb":"/img/wildlife_thumbs/Aquila_audax.jpg",
     "image_full":"/img/wildlife_full/Aquila_audax.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":101,
@@ -729,21 +729,21 @@ function createDefaultWildlife(){
     "name":"Araneus bradleyi",
     "image_thumb":"/img/wildlife_thumbs/Araneus-bradleyi.jpg",
     "image_full":"/img/wildlife_full/Araneus-bradleyi.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":103,
     "name":"Arc Eye Hawkfish",
     "image_thumb":"/img/wildlife_thumbs/Arc-Eye-Hawkfish.jpg",
     "image_full":"/img/wildlife_full/Arc-Eye-Hawkfish.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":104,
     "name":"arctic jaeger",
     "image_thumb":"/img/wildlife_thumbs/arctic_jaeger.jpg",
     "image_full":"/img/wildlife_full/arctic_jaeger.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":105,
@@ -757,245 +757,245 @@ function createDefaultWildlife(){
     "name":"Arctic Tern",
     "image_thumb":"/img/wildlife_thumbs/Arctic_Tern.jpg",
     "image_full":"/img/wildlife_full/Arctic_Tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":107,
     "name":"Arctic Warbler",
     "image_thumb":"/img/wildlife_thumbs/Arctic_Warbler.jpg",
     "image_full":"/img/wildlife_full/Arctic_Warbler.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":108,
     "name":"Ardea pacifica",
     "image_thumb":"/img/wildlife_thumbs/Ardea_pacifica.jpg",
     "image_full":"/img/wildlife_full/Ardea_pacifica.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":109,
     "name":"Ardea sumatrana",
     "image_thumb":"/img/wildlife_thumbs/Ardea-sumatrana.jpg",
     "image_full":"/img/wildlife_full/Ardea-sumatrana.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":110,
     "name":"Arenaria interpres",
     "image_thumb":"/img/wildlife_thumbs/Arenaria_interpres.jpg",
     "image_full":"/img/wildlife_full/Arenaria_interpres.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":111,
     "name":"Argus monitor",
     "image_thumb":"/img/wildlife_thumbs/Argus-monitor.jpg",
     "image_full":"/img/wildlife_full/Argus-monitor.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":112,
     "name":"Aristeus parmetus",
     "image_thumb":"/img/wildlife_thumbs/Aristeus-parmetus.jpg",
     "image_full":"/img/wildlife_full/Aristeus-parmetus.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":113,
     "name":"arothron hispidus",
     "image_thumb":"/img/wildlife_thumbs/arothron-hispidus.jpg",
     "image_full":"/img/wildlife_full/arothron-hispidus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":114,
     "name":"Arothron hispidus",
     "image_thumb":"/img/wildlife_thumbs/Arothron-hispidus.jpg",
     "image_full":"/img/wildlife_full/Arothron-hispidus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":115,
     "name":"Arothron manilensis",
     "image_thumb":"/img/wildlife_thumbs/Arothron-manilensis.jpg",
     "image_full":"/img/wildlife_full/Arothron-manilensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":116,
     "name":"Arothron mappa",
     "image_thumb":"/img/wildlife_thumbs/Arothron-mappa.jpg",
     "image_full":"/img/wildlife_full/Arothron-mappa.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":117,
     "name":"Arothron nigropunctatus",
     "image_thumb":"/img/wildlife_thumbs/Arothron-nigropunctatus.jpg",
     "image_full":"/img/wildlife_full/Arothron-nigropunctatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":118,
     "name":"Arothron stellatus",
     "image_thumb":"/img/wildlife_thumbs/Arothron-stellatus.jpg",
     "image_full":"/img/wildlife_full/Arothron-stellatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":119,
     "name":"Artamus cyanopterus",
     "image_thumb":"/img/wildlife_thumbs/Artamus_cyanopterus.jpg",
     "image_full":"/img/wildlife_full/Artamus_cyanopterus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":120,
     "name":"Asian Dowitcher",
     "image_thumb":"/img/wildlife_thumbs/Asian-Dowitcher.jpg",
     "image_full":"/img/wildlife_full/Asian-Dowitcher.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":121,
     "name":"Asian Koel female",
     "image_thumb":"/img/wildlife_thumbs/Asian-Koel-female.jpg",
     "image_full":"/img/wildlife_full/Asian-Koel-female.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":122,
     "name":"Asian Koel Male",
     "image_thumb":"/img/wildlife_thumbs/Asian-Koel-Male.jpg",
     "image_full":"/img/wildlife_full/Asian-Koel-Male.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":123,
     "name":"Aspasmogaster tasmaniensis",
     "image_thumb":"/img/wildlife_thumbs/Aspasmogaster-tasmaniensis.jpg",
     "image_full":"/img/wildlife_full/Aspasmogaster-tasmaniensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":124,
     "name":"Atherton Scrubwren",
     "image_thumb":"/img/wildlife_thumbs/Atherton_Scrubwren.jpg",
     "image_full":"/img/wildlife_full/Atherton_Scrubwren.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":125,
     "name":"Atypichthys strigatus",
     "image_thumb":"/img/wildlife_thumbs/Atypichthys-strigatus.jpg",
     "image_full":"/img/wildlife_full/Atypichthys-strigatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":126,
     "name":"Atypicthys latus",
     "image_thumb":"/img/wildlife_thumbs/Atypicthys-latus.jpg",
     "image_full":"/img/wildlife_full/Atypicthys-latus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":127,
     "name":"audubons shearwater",
     "image_thumb":"/img/wildlife_thumbs/audubons-shearwater.jpg",
     "image_full":"/img/wildlife_full/audubons-shearwater.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":128,
     "name":"Aulacocyclus edentulus",
     "image_thumb":"/img/wildlife_thumbs/Aulacocyclus-edentulus.jpg",
     "image_full":"/img/wildlife_full/Aulacocyclus-edentulus.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":129,
     "name":"Aulostomus chinensis",
     "image_thumb":"/img/wildlife_thumbs/Aulostomus-chinensis.jpg",
     "image_full":"/img/wildlife_full/Aulostomus-chinensis.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":130,
     "name":"Australasian Bittern",
     "image_thumb":"/img/wildlife_thumbs/Australasian-Bittern.jpg",
     "image_full":"/img/wildlife_full/Australasian-Bittern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":131,
     "name":"Australasian bushlark",
     "image_thumb":"/img/wildlife_thumbs/Australasian-bushlark.jpg",
     "image_full":"/img/wildlife_full/Australasian-bushlark.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":132,
     "name":"Australasian swamp Harrier",
     "image_thumb":"/img/wildlife_thumbs/Australasian-swamp-Harrier.jpg",
     "image_full":"/img/wildlife_full/Australasian-swamp-Harrier.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":133,
     "name":"Australian Crake",
     "image_thumb":"/img/wildlife_thumbs/Australian_Crake.jpg",
     "image_full":"/img/wildlife_full/Australian_Crake.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":134,
     "name":"australian gannets nesting",
     "image_thumb":"/img/wildlife_thumbs/australian-gannets-nesting.jpg",
     "image_full":"/img/wildlife_full/australian-gannets-nesting.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":135,
     "name":"Australian Hobby",
     "image_thumb":"/img/wildlife_thumbs/Australian_Hobby.jpg",
     "image_full":"/img/wildlife_full/Australian_Hobby.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":136,
     "name":"Australian Leaf Insect",
     "image_thumb":"/img/wildlife_thumbs/Australian-Leaf-Insect.jpg",
     "image_full":"/img/wildlife_full/Australian-Leaf-Insect.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":137,
     "name":"australian lurcher butterfly",
     "image_thumb":"/img/wildlife_thumbs/australian-lurcher-butterfly.jpg",
     "image_full":"/img/wildlife_full/australian-lurcher-butterfly.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":138,
     "name":"Australian Owlet nightjar",
     "image_thumb":"/img/wildlife_thumbs/Australian_Owlet-nightjar.jpg",
     "image_full":"/img/wildlife_full/Australian_Owlet-nightjar.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":139,
     "name":"Australian painted lady feeding",
     "image_thumb":"/img/wildlife_thumbs/Australian_painted_lady_feeding.jpg",
     "image_full":"/img/wildlife_full/Australian_painted_lady_feeding.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":140,
-    "name":"AustralianPelican ",
+    "name":"Australian Pelican",
     "image_thumb":"/img/wildlife_thumbs/AustralianPelican_.jpg",
     "image_full":"/img/wildlife_full/AustralianPelican_.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":141,
@@ -1009,63 +1009,63 @@ function createDefaultWildlife(){
     "name":"Australian Pratincole",
     "image_thumb":"/img/wildlife_thumbs/Australian_Pratincole.jpg",
     "image_full":"/img/wildlife_full/Australian_Pratincole.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":143,
-    "name":"AustralianRaven 04",
+    "name":"Australian Raven",
     "image_thumb":"/img/wildlife_thumbs/AustralianRaven_04.jpg",
     "image_full":"/img/wildlife_full/AustralianRaven_04.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":144,
-    "name":"AustralianRaven",
+    "name":"Australian Raven",
     "image_thumb":"/img/wildlife_thumbs/AustralianRaven.jpg",
     "image_full":"/img/wildlife_full/AustralianRaven.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":145,
     "name":"Australian Reed Warbler",
     "image_thumb":"/img/wildlife_thumbs/Australian_Reed-Warbler.jpg",
     "image_full":"/img/wildlife_full/Australian_Reed-Warbler.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":146,
     "name":"Australian shelduck female",
     "image_thumb":"/img/wildlife_thumbs/Australian_shelduck_female.jpg",
     "image_full":"/img/wildlife_full/Australian_shelduck_female.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":147,
     "name":"australian shelduck",
     "image_thumb":"/img/wildlife_thumbs/australian-shelduck.jpg",
     "image_full":"/img/wildlife_full/australian-shelduck.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":148,
     "name":"Australische Gespenstschrecke",
     "image_thumb":"/img/wildlife_thumbs/Australische-Gespenstschrecke.jpg",
     "image_full":"/img/wildlife_full/Australische-Gespenstschrecke.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":149,
     "name":"Austrelaps labialis",
     "image_thumb":"/img/wildlife_thumbs/Austrelaps-labialis.jpg",
     "image_full":"/img/wildlife_full/Austrelaps-labialis.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":150,
     "name":"azure kingfisher",
     "image_thumb":"/img/wildlife_thumbs/azure-kingfisher.jpg",
     "image_full":"/img/wildlife_full/azure-kingfisher.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":151,

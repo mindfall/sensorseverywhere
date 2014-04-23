@@ -61,9 +61,10 @@ angular.module('app')
 	 	}
 
 	 	$scope.wildlifePopup = function(state, wildlife){
+
 	 		if(state === 'show'){
+	 			$scope.wildlifeDetails = wildlife;
 	 			wildlifePopup = true;
- 				$scope.wildlifeDetails = wildlife;
 	 		}
 	 		if(state === 'hide') wildlifePopup = false;
 
@@ -122,13 +123,14 @@ angular.module('app')
 		//$scope.wildlifeDetails = wildlife;
 		return {
 			priority: 1000,
+			scope: true,
 			restrict: 'E',
 			transclude: 'element',
 			templateUrl: '/partials/main/wildlifePopup',
-			link: function($scope, $element, $attr){
+			link: function(scope, element, attr){
 				//put in a $watch expression here
-				var audio = $scope.audioMonitors;
-				var video = $scope.videoMonitors;
+				var audio = scope.audioMonitors;
+				var video = scope.videoMonitors;
 			//	var monitorCount = audio + video;
 
 			},

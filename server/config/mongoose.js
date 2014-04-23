@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 	userModel = require('../models/User'), 
 	wildlifeModel = require('../models/Wildlife'),
-	projectModel = require('../models/Project');
-
+	projectModel = require('../models/Project'),
+	mailModel = require('../models/Mail');
 
 
 module.exports = function(config){
@@ -16,6 +16,6 @@ module.exports = function(config){
 
 	userModel.createDefaultUsers();
 	wildlifeModel.createDefaultWildlife();
-	//projectModel.createDefaultProjects();
+	mailModel.createDefaultMail();
 
 };

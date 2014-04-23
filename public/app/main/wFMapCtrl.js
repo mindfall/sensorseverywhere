@@ -53,7 +53,8 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 
 	map.on('draw:created', function (e) {
 		var type = e.layerType,
-			layer = e.layer;
+			layer = e.layer,
+			popupContent = '<b>Canvas</b><br><canvas style="width: 400px; height: 400px;"></canvas>';
 
 		if (type === 'marker') {
 			layer.bindPopup('A popup!');
@@ -83,6 +84,7 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 			}
 			customMarker = wFMapFactory.addCustomMarker(customMarker);
 			marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
+			marker.bindPopup(popupContent).openPopup();
 		}
 		
 

@@ -37,11 +37,4 @@ var ProjectSchema = new Schema({
 var Project = mongoose.model('Project', ProjectSchema);
 
 
-/*    project_contributors: {
-        contributor_name: String,
-        contribution_type: String,
-        contribution_amount: Number, 
-        contributor_gravatar: String
-    },*/
-
 

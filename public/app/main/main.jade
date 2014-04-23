@@ -27,7 +27,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 													td.wildlifeCell
 														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
 													td.wildlifeCell
-														div(class="selectedThumb" ng-click="wildlifePopup('show', creature)")<img ng-src="{{creature.image_thumb}}"> 
+														div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
 													td.wildlifeCell
 														div(class="selectedWildlifeName") {{creature.name}}
 													td.wildlifeBtnCell
@@ -38,21 +38,20 @@ div(class="main-container" ng-controller="wFMainCtrl")
 					
 						project-popup(class="projectFormPopup" ng-show="projectPopup()")
 			bg-pane
-				.row(id="groups" ng-controller="wFGroupCtrl" class="group-collaboration-elements")
+				.row(id="groups" ng-controller="wFDashboardCtrl" class="group-collaboration-elements")
+					//- img(src="img/spinner.gif" ng-show="loading")
 					.col-md-9
 						ul(class="nav nav-tabs")
 							li
-								a(ui-sref=".members") Members
+								a(ui-sref=".email") Email
 							li
-								a(ui-sref=".invite") Invite
+								a(ui-sref=".tasks") Tasks
+						<div ui-view="left-pane"></div>
+					.col-md-3(class="chat-files")
+						ul(class="nav nav-tabs")
 							li
-								a(ui-sref=".timeline") Timeline
-						<div ui-view></div>
-					.col-md-3(class='chat-panel')
-						h3 Chat
-						div
-							div sample text to go into the chat panel
-							ul 
-								li One
-								li Two
-								li Three
+								a(ui-sref=".chat") Chat
+							li
+								a(ui-sref=".files") Files
+						<div ui-view="right-pane"></div>
+					

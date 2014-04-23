@@ -14,6 +14,39 @@
   z-index: 999;
 }
 
+
+/* Vertical */
+
+.split-panes.vertical > .split-handler
+{
+  top: 73%; 
+  border: 2px solid #d7e0e2;
+  left: 0px;
+  right: 0px;
+  cursor: ns-resize;
+}
+
+.split-panes.vertical > .split-pane1,
+.split-panes.vertical > .split-pane2
+{
+  position: absolute;
+  width: 100%;
+}
+
+.split-panes.vertical > .split-pane1
+{
+  height: 84%;
+  top: 5%;
+}
+
+.split-panes.vertical > .split-pane2
+{
+  top: 73%;
+/*  border-top: 1px solid #d7e0e2;*/
+}
+
+
+
 /* Horizontal */ 
 
 .split-panes.horizontal > .split-handler
@@ -42,35 +75,4 @@
   left: 50%;
   right: 0px;
   border-left: 1px solid #aaa;
-}
-
-
-/* Vertical */
-
-.split-panes.vertical > .split-handler
-{
-  height: 4px;
-  top: 90% !important; 
-  left: 0px;
-  right: 0px;
-  cursor: ns-resize;
-}
-
-.split-panes.vertical > .split-pane1,
-.split-panes.vertical > .split-pane2
-{
-  position: absolute;
-  width: 100%;
-}
-
-.split-panes.vertical > .split-pane1
-{
-  height: 90%; 
-}
-
-.split-panes.vertical > .split-pane2
-{
-  top: 90%;
-  border-top: 5px solid grey;
-  bottom: 40px;
 }

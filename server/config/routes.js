@@ -2,7 +2,7 @@ var auth = require('./auth'),
 	users = require('../controllers/users'),
 	wildlife = require('../controllers/wildlife'),
 	projects = require('../controllers/projects'),
-//	invites = require('../controllers/invites'),
+	mail = require('../controllers/mail'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	Wildlife = mongoose.model('Wildlife'),
@@ -21,9 +21,10 @@ module.exports = function(app){
 	app.post('/api/users', users.createUser);
 	app.put('/api/users', users.updateUser);
 
-//	app.get('/api/invite', invites.invite);
-//	app.post('/api/sendInvite', invites.sendInvite);
+	app.get('/api/mail', mail.getMail);
+	app.post('/api/send', mail.sendMail);
 	
+	app.post('/api/uploads', mail.upload);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params);

@@ -1,15 +1,22 @@
+/*.ng-pristine {border: 1px solid green; }*/
+/*.ng-dirty { border: 1px solid yellow; }
+.ng-invalid.ng-dirty { border: 1px solid red; }
+.ng-valid.ng-dirty { border: 1px solid green; }*/
 html,
 .row-map-container,
 .content,
 .main-container {
-  height: 155%;
-  margin-top: 3%;
+  height: 100%;
 }
 .col-9-map-container,
 .col-3-selection-container {
-  height: 87%;
+  height: 75%;
   margin-bottom: 1%;
   position: absolute;
+}
+.col-9-map-container {
+  margin-left: 60px;
+  width: 72%;
 }
 .col-12-map-container {
   height: 75%;
@@ -40,6 +47,39 @@ footer p {
   border-top: 1px solid #d7e0e2;
 }
 /* MAIN PAGE */
+/* EMAIL */
+#sidebar {
+  clear: left;
+  float: left;
+  min-height: 300px;
+  width: 228px;
+  position: relative;
+  z-index: 1;
+scrs
+}
+#emailListing {
+  margin-top: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.emailListing {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  height: 120px;
+  overflow: hidden;
+  padding: 8px;
+}
+#emailListing li {
+  list-style-type: none;
+}
+.emailListing .date {
+  font-size: 0.5em;
+  color: #00f;
+  display: none;
+}
+.emailListing .subject {
+  font-size: 0.8em;
+}
 /* NAVBAR */
 .navbar {
   background-color: #fff;
@@ -92,22 +132,49 @@ ul.nav.navbar-nav a.navbar-nav-link {
   top: 70px;
 }
 .toast-success {
-  background-color: #cdcdcd;
+  background-color: #090;
+}
+.toast-error {
+  background-color: #900 !important;
 }
 /* END NAVBAR */
 /* GROUPS */
 .group-collaboration-elements {
+  margin-top: 2%;
   position: absolute;
   width: 100%;
 }
-.chat-panel {
+.chat-files-panel {
   border: 1px solid #d7e0e2;
+}
+.chat-panel {
+  padding: 0px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  height: 200px;
+  height: 300px;
   position: absolute;
-  margin-left: 1560px;
+  margin-left: 61%;
+}
+.overflowable {
+  height: 190px;
+  overflow-y: auto;
+  border: 1px solid #d7e0e2;
+}
+.overflowable p {
+  margin: 0;
+}
+.col {
+  float: left;
+}
+.clr {
+  clear: both;
+}
+.message-form {
+  margin-left: 15px;
+}
+.send-message {
+  margin-left: 10px;
 }
 /* ANIMAL SELECTION AREA (.toolbar) */
 .selection-layout {
@@ -280,10 +347,9 @@ ul.nav.navbar-nav a.navbar-nav-link {
   border-top: 1px solid #e5e5e5;
   position: absolute;
   left: 0;
-  top: 7.5%;
-  bottom: 3%;
+  margin-top: 3.5%;
   width: 100%;
-  height: 100%;
+  height: 75%;
   display: block;
 }
 .saveProjectButton {
@@ -292,8 +358,8 @@ ul.nav.navbar-nav a.navbar-nav-link {
   display: block;
   width: 215px;
   height: 45px;
-  bottom: 3%;
-  left: 45%;
+  margin-top: 40%;
+  left: 35%;
   z-index: 99;
   position: absolute;
 }

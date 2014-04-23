@@ -1,0 +1,7 @@
+h5 Files
+	div(ng-controller="wFFileUploadCtrl")
+		input(type="text" ng-model="modelUpload")
+		input(type="file" ng-file-select="onFileSelect($files)")
+		div(ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class" ng-show="dropSupported") drop files here
+		div(ng-file-drop-available="dropSupported=true" ng-show="!dropSupported") HTML5 Drop File is not supported!
+		button(ng-click="upload.abort()") Cancel

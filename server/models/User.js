@@ -31,7 +31,7 @@ userSchema.methods = {
 	}
 }
 
-	var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 function createDefaultUsers(){
 

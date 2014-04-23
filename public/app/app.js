@@ -4,7 +4,9 @@ angular.module('app', [
 	'leaflet-directive',
 	'ui.bootstrap',
 	'ui.router',
-	'bgDirectives'
+	'bgDirectives',
+	'xeditable',
+	'angularFileUpload'
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
@@ -68,17 +70,35 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				controller: 'wFProfileCtrl',
 				resolve: routeRoleChecks.user
 		})
-		.state('.members', {
-				url: '/members',
-				templateUrl: '/partials/group/group-members',
+		.state('main.email', {
+				url: '/email',
+				views: {
+					'left-pane@main': {templateUrl: '/partials/dashboard/dashboard-email',
+										controller: 'wFEmailCtrl'
+									},
+				}
 		})
-		.state('main.timeline', {
-				url: '/timeline',
-				templateUrl: '/partials/group/group-timeline',
+		.state('main.tasks', {
+				url: '/tasks',
+				views: {
+					'left-pane@main': {templateUrl: '/partials/dashboard/dashboard-tasks',
+										controller: 'wFTaskCtrl'
+									},
+				}
 		})
-		.state('main.invite', {
-				url: '/invite',
-				templateUrl: '/partials/group/group-invite',
+		.state('main.chat', {
+				url: '/chat',
+				views: {
+					'right-pane@main': {templateUrl: '/partials/dashboard/dashboard-chat',
+										controller: 'wFChatCtrl'
+									},
+				}
+		})
+		.state('main.files', {
+				url: '/files',
+				views: {
+					'right-pane@main': {templateUrl: '/partials/dashboard/dashboard-file-upload'},
+				}
 		});
 
 });
