@@ -38,7 +38,7 @@ angular.module('bgDirectives', [])
           if (vertical) {
 
             var height = bounds.bottom - bounds.top;
-            pos = ev.clientY - bounds.top;
+                        pos = ev.clientY - bounds.top;
 
             if (pos < pane1Min) return;
             if (height - pos < pane2Min) return;
@@ -46,7 +46,7 @@ angular.module('bgDirectives', [])
             handler.css('top', pos + 'px');
             pane1.elem.css('height', pos + 'px');
             pane2.elem.css('top', pos + 'px');
-      
+            
           } else {
 
             var width = bounds.right - bounds.left;

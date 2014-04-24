@@ -13,7 +13,6 @@ angular.module('app').factory('wFSocketIOFactory', function($rootScope){
 		emit: function(eventName, data, callback) {
 			socket.emit(eventName, data, function(){
 				var args = arguments;
-				console.log('emit: ' + eventName);
 				$rootScope.$apply(function () {
 					if(callback) {
 						callback.apply(socket, args);

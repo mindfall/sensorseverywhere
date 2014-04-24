@@ -1,9 +1,9 @@
-div.wildlifePopup
+div.wildlifePopup(ng-style="newDims")
 	div.closePopUp(ng-click="wildlifePopup('hide')") X 
 	div {{wildlifeDetails.name}} <br>
-	div<img ng-src="{{wildlifeDetails.image_full}}">
+	img(ng-src="{{wildlifeDetails.image_full}}")
 	div Some sample description text for each wildlife item<br>
-	label.col-md-2.control-label(for="hasMonitor") Monitored?
+	label.col-md-2.control-label(for="hasMonitor" class="monitored") Monitored?
 		input(class="hasMonitor" type="checkbox" value="1" ng-model="hasMonitor")
 	div.popupRow(ng-if="hasMonitor")
 		label.col-md-2.control-label(for="hasMonitor") Audio

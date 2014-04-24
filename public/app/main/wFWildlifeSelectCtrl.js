@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('wFWildlifeSelectCtrl', function($scope, $http, $q, wFWildlifeFactory){
+	.controller('wFWildlifeSelectCtrl', function($scope, $http, $q, wFWildlifeFactory) {
 
 		this.toggle = true;
 		var wildlifePopup = false; //used for wildlife popup in selection list
@@ -13,7 +13,8 @@ angular.module('app')
 	    $scope.videoMonitors = 1;
 	    $scope.monitorCount = $scope.audioMonitors + $scope.videoMonitors;
 	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
-
+	    $scope.imageWidth = 300;
+	    $scope.imageHeight = 500;
 	    /**
 	    * Create a promise to return the wildlife list
 	    * from the getWildlife function in the 
@@ -22,21 +23,21 @@ angular.module('app')
 
 	   	var getWildlifeDBList = wFWildlifeFactory.getWildlifeFromDB();
 
-	   	getWildlifeDBList.then(function(getWildlifeDBList){
+	   	getWildlifeDBList.then(function(getWildlifeDBList) {
 
-	   		for(var i = 0; i < getWildlifeDBList.length; i++){
+	   		for(var i = 0; i < getWildlifeDBList.length; i++) {
 				wildlifeArray.push(getWildlifeDBList[i]);
 			}
-			wildlife = wildlifeArray.filter(function(elem, pos){
+			wildlife = wildlifeArray.filter(function(elem, pos) {
 				return wildlifeArray.indexOf(elem) == pos;
 			});
 			$scope.wildlife = wildlife;
-	   	}, function(status){
+	   	}, function(status) {
 	   		console.log(status);
 	   	});
 
 	    
-	    $scope.removeSelectedWildlife = function(){
+	    $scope.removeSelectedWildlife = function() {
 	    	$scope.selectedWildlife.splice(this.$index, 1);
 	    }
 	   	
@@ -51,8 +52,8 @@ angular.module('app')
 		*   display it on selected list
 	    */
 		
-	    $scope.submitWildlife = function(wildlife){
-	    	if(this.wildlifeSelect){
+	    $scope.submitWildlife = function(wildlife) {
+	    	if(this.wildlifeSelect) {
 	    		//create an array of selected animals
 				submittedWildlife.push(this.wildlifeSelect);
 				selectedName = this.wildlifeSelect;
@@ -60,18 +61,18 @@ angular.module('app')
 	    	}
 	 	}
 
-	 	$scope.wildlifePopup = function(state, wildlife){
+	 	$scope.wildlifePopup = function(state, wildlife) {
 
-	 		if(state === 'show'){
-	 			$scope.wildlifeDetails = wildlife;
+	 		if(state === 'show') {
 	 			wildlifePopup = true;
+ 				$scope.wildlifeDetails = wildlife;
 	 		}
 	 		if(state === 'hide') wildlifePopup = false;
 
 	 		return wildlifePopup;
 	 	}
 
-	 	$scope.commentPopup = function(state){
+	 	$scope.commentPopup = function(state) {
 	 		if(state === 'show')	commentPopup = true;
 
 	 		if(state === 'hide') commentPopup = false;
@@ -79,15 +80,15 @@ angular.module('app')
 	 		return commentPopup;
 	 	}
 
-	 	$scope.saveWildlifeComments = function(comments){
+	 	$scope.saveWildlifeComments = function(comments) {
 	 		$scope.wildlifeComments = comments;
 	 		commentPopup = false;
 	 		return $scope.saveWildlifeComments, commentPopup;
 	 	}
 
 
-	}).directive('draggability', function($document){
-		return function(scope, element, attr){
+	}).directive('draggability', function($document) {
+		return function(scope, element, attr) {
 			var startX = 0, startY = 0, x = 0, y = 0;
 
 			element.css({
@@ -96,7 +97,7 @@ angular.module('app')
 				zindex: '8888'
 			});
 
-			element.on('mousedown', function(event){
+			element.on('mousedown', function(event) {
 				//console.log('mousedown');
 				//event.preventDefault();
 				startX = event.pageX - x;
@@ -105,7 +106,7 @@ angular.module('app')
 				$document.on('mouseup', mouseup);
 			});
 
-			function mousemove(event){
+			function mousemove(event) {
 				y = event.pageY - startY;
 				x = event.pageX - startX;
 				element.css({
@@ -114,30 +115,21 @@ angular.module('app')
 				});
 			}
 
-			function mouseup(){
+			function mouseup() {
 				$document.unbind('mousemove', mousemove);
 				$document.unbind('mouseup', mouseup);
 			}
 		};
-	}).directive('wildlifePopup', function(){
-		//$scope.wildlifeDetails = wildlife;
+	}).directive('wildlifePopup', function() {
 		return {
 			priority: 1000,
-			scope: true,
 			restrict: 'E',
 			transclude: 'element',
 			templateUrl: '/partials/main/wildlifePopup',
-			link: function(scope, element, attr){
-				//put in a $watch expression here
-				var audio = scope.audioMonitors;
-				var video = scope.videoMonitors;
-			//	var monitorCount = audio + video;
-
-			},
 			replace: true,
 
 		}
-	}).directive('commentPopup', function(){
+	}).directive('commentPopup', function() {
 		return {
 			restrict: 'E',
 			transclude: true,

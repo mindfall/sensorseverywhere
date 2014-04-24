@@ -19,7 +19,7 @@
 
 .split-panes.vertical > .split-handler
 {
-  top: 73%; 
+  top: 75%; 
   border: 2px solid #d7e0e2;
   left: 0px;
   right: 0px;
@@ -35,13 +35,13 @@
 
 .split-panes.vertical > .split-pane1
 {
-  height: 84%;
+  height: 75%;
   top: 5%;
 }
 
 .split-panes.vertical > .split-pane2
 {
-  top: 73%;
+  top: 75%;
 /*  border-top: 1px solid #d7e0e2;*/
 }
 
