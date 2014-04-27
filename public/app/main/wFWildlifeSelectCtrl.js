@@ -1,47 +1,39 @@
 angular.module('app')
-	.controller('wFWildlifeSelectCtrl', function($scope, $http, $q, wFWildlifeFactory) {
+	.controller('wFWildlifeSelectCtrl', function($scope, $rootScope, $http, $q, wFWildlifeFactory) {
 
 		this.toggle = true;
 		var wildlifePopup = false; //used for wildlife popup in selection list
 		var commentPopup = false;
-		var wildlifeArray = []; //Used to build list for animal search input
-		var submittedWildlife = []; //Used in submitAnimal to find if animal already exists in list
+		var typeaheadArray = []; //Used to build list for animal search input
+		$rootScope.selectedWildlife = [];
+		$rootScope.dupeList = [];
 
 	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
 	    $scope.wildlifeCounter = 1;
 	    $scope.audioMonitors = 1;
 	    $scope.videoMonitors = 1;
 	    $scope.monitorCount = $scope.audioMonitors + $scope.videoMonitors;
-	    $scope.selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
-	    $scope.imageWidth = 300;
-	    $scope.imageHeight = 500;
-	    /**
+		$scope.selectedWildlife = wFWildlifeFactory.selectWildlife();
+		/**
 	    * Create a promise to return the wildlife list
 	    * from the getWildlife function in the 
 	    * WildlifeFactory service.
 	    */
-
 	   	var getWildlifeDBList = wFWildlifeFactory.getWildlifeFromDB();
 
 	   	getWildlifeDBList.then(function(getWildlifeDBList) {
 
 	   		for(var i = 0; i < getWildlifeDBList.length; i++) {
-				wildlifeArray.push(getWildlifeDBList[i]);
+				typeaheadArray.push(getWildlifeDBList[i]);
 			}
-			wildlife = wildlifeArray.filter(function(elem, pos) {
-				return wildlifeArray.indexOf(elem) == pos;
+			wildlife = typeaheadArray.filter(function(elem, pos) {
+				return typeaheadArray.indexOf(elem) == pos;
 			});
 			$scope.wildlife = wildlife;
 	   	}, function(status) {
 	   		console.log(status);
 	   	});
-
 	    
-	    $scope.removeSelectedWildlife = function() {
-	    	$scope.selectedWildlife.splice(this.$index, 1);
-	    }
-	   	
-
 	    /**
 	    * 	$scope.submitAnimal
 	    * 	@params 
@@ -50,16 +42,46 @@ angular.module('app')
 		*	increment step counter
 		*   else 
 		*   display it on selected list
-	    */
-		
-	    $scope.submitWildlife = function(wildlife) {
-	    	if(this.wildlifeSelect) {
-	    		//create an array of selected animals
-				submittedWildlife.push(this.wildlifeSelect);
-				selectedName = this.wildlifeSelect;
-				wFWildlifeFactory.checkIfUniqueAndAddName(submittedWildlife);
+	    */		
+	    $scope.selectWildlife = function(wildlife) {
+
+	      	if(this.wildlifeSelect) {
+	      		//console.log(this.wildlifeSelect);
+	      		$rootScope.dupeList.push(this.wildlifeSelect);
+	      		var dupes = $rootScope.dupeList.length,
+		        	found,
+		        	x, y;
+			    //loop through original array   
+			    for ( x = 0; x < dupes; x++ ) {
+			    	//set found to false
+			        found = false;
+			        //loop through the new array - initialised to empty
+			        for ( y = 0; y < $rootScope.selectedWildlife.length; y++ ) {
+			        	if ( $rootScope.dupeList[x] === $rootScope.selectedWildlife[y] ) { 
+			              found = true;
+			              break;
+			            }
+			        }
+			        //first loop skips to this statement which adds the first element to the new array.
+			        //in other words - this is where the unique elements are kept.
+			        if ( !found) {
+			        	$rootScope.selectedWildlife.push($rootScope.dupeList[x]);
+			        	$scope.selectedWildlife.push(this.wildlifeSelect);
+			         }    
+			    }
 	    	}
 	 	}
+
+	    $scope.removeSelectedWildlife = function() {
+	    	$scope.selectedWildlife.splice(this.$index, 1);
+	    	for(i = 0; i < $rootScope.dupeList.length; i += 1 ) {
+	    		$rootScope.dupeList.splice(i, 1);
+	    	}
+	    	for(i = 0; i < $rootScope.selectedWildlife.length; i += 1 ) {
+	    		$rootScope.selectedWildlife.splice(i, 1);
+	    	}
+	    }
+	   	
 
 	 	$scope.wildlifePopup = function(state, wildlife) {
 

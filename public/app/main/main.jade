@@ -6,12 +6,12 @@ div(class="main-container" ng-controller="wFMainCtrl")
 					.col-md-9(class="col-9-map-container")
 						div(ng-controller="wFMapCtrl" id="map" class="map")
 							leaflet
-							button(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) Save
+				
 					.col-md-3(class="col-3-selection-container")
 						p
 							.selection-layout
 								div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
-									form.selectAnimalInput(ng-submit="submitWildlife()")
+									form.selectAnimalInput(ng-submit="selectWildlife()")
 										input(id='wildlife_search' 
 											type='search' 
 											ng-model="wildlifeSelect" 
@@ -37,6 +37,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 									comment-popup(ng-show="commentPopup()" draggability)
 					
 						project-popup(class="projectFormPopup" ng-show="projectPopup()")
+				button(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) Save
 			bg-pane
 				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
 					//- img(src="img/spinner.gif" ng-show="loading")

@@ -2,7 +2,7 @@ div.commentPopup
 	div.closePopUp(ng-click="commentPopup('hide')") X 
 	div(class="commentTextarea")
 		label.col-md-4.control-label(for="comments") Enter your Comments:
-			textarea(cols="80" rows="10" ng-model="wildlifeComments") 
+			textarea(cols="80" rows="10" ng-model="wildlifeComments")
 	div
-		b(class="popupCancel") Clear
-		b(class="popupSave" ng-click="saveWildlifeComments(wildlifeComments); commentPopup('hide')") Save
+		span(class="popupCancel") Clear
+		span(class="popupSave" ng-click="saveWildlifeComments(wildlifeComments); commentPopup('hide')") Save
