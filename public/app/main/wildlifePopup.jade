@@ -1,23 +1,19 @@
-div.wildlifePopup(ng-style="newDims")
+div.wildlife-popup(ng-style="newDims")
 	div.closePopUp(ng-click="wildlifePopup('hide')") X 
-	p
-		h4 {{wildlifeDetails.name}}
-	p
+	h4 {{wildlifeDetails.name}}
+	div
 		img(ng-src="{{wildlifeDetails.image_full}}" class="textwrap")
-		br
 		div(class="wildlife-description") Some sample description text for each wildlife item 
-	br
-	br
-	p(class="monitor-info")
+	div(class="monitor-info")
 		input(class="monitor-check" type="checkbox" value="1" ng-model="hasMonitor")
 		span Is this wildlife monitored?
-		div(class="popup-row" ng-if="hasMonitor")
+		div(ng-if="hasMonitor")
 			span(class="monitor-label") Audio <br>
 			input(class="monitor-counter" type="number" ng-model="audioMonitors" value="0")
 			span(class="monitor-label video-label") Video <br>
 			input(class="monitor-counter" type="number" ng-model="videoMonitors" value="0")
-
-	div(class="label-comments") Comments
+	div
+		div(class="label-comments") Comments
 		div(class="saved-wildlife-comments") {{wildlifeComments}}
 	div
 		div(class="popupComments" ng-click="commentPopup('show')") Add Comment
