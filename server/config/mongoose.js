@@ -2,6 +2,10 @@ var mongoose = require('mongoose')
 	userModel = require('../models/User'), 
 	wildlifeModel = require('../models/Wildlife'),
 	projectModel = require('../models/Project'),
+	groupModel = require('../models/Group'),
+	taskModel = require('../models/Task'),
+	chatModel = require('../models/Chat'),
+	commentModel = require('../models/Comment'),
 	mailModel = require('../models/Mail');
 
 

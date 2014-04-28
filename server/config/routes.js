@@ -2,6 +2,10 @@ var auth = require('./auth'),
 	users = require('../controllers/users'),
 	wildlife = require('../controllers/wildlife'),
 	projects = require('../controllers/projects'),
+	groups = require('../controllers/groups'),
+	tasks = require('../controllers/tasks'),
+	chat = require('../controllers/chat'),
+	comments = require('../controllers/comments'),
 	mail = require('../controllers/mail'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
@@ -16,7 +20,15 @@ module.exports = function(app){
 	app.get('/api/projects/:id', projects.getProjectById);
 	app.put('/api/projects/:id', projects.updateTotalContributions);
 	app.post('/api/createProject', projects.createProject);
-	
+
+	app.get('/api/groups', groups.getGroups);
+
+	app.get('/api/tasks', tasks.getTasks);
+
+	app.get('/api/chat', chat.getChatLogs);
+
+	app.get('/api/comments', comments.getComments);
+
 	app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
 	app.post('/api/users', users.createUser);
 	app.put('/api/users', users.updateUser);

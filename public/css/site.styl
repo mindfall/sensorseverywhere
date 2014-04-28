@@ -190,8 +190,6 @@ ul.nav.navbar-nav a.navbar-nav-link
 /* ANIMAL SELECTION AREA (.toolbar) */
 
 .selection-layout
-	p
-		border-top 1px solid #d7e0e2
 	height: 100%
 	width: 95%
 	input
@@ -199,6 +197,15 @@ ul.nav.navbar-nav a.navbar-nav-link
 		float: right
 	margin-bottom: 30px
 	position: absolute
+
+.textwrap
+	float: left
+	margin: 10px
+
+.wildlife-description
+	float: left
+	margin-top: -23px
+
 
 .selectedWildlifeContainer
 	border: 1px solid #d7e0e2
@@ -223,13 +230,33 @@ ul.nav.navbar-nav a.navbar-nav-link
 	width: 25%
 	float: right
 
-.wildlifeCounter, .monitorCounter
+.monitor-info
+	margin-left: 10px
+	margin-top: 125px
+	position: absolute
+
+.wildlifeCounter, .monitor-counter
 	float: left !important
 	width: 40px !important
 
+.monitor-check
+	margin-left: 100px !important
+	margin-top: 9px
+	position: absolute
+
+.monitor-label
+	float: left
 
 .selectedWildlifeName
 	float: left
+
+.popup-row
+	margin-left: 10px
+	position: absolute
+	margin-top: 150px
+
+.video-label
+	margin-left: 20px
 
 .removeSelectedWildlilfeBtn, .closePopUp
 	clear: both
@@ -270,7 +297,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 
 
-.commentPopup {
+.comment-popup {
 	width: 600px;
 	height: 300px;
 	margin-left: -70%;
@@ -288,31 +315,26 @@ ul.nav.navbar-nav a.navbar-nav-link
 	z-index: 1001
 }
 
-.commentPopup label
+.comment-popup label
 	display: inline
 	margin-left: 10px
 
-.commentTextarea
+.comment-textarea
 	position: absolute
-	left: -18px
 	top: 30px
 
-.labelComments
+.label-comments
 	position: absolute
-	top: 80%
+	top: 60%
+	margin-left: 10px
 
-.savedWildlifeComments
+.saved-wildlife-comments
 	position: absolute
 	top: 16px
 	width: 260px
 	height: 80px
 	word-wrap: normal
 	overflow: hidden
-
-
-.popupRow
-	padding-left: 50px
-	position: relative
 
 .popupCancel, .popupComments
 	width: 80px
