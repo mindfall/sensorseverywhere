@@ -7,16 +7,18 @@ html,
 .content,
 .main-container {
   height: 75%;
+  margin-top: 50px;
 }
 .col-9-map-container,
 .col-3-selection-container {
-  height: 100%;
+  height: 78%;
   margin-bottom: 1%;
   position: absolute;
 }
 .col-9-map-container {
   margin-left: 60px;
   width: 72%;
+  margin-top: -50px;
 }
 .col-12-map-container {
   height: 75%;
@@ -27,6 +29,21 @@ html,
 }
 .col-3-selection-container {
   margin-left: 75%;
+}
+.navbar-inverse {
+  border-bottom: 5px solid #d7e0e2;
+  -webkit-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
+  -moz-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
+  box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
+}
+#logo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
+  margin-left: -105px;
+  display: block;
+  background: url("../img/wFlogo.png");
+  float: left;
 }
 body {
   height: 700px;
@@ -84,10 +101,10 @@ scrs
 /* NAVBAR */
 .navbar {
   background-color: #fff;
+  height: 100px;
 }
 .navbar-header a.navbar-brand {
-  margin-top: -15px;
-  margin-bottom: -20px;
+  margin-top: 20px;
 }
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
@@ -112,6 +129,9 @@ scrs
 }
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #000;
+}
+.slogan {
+  width: 230px;
 }
 .navbar-form .form-group {
   margin-left: 10px;
@@ -200,7 +220,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
   margin-top: -23px;
 }
 .selectedWildlifeContainer {
-  border: 1px solid #d7e0e2;
+  border: 3px solid #d7e0e2;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -374,14 +394,14 @@ ul.nav.navbar-nav a.navbar-nav-link {
 .leaflet-control-geosearch ul {
   margin-left: 50px !important;
   width: 400px !important;
-  position: absolute;
-  z-index: 100 !important;
+  position: relative !important;
+  top: -70px !important;
 }
 #map {
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  border: 1px solid #d7e0e2;
+  border: 3px solid #d7e0e2;
   position: absolute;
   left: 0;
   margin-top: 4.5%;
@@ -393,7 +413,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
   display: block;
   width: 100%;
   height: 45px;
-  margin-top: 5%;
+  margin-top: 2%;
   z-index: 100;
   position: relative;
 }
