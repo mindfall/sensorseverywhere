@@ -7,7 +7,7 @@ angular.module('app')
 				if(success){
 					wFNotifier.notify('You have successfully signed in!');
 					var loggedIn = true;
-					$location.path('/main')
+					$location.path('/dashboard')
 				} else {
 					wFNotifier.notify('Username/Password combination incorrect.');
 				}

@@ -1,0 +1,44 @@
+div(class="main-container" ng-controller="wFDashboardCtrl")
+	.container(ng-if="isLoggedIn")
+		bg-splitter(orientation="vertical" )
+			bg-pane
+				.row
+					.col-md-9(class="col-9-dashboard-container")
+						h4 Projects	
+						div Welcome {{user.firstname}}
+						div(class="projectOutline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+							div(class="col-{{$index % 4}}")
+								button(ng-click="removeProject(project._id)") Remove
+								p
+								b Name: 
+								a(href="/fund/{{project._id}}") {{project.project_name}}<br>
+								b Description: 
+								{{project.project_description}} <br> 
+								b Amount Required: 
+								{{project.project_funding_required}} <br> 
+								b Total to Date:
+								{{project.total_contributions}} <br>
+								b End Date:
+								{{project.project_end_date | date}} <br>
+								a(ng-href="/project/edit/{{project._id}}") Edit
+					.col-md-3(class="col-3-group-container")
+						h4 Groups	
+			button(class="create-project-button") Create		
+			bg-pane
+				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
+					//- img(src="img/spinner.gif" ng-show="loading")
+					.col-md-9
+						ul(class="nav nav-tabs")
+							li
+								a(ui-sref=".email") Email
+							li
+								a(ui-sref=".tasks") Tasks
+						<div ui-view="left-pane"></div>
+					.col-md-3(class="chat-files")
+						ul(class="nav nav-tabs")
+							li
+								a(ui-sref=".chat") Chat
+							li
+								a(ui-sref=".files") Files
+						<div ui-view="right-pane"></div>
+					

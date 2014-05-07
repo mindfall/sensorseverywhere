@@ -28,6 +28,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/main/home', 
 				controller: 'wFWildlifeSelectCtrl'
 		})
+		.state('dashboard', {
+				url: '/dashboard',
+				templateUrl: '/partials/dashboard/main', 
+				controller: 'wFDashboardCtrl'
+		})
 		.state('main', {
 				url: '/main',
 				templateUrl: '/partials/main/main', 

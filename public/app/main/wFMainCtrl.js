@@ -20,7 +20,6 @@ angular.module('app')
 	$scope.total_contributions = 0;
 	$scope.project_image = "";
 
-
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 	if(userIsLoggedIn == true){
     	$scope.isLoggedIn = userIsLoggedIn;
@@ -28,32 +27,49 @@ angular.module('app')
    		$location.url('/');
    	}
 
+   	$scope.setWildlifeValue = function(value) {
+   		console.log(value);
+   		$scope.wildlifeCounter = value;
+   	}
 
-    $scope.saveCorridor = function(user, monitorCount){
+   	$scope.setAudioValue = function(value) {
+   		console.log(value);
+   		$scope.audioMonitors = value;
+   	}
+
+   	$scope.setVideoValue = function(value) {
+   		console.log(value);
+   		$scope.videoMonitors = value;
+   	}
+
+    $scope.saveCorridor = function(user){
+
 	 	mapData = wFMapFactory.getMapData();
-	 	wildlifeData = wFWildlifeFactory.getSelectedWildlife();
+	 	mapTDA = wFMapFactory.getTownAndDistance(mapData.geometry.coordinates);
+	 	mapArea = wFMapFactory.getMapArea(mapData.geometry.coordinates);
+	 	wildlifeData = wFWildlifeFactory.selectWildlife();
 
-	 	$scope.mapPoints = mapData;
+	 	mapTDA.then(function(mapTDA) {
+	 		$scope.nearestTownName = JSON.stringify(mapTDA.geonames[0].name);
+	 		var distance = mapTDA.geonames[0].distance;
+	 		$scope.nearestTownDistance = Math.round(distance * 100) / 100;
+	 	});
+	 
+	 	$scope.area = +mapArea.toFixed(2);
 	 	$scope.wildlife = wildlifeData;
-	 	$scope.monitors = monitorCount;
-
 	 	
 	 	//hold the project data to date.
 	 	corridorData = {
 	 		user: user,
 	 		wildlife: wildlifeData,
+	 		wildlifeNumber: $scope.wildlifeCounter,
 	 		geopoints: mapData,
-	 		monitors: monitorCount
+	 	
 	 	}
-		
-		//Display current data 
-		//Show form to collect additional project data.		
-		//projectAdd = wFProjectFactory.addProject(corridorData);
-		//console.log(projectAdd);
 	}
 	
 	$scope.saveProject = function(name, description, start, end, type, total){
-
+		//console.log('owner: ' + wFIdentity.currentUser.firstname);
 		var project_name = name;
 		var project_description = description;
 		var project_start = start;
@@ -62,6 +78,8 @@ angular.module('app')
 		var project_funding_required = total;
 
 		var projectData = {
+			project_owner: wFIdentity.currentUser._id,
+			project_owner_firstname: wFIdentity.currentUser.firstname,
 			project_name : project_name,
 			project_description : project_description,
 			project_start : project_start,
@@ -71,10 +89,9 @@ angular.module('app')
 			project_owner : corridorData.user,
 			project_wildlife : corridorData.wildlife,
 			project_location : corridorData.geopoints,
-			project_monitors : corridorData.monitors
+			/*project_monitors : corridorData.monitors*/
 		}
 
-		//console.log(projectData.project_owner);
 		projectAdd = wFProjectFactory.addProject(projectData);
 
 	}

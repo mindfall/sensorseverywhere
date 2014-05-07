@@ -19,12 +19,25 @@ angular.module('app')
 						.success(function(data, status, headers, config) {
 							dfd.resolve(data);
 						}).
-						error(function(data, status, headers, config){
+						error(function(data, status, headers, config) {
 							dfd.reject(status);
 						});
 					return dfd.promise;
 
-				}, 
+				},
+
+				getProjectsByUser : function(user_id) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: '/api/projectsByUser/' + user_id})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						//	console.log(data);
+						}).
+						error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
 
 				viewProjectDetails : function(id) {
 					var dfd = $q.defer();
@@ -50,8 +63,21 @@ angular.module('app')
 					return dfd.promise;
 				}, 
 
+				removeProject : function(id) {
+					var dfd = $q.defer();
+					$http.post('/api/removeProject/' + id)
+						.success(function(data, success, headers, config) {
+							console.log(1);
+							dfd.resolve(data);
+							console.log(2);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
 				contributeToProject: function(id, amount, name) {
-					console.log(id);
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
 						.success(function(data, status, headers, config) {

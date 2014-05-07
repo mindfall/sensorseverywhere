@@ -10,10 +10,7 @@ angular.module('app')
 
 	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
 	    $scope.wildlifeCounter = 1;
-	    $scope.audioMonitors = 1;
-	    $scope.videoMonitors = 1;
-	    $scope.monitorCount = $scope.audioMonitors + $scope.videoMonitors;
-		$scope.selectedWildlife = wFWildlifeFactory.selectWildlife();
+	   	$scope.selectedWildlife = wFWildlifeFactory.selectWildlife();
 		/**
 	    * Create a promise to return the wildlife list
 	    * from the getWildlife function in the 
@@ -89,10 +86,12 @@ angular.module('app')
 	 			wildlifePopup = true;
  				$scope.wildlifeDetails = wildlife;
 	 		}
-	 		if(state === 'hide') wildlifePopup = false;
-
+	 		if(state === 'hide') {
+	 			wildlifePopup = false;
+	 		}
 	 		return wildlifePopup;
 	 	}
+
 
 	 	$scope.commentPopup = function(state) {
 	 		if(state === 'show')	commentPopup = true;
@@ -108,44 +107,10 @@ angular.module('app')
 	 		return $scope.saveWildlifeComments, commentPopup;
 	 	}
 
-
-	}).directive('draggability', function($document) {
-		return function(scope, element, attr) {
-			var startX = 0, startY = 0, x = 0, y = 0;
-
-			element.css({
-				position: 'relative',
-				cursor: 'pointer',
-				zindex: '8888'
-			});
-
-			element.on('mousedown', function(event) {
-				//console.log('mousedown');
-				//event.preventDefault();
-				startX = event.pageX - x;
-				startY = event.pageY - y;
-				$document.on('mousemove', mousemove);
-				$document.on('mouseup', mouseup);
-			});
-
-			function mousemove(event) {
-				y = event.pageY - startY;
-				x = event.pageX - startX;
-				element.css({
-					top: y + 'px',
-					left: x + 'px'
-				});
-			}
-
-			function mouseup() {
-				$document.unbind('mousemove', mousemove);
-				$document.unbind('mouseup', mouseup);
-			}
-		};
 	}).directive('wildlifePopup', function() {
 		return {
 			priority: 1000,
-			restrict: 'E',
+			restrict: 'EA',
 			transclude: 'element',
 			templateUrl: '/partials/main/wildlifePopup',
 			replace: true,

@@ -1,7 +1,9 @@
-angular.module('app').factory('wFMapFactory', function($rootScope){
+angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
+
+	var mapData = {};
 
 	return {
-		getMapControls : function(){
+		getMapControls : function() {
 			
 			var mapControls = [];
 
@@ -21,13 +23,10 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 						},
 						shapeOptions: {
 							color: '#bada55'
-						}
+						},
+						showArea: true,
+						metric: true
 					},
-				/*	circle: {
-						shapeOptions: {
-							color: '#662d91'
-						}
-					},*/
 					marker: true,
 				},
 				edit: {
@@ -41,30 +40,73 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 			
 		},
 
-		setMapData : function(geojson){
+		setMapData : function(geojson) {
 
-				var xPts = [];
-				var yPts = [];
-				var numPoints = 0;
+			var xPts = [];
+			var yPts = [];
+			var numPoints = 0;
 
-				for(var i = 0; i < geojson.geometry.coordinates[0].length; i++){
-					xPts.push(geojson.geometry.coordinates[0][i][0]);
-					yPts.push(geojson.geometry.coordinates[0][i][1]);
-					numPoints = i + 1;
-				}
+			for(var i = 0; i < geojson.geometry.coordinates[0].length; i++) {
+				xPts.push(geojson.geometry.coordinates[0][i][0]);
+				yPts.push(geojson.geometry.coordinates[0][i][1]);
+				numPoints = i + 1;
+			}
+			//grab my location area from here.
+			
+			mapData = geojson;
 
-				var area = polygonArea(xPts, yPts, numPoints);
-				mapData = geojson;
 		},
 
-		getMapData : function(){
-			if(mapData == ''){
+		getMapData : function() {
+			if(mapData == '') {
 		 		mapData = 'There is no map data';
 		 	}
 			return mapData;
 		}, 
 
-		addCustomMarker: function(wildlifeClass, monitorType){
+		getTownAndDistance : function(points) {
+	
+			var xPts = [];
+			var yPts = [];
+			var numPoints = 0;
+			
+			for(var i = 0; i < points[0].length; i++) {
+				xPts.push(points[0][i][0]);
+				yPts.push(points[0][i][1]);
+				numPoints++;
+			}
+
+			var center = centerLocation(xPts, yPts, numPoints);
+
+			var dfd = $q.defer();
+			var nearestLoc = $http({method: 'GET', url:'http://api.geonames.org/findNearbyPlaceNameJSON?lat=' + center.lat + '&lng=' + center.lng + '&username=miriad'})
+				.success(function(data, status, headers, config) {
+					dfd.resolve(data);
+					data  = JSON.stringify(data.geonames[0])
+				}).error(function(data, status, headers, config) {
+					dfd.reject(status);
+				});
+
+			return dfd.promise;
+		},
+
+		getMapArea : function(points) {
+			var xPts = [];
+			var yPts = [];
+			var numPoints = 0;
+			
+			for(var i = 0; i < points[0].length; i++) {
+				xPts.push(points[0][i][0]);
+				yPts.push(points[0][i][1]);
+				numPoints++;
+			}
+			
+			//grab my location area from here.
+			var area = polygonArea(xPts, yPts, numPoints);
+			return area;
+		},
+
+		addCustomMarker: function(wildlifeClass, monitorType) {
 
 		    var customMarker = L.icon({
 		    	iconUrl: '../../img/icons/marker_' + wildlifeClass + '.png',
@@ -80,14 +122,40 @@ angular.module('app').factory('wFMapFactory', function($rootScope){
 
 });
 
-function polygonArea(X, Y, numPoints) 
+function polygonArea(x, y, numPoints) 
 { 
-  area = 0;         // Accumulates area in the loop
-  j = numPoints-1;  // The last vertex is the 'previous' one to the first
+  var area = 0;         // Accumulates area in the loop
+  var j = numPoints-1;  // The last vertex is the 'previous' one to the first
+  var i = 0;
 
-  for (i=0; i<numPoints; i++)
-    { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]); 
-      j = i;  //j is previous vertex to i
+ 	for (i = 0; i < numPoints; i += 1 ) {
+     	area = area +  (x[j]+x[i]) * (y[j]-y[i]); 
+    	j = i;  //j is previous vertex to i
     }
-  return (area/2) * 10000000000;
+
+  	//return (area/2) * 100000;
+  	return area * 1000000;
 }
+
+function centerLocation(x, y, numPoints) {
+	var cx = x;
+  	var cy = y;
+	var centerX = 0;
+    var centerY = 0;
+	var i;
+
+	for(i = 0; i < numPoints; i += 1 ) {
+		centerX = centerX + cx[i];
+ 		centerY = centerY + cy[i];
+	}
+
+	centerX = centerX / numPoints;
+	centerY = centerY / numPoints;
+
+	var center = {
+		lat: centerY,
+		lng: centerX
+	}
+
+	return center;
+}		

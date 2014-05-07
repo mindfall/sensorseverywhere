@@ -12,6 +12,7 @@ exports.createProject = function(req, res, next){
 	var projectData = req.body;
 	//console.log(projectData.user);
 	var projectOwner = projectData.project_owner;
+	var projectOwnerFirstName = projectData.project_owner_firstname;
 	var projectName = projectData.project_name;
 	var projectDescription = projectData.project_description;
 	var projectStartDate = req.body.project_start;
@@ -40,8 +41,8 @@ exports.createProject = function(req, res, next){
 		    //id: Number,
 		    "project_name": projectName,
 		    "project_owner": [{
-		        	"owner_id": {type: projectOwner},
-		            "owner_name": "Wade"
+		        	"owner_id": projectOwner,
+		            "owner_name": projectOwnerFirstName
 		         //   owner_gravatar: String
 		    }],
 		    "project_wildlife": {
@@ -67,7 +68,7 @@ exports.createProject = function(req, res, next){
 exports.updateTotalContributions = function(req, res){
 	var contributionAmount = req.body.amount;
 	var addAmount = parseInt(contributionAmount);
-	console.log('Thie amount is: ' + contributionAmount);
+	//console.log('Thie amount is: ' + contributionAmount);
 	Project.update(
 		{_id:req.params.id},
 		{
@@ -81,11 +82,25 @@ exports.updateTotalContributions = function(req, res){
 }
 
 exports.getProjectById = function(req, res){
-	Project.findOne({_id:req.params.id}).exec(function(err, project) {
-		res.send(project);
+	Project.findOne({_id:req.params.id}).exec(function(err, projects) {
+		res.send(projects);
 	});
 }
 
+exports.getProjectsByUserId = function(req, res) {
+	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
+	 	res.send(project)
+	 });
+}
+
+exports.updateProject = function(req, res) {
+	console.log('update project: ' + req.params.id);
+}
+
 exports.removeProject = function(req, res, next){
-	console.log(req);
+	Project.findById(req.params.id, function(err, project) {
+		project.remove(function(err, project) {
+			res.send(project);
+		})
+	});
 }

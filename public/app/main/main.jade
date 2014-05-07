@@ -25,7 +25,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 											table.selectedWildlife
 												tr
 													td.wildlifeCell
-														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" value="1" type="number" min="0")
+														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-change="setWildlifeValue(wildlifeCounter)" value="1" type="number" min="0")
 													td.wildlifeCell
 														div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
 													td.wildlifeCell
@@ -36,8 +36,8 @@ div(class="main-container" ng-controller="wFMainCtrl")
 								wildlife-popup(ng-show="wildlifePopup()" draggability)
 								comment-popup(ng-show="commentPopup()" draggability)
 					
-						project-popup(class="projectFormPopup" ng-show="projectPopup()")
-				button(class="saveProjectButton" ng-click="saveCorridor(identity.currentUser._id, monitorCount); projectPopup('show')" ) Save
+					project-popup(class="project-popup" ng-show="projectPopup()" draggability)
+				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
 			bg-pane
 				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
 					//- img(src="img/spinner.gif" ng-show="loading")

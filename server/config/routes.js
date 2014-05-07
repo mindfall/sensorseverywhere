@@ -18,8 +18,11 @@ module.exports = function(app){
 
 	app.get('/api/projects', projects.getProjects);
 	app.get('/api/projects/:id', projects.getProjectById);
+	app.get('/api/projectsByUser/:id', projects.getProjectsByUserId);
+	app.put('/api/projects/edit/:id', projects.updateProject);
 	app.put('/api/projects/:id', projects.updateTotalContributions);
 	app.post('/api/createProject', projects.createProject);
+	app.post('/api/removeProject/:id', projects.removeProject);
 
 	app.get('/api/groups', groups.getGroups);
 
@@ -30,6 +33,7 @@ module.exports = function(app){
 	app.get('/api/comments', comments.getComments);
 
 	app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+	app.get('/api/users', auth.requiresRole('owner'), users.getUsers);
 	app.post('/api/users', users.createUser);
 	app.put('/api/users', users.updateUser);
 

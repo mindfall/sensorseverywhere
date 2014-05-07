@@ -3,9 +3,13 @@ div
 	h3 Hey there. 
 	p So far we've got: 
 	p You: {{identity.currentUser.firstname}} {{identity.currentUser.lastname}}
-	p The area and location: {{mapPoints.geometry.coordinates}}
+	p The nearest town to the center of the corridor is: {{nearestTownName}}
+	p and is {{nearestTownDistance}} kms away.
+	p The area you have mapped is {{area}} acres.
 	p The wildlife within the corridor: {{wildlife[0].name}}
-	p And the types of monitors you're using: {{monitors}}
+	p And the types of monitors you're using:
+		p Audio: {{audioMonitors}}
+		p Video: {{videoMonitors}}
 	p
 	p But before we can begin we need to ask just a few more questions like:
 	p What is name of the project? <br>

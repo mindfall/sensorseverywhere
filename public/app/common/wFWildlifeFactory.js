@@ -27,7 +27,7 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 	}
 });
 
-
+//helper function to determine object length
 Object.size = function(obj) {
     var size = 0, key;
     for (key in obj) {

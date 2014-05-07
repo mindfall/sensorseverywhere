@@ -13,7 +13,7 @@ var ProjectSchema = new Schema({
   //  id: Number,
     project_name:String,
     project_owner: [{
-            owner_id: {type: Number},
+            owner_id: {type: String},
             owner_name: String
         //    owner_gravatar: String
     }],

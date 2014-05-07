@@ -6,7 +6,7 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 
 	
 	var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/b8505041f78249b2bb279b2c58013a2e/997/256/{z}/{x}/{y}.png';
-	var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+	var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 28});
 	var selectedWildlife = [];
 	var markerWildlifeIcons = ['mammal', 'bird', 'reptile'];
 	var markerMonitorIcons = ['audio', 'video'];
@@ -54,16 +54,16 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 	map.on('draw:created', function (e) {
 		var type = e.layerType,
 			layer = e.layer,
-			popupContent = '<b>Canvas</b><br><canvas style="width: 400px; height: 400px;"></canvas>';
+			popupContent = '<b>Canvas</b><br><canvas style="width: 400px; height: 400px; border: 1px solid grey; "></canvas>';
 
 		if (type === 'marker') {
-			layer.bindPopup('A popup!');
+			layer.bindPopup(popupContent);
 		}
 		var geojson = e.layer.toGeoJSON();
-		selectedWildlife = wFWildlifeFactory.getSelectedWildlife();
+		selectedWildlife = wFWildlifeFactory.selectWildlife();
 		var customMarker;
 		if(selectedWildlife != ''){
-			console.log(selectedWildlife);
+			//console.log(selectedWildlife);
 			switch(selectedWildlife[0].classification){
 				case 'bird':
 					customMarker = 'bird';
@@ -82,14 +82,14 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 					break;
 
 			}
-			customMarker = wFMapFactory.addCustomMarker(customMarker);
-			marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
-			marker.bindPopup(popupContent).openPopup();
+			//customMarker = wFMapFactory.addCustomMarker(customMarker);
+			//marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
+			//marker.bindPopup(popupContent).openPopup();
 		}
 		
 
     	wFMapFactory.setMapData(geojson);
-    	drawnItems.addLayer(e.layer);
+		drawnItems.addLayer(e.layer);
 	});
 
 	map.on('draw:edited', function (e) {
@@ -103,10 +103,8 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 });
 
 function setMapHeight(){
-	
 	var map = document.getElementById('map');
 	map.style.height = '100%';
-
 }
 
 

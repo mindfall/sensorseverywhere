@@ -20,6 +20,7 @@
 .split-panes.vertical > .split-handler
 {
   top: 75%; 
+  margin-top: .2%;
   border: 2px solid #d7e0e2;
   left: 0px;
   right: 0px;

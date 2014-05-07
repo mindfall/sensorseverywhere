@@ -5,10 +5,8 @@
       {{search}}
   h4 Emails
   ul(id="emailListing")
-    li(ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index" ng-click="setSelectedMail(mail)")
-      .container(class="emailListing" ng-class="{selected: isSelected(mail)}")
-        .col-sm-4 {{ mail.from }}
-        .col-sm-8 {{ mail.body }}
+    li(email-listing  email='mail' action="setSelectedMail(selectedMail)" ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index")
+     
 .col-md-8(ng-controller="wFEmailContentCtrl")
   h4 Compose
   div(ng-show="!selectedMail")
