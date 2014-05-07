@@ -4,6 +4,8 @@ angular.module('app').controller('wFDashboardCtrl', function($scope, $location, 
 	var getUserProjects = [];
 	var userProjects = [];
 
+  $scope.identity = wFIdentity;
+
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 	if(userIsLoggedIn === true){
     	$scope.isLoggedIn = userIsLoggedIn;
@@ -31,4 +33,8 @@ angular.module('app').controller('wFDashboardCtrl', function($scope, $location, 
    			console.log(status)
    		});
    	}
+
+    $scope.createProject = function() {
+      $location.url('/main');
+    }
 });

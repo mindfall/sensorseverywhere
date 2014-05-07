@@ -38,20 +38,20 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/main/main', 
 				controller: 'wFWildlifeSelectCtrl'
 		})
-		.state('fund', {
-				url: '/fund',
-				templateUrl: '/partials/fund/main', 
-				controller: 'wFFundCtrl'
+		.state('projects', {
+				url: '/projects',
+				templateUrl: '/partials/projects/main', 
+				controller: 'wFProjectCtrl'
 		})
-		.state('/fund/contribute/:id', {
-				url: '/contribute/:id',
-				templateUrl: '/partials/fund/contribute', 
-				controller: 'wFFundContributeCtrl'
+		.state('/projects/contribute/:id', {
+				url: '/projects/:id',
+				templateUrl: '/partials/projects/contribute', 
+				controller: 'wFContributionCtrl'
 		})
-		.state('/fund/:id', {
-				url: '/fund/:id',
-				templateUrl: '/partials/fund/fund-details', 
-				controller: 'wFFundCtrl'
+		.state('/project/:id', {
+				url: '/project/:id',
+				templateUrl: '/partials/projects/project-details', 
+				controller: 'wFProjectDetailsCtrl'
 		})
 		.state('/monitor/main', {
 				url: '/monitor/main', 
