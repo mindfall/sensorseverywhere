@@ -44,6 +44,7 @@ angular.module('app')
 					$http({method: 'GET', url:'/api/projects/' + id})
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
+							console.log(data);
 						}).error(function(data, status, headers, config){
 							dfd.reject(status);
 						});
@@ -82,7 +83,7 @@ angular.module('app')
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
 						.success(function(data, status, headers, config) {
 							wFNotifier.notify('Thanks. You\'ve just made a contribution of $' + amount + ' to project ' + name + ' was successfully recieved.');
-							$location.path('/fund/' + id);
+							$location.path('/projects/' + id);
 						})
 						.error(function(data, status, headers, config){
 							console.log(status);

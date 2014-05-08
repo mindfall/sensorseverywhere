@@ -30,12 +30,12 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 		})
 		.state('dashboard', {
 				url: '/dashboard',
-				templateUrl: '/partials/dashboard/main', 
+				templateUrl: '/partials/dashboard/dashboard', 
 				controller: 'wFDashboardCtrl'
 		})
-		.state('main', {
-				url: '/main',
-				templateUrl: '/partials/main/main', 
+		.state('create', {
+				url: '/create',
+				templateUrl: '/partials/projects/create-project', 
 				controller: 'wFWildlifeSelectCtrl'
 		})
 		.state('projects', {
@@ -43,17 +43,22 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/projects/main', 
 				controller: 'wFProjectCtrl'
 		})
-		.state('/projects/contribute/:id', {
-				url: '/projects/:id',
+		.state('projects/contribute/:id', {
+				url: '/projects/contribute/:id',
 				templateUrl: '/partials/projects/contribute', 
 				controller: 'wFContributionCtrl'
 		})
-		.state('/project/:id', {
-				url: '/project/:id',
+		.state('projects/create-project', {
+				url: '/projects/create-project',
+				templateUrl: '/partials/projects/create-project',
+				controller: 'wFProjectCtrl'
+		})
+		.state('projects/:id', {
+				url: '/projects/:id',
 				templateUrl: '/partials/projects/project-details', 
 				controller: 'wFProjectDetailsCtrl'
 		})
-		.state('/monitor/main', {
+		.state('monitor/main', {
 				url: '/monitor/main', 
 				templateUrl: '/partials/monitor/main', 
 				controller: 'wFMonitorCtrl'

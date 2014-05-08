@@ -13,7 +13,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										button(ng-show="identity.currentUser.isOwner()" ng-click="removeProject(project._id)") Remove
 										p
 										b Name: 
-										a(href="/fund/{{project._id}}") {{project.project_name}}<br>
+										a(href="/projects/{{project._id}}") {{project.project_name}}<br>
 										b Description: 
 										{{project.project_description}} <br> 
 										b Amount Required: 

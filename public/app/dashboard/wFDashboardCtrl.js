@@ -35,6 +35,6 @@ angular.module('app').controller('wFDashboardCtrl', function($scope, $location, 
    	}
 
     $scope.createProject = function() {
-      $location.url('/main');
+      $location.url('create');
     }
 });

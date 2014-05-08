@@ -1,58 +1,58 @@
-div(class="main-container" ng-controller="wFMainCtrl")
-	.container(ng-if="isLoggedIn")
-		bg-splitter(orientation="vertical" )
-			bg-pane
-				.row(class="row-map-container")
-					.col-md-9(class="col-9-map-container")
-						div(ng-controller="wFMapCtrl" id="map" class="map")
-							leaflet
+//- div(class="main-container" ng-controller="wFMainCtrl")
+//- 	.container(ng-if="isLoggedIn")
+//- 		bg-splitter(orientation="vertical" )
+//- 			bg-pane
+//- 				.row(class="row-map-container")
+//- 					.col-md-9(class="col-9-map-container")
+//- 						div(ng-controller="wFMapCtrl" id="map" class="map")
+//- 							leaflet
 				
-					.col-md-3(class="col-3-selection-container")
-						p
-							.selection-layout
-								div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
-									form.selectAnimalInput(ng-submit="selectWildlife()")
-										input(id='wildlife_search' 
-											type='search' 
-											ng-model="wildlifeSelect" 
-											typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
-											class="form-control" 
-											placeholder="Search for wildlife...")
+//- 					.col-md-3(class="col-3-selection-container")
+//- 						p
+//- 							.selection-layout
+//- 								div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
+//- 									form.selectAnimalInput(ng-submit="selectWildlife()")
+//- 										input(id='wildlife_search' 
+//- 											type='search' 
+//- 											ng-model="wildlifeSelect" 
+//- 											typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+//- 											class="form-control" 
+//- 											placeholder="Search for wildlife...")
 
-								div.selectedWildlifeContainer
-									div(ng-repeat="creature in selectedWildlife track by $index")
-										.well
-											table.selectedWildlife
-												tr
-													td.wildlifeCell
-														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-change="setWildlifeValue(wildlifeCounter)" value="1" type="number" min="0")
-													td.wildlifeCell
-														div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
-													td.wildlifeCell
-														div(class="selectedWildlifeName") {{creature.name}}
-													td.wildlifeBtnCell
-														div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+//- 								div.selectedWildlifeContainer
+//- 									div(ng-repeat="creature in selectedWildlife track by $index")
+//- 										.well
+//- 											table.selectedWildlife
+//- 												tr
+//- 													td.wildlifeCell
+//- 														input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-change="setWildlifeValue(wildlifeCounter)" value="1" type="number" min="0")
+//- 													td.wildlifeCell
+//- 														div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
+//- 													td.wildlifeCell
+//- 														div(class="selectedWildlifeName") {{creature.name}}
+//- 													td.wildlifeBtnCell
+//- 														div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
 						
-								wildlife-popup(ng-show="wildlifePopup()" draggability)
-								comment-popup(ng-show="commentPopup()" draggability)
+//- 								wildlife-popup(ng-show="wildlifePopup()" draggability)
+//- 								comment-popup(ng-show="commentPopup()" draggability)
 					
-					project-popup(class="project-popup" ng-show="projectPopup()" draggability)
-				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
-			bg-pane
-				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
-					//- img(src="img/spinner.gif" ng-show="loading")
-					.col-md-9
-						ul(class="nav nav-tabs")
-							li
-								a(ui-sref=".email") Email
-							li
-								a(ui-sref=".tasks") Tasks
-						<div ui-view="left-pane"></div>
-					.col-md-3(class="chat-files")
-						ul(class="nav nav-tabs")
-							li
-								a(ui-sref=".chat") Chat
-							li
-								a(ui-sref=".files") Files
-						<div ui-view="right-pane"></div>
-					
+//- 					project-popup(class="project-popup" ng-show="projectPopup()" draggability)
+//- 				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
+//- 			bg-pane
+//- 				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
+//- 					//- img(src="img/spinner.gif" ng-show="loading")
+//- 					.col-md-9
+//- 						ul(class="nav nav-tabs")
+//- 							li
+//- 								a(ui-sref=".email") Email
+//- 							li
+//- 								a(ui-sref=".tasks") Tasks
+//- 						<div ui-view="left-pane"></div>
+//- 					.col-md-3(class="chat-files")
+//- 						ul(class="nav nav-tabs")
+//- 							li
+//- 								a(ui-sref=".chat") Chat
+//- 							li
+//- 								a(ui-sref=".files") Files
+//- 						<div ui-view="right-pane"></div>
+//- 					

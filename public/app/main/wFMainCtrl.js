@@ -93,7 +93,7 @@ angular.module('app')
 		}
 
 		projectAdd = wFProjectFactory.addProject(projectData);
-
+		$location.url('/dashboard');
 	}
 
 	$scope.cancelProject = function(){

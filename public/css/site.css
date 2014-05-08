@@ -9,6 +9,9 @@ html,
   height: 75%;
   margin-top: 50px;
 }
+.create-row-map-container {
+  margin-top: -50px;
+}
 .col-9-map-container,
 .col-3-selection-container {
   height: 78%;
@@ -420,14 +423,21 @@ ul.nav.navbar-nav a.navbar-nav-link {
 .map-frontpage {
   margin-top: -4.5% !important;
 }
-.save-project-button,
+.save-project-button {
+  display: block;
+  width: 100%;
+  height: 45px;
+  margin-top: 41.5%;
+  z-index: 1000;
+  position: relative;
+}
 .create-project-button {
   display: block;
   width: 100%;
   height: 45px;
-  margin-top: 2%;
+  bottom: 7%;
   z-index: 100;
-  position: relative;
+  position: absolute;
 }
 /* END MAP */
 /* END MAIN PAGE */
