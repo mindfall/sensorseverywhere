@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 */
 
 exports.getGroups = function(req, res){
-	Group.find({}).exec(function(err, collection){
+	Group.find({}).exec(function(err, collection){	
 		res.send(collection);
 	})
 };
@@ -17,11 +17,18 @@ exports.getGroups = function(req, res){
 * create a chat log
 */
 
-exports.createGroupLog = function(req, res, next){
-	var GroupData = req.body;
+exports.createGroup = function(req, res, next){
+	var groupData = req.body;
+	var groupName = groupData.name;
+	var groupMembers = groupData.members;
+	var groupProject = groupData.project_name;
+//	console.log(groupData);
 	
 	//stub
 	var saveGroup = Group.create ({
+		"name" : groupName,
+		"members" : groupMembers,
+		"project_name": groupProject
 	}, 
 	function(){
 	 	res.send(saveGroup);

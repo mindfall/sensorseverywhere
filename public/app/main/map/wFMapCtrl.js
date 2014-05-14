@@ -4,9 +4,14 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
-	
-	var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/b8505041f78249b2bb279b2c58013a2e/997/256/{z}/{x}/{y}.png';
-	var basemap = new L.TileLayer(cloudmadeUrl, {maxZoom: 28});
+	var mapquestLink = '<a href="http://www.mapquest.com//">MapQuest</a>';
+	var mapquestPic = '<img src="http://developer.mapquest.com/content/osm/mq_logo.png\">';
+	var mapQuestUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
+	var basemap = new L.TileLayer(mapQuestUrl, {
+										attibution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency. Tiles courtesy of '+mapquestLink+mapquestPic,
+										maxZoom: 20, 
+										subdomains: ['otile1','otile2','otile3','otile4'],
+									});
 	var selectedWildlife = [];
 	var markerWildlifeIcons = ['mammal', 'bird', 'reptile'];
 	var markerMonitorIcons = ['audio', 'video'];
@@ -44,7 +49,7 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
    			controls[0].parentNode.removeChild(controls[0]);
    		}
    		catch(err){
-   			console.log('no draw control to remove');
+   			//console.log('no draw control to remove');
    		}
    	}
 

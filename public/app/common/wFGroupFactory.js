@@ -1,22 +1,17 @@
 angular.module('app')
-	.factory('wFProjectFactory', function($rootScope, $http, $q, $location, wFNotifier){
+	.factory('wFGroupFactory', function($rootScope, $http, $q, $location, wFNotifier){
 
-		var mapData = [];
-		var wildlifeData = [];
+		var groupData = [];
+
 
 		return {
-				setWildlifeData : function(wildlife) {
-					wildlifeData = wildlife;
-				},
 
-				getWildlifeData : function() {
-					return wildlifeData;
-				},
-
-				getProjects : function() {
+				// universal group list
+				getGroups : function() {
 					var dfd = $q.defer();
-					$http({method: 'GET', url: '/api/projects'})
+					$http({method: 'GET', url: '/api/groups'})
 						.success(function(data, status, headers, config) {
+							console.log(data);
 							dfd.resolve(data);
 						}).
 						error(function(data, status, headers, config) {
@@ -26,12 +21,11 @@ angular.module('app')
 
 				},
 
-				getProjectsByUser : function(user_id) {
+				getGroupsByUser : function(user_id) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url: '/api/projectsByUser/' + user_id})
+					$http({method: 'GET', url: '/api/groupsByUser/' + user_id})
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
-						//	console.log(data);
 						}).
 						error(function(data, status, headers, config) {
 							dfd.reject(status);
@@ -39,23 +33,23 @@ angular.module('app')
 					return dfd.promise;
 				},
 
-				viewProjectDetails : function(id) {
+				viewGroupDetails : function(id) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url:'/api/projects/' + id})
+					$http({method: 'GET', url:'/api/groups/' + id})
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
-							console.log(data);
 						}).error(function(data, status, headers, config){
 							dfd.reject(status);
 						});
 					return dfd.promise;
 				},
 
-				addProject : function(projectData) {
+				addGroup : function(groupData) {
 					var dfd = $q.defer();
-					$http.post('/api/createProject', projectData)
+					$http.post('/api/createGroup', groupData)
 						.success(function(data, status, headers, config) {
-							project = data;
+							group = data;
+							console.log(group);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {
@@ -64,9 +58,9 @@ angular.module('app')
 					return dfd.promise;
 				}, 
 
-				removeProject : function(id) {
+				removeGroup : function(id) {
 					var dfd = $q.defer();
-					$http.post('/api/removeProject/' + id)
+					$http.post('/api/removeGroup/' + id)
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
 						})
@@ -76,7 +70,7 @@ angular.module('app')
 					return dfd.promise;
 				},
 
-				contributeToProject: function(id, amount, name) {
+			/*	contributeToProject: function(id, amount, name) {
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
 						.success(function(data, status, headers, config) {
@@ -88,6 +82,6 @@ angular.module('app')
 						});
 					return dfd.promise;
 					
-				},
+				},*/
 		} 
 	})

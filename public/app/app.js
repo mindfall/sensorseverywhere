@@ -33,14 +33,14 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/dashboard/dashboard', 
 				controller: 'wFDashboardCtrl'
 		})
-		.state('create', {
-				url: '/create',
+		.state('create-project', {
+				url: '/create-project',
 				templateUrl: '/partials/projects/create-project', 
 				controller: 'wFWildlifeSelectCtrl'
 		})
 		.state('projects', {
 				url: '/projects',
-				templateUrl: '/partials/projects/main', 
+				templateUrl: '/partials/projects/projects', 
 				controller: 'wFProjectCtrl'
 		})
 		.state('projects/contribute/:id', {
@@ -80,34 +80,34 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				controller: 'wFProfileCtrl',
 				resolve: routeRoleChecks.user
 		})
-		.state('main.email', {
+		.state('dashboard.email', {
 				url: '/email',
 				views: {
-					'left-pane@main': {templateUrl: '/partials/dashboard/dashboard-email',
+					'group-pane@dashboard': {templateUrl: '/partials/dashboard/email/dashboard-email',
 										controller: 'wFEmailCtrl'
 									},
 				}
 		})
-		.state('main.tasks', {
-				url: '/tasks',
+		.state('dashboard.groups', {
+				url: '/groups',
 				views: {
-					'left-pane@main': {templateUrl: '/partials/dashboard/dashboard-tasks',
-										controller: 'wFTaskCtrl'
-									},
+					'group-pane@dashboard': {templateUrl: '/partials/groups/groups',
+											controller: 'wFGroupCtrl'
+										},
 				}
 		})
-		.state('main.chat', {
+		.state('dashboard.chat', {
 				url: '/chat',
 				views: {
-					'right-pane@main': {templateUrl: '/partials/dashboard/dashboard-chat',
+					'group-pane@dashboard': {templateUrl: '/partials/dashboard/dashboard-chat',
 										controller: 'wFChatCtrl'
 									},
 				}
 		})
-		.state('main.files', {
+		.state('dashboard.files', {
 				url: '/files',
 				views: {
-					'right-pane@main': {templateUrl: '/partials/dashboard/dashboard-file-upload'},
+					'project-pane@dashboard': {templateUrl: '/partials/dashboard/dashboard-file-upload'},
 				}
 		});
 

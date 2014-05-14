@@ -23,6 +23,7 @@ angular.module('app').controller('wFTaskCtrl', function($scope) {
 	$scope.setStatus = {type: $scope.selectStatus[0].value};
 
 	$scope.addTask = function() {
+		console.log('Task');
 		$scope.inserted = {
 			id: $scope.tasks.length + 1,
 			priority: 0,
@@ -32,6 +33,10 @@ angular.module('app').controller('wFTaskCtrl', function($scope) {
 			status: 0
 		};
 		$scope.tasks.push($scope.inserted);
+	}
+
+	$scope.saveTask = function() {
+		console.log('save task, create wFProjectFactory method and save out to server. Best to make an insert into the project table. (Remember to create a task array + wildlife + in the project model');
 	}
 
 	$scope.removeTask = function(index) {

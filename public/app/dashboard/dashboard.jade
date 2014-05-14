@@ -5,38 +5,81 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 				.row
 					bg-splitter(orientation="horizontal")
 						bg-pane
-							.col-md-9(class="col-9-dashboard-container")
-								h4 Projects	
-								div Welcome {{user.firstname}}
-								div(class="projectOutline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
-									div(class="col-{{$index % 4}}")
-										button(ng-show="identity.currentUser.isOwner()" ng-click="removeProject(project._id)") Remove
-										p
-										b Name: 
-										a(href="/projects/{{project._id}}") {{project.project_name}}<br>
-										b Description: 
-										{{project.project_description}} <br> 
-										b Amount Required: 
-										{{project.project_funding_required}} <br> 
-										b Total to Date:
-										{{project.total_contributions}} <br>
-										b End Date:
-										{{project.project_end_date | date}} <br>
-										a(ng-show="identity.currentUser.isOwner()" ng-href="/project/edit/{{project._id}}") Edit
+							.col-md-6(class="col-6-dashboard-container" ng-controller="wFProjectCtrl")
+								h4 Project Dashboard for {{user.firstname}}
+								h4(class="dashboard-message") {{message}}
+								accordion(close-others="oneAtATime")
+									accordion-group(heading="{{project.project_name}}" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+										table
+											tr
+												td(style="width: 22%;") Name
+												td(style="width: 38%;") Description
+												td(style="width: 11%;") View task summary
+												td(style="width: 11%;") Status
+												td(style="width: 10%") Upload File
+												td(style="width: 14%") Edit
+												td(style="width: 7%") Delete
+											tr
+												td
+													a(href="/projects/{{project._id}}") {{project.project_name}}
+												td
+													span {{project.project_description}}
+												td
+													input(class="task-summary" type="checkbox" value="1" ng-model="viewTasks")
+
+												td
+													select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+												td
+													div(class="button btn-success") Attach File
+												td
+													div(class="button btn-danger" ng-href="/project/edit/{{project._id}}") Edit	
+												td
+													div(class="button btn-danger" ng-click="removeProject(project._id)") Delete
+										div(ng-controller="wFTaskCtrl")
+											accordion(ng-controller="wFTaskCtrl" close-others="oneAtATime")
+												accordion-group(heading="View Tasks")
+													table(class="table table-bordered table-hover table-condensed")
+														tr(style="font-weight: bold;")
+															td(style="width: 12%;") Priority
+															td(style="width: 20%;") Name
+															td(style="width: 36%;") Description
+															td(style="width: 9%;") Owner
+															td(style="width: 12%") Status
+															td(style="width: 8%") Upload File
+															td(style="width: 5%") Delete
+														tr(ng-repeat="task in tasks")
+															td
+																select(class="form-control" ng-model="task.setPriority", ng-options="priority.value as priority.name for priority in selectPriority")
+															td
+																span(editable-text="task.name") {{task.name}}
+															td
+																span(editable-text="task.description") {{task.description}}
+															td
+																select(class="form-control" ng-model="task.setOwner", ng-options="owner.value as owner.name for owner in selectOwner")
+															td
+																select(class="form-control" ng-model="task.setStatus", ng-options="status.value as status.name for status in selectStatus")
+															td
+																div(class="button btn-success") Attach File
+															td
+																div(class="button btn-danger" ng-click="removeTask($index)") Delete
+													button(class="btn btn-default" ng-click="addTask()") Add task
+													button(class="btn btn-default" ng-click="saveTask()") Save task
+								//- div(ng-show="viewTasks" ui-view="task-pane")		
+								div(ui-view="project-pane")
 							button(class="create-project-button" ng-click="createProject()" ) Create Project
 						bg-pane
-							.col-md-3(class="col-3-group-container")
-								h4 Groups	
-			button(class="create-project-button") Create		
+							h4 Groups
+							.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
+							a(ui-sref=".groups")
+								button(class="create-group-button" ng-click="toggleGroupForm('show')") Create Group
+			//- button(class="create-project-button") Create		
 			bg-pane
-				.row(id="groups" ng-controller="wFDashboardCtrl" class="row-collaboration-elements")
+				.row(id="groups" class="row-collaboration-elements")
 					//- img(src="img/spinner.gif" ng-show="loading")
 					.col-md-9
 						ul(class="nav nav-tabs")
 							li
 								a(ui-sref=".email") Email
-							li
-								a(ui-sref=".tasks") Tasks
 						<div ui-view="left-pane"></div>
 					.col-md-3(class="chat-files")
 						ul(class="nav nav-tabs")

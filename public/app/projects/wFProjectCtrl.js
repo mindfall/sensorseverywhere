@@ -9,6 +9,16 @@ angular.module('app')
 		
 		var user = wFIdentity.currentUser;
 
+		$scope.selectStatus = [
+			{name: 'active', value: 'active'},
+			{name: 'success', value: 'successfully funded'},
+			{name: 'failed', value: 'not funded'},
+			{name: 'private', value: 'private'}
+		];
+		$scope.setStatus = {type: $scope.selectStatus[0].value};
+
+
+
 		$scope.sortOptions = [
 			{value: "name", text: "Sort by project Name"},
 		];
@@ -23,7 +33,6 @@ angular.module('app')
 					projectArray.push(projectList[i]);
 				}
 				$scope.projects = projectArray;
-				console.log($scope.projects);
 			}, function(status){
 				console.log(status);
 			});
@@ -56,10 +65,6 @@ angular.module('app')
 	 			console.log(status)
 	 		});
 	 	}
-
-	  $scope.createProject = function() {
-	    $location.url('/projects/create-project');
-	  }
 /*		var requiredFunding = $http.get('api/fundAmount');
 
 		requiredFunding.success(function(data, status, headers, config) {
@@ -80,6 +85,5 @@ angular.module('app')
 		*/
 
 		$scope.getProjects();
-	//	$scope.getProjectsByUser();
 	});
 
