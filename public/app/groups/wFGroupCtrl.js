@@ -13,10 +13,6 @@ angular.module('app')
 
 	    $scope.createGroup = function(name, members, belongsTo) {
 
-/*	    	$scope.groupName = name;
-	    	$scope.num_members = members;
-	    	$scope.belongsTo = belongsTo;*/
-
 	    	var groupData = {
 	    		name : name,
 	    		members: members,
@@ -25,13 +21,11 @@ angular.module('app')
 
 	    	createGroup = wFGroupFactory.addGroup(groupData);
 	    	createGroup.then(function(createGroup) {
-	    		//console.log('success ' + createGroup);
 	    		groupArray.push(JSON.stringify(createGroup));
 	    		$scope.groupArray = groupArray;
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
-
 	    }
 
 		/**
@@ -45,14 +39,13 @@ angular.module('app')
 				}
 				for(var name in groupArray) {
 					if(typeof groupArray[name] !== 'function') {
-						$scope.groupArray = groupArray;
+						$scope.groups = groupArray;
 					}
 				}
 			}, function(status){
 				console.log(status);
 			});
 		}
-
 
 		$scope.getGroupsByUser = function() {
 			getUserGroups = wFGroupFactory.getGroupsByUser(user._id);
@@ -75,10 +68,10 @@ angular.module('app')
 	 	$scope.removeGroup = function(id) {
 			var removeGroup = wFGroupFactory.removeGroup(id);
 	 		removeGroup.then(function(removeGroup) {
-	  		var id = $scope.groups[0]._id;
+	  			var id = $scope.groups[0]._id;
 	 			$scope.groups.splice(id, 1);
 	 		}, function(status) {
-	 			console.log(status)
+	 			console.log(status);
 	 		});
 	 	}
 
@@ -100,6 +93,21 @@ angular.module('app')
 			});
 		}
 
+
 		$scope.getGroups();
 		$scope.getProjectNames();
-	});
+});
+
+angular.module('app').directive('span', function() {
+	return {
+		restrict: 'E',
+		link: function(scope, element, attrs) {
+			if(attrs.ngClick || attrs.href === '' || attrs.href === '#') {
+				element.on('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+				})
+			}
+		}
+	}
+});

@@ -30,4 +30,15 @@ angular.module('app').controller('wFDashboardCtrl', function($scope, $location, 
         return $scope.groupForm, $scope.groupList;
       }
     }
+
+    $scope.toggleUserForm = function(state) {
+      console.log('userForm: ' + state);
+      if(state === 'show') {
+        $scope.userForm = true;
+        return $scope.userForm;
+      } else if(state === 'hide') {
+        $scope.userForm = false;
+        return $scope.userForm;
+      }
+    }
 });

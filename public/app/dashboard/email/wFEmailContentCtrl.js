@@ -22,6 +22,15 @@ angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 
 			});
 	}
 
+	$scope.sendInvite = function() {
+		wFMailService.sendEmail($scope.invite) 
+			.then(function(status) {
+				console.log(status);
+			}, function(err) {
+				console.log(status);
+			});
+	}
+
 	$scope.$watch('selectedMail', function(evt){
 		$scope.showingReply = false;
 		$scope.reply = {};

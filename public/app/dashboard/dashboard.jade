@@ -64,7 +64,6 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 																div(class="button btn-danger" ng-click="removeTask($index)") Delete
 													button(class="btn btn-default" ng-click="addTask()") Add task
 													button(class="btn btn-default" ng-click="saveTask()") Save task
-								//- div(ng-show="viewTasks" ui-view="task-pane")		
 								div(ui-view="project-pane")
 							button(class="create-project-button" ng-click="createProject()" ) Create Project
 						bg-pane
@@ -76,11 +75,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 			bg-pane
 				.row(id="groups" class="row-collaboration-elements")
 					//- img(src="img/spinner.gif" ng-show="loading")
-					.col-md-9
-						ul(class="nav nav-tabs")
-							li
-								a(ui-sref=".email") Email
-						<div ui-view="left-pane"></div>
+
 					.col-md-3(class="chat-files")
 						ul(class="nav nav-tabs")
 							li

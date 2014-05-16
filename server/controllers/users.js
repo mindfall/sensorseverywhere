@@ -49,4 +49,8 @@ exports.updateUser = function(req, res){
 	});
 };
 
+exports.removeUser = function(req, res) {
+	console.log(req.params.id);
+}
+
 

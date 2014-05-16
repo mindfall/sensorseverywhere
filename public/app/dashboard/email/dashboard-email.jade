@@ -1,17 +1,16 @@
-h1(class="emaillogger") Ema
-.col-md-4
-  div.selectionInput
-    form
-      input(class="form-control" type="search" placeholder="Filter messages" ng-model="search.from")
-      {{search}}
-  h4 Emails
-  ul(id="emailListing")
-    li(email-listing  email='mail' action="setSelectedMail(selectedMail)" ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index")
+h4(class="emaillogger")
+//- .col-md-4
+//-   div.selectionInput
+//-     form
+//-       input(class="form-control" type="search" placeholder="Filter messages" ng-model="search.from")
+//-   h4 Emails
+//-   ul(id="emailListing")
+//-     li(email-listing  email='mail' action="setSelectedMail(selectedMail)" ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index")
      
-.col-md-8(ng-controller="wFEmailContentCtrl")
+.col-md-12(ng-controller="wFEmailContentCtrl")
   h4 Compose
-  div(ng-show="!selectedMail")
-    span No conversation selected.
+  //- div(ng-show="!selectedMail")
+  //-   span No conversation selected.
   div(ng-show="selectedMail")
     form.form-horizontal(id="replyForm" ng-submit="sendEmailReply()" ng-show="showingReply")
       .row

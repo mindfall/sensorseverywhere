@@ -16,6 +16,7 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "angular-route": "~1.2.13",
-    "angular-mocks": "1.2.13"
+    "angular-mocks": "1.2.13",
+    "blueimp-file-upload": "~9.5.7"
   }
 }

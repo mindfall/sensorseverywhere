@@ -5,8 +5,7 @@ angular.module('app', [
 	'ui.bootstrap',
 	'ui.router',
 	'bgDirectives',
-	'xeditable',
-	'angularFileUpload'
+	'xeditable'
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
@@ -80,20 +79,20 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				controller: 'wFProfileCtrl',
 				resolve: routeRoleChecks.user
 		})
-		.state('dashboard.email', {
-				url: '/email',
-				views: {
-					'group-pane@dashboard': {templateUrl: '/partials/dashboard/email/dashboard-email',
-										controller: 'wFEmailCtrl'
-									},
-				}
-		})
 		.state('dashboard.groups', {
 				url: '/groups',
 				views: {
 					'group-pane@dashboard': {templateUrl: '/partials/groups/groups',
 											controller: 'wFGroupCtrl'
 										},
+				}
+		})
+		.state('dashboard.groups.email', {
+				url: '/email',
+				views: {
+					'group-pane@dashboard': {templateUrl: '/partials/dashboard/email/dashboard-email',
+										controller: 'wFEmailCtrl'
+									},
 				}
 		})
 		.state('dashboard.chat', {

@@ -1,6 +1,4 @@
 angular.module('app').controller('wFEmailCtrl', ['$scope', 'wFMailService', function($scope, wFMailService){
-	
-	console.log('email controller');
 
 	$scope.email = [];
 

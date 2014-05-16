@@ -26,6 +26,8 @@ module.exports = function(app){
 
 	app.get('/api/groups', groups.getGroups);
 	app.post('/api/createGroup', groups.createGroup);
+	app.post('/api/removeGroup/:id', groups.removeGroup);
+	app.post('/api/removeUserFromGroup/:gid/:uid', groups.removeUserFromGroup);
 
 	app.get('/api/tasks', tasks.getTasks);
 
@@ -36,12 +38,14 @@ module.exports = function(app){
 	app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
 	app.get('/api/users', auth.requiresRole('owner'), users.getUsers);
 	app.post('/api/users', users.createUser);
-	app.put('/api/users', users.updateUser);
+	app.post('/api/users/:id', auth.requiresRole('admin'), users.removeUser);
+	app.put('/api/users/:id', users.updateUser);
 
 	app.get('/api/mail', mail.getMail);
 	app.post('/api/send', mail.sendMail);
 	
-	app.post('/api/uploads', mail.upload);
+	//app.post('/api/uploads', mail.upload);
+	//app.post('/api/uploads', fileUpload.)
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params);

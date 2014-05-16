@@ -11,7 +11,7 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groups'})
 						.success(function(data, status, headers, config) {
-							console.log(data);
+							//console.log(data);
 							dfd.resolve(data);
 						}).
 						error(function(data, status, headers, config) {
@@ -49,7 +49,6 @@ angular.module('app')
 					$http.post('/api/createGroup', groupData)
 						.success(function(data, status, headers, config) {
 							group = data;
-							console.log(group);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {
@@ -69,6 +68,8 @@ angular.module('app')
 						});
 					return dfd.promise;
 				},
+
+
 
 			/*	contributeToProject: function(id, amount, name) {
 					var dfd = $q.defer();

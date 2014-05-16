@@ -86,5 +86,14 @@ exports.getGroupByUserId = function(req, res){
 */
 
 exports.removeGroup = function(req, res, next){
-	console.log(req);
+	Group.findById(req.params.id, function(err, group) {
+		group.remove(function(err, group) {
+			res.send(group);
+		});
+	});
+}
+
+exports.removeUserFromGroup = function(req, res) {
+	console.log(req.params);
+	//Group.findById(req.pa)
 }

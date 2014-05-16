@@ -9,10 +9,21 @@ div(ng-model="groupForm" ng-show="groupForm")
 							input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupname" )
 					.form-group
 						.col-md-12
-							input.form-control(name="num_members", type="text", placeholder="Number of Members" ng-model="num_members" )
+							select(class="form-control" ng-model="belongsTo", ng-options="project.value as project for project in projectNames")
 					.form-group
 						.col-md-12
-							select(class="form-control" ng-model="belongsTo", ng-options="project.value as project for project in projectNames")			
+							textarea(class="form-control" ng-model="description", rows=5 cols=15)
+					//- .form-group
+					//- 	.col-md-12
+							//div( file-upload="onFile(files)" class="btn btn-default") Upload 
+		form(file-upload="options" ng-controller="wFFileCtrl")
+
+			span(class="btn btn-success fileinput-button" ng-class="{disabled: disabled}")
+				span Add files...
+				input(type="file" name="files[]" multiple="" ng-disabled="disabled")
+			button(type="button" class="btn btn-primary start" ng-click="submit()")
+				span Start upload
+
 		span(class="btn btn-default" ng-click="createGroup(groupname, num_members, belongsTo); toggleGroupForm('hide')") Create Group
 .col-md-12(class="group-list-container" ng-model="groupList" ng-show="groupList" ng-controller="wFGroupCtrl")
 	h4 Group list
@@ -24,27 +35,31 @@ div(ng-model="groupForm" ng-show="groupForm")
 			td(class="accordion-group-heading") Delete
 
 	accordion(close-others="oneAtATime")
-		accordion-group(ng-repeat="group in groupArray track by $index | filter:searchText | orderBy:sortOrder")
+		accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
 			accordion-heading(style="display: inline;") 
 				span(class="accordion-group-heading") {{group.name}} 
 				span(class="accordion-group-heading") {{group.members}} 
 				span(class="accordion-group-heading") {{group.project_name}}				
 				span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete	
-			//- 
+			span pop in some additional project details
+			br 
+			h4 Invite members!!
+			small To ask someone to join first fill in the form then verify it with them via email.
+			br
 			div(ng-controller="wFUserCtrl")
-				table(class="create-user-table")
-					accordion(close-others="oneAtATime")
-						accordion-group(heading="Users")
-								button(class="btn btn-default btn-sm" ng-click="addUser()") Add user
-								table(class="table table-bordered table-hover table-condensed")
-									tr(style="font-weight: bold;")
-										td(style="width: 20%;") Name
-										td(style="width: 12%") Status
-										td(style="width: 5%") Delete
-									tr(ng-repeat="user in users")
-										td
-											span(editable-text="user") {{user}}
-										td
-											select(class="form-control" ng-model="setStatus" ng-option="user.name as user.value for user in userStatus")
-										td
-											button(class="btn btn-default" ng-click="deleteUser()") Delete
+				table(class="table table-bordered table-hover table-condensed")
+					tr(style="font-weight: bold;")
+						td(style="width: 20%;") Name
+						td(style="width: 12%") Status
+						td(style="width: 20%") Send Mail
+						td(style="width: 5%") Delete
+					tr(ng-repeat="user in users")
+						td
+							input(class="form-control" ng-model="firstname" type="text" placeholder="Enter name...")
+						td
+							select(class="form-control" ng-model="setStatus.type" ng-options="status.value as status.name for status in userStatus")
+						td
+							a(ui-sref=".email")
+								button(class="btn btn-default btn-sm") Send Email
+						td
+							button(class="btn btn-default" ng-click="removeUserFromGroup()") Delete
