@@ -1,5 +1,6 @@
 var auth = require('./auth'),
 	users = require('../controllers/users'),
+	files = require('../controllers/files'),
 	wildlife = require('../controllers/wildlife'),
 	projects = require('../controllers/projects'),
 	groups = require('../controllers/groups'),
@@ -42,10 +43,11 @@ module.exports = function(app){
 	app.put('/api/users/:id', users.updateUser);
 
 	app.get('/api/mail', mail.getMail);
-	app.post('/api/send', mail.sendMail);
+	app.post('/api/sendInvite', mail.sendInvitationEmail);
 	
 	//app.post('/api/uploads', mail.upload);
-	//app.post('/api/uploads', fileUpload.)
+	app.post('/api/uploads', files.groupFiles);
+	app.get('/api/groupImages/:name', files.getGroupImages);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params);

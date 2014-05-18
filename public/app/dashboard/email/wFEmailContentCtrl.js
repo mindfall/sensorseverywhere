@@ -1,4 +1,4 @@
-angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 'wFMailService', function($scope, $rootScope, wFMailService){
+angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 'wFMailService', '$location', function($scope, $rootScope, $location, wFMailService){
 	
 	$scope.showingReply = false;
 	$scope.reply = {};
@@ -19,15 +19,6 @@ angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 
 				$rootScope.loading = false;
 			}, function(err){
 				$rootScope.loading = false;
-			});
-	}
-
-	$scope.sendInvite = function() {
-		wFMailService.sendEmail($scope.invite) 
-			.then(function(status) {
-				console.log(status);
-			}, function(err) {
-				console.log(status);
 			});
 	}
 

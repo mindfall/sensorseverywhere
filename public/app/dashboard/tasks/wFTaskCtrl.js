@@ -23,7 +23,6 @@ angular.module('app').controller('wFTaskCtrl', function($scope) {
 	$scope.setStatus = {type: $scope.selectStatus[0].value};
 
 	$scope.addTask = function() {
-		console.log('Task');
 		$scope.inserted = {
 			id: $scope.tasks.length + 1,
 			priority: 0,

@@ -27,4 +27,8 @@ angular.module('app')
 					});
 				}
 
+				$scope.signupToGroup = function() {
+					console.log('signup to group');
+				}
+
 })

@@ -5,7 +5,8 @@ angular.module('app', [
 	'ui.bootstrap',
 	'ui.router',
 	'bgDirectives',
-	'xeditable'
+	'xeditable',
+	'angularFileUpload'
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
@@ -72,6 +73,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				url: '/signup',
 				templateUrl: '/partials/account/signup',
 				controller: 'wFSignupCtrl', 
+		})
+		.state('sign-to-group', {
+				url: '/signup-to-group',
+				templateUrl: '/partials/account/signup-to-group',
+				controller: 'wFSignupCtrl'
 		})
 		.state('profile', {
 				url: '/profile',

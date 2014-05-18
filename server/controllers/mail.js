@@ -9,8 +9,14 @@ exports.getMail = function(req, res){
 	})
 };
 
-exports.sendMail = function(req, res, address){
+exports.sendInvitationEmail = function(req, res, address){
+	var email = req.body.email;
+	var name = req.body.name;
+	var group = req.body.gid;
+	var project = req.body.project;
 	console.log(req.body);
+	var subject = 'Invitation to wildFire';
+	var message = "<h3>Hey " + name + "</h3>,  we'd like to invite you to join our group on wildFire. To do so just click the link below.";
 	var mailOpts, smtpTran;
 
 	smtpTrans = nodemailer.createTransport('SMTP', {
@@ -23,9 +29,10 @@ exports.sendMail = function(req, res, address){
 
 	mailOpts = {
 		from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
-		to: 'yourhsa@gmail.com',
-		subject: 'Website contact form',
-		text: req.body.message
+		to: email,
+		subject: subject,
+		text: message,
+		html: "Hey " + name + ", come and join our group. To do so just click on the link below. <br><a href='http://localhost:3030/signup-to-group'>Join group: " + group + " in project: " + project + " and make a difference today!</a>"
 	};
 
 	smtpTrans.sendMail(mailOpts, function (error, response) {

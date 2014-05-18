@@ -1,44 +1,38 @@
-angular.module('app').controller('wFDashboardCtrl', function($scope, $location, wFIdentity, wFProjectFactory) {
+angular.module('app').controller('wFDashboardCtrl', 
+                                ['$scope', '$location', 'wFIdentity', 'wFProjectFactory', 
+    function($scope, $location, wFIdentity, wFProjectFactory) {
 
+    	var getUserProjects = [];
+    	var userProjects = [];
+      var user = wFIdentity.currentUser;
 
-	var getUserProjects = [];
-	var userProjects = [];
-  var user = wFIdentity.currentUser;
+      $scope.message = '';
 
-  $scope.message = '';
+    	var userIsLoggedIn = wFIdentity.isAuthenticated();
+    	if(userIsLoggedIn === true){
+        	$scope.isLoggedIn = userIsLoggedIn;
+        	$scope.user = user;
+       	}else{
+       		$location.url('/');
+       	}
 
-	var userIsLoggedIn = wFIdentity.isAuthenticated();
-	if(userIsLoggedIn === true){
-    	$scope.isLoggedIn = userIsLoggedIn;
-    	$scope.user = user;
-   	}else{
-   		$location.url('/');
-   	}
+        $scope.createProject = function() {
+          $location.url('create-project');
+        }
 
-    $scope.createProject = function() {
-      $location.url('create-project');
-    }
+        $scope.toggleGroupForm = function() {
+          $scope.groupForm = !$scope.groupForm;
+          $scope.groupList = !$scope.groupList;
+        }
 
-    $scope.toggleGroupForm = function(state) {
-      if(state === 'show') {
-        $scope.groupForm = true;
-        $scope.groupList = false;
-        return $scope.groupForm, $scope.groupList;
-      } else if(state === 'hide') {
-        $scope.groupForm = false; 
-        $scope.groupList = true;
-        return $scope.groupForm, $scope.groupList;
-      }
-    }
-
-    $scope.toggleUserForm = function(state) {
-      console.log('userForm: ' + state);
-      if(state === 'show') {
-        $scope.userForm = true;
-        return $scope.userForm;
-      } else if(state === 'hide') {
-        $scope.userForm = false;
-        return $scope.userForm;
-      }
-    }
-});
+        $scope.toggleUserForm = function(state) {
+          $scope.userForm != $scope.userForm;
+/*          if(state === 'show') {
+            $scope.userForm = true;
+            return $scope.userForm;
+          } else if(state === 'hide') {
+            $scope.userForm = false;
+            return $scope.userForm;
+          }*/
+        }
+}]);

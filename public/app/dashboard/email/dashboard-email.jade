@@ -1,18 +1,18 @@
 h4(class="emaillogger")
-//- .col-md-4
-//-   div.selectionInput
-//-     form
-//-       input(class="form-control" type="search" placeholder="Filter messages" ng-model="search.from")
-//-   h4 Emails
-//-   ul(id="emailListing")
-//-     li(email-listing  email='mail' action="setSelectedMail(selectedMail)" ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index")
+.col-md-4
+  div.selectionInput
+    form
+ //     input(class="form-control" type="search" placeholder="Filter messages" ng-model="search.from")
+ // h4 Emails
+  //- ul(id="emailListing")
+  //-   li(email-listing  email='mail' action="setSelectedMail(selectedMail)" ng-repeat="mail in (email | orderBy : 'sent_at' : true | limitTo : 5 | filter : search) track by $index")
      
 .col-md-12(ng-controller="wFEmailContentCtrl")
   h4 Compose
   //- div(ng-show="!selectedMail")
   //-   span No conversation selected.
-  div(ng-show="selectedMail")
-    form.form-horizontal(id="replyForm" ng-submit="sendEmailReply()" ng-show="showingReply")
+  div
+    form.form-horizontal(id="replyForm" ng-submit="sendEmailReply()")
       .row
         .well
           fieldset
@@ -38,3 +38,4 @@ h4(class="emaillogger")
     a(ng-click="toggleEmailReply()" class="btn btn-primary") Reply
     .col-sm-12(ng-bind="selectedMail.body")
       {{ selectedMail.body }}
+      
