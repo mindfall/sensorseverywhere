@@ -1,45 +1,50 @@
-angular.module('app')
-	.controller('wFContributionCtrl', function($scope, $stateParams, $location, wFNotifier, wFIdentity, wFProjectFactory) {
 
-        var userIsLoggedIn = wFIdentity.isAuthenticated();
-        if(userIsLoggedIn == true){
-                console.log('signed in');
-            $scope.isLoggedIn = userIsLoggedIn;
-           } else {
-                   wFNotifier.notify('You must be signed in to access this page.');
-                   $location.path('/signup');
-                   //console.log('You must be signed in to access this page.');
-           }
+angular.module('app').controller('wFContributionCtrl', function($scope, $stateParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
 
-//        var contribute = [];
 
-        var cc_name = $scope.name;
-        var cc_amount = $scope.amount;
-        var cc_number = $scope.cc_number;                        
-        var cc_exp_month = $scope.cc_exp_month;
-        var cc_exp_year = $scope.cc_exp_year;
-        var cc_csv = $scope.cc_csv;
 
-        $scope.project_id = $stateParams.id;
+	var userIsLoggedIn = wFIdentity.isAuthenticated();
+	if(userIsLoggedIn == true){
+		console.log('signed in');
+    	$scope.isLoggedIn = userIsLoggedIn;
+   	} else {
+   		wFNotifier.notify('You must be signed in to access this page.');
+   		$location.path('/signup');
+   		//console.log('You must be signed in to access this page.');
+   	}
+	
+//	var contribute = [];
+	var cc_name = $scope.name;
+	var cc_amount = $scope.amount;
+	var cc_number = $scope.cc_number;			
+	var cc_exp_month = $scope.cc_exp_month;
+	var cc_exp_year = $scope.cc_exp_year;
+	var cc_csv = $scope.cc_csv;
 
-        var contribute = wFProjectFactory.viewProjectDetails($stateParams.id);
+	$scope.project_id = $stateParams.id;
 
-        contribute.then(function(contribute){
-        		$scope.project_name = contribute.project_name;
-        }, function(status){
-                console.log(status);
-        });
+	var contribute = wFProjectFactory.viewProjectDetails($stateParams.id);
 
-        $scope.contribution = function(amount, name) {
-                var contribtionAmount = wFProjectFactory.contributeToProject($stateParams.id, amount, name);
-                contribtionAmount.then(function(contribtionAmount){
-                        $location.url('/projects')
-                }, function(status){
-                        console.log(status);
-                });
-        //        console.log("Thanks for contributing " + amount + ", your cc will be debited upon success of the funding application.");
-        //        $location.url('/fund/' + $stateParams.id);
-        }
+	contribute.then(function(contribute){
+		$scope.project_name = contribute.project_name;
+	}, function(status){
+		console.log(status);
+	});
+
+
+	$scope.contribution = function(amount, name) {
+
+		var contribtionAmount = wFProjectFactory.contributeToProject($stateParams.id, amount, name);
+
+		contribtionAmount.then(function(contribtionAmount){
+			console.log('The amount you have contributed is: ' + contributionAmount);
+		}, function(status){
+			console.log(status);
+		});
+	//	console.log("Thanks for contributing " + amount + ", your cc will be debited upon success of the funding application.");
+	//	$location.url('/fund/' + $stateParams.id);
+	}
+
 
 
 });

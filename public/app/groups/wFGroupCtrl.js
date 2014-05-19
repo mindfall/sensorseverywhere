@@ -13,8 +13,9 @@ angular.module('app')
 		$scope.oneAtATime = true;
 
 	    $scope.createGroup = function(name, belongsTo, description) {
+	    	console.log('client controller ' + user._id);
 	    	var groupData = {
-	    		owner : owner,
+	    		owner : user._id,
 	    		groupName : name,
 	    		belongsToProject: belongsTo,
 	    		groupDescription: description
@@ -81,15 +82,17 @@ angular.module('app')
 	 	$scope.projectNames = [];
 
 	 	$scope.getProjectNames = function() {
+
 			projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
 					projectNames.push(projectList[i].project_name);
+					console.log(i);
 				}
-
+				console.log(projectNames);
 				for(var project_name in projectNames) {
 					if(typeof projectNames[project_name] !== 'function') {
-					//	console.log('key is ' + project_name + ', value is ' + projectNames[project_name]);
+						console.log('key is ' + project_name + ', value is ' + projectNames[project_name]);
 						var newProject = {
 							name: projectNames[project_name],
 							value: projectNames[project_name]
@@ -140,6 +143,7 @@ angular.module('app')
 				.success(function(data, success, headers, config) {
 					dfd.resolve(data);
 					$scope.groupImage = data;
+					console.log($scope.groupImage);
 				}).
 				error(function(data, status, headers, config) {
 					dfd.reject(status);
@@ -148,7 +152,7 @@ angular.module('app')
 		} 
 
 		$scope.getGroupsByUser();
-		$scope.getGroupImages('monash.png');
+	//	$scope.getGroupImages('monash.png');
 		$scope.getProjectNames();
 }]);
 

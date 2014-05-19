@@ -1,9 +1,11 @@
 angular.module('app')
+
 	.controller('wFProjectCtrl', function($scope, $http, $q, $location, wFIdentity, wFProjectFactory){
 
 		var projectList = [];
 		var projectArray = [];
 		var projectAdd = {};
+
 		var getUserProjects = [];
 		var userProjects = [];
 		
@@ -18,7 +20,6 @@ angular.module('app')
 		$scope.setStatus = {type: $scope.selectStatus[0].value};
 
 
-
 		$scope.sortOptions = [
 			{value: "name", text: "Sort by project Name"},
 		];
@@ -26,6 +27,7 @@ angular.module('app')
 		/**
 		*	Main projects page, shows all projects.
 		*/
+
 		$scope.getProjects = function() {
 			projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
@@ -65,6 +67,23 @@ angular.module('app')
 	 			console.log(status)
 	 		});
 	 	}
+
+
+		projectList = wFProjectFactory.getProjects();
+		projectList.then(function(projectList){
+			for(var i = 0; i < projectList.length; i++){
+				projectArray.push(projectList[i]);
+			}
+			$scope.projects = projectArray;
+		}, function(status){
+			console.log(status);
+		});
+
+		
+		$scope.projectDelete = function(id) {
+			removeProject = wFProjectFactory.removeProject(id);
+		};
+
 /*		var requiredFunding = $http.get('api/fundAmount');
 
 		requiredFunding.success(function(data, status, headers, config) {
@@ -84,6 +103,10 @@ angular.module('app')
 	     });
 		*/
 
+
 		$scope.getProjects();
+
+
+
 	});
 

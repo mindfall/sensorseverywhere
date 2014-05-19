@@ -1,4 +1,8 @@
-	var fs = require('fs');
+var fs = require('fs');
+var util = require('util');
+var mime = require('mime');
+
+
 
 exports.groupFiles = function(req, res){
 	console.log('server side');
@@ -29,7 +33,8 @@ exports.groupFiles = function(req, res){
 };
 
 exports.getGroupImages = function(req, res) {
-	//console.log(__dirname + '/../uploads/group-images/');
+//	var files = fs.readdirSync(dir);
+
 	var path = __dirname + '/../uploads/group-images/';
 	var file = 'monash.png';
 
@@ -44,6 +49,9 @@ exports.getGroupImages = function(req, res) {
 						"Content-length": contents.length
 					});
 					//console.log(contents.length);
+					contents = contents.toString("base64");
+					util.format("data:%s;base64,%s", mime.lookup(contents), contents);
+					console.log(contents);
 					res.end(contents);
 				} else {
 					console.log('contents: ' + contents);		
@@ -59,7 +67,9 @@ exports.getGroupImages = function(req, res) {
 				}
 			});
 		}
-	})
+	});
+}
+
 /*
 
 	var walk    = require('walk');
@@ -77,6 +87,3 @@ walker.on('file', function(root, stat, next) {
 walker.on('end', function() {
     console.log(files);
 });*/
-
-
-}

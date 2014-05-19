@@ -43,7 +43,8 @@
 					span(class="accordion-group-heading") {{group.groupProject}}				
 					span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete
 				//img(ng-src="{{groupImage}}")	
-				img(ng-src="{{groupImage}}")
+				img(ng-src="data:image/png;base64,{{groupImage}}")
+
 				span {{group.groupDescription}}
 
 				br 
