@@ -10,7 +10,7 @@ angular.module('app').service('wFMailService', ['$http', '$q', function($http, $
 		},
 
 		sendInvite : function(email, name, groupId, project){
-			console.log(groupId + ' ' + project);
+
 			var invite = {
 				email : email, 
 				name : name,
@@ -24,7 +24,6 @@ angular.module('app').service('wFMailService', ['$http', '$q', function($http, $
 				url: '/api/sendInvite/' 
 			}).success(function(data, status, headers) {
 				dfd.resolve(data);
-				console.log(data);
 			}).error(function(data, status, headers) {
 				dfd.reject(data);
 			});

@@ -5,8 +5,7 @@ angular.module('app', [
 	'ui.bootstrap',
 	'ui.router',
 	'bgDirectives',
-	'xeditable',
-	'angularFileUpload'
+	'xeditable'
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){

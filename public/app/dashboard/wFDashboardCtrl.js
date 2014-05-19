@@ -1,6 +1,6 @@
 angular.module('app').controller('wFDashboardCtrl', 
                                 ['$scope', '$location', 'wFIdentity', 'wFProjectFactory', 
-    function($scope, $location, wFIdentity, wFProjectFactory) {
+                        function($scope, $location, wFIdentity, wFProjectFactory) {
 
     	var getUserProjects = [];
     	var userProjects = [];

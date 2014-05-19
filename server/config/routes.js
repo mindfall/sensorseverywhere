@@ -26,6 +26,7 @@ module.exports = function(app){
 	app.post('/api/removeProject/:id', projects.removeProject);
 
 	app.get('/api/groups', groups.getGroups);
+	app.get('/api/groupsByUser/:id', groups.getGroupsByUser);
 	app.post('/api/createGroup', groups.createGroup);
 	app.post('/api/removeGroup/:id', groups.removeGroup);
 	app.post('/api/removeUserFromGroup/:gid/:uid', groups.removeUserFromGroup);

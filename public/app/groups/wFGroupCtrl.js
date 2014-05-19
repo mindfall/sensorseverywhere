@@ -1,5 +1,6 @@
 angular.module('app')
-	.controller('wFGroupCtrl', function($scope, $http, $q, $location, $upload, wFIdentity, wFGroupFactory, wFProjectFactory){
+	.controller('wFGroupCtrl', ['$scope', '$http', '$q', '$location', 'wFIdentity', 'wFGroupFactory', 'wFProjectFactory',
+								function($scope, $http, $q, $location, wFIdentity, wFGroupFactory, wFProjectFactory){
 
 		var groupList = [];
 		var groupArray = [];
@@ -11,14 +12,14 @@ angular.module('app')
 
 		$scope.oneAtATime = true;
 
-	    $scope.createGroup = function(name, members, belongsTo) {
-
+	    $scope.createGroup = function(name, belongsTo, description) {
 	    	var groupData = {
-	    		name : name,
-	    		members: members,
-	    		belongsTo: 'belongsTo'
+	    		owner : owner,
+	    		groupName : name,
+	    		belongsToProject: belongsTo,
+	    		groupDescription: description
 	    	};
-	    	console.log(groupData);
+	    
 	    	createGroup = wFGroupFactory.addGroup(groupData);
 	    	createGroup.then(function(createGroup) {
 	    		groupArray.push(JSON.stringify(createGroup));
@@ -40,6 +41,7 @@ angular.module('app')
 				for(var name in groupArray) {
 					if(typeof groupArray[name] !== 'function') {
 						$scope.groups = groupArray;
+					 	console.log('getGroups ' + $scope.groups);
 					}
 				}
 			}, function(status){
@@ -52,7 +54,6 @@ angular.module('app')
 			getUserGroups.then(function(getUserGroups){
 		    if(getUserGroups.length === 0) {
 		      $scope.message = 'There are currently no groups to display.';
-		      
 		    } else {
 		      $scope.message = '';
 		      for(var i = 0; i < getUserGroups.length; i++){
@@ -60,6 +61,8 @@ angular.module('app')
 		      }
 		    }
 				$scope.groups = userGroups;
+				$scope.members = 1;
+
 			}, function(status){
 				console.log(status);
 			});
@@ -75,6 +78,8 @@ angular.module('app')
 	 		});
 	 	}
 
+	 	$scope.projectNames = [];
+
 	 	$scope.getProjectNames = function() {
 			projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
@@ -85,17 +90,25 @@ angular.module('app')
 				for(var project_name in projectNames) {
 					if(typeof projectNames[project_name] !== 'function') {
 					//	console.log('key is ' + project_name + ', value is ' + projectNames[project_name]);
-						$scope.projectNames = projectNames;
+						var newProject = {
+							name: projectNames[project_name],
+							value: projectNames[project_name]
+						};
+						
+						$scope.projectNames.push(newProject);	
+						$scope.setProject = {type: $scope.projectNames[0].value};				
+						};
 					}
-				}
 			}, function(status){
 				console.log(status);
 			});
 		}
 
-		$scope.filesChanged = function(ele) {
-/*			console.log(ele);*/
-			$scope.files = ele.files;
+		
+
+		$scope.filesChanged = function(elem) {
+
+			$scope.files = elem.files;
 			$scope.$apply();
 		};
 
@@ -110,20 +123,22 @@ angular.module('app')
 				headers:{'Content-Type': undefined }
 			})
 			.success(function(d) {
+				console.log('This was a success');
 				var name = d.name.replace(/\"/g, "");
 				$scope.getGroupImages(name);
 			})
 			.error(function(status) {
+				console.log('fail');
 				console.log(status);
 			});
 		}
 
 		$scope.getGroupImages = function(name) {
+	
 			var dfd = $q.defer();
-			$http({method: 'GET', url: '/api/groupImage/' + name})
+			$http({method: 'GET', url: '/api/groupImages/' + name})
 				.success(function(data, success, headers, config) {
 					dfd.resolve(data);
-					console.log(data);
 					$scope.groupImage = data;
 				}).
 				error(function(data, status, headers, config) {
@@ -132,9 +147,10 @@ angular.module('app')
 			return dfd.promise;
 		} 
 
-		$scope.getGroups();
+		$scope.getGroupsByUser();
+		$scope.getGroupImages('monash.png');
 		$scope.getProjectNames();
-});
+}]);
 
 angular.module('app').directive('span', function() {
 	return {
@@ -152,7 +168,7 @@ angular.module('app').directive('span', function() {
 
 angular.module('app').directive('fileInput', function($parse) {
 	return {
-		restrict: 'E',
+		restrict: 'A',
 		link: function(scope, elm, attrs) {
 			elm.bind('change', function() {
 				$parse(attrs.fileInput)

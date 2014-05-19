@@ -13,22 +13,29 @@ exports.getGroups = function(req, res){
 	})
 };
 
+exports.getGroupsByUser = function(req, res) {
+	Group.find({'owner': req.params.id}, function(err, groups) {
+		res.send(groups);
+	});
+}
+
 /**
 * create a chat log
 */
 
 exports.createGroup = function(req, res, next){
 	var groupData = req.body;
-	var groupName = groupData.name;
-	var groupMembers = groupData.members;
-	var groupProject = groupData.project_name;
-//	console.log(groupData);
+	var groupOwner = groupData.owner;
+	var groupName = groupData.groupName;
+	var groupProject = groupData.belongsToProject;
+	var groupDescription = groupData.groupDescription;
 	
 	//stub
 	var saveGroup = Group.create ({
-		"name" : groupName,
-		"members" : groupMembers,
-		"project_name": groupProject
+		"owner" : owner,
+		"groupName" : groupName,
+		"groupProject": groupProject,
+		"groupDescription": groupDescription
 	}, 
 	function(){
 	 	res.send(saveGroup);

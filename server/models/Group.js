@@ -3,9 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var GroupSchema = new Schema({
-	name: String,
-	members: String,
-	project_name: String
+	owner: String,
+	groupName: String,
+	groupProject: String,
+	groupDescription: String
 }, {strict: 'true'});
 
 var Group = mongoose.model('Group', GroupSchema);
@@ -15,10 +16,10 @@ function createDefaultGroups(){
 
 	Group.find({}).exec(function(err, collection){
 		
-		Group.create({name: 'Groupus mainus', members: 'and appendages', project_name: 'Yo yos go up and down'});
-		Group.create({name: 'The ugliest soul in the west', members: 'you and you and you', project_name: 'Stringy'});
-		Group.create({name: 'Groupus minorus', members: 'sour grapes', project_name: 'Minty'});
-		Group.create({name: 'Space flight is for the rich', members: 'me me me', project_name: 'Thingy'});
+		Group.create({owner: '53735bea630453b24dc3adcd', groupName: 'and appendages', groupProject: 'Yo yos go up and down', groupDescription: 'Description One'});
+		Group.create({owner: '53735bea630453b24dc3adcd', groupName: 'you and you and you', groupProject: 'Stringy', groupDescription: 'Description Two'});
+		Group.create({owner: '53735bea630453b24dc3adcd', groupName: 'sour grapes', groupProject: 'Minty', groupDescription: 'Description Three'});
+		Group.create({owner: '53735bea630453b24dc3adcd', groupName: 'me me me', groupProject: 'Thingy', groupDescription: 'Description Four'});
 	})
 }
 

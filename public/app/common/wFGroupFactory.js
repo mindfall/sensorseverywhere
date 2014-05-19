@@ -11,7 +11,7 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groups'})
 						.success(function(data, status, headers, config) {
-							//console.log(data);
+						//	console.log(data);
 							dfd.resolve(data);
 						}).
 						error(function(data, status, headers, config) {
@@ -50,6 +50,7 @@ angular.module('app')
 						.success(function(data, status, headers, config) {
 							group = data;
 							dfd.resolve(data);
+							console.log(data);
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);

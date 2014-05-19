@@ -9,19 +9,22 @@
 							input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupname" )
 					.form-group
 						.col-md-12
-							select(class="form-control" ng-model="belongsTo", ng-options="project.value as project for project in projectNames")
+							select(class="form-control" ng-model="belongsTo", ng-options="project.name as project.value for project in projectNames")
 					.form-group
 						.col-md-12
 							textarea(class="form-control" ng-model="description", rows=5 cols=15)
 					.form-group
 						.col-md-12
-							input(type="file" 
+							input(class="btn btn-default" type="file" 
 								  file-input="files"
 								  multiple)
-							button(ng-click="upload()") upload
-							img(ng-src="{{groupImage}}")
+							button(class="btn btn-default" ng-click="upload()") upload
+							
+					.form-group
+						.col-md-12
+							span(class="btn btn-default" ng-click="createGroup(groupname, belongsTo, description);") Create Group
 		
-		span(class="btn btn-default" ng-click="createGroup(groupname, num_members, belongsTo);" ng-show="groupForm") Create Group
+		span(class="btn btn-default" ng-show="groupForm") Toggle Group Form / Group List
 .col-md-12(class="group-list-container" ng-model="groupList" ng-show="groupList" ng-controller="wFGroupCtrl")
 	.well
 		h4 Group list
@@ -35,14 +38,17 @@
 		accordion(close-others="oneAtATime")
 			accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
 				accordion-heading(style="display: inline;") 
-					span(class="accordion-group-heading") {{group.name}} 
-					span(class="accordion-group-heading") {{group.members}} 
-					span(class="accordion-group-heading") {{group.project_name}}				
-					span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete	
-				span pop in some additional project details
+					span(class="accordion-group-heading") {{group.groupName}} 
+					span(class="accordion-group-heading") {{members}}
+					span(class="accordion-group-heading") {{group.groupProject}}				
+					span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete
+				//img(ng-src="{{groupImage}}")	
+				img(ng-src="{{groupImage}}")
+				span {{group.groupDescription}}
+
 				br 
-				h4 Spread the word!!
-				small To ask someone to join first fill in the form then verify it with them via email.
+				h4 Share the love!!
+				small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
 				br
 				div(ng-controller="wFEmailContentCtrl")
 					div(ng-controller="wFUserCtrl")
@@ -64,4 +70,4 @@
 									button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.project_name)") {{emailButtonValue}}
 									{{project}}
 								td
-									button(class="btn btn-default" ng-click="removeUserFromGroup()") Delete
+									button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete

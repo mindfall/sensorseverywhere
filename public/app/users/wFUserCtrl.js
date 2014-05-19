@@ -42,8 +42,8 @@ angular.module('app').controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMa
 			emailButtonValue: 'Invite'
 		};
 
-	    $scope.removeUserFromGroup = function(gid, uid) {
-	    	console.log($scope.users);
+	    $scope.removeUserFromGroup = function(index) {
+	    	$scope.users.splice(index, 1);
 	    }
 
 
@@ -54,12 +54,15 @@ angular.module('app').controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMa
 	    };
 
 	    $scope.sendInvite = function(email, name, group, project) {
+	    	console.log(1);
 			wFMailService.sendInvite(email, name, group, project) 
 				.then(function(status) {
+					console.log(2);
 					$scope.setStatus = {type: $scope.userStatus[2].value};
 					$scope.emailButtonValue = 'Email';
 					$scope.emailStatus = 'Sending...';
 					$scope.users.push($scope.addInvite);
+					console.log($scope.users.length);
 				}, function(err) {
 					console.log(status);
 			});
