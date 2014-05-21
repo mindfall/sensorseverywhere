@@ -68,18 +68,7 @@ angular.module('app')
 	 		});
 	 	}
 
-
-		projectList = wFProjectFactory.getProjects();
-		projectList.then(function(projectList){
-			for(var i = 0; i < projectList.length; i++){
-				projectArray.push(projectList[i]);
-			}
-			$scope.projects = projectArray;
-		}, function(status){
-			console.log(status);
-		});
-
-		
+	
 		$scope.projectDelete = function(id) {
 			removeProject = wFProjectFactory.removeProject(id);
 		};

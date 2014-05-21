@@ -147,7 +147,7 @@ angular.module('app')
 			return dfd.promise;
 		} 
 
-		$scope.getGroupsByUser();
+	//	$scope.getGroupsByUser();
 	//	$scope.getGroupImages('monash.png');
 		$scope.getProjectNames();
 }]);
