@@ -47,7 +47,9 @@ module.exports = function(app){
 	app.post('/api/sendInvite', mail.sendInvitationEmail);
 	
 	//app.post('/api/uploads', mail.upload);
-	app.post('/api/uploads', files.groupFiles);
+	app.post('/api/groupFileUploads', files.groupFiles);
+	app.post('/api/taskFileUploads', files.taskFiles);
+	app.post('/api/projectFileUploads', files.projectFiles);
 	app.get('/api/groupImages/:name', files.getGroupImages);
 
 	app.get('/partials/*', function(req, res) {

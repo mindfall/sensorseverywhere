@@ -42,6 +42,10 @@ angular.module('app').controller('wFTaskCtrl', function($scope) {
 		$scope.tasks.splice(index, 1);
 	}
 
+	$scope.uploadTaskFile = function() {
+		console.log('uploading task file');
+	}
+
 	
 	$scope.tasks = [
 		{

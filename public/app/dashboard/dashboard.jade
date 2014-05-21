@@ -16,7 +16,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												th(style="width: 38%;") Description
 												th(style="width: 11%;") View task summary
 												th(style="width: 11%;") Status
-												th(style="width: 10%") Upload File
+												th(style="width: 10%") Upload Project File
 												th(style="width: 14%") Edit
 												th(style="width: 7%") Delete
 											tr
@@ -26,11 +26,11 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 													span {{project.project_description}}
 												td
 													input(class="task-summary" type="checkbox" value="1" ng-model="viewTasks")
-
 												td
 													select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
-												td
-													div(class="button btn-default") Attach File
+												td(ng-controller="wFFileUploadCtrl")
+																input(type="text" ng-model="fileUpload")
+																input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
 												td
 													div(class="button btn-default" ng-href="/project/edit/{{project._id}}") Edit	
 												td
@@ -45,7 +45,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 															td(style="width: 36%;") Description
 															td(style="width: 9%;") Owner
 															td(style="width: 12%") Status
-															td(style="width: 8%") Upload File
+															td(style="width: 8%") Upload Task File
 															td(style="width: 5%") Delete
 														tr(ng-repeat="task in tasks")
 															td
@@ -58,11 +58,10 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 																select(class="form-control" ng-model="task.setOwner", ng-options="owner.value as owner.name for owner in selectOwner")
 															td
 																select(class="form-control" ng-model="task.setStatus", ng-options="status.value as status.name for status in selectStatus")
-															td(ng-controller="wFGroupCtrl")
-																//- div(class="button btn-default") Attach File
-																input(class="button btn-default" type="file" file-input="files" multiple)
-																button(ng-click="upload()") upload
-																img(ng-src="{{groupImage}}")
+															td(ng-controller="wFFileUploadCtrl")
+																input(type="text" ng-model="fileUpload")
+																input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
+
 
 
 															td

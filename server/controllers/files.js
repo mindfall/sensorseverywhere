@@ -5,17 +5,49 @@ var mime = require('mime');
 
 
 exports.groupFiles = function(req, res){
-	console.log('server side');
-	var imageName = JSON.stringify(req.files.groupImage.name);
-	var imageSize = JSON.stringify(req.files.groupImage.size);
-	console.log(JSON.stringify(req.files.groupImage.path));
 
-	//res.send(imageName + ' ' + imageSize);
+	var imageName = req.files.file.name;
+	var serverPath = '/uploads/group-files/' + req.files.file.name;
+	console.log(imageName + '  '  + serverPath);
+	moveImage(imageName, filePath, serverPath);
 
-	var serverPath = '/uploads/group-images/' + req.files.groupImage.name;
+	res.send({
+	 	name: imageName
+	 });
+};
 
-	 fs.rename(
-	 	req.files.groupImage.path,
+exports.taskFiles = function(req, res){
+
+	var imageName = req.files.file.name;
+	console.log(3 + '   ' + imageName);
+	var filePath = req.files.file.path;
+	var serverPath = '/uploads/task-files/' + req.files.file.name;
+
+	moveImage(imageName, filePath, serverPath);
+
+	res.send({
+	 	name: imageName
+	 });
+};
+
+exports.projectFiles = function(req, res){
+
+	var imageName = req.files.file.name;
+	var serverPath = '/uploads/project-files/' + req.files.file.name;
+	var filePath = req.files.file.path;
+
+	moveImage(imageName, filePath, serverPath);
+
+	res.send({
+	 	name: imageName
+	 });
+
+};
+
+function moveImage(imageName, filePath, serverPath) {
+	console.log(1 + ' ' + imageName);
+	fs.rename(
+	 	filePath,
 	 	'/home/miriad/codes/wildfire/server/' + serverPath,
 	 	function(error) {
 	 		if(error) {
@@ -23,20 +55,20 @@ exports.groupFiles = function(req, res){
 	 				error: 'Whoops, something is not quite right.'
 	 			});
 	 			return;
+	 		} else {
+	 			console.log(2 + '  ' + imageName);
+	 			return imageName;
 	 		}
-
-	 		res.send({
-	 			name: imageName
-	 		});
 	 	}
 	 );
-};
+}
+
 
 exports.getGroupImages = function(req, res) {
 //	var files = fs.readdirSync(dir);
 
 	var path = __dirname + '/../uploads/group-images/';
-	var file = 'monash.png';
+	var file = req.params.name;
 
 	var filepath = path + file;
 
@@ -51,7 +83,7 @@ exports.getGroupImages = function(req, res) {
 					//console.log(contents.length);
 					contents = contents.toString("base64");
 					util.format("data:%s;base64,%s", mime.lookup(contents), contents);
-					console.log(contents);
+					//console.log(contents);
 					res.end(contents);
 				} else {
 					console.log('contents: ' + contents);		
@@ -69,6 +101,8 @@ exports.getGroupImages = function(req, res) {
 		}
 	});
 }
+
+
 
 /*
 

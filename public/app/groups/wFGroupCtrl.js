@@ -13,7 +13,6 @@ angular.module('app')
 		$scope.oneAtATime = true;
 
 	    $scope.createGroup = function(name, belongsTo, description) {
-	    	console.log('client controller ' + user._id);
 	    	var groupData = {
 	    		owner : user._id,
 	    		groupName : name,
@@ -87,12 +86,9 @@ angular.module('app')
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
 					projectNames.push(projectList[i].project_name);
-					console.log(i);
 				}
-				console.log(projectNames);
 				for(var project_name in projectNames) {
 					if(typeof projectNames[project_name] !== 'function') {
-						console.log('key is ' + project_name + ', value is ' + projectNames[project_name]);
 						var newProject = {
 							name: projectNames[project_name],
 							value: projectNames[project_name]
@@ -115,7 +111,7 @@ angular.module('app')
 			$scope.$apply();
 		};
 
-		$scope.upload = function() {
+		$scope.uploadGroupFile = function() {
 			var fd = new FormData();
 			angular.forEach($scope.files, function(file) {
 				fd.append('groupImage', file);			
@@ -126,12 +122,12 @@ angular.module('app')
 				headers:{'Content-Type': undefined }
 			})
 			.success(function(d) {
-				console.log('This was a success');
+			//	console.log('This was a success');
 				var name = d.name.replace(/\"/g, "");
 				$scope.getGroupImages(name);
 			})
 			.error(function(status) {
-				console.log('fail');
+			//	console.log('fail');
 				console.log(status);
 			});
 		}

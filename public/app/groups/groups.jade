@@ -14,11 +14,9 @@
 						.col-md-12
 							textarea(class="form-control" ng-model="description", rows=5 cols=15)
 					.form-group
-						.col-md-12
-							input(class="btn btn-default" type="file" 
-								  file-input="files"
-								  multiple)
-							button(class="btn btn-default" ng-click="upload()") upload
+						.col-md-12(ng-controller="wFFileUploadCtrl")
+							input(type="text" ng-model="fileUpload")
+							input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'group')")
 							
 					.form-group
 						.col-md-12

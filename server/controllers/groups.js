@@ -26,7 +26,6 @@ exports.getGroupsByUser = function(req, res) {
 exports.createGroup = function(req, res, next){
 
 	var groupData = req.body;
-	console.log('create group ' + groupData.owner);
 	var groupOwner = groupData.owner;
 	var groupName = groupData.groupName;
 	var groupProject = groupData.belongsToProject;
