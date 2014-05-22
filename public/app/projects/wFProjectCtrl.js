@@ -40,6 +40,19 @@ angular.module('app')
 			});
 		}
 
+		$scope.getProjectById = function(id) {
+
+	 		var project = wFProjectFactory.getProjectById(id);
+	 		project.then(function(project) {
+	 			console.log(project);
+	 			var coords = project.project_coords.points;
+	 			console.log(coords);
+	 		}, function(status) {
+	 			console.log(status);
+	 		})
+	 		$location.url('/projects/edit/' + id);
+	 	}
+
 
 		$scope.getProjectsByUser = function() {
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
@@ -68,9 +81,9 @@ angular.module('app')
 	 		});
 	 	}
 
-	 	$scope.updateProject = function(id) {
-	 		$location.url('/projects/edit/' + id);
-	 	}
+
+
+
 
 /*		var requiredFunding = $http.get('api/fundAmount');
 

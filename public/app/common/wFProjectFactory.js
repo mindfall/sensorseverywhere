@@ -18,12 +18,24 @@ angular.module('app')
 					$http({method: 'GET', url: '/api/projects'})
 						.success(function(data, status, headers, config) {
 							dfd.resolve(data);
-						}).
-						error(function(data, status, headers, config) {
+						})
+						.error(function(data, status, headers, config) {
 							dfd.reject(status);
 						});
 					return dfd.promise;
 
+				},
+
+				getProjectById : function(id) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: 'api/getProjectById/' + id})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
 				},
 
 				getProjectsByUser : function(user_id) {
@@ -32,8 +44,8 @@ angular.module('app')
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
 						//	console.log(data);
-						}).
-						error(function(data, status, headers, config) {
+						})
+						.error(function(data, status, headers, config) {
 							dfd.reject(status);
 						});
 					return dfd.promise;
@@ -45,7 +57,8 @@ angular.module('app')
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
 							console.log(data);
-						}).error(function(data, status, headers, config){
+						})
+						.error(function(data, status, headers, config){
 							dfd.reject(status);
 						});
 					return dfd.promise;
@@ -73,6 +86,18 @@ angular.module('app')
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
+				updateProject : function(id) {
+					var dfd = $q.defer();
+					$http({method: 'PUT', url: '/api/updateProject/' + id})
+						.success(function(data, status, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(data);
 						});
 					return dfd.promise;
 				},

@@ -103,35 +103,6 @@ angular.module('app')
 			});
 		}
 
-		
-
-/*		$scope.filesChanged = function(elem) {
-
-			$scope.files = elem.files;
-			$scope.$apply();
-		};
-
-		$scope.uploadGroupFile = function() {
-			var fd = new FormData();
-			angular.forEach($scope.files, function(file) {
-				fd.append('groupImage', file);			
-			});
-			$http.post('/api/uploads', fd, 
-			{
-				transformRequest: angular.identity,
-				headers:{'Content-Type': undefined }
-			})
-			.success(function(d) {
-			//	console.log('This was a success');
-				var name = d.name.replace(/\"/g, "");
-				$scope.getGroupImages(name);
-			})
-			.error(function(status) {
-			//	console.log('fail');
-				console.log(status);
-			});
-		}*/
-
 		$scope.getGroupImages = function(name) {
 	
 			var dfd = $q.defer();
@@ -147,8 +118,6 @@ angular.module('app')
 			return dfd.promise;
 		} 
 
-	//	$scope.getGroupsByUser();
-	//	$scope.getGroupImages('monash.png');
 		$scope.getProjectNames();
 }]);
 

@@ -32,7 +32,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 																input(type="text" ng-model="fileUpload")
 																input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
 												td
-													div(class="button btn-default" ng-click="updateProject(project._id)") Editing	
+													div(class="button btn-default" ng-click="getProjectById(project._id)") Editing	
 												td
 													div(class="button btn-default" ng-click="removeProject(project._id)") Delete
 										div(ng-controller="wFTaskCtrl")
