@@ -105,7 +105,7 @@ angular.module('app')
 
 		
 
-		$scope.filesChanged = function(elem) {
+/*		$scope.filesChanged = function(elem) {
 
 			$scope.files = elem.files;
 			$scope.$apply();
@@ -130,7 +130,7 @@ angular.module('app')
 			//	console.log('fail');
 				console.log(status);
 			});
-		}
+		}*/
 
 		$scope.getGroupImages = function(name) {
 	

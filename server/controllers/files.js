@@ -7,8 +7,8 @@ var mime = require('mime');
 exports.groupFiles = function(req, res){
 
 	var imageName = req.files.file.name;
+	var filePath = req.files.file.path;
 	var serverPath = '/uploads/group-files/' + req.files.file.name;
-	console.log(imageName + '  '  + serverPath);
 	moveImage(imageName, filePath, serverPath);
 
 	res.send({
@@ -19,7 +19,6 @@ exports.groupFiles = function(req, res){
 exports.taskFiles = function(req, res){
 
 	var imageName = req.files.file.name;
-	console.log(3 + '   ' + imageName);
 	var filePath = req.files.file.path;
 	var serverPath = '/uploads/task-files/' + req.files.file.name;
 
@@ -33,8 +32,8 @@ exports.taskFiles = function(req, res){
 exports.projectFiles = function(req, res){
 
 	var imageName = req.files.file.name;
-	var serverPath = '/uploads/project-files/' + req.files.file.name;
 	var filePath = req.files.file.path;
+	var serverPath = '/uploads/project-files/' + req.files.file.name;
 
 	moveImage(imageName, filePath, serverPath);
 

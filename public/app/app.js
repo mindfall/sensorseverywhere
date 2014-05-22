@@ -53,6 +53,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/projects/create-project',
 				controller: 'wFProjectCtrl'
 		})
+		.state('projects/edit/:id', {
+			url: '/projects/edit/:id',
+			templateUrl: '/partials/projects/edit',
+			controller: 'wFProjectCtrl'
+		})
 		.state('projects/:id', {
 				url: '/projects/:id',
 				templateUrl: '/partials/projects/project-details', 

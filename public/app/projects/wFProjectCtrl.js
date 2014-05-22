@@ -68,10 +68,9 @@ angular.module('app')
 	 		});
 	 	}
 
-	
-		$scope.projectDelete = function(id) {
-			removeProject = wFProjectFactory.removeProject(id);
-		};
+	 	$scope.updateProject = function(id) {
+	 		$location.url('/projects/edit/' + id);
+	 	}
 
 /*		var requiredFunding = $http.get('api/fundAmount');
 

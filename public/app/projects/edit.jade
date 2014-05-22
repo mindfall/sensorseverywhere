@@ -1,0 +1,11 @@
+div(class="main-container" ng-controller="wFMainCtrl")
+	.container(ng-if="isLoggedIn")
+		.row(class="create-row-map-container")
+			.col-md-9(class="col-9-map-container")
+				div(ng-controller="wFMapCtrl" id="map" class="map")
+					leaflet
+		
+			.col-md-3(class="col-3-selection-container")
+				h3 Project Details
+
+		button(class="save-project-button") Edit
