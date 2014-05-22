@@ -45,6 +45,7 @@ angular.module('app')
     $scope.saveCorridor = function(user){
 
 	 	mapData = wFMapFactory.getMapData();
+
 	 	mapTDA = wFMapFactory.getTownAndDistance(mapData.geometry.coordinates);
 	 	mapArea = wFMapFactory.getMapArea(mapData.geometry.coordinates);
 	 	wildlifeData = wFWildlifeFactory.selectWildlife();
@@ -54,7 +55,7 @@ angular.module('app')
 	 		var distance = mapTDA.geonames[0].distance;
 	 		$scope.nearestTownDistance = Math.round(distance * 100) / 100;
 	 	});
-	 
+
 	 	$scope.area = +mapArea.toFixed(2);
 	 	$scope.wildlife = wildlifeData;
 	 	
@@ -64,8 +65,11 @@ angular.module('app')
 	 		wildlife: wildlifeData,
 	 		wildlifeNumber: $scope.wildlifeCounter,
 	 		geopoints: mapData,
-	 	
+	 		area: $scope.area
 	 	}
+	 	//console.log('geopoints: ' + JSON.stringigy(corridorData.geopoints));
+	 	return corridorData;
+
 	}
 	
 	$scope.saveProject = function(name, description, start, end, type, total){
@@ -77,6 +81,10 @@ angular.module('app')
 		var project_type = type;
 		var project_funding_required = total;
 
+		var nearestTown = $scope.nearestTownName;
+	 	var nearestTownDistance = $scope.nearestTownDistance;	
+
+
 		var projectData = {
 			project_owner: wFIdentity.currentUser._id,
 			project_owner_firstname: wFIdentity.currentUser.firstname,
@@ -86,12 +94,16 @@ angular.module('app')
 			project_end : project_end,
 			project_type : type,
 			project_funding_required : project_funding_required,
-			project_owner : corridorData.user,
 			project_wildlife : corridorData.wildlife,
-			project_location : corridorData.geopoints,
-			/*project_monitors : corridorData.monitors*/
+			project_location : corridorData.geopoints.geometry.coordinates,
+			project_map_layer_type: corridorData.geopoints.geometry.type,
+			project_area: corridorData.area,
+			project_town: nearestTown,
+			project_distance_to_town: nearestTownDistance
+		//	project_monitors : corridorData.monitors
 		}
-
+	//	var inspectProjectData = JSON.stringify(projectData);
+	//	console.log(inspectProjectData);
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
 	}

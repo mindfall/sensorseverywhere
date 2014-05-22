@@ -20,17 +20,23 @@ var ProjectSchema = new Schema({
     project_wildlife: {
         name: String
     },
-
-    project_geopoints: [{
-        points: {type: Number}
-    }],
+    project_coords: {
+        points: Array,
+    },
+    project_location_data: {
+        layer_type: String,
+        area_acres: {type: Number},
+        nearestTown: String,
+        distance_to_town: {type: Number}
+    },
 
     project_description: String,
     project_start_date: Date,
     project_end_date: Date,
     project_funding_required: Number,
     total_contributions: {type: Number},
-    project_image: String
+    project_type: String
+ //   project_image: String
 }, {strict: 'true'});
 
 

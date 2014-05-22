@@ -57,6 +57,7 @@ angular.module('app')
 						.success(function(data, status, headers, config) {
 							project = data;
 							dfd.resolve(data);
+							console.log(data);
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);
