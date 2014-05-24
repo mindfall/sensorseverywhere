@@ -1,18 +1,12 @@
-<<<<<<< HEAD
+
 .container(ng-controller="wFContributionCtrl")
-=======
-.container(ng-controller="wFProjectCtrl")
->>>>>>> 27d35b0c75210aa69c737a08f782666934d24767
+
+
 	.well
 		form.form-horizontal(name="contributeForm")
 			fieldset
 				legend Contributions to {{project_name}}
-<<<<<<< HEAD
-=======
-					//- .form-group
-					//- 	.col-md-8
-					//- 		input.form-control(name="name", type="text", placeholder="Project Name" ng-model="name" )
->>>>>>> 27d35b0c75210aa69c737a08f782666934d24767
+
 					.form-group
 						.col-md-8
 							input.form-control(name="amount", type="text", placeholder="Contribution" ng-model="amount" )
@@ -28,11 +22,6 @@
 					.form-group
 						.col-md-8
 							input.form-control(name="cc_csv", type="number", placeholder="Credit Card CSV" ng-model="cc_csv" )
-<<<<<<< HEAD
-		button(ng-click="contribution(amount, project_name)") Pay with Credit Card
-=======
+
 		button(ng-click="contribution(amount, project_name)") Pay with Credit Card		
 
-//- button.btn.btn-primary(ng-click="Contribute()")Contribute
-//- action="/pay/balanced" method="POST"
->>>>>>> 27d35b0c75210aa69c737a08f782666934d24767

@@ -105,6 +105,12 @@ exports.getProjectById = function(req, res){
 	});
 }
 
+exports.viewProjectDetails = function(req, res){
+	Project.findOne({_id:req.params.id}).exec(function(err, projects) {
+		res.send(projects);
+	});
+}
+
 exports.getProjectsByUserId = function(req, res) {
 	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
 	 	res.send(project)
