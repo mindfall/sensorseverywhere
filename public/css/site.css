@@ -2,6 +2,12 @@
 /*.ng-dirty { border: 1px solid yellow; }
 .ng-invalid.ng-dirty { border: 1px solid red; }
 .ng-valid.ng-dirty { border: 1px solid green; }*/
+.showMapBtn {
+  z-index: 1000;
+  margin-top: 50px;
+  position: absolute;
+  margin-left: 100px;
+}
 html,
 .row-map-container,
 .content,

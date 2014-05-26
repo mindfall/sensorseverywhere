@@ -4,8 +4,9 @@ div(class="main-container" ng-controller="wFMainCtrl")
 			.col-md-9(class="col-9-map-container")
 				div(ng-controller="wFMapCtrl" id="map" class="map")
 					leaflet
-		
+					button(class="showMapBtn" ng-click="editMap()") Show Map
 			.col-md-3(class="col-3-selection-container")
 				h3 Project Details
+					
 
 		button(class="save-project-button") Edit

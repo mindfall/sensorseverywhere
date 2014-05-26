@@ -30,7 +30,7 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: 'api/getProjectById/' + id})
 						.success(function(data, success, headers, config) {
-							dfd.resolve(data);
+							dfd.resolve(data);				
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);
@@ -43,7 +43,6 @@ angular.module('app')
 					$http({method: 'GET', url: '/api/projectsByUser/' + user_id})
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
-						//	console.log(data);
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);
@@ -53,10 +52,9 @@ angular.module('app')
 
 				viewProjectDetails : function(id) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url:'/api/projects/' + id})
+					$http({method: 'GET', url:'/api/projects/viewProjectDetails/' + id})
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
-							console.log(data);
 						})
 						.error(function(data, status, headers, config){
 							dfd.reject(status);
@@ -114,6 +112,6 @@ angular.module('app')
 						});
 					return dfd.promise;
 					
-				},
+				}
 		} 
 	})

@@ -1,6 +1,7 @@
 angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
 
 	var mapData = {};
+	var editPoints = [];
 
 	return {
 		getMapControls : function() {
@@ -116,7 +117,33 @@ angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
 		    });
 
 		    return customMarker;
+		},
+
+		setEditMapData : function(coords) {
+
+				var xPts = [];
+				var yPts = [];
+				var numPoints = 0;
+
+				for(var i = 0; i < coords.length; i++) {
+					xPts.push(coords[i][0]);
+					yPts.push(coords[i][1]);
+					numPoints = i + 1;
+				}
+				editPoints = coords;
+		
+		},
+
+		getEditMapData : function() {
+		
+			var points = [];
+			for(var i = 0; i < editPoints.length; i ++) {
+				points.push(editPoints[i]);
+			}
+			return points;		
 		}
+
+
 
 	}
 

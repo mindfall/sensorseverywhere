@@ -11,8 +11,13 @@ angular.module('app')
 		var user = wFIdentity.currentUser;
 
 		$scope.oneAtATime = true;
+//		$scope.groupList = false;
 
 	    $scope.createGroup = function(name, belongsTo, description) {
+
+//	    	$scope.groupForm = !$scope.groupForm;
+ //         	$scope.groupList = !$scope.groupList;
+
 	    	var groupData = {
 	    		owner : user._id,
 	    		groupName : name,
@@ -50,6 +55,7 @@ angular.module('app')
 		}
 
 		$scope.getGroupsByUser = function() {
+			console.log('getGroupsByUser');
 			getUserGroups = wFGroupFactory.getGroupsByUser(user._id);
 			getUserGroups.then(function(getUserGroups){
 		    if(getUserGroups.length === 0) {

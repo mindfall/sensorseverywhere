@@ -1,4 +1,4 @@
-.col-md-12(ng-model="groupForm" ng-show="!groupForm")
+.col-md-12(ng-show="groupForm" ng-model="groupForm")
 	.well
 		span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
 		form.form-horizontal(class="create-group-form" name="createGroupForm")
@@ -21,9 +21,8 @@
 					.form-group
 						.col-md-12
 							span(class="btn btn-default" ng-click="createGroup(groupname, belongsTo, description);") Create Group
-		
-		span(class="btn btn-default" ng-show="groupForm") Toggle Group Form / Group List
-.col-md-12(class="group-list-container" ng-model="groupList" ng-show="groupList" ng-controller="wFGroupCtrl")
+
+.col-md-12(class="group-list-container" ng-show="!groupList" ng-model="groupList")
 	.well
 		h4 Group list
 		table(class="table")

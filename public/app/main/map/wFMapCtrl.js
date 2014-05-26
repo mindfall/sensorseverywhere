@@ -1,7 +1,6 @@
 angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
-	
-	setMapHeight();
 
+	setMapHeight();
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
 	var mapquestLink = '<a href="http://www.mapquest.com//">MapQuest</a>';
@@ -36,13 +35,15 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
     * If a user is logged in display the mapping controls
     *
     */
-    if(userIsLoggedIn == true){
+    if(userIsLoggedIn === true){
     	
 		mapControls = wFMapFactory.getMapControls();
 	   	drawnItems = mapControls[0];
 	   	drawControl = mapControls[1];
 	   	map.addLayer(drawnItems);
    		map.addControl(drawControl);
+
+
    	}else{
    		try{
    			var controls = document.getElementsByClassName('leaflet-draw');
@@ -91,10 +92,11 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 			//marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
 			//marker.bindPopup(popupContent).openPopup();
 		}
-		
 
     	wFMapFactory.setMapData(geojson);
 		drawnItems.addLayer(e.layer);
+
+
 	});
 
 	map.on('draw:edited', function (e) {
@@ -105,6 +107,15 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 		});
 		console.log("Edited " + countOfEditedLayers + " layers");
 	});
+
+	$scope.editMap = function() {
+		var coords = wFMapFactory.getEditMapData();
+		var points = [];
+		for(var i = 0; i < coords.length; i ++) {
+			points.push([coords[i][1], coords[i][0]]);
+		}
+		var polyline = L.polygon(points).addTo(map);
+	}
 });
 
 function setMapHeight(){

@@ -74,7 +74,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 							h4 Groups
 							.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
 							a(ui-sref=".groups")
-								button(class="create-group-button" ng-click="toggleGroupForm('show')") Create Group
+								button(class="create-group-button" ng-click="toggleGroupForm()") Create Group
 			//- button(class="create-project-button") Create		
 			bg-pane
 				.row(id="groups" class="row-collaboration-elements")

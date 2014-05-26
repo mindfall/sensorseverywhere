@@ -1,6 +1,6 @@
 angular.module('app')
 
-	.controller('wFProjectCtrl', function($scope, $http, $q, $location, wFIdentity, wFProjectFactory){
+	.controller('wFProjectCtrl', function($scope, $http, $q, $location, wFIdentity, wFProjectFactory, wFMapFactory){
 
 		var projectList = [];
 		var projectArray = [];
@@ -8,6 +8,7 @@ angular.module('app')
 
 		var getUserProjects = [];
 		var userProjects = [];
+		var coords = [];
 		
 		var user = wFIdentity.currentUser;
 
@@ -44,9 +45,14 @@ angular.module('app')
 
 	 		var project = wFProjectFactory.getProjectById(id);
 	 		project.then(function(project) {
-	 			console.log(project);
-	 			var coords = project.project_coords.points;
-	 			console.log(coords);
+	 			for(var i = 0; i < project.project_coords.points.length; i++) {
+	 				coords.push(project.project_coords.points[i]);
+	 			}
+	 		//	$scope.coords = coords;
+
+	 			showLayer = wFMapFactory.setEditMapData(coords);
+	 		//	editLayer = wFMapFactory.getEditMapData();
+
 	 		}, function(status) {
 	 			console.log(status);
 	 		})

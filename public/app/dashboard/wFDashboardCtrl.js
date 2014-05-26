@@ -21,18 +21,12 @@ angular.module('app').controller('wFDashboardCtrl',
         }
 
         $scope.toggleGroupForm = function() {
+          console.log('toggle');
           $scope.groupForm = !$scope.groupForm;
           $scope.groupList = !$scope.groupList;
         }
 
         $scope.toggleUserForm = function(state) {
           $scope.userForm != $scope.userForm;
-/*          if(state === 'show') {
-            $scope.userForm = true;
-            return $scope.userForm;
-          } else if(state === 'hide') {
-            $scope.userForm = false;
-            return $scope.userForm;
-          }*/
         }
 }]);
