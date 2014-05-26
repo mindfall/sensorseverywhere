@@ -73,8 +73,78 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 						bg-pane
 							h4 Groups
 							.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
-							a(ui-sref=".groups")
-								button(class="create-group-button" ng-click="toggleGroupForm()") Create Group
+								.col-md-12(ng-model="groupForm" ng-show="!groupForm")
+									.well
+										span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
+										form.form-horizontal(class="create-group-form" name="createGroupForm")
+											fieldset
+												legend Create a Group
+													.form-group
+														.col-md-12
+															input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupname" )
+													.form-group
+														.col-md-12
+															select(class="form-control" ng-model="belongsTo", ng-options="project.name as project.value for project in projectNames")
+													.form-group
+														.col-md-12
+															textarea(class="form-control" ng-model="description", rows=5 cols=15)
+													.form-group
+														.col-md-12(ng-controller="wFFileUploadCtrl")
+															input(type="text" ng-model="fileUpload")
+															input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'group')")
+															
+													.form-group
+														.col-md-12
+															span(class="btn btn-default" ng-click="createGroup(groupname, belongsTo, description);") Create Group
+
+								.col-md-12(class="group-list-container" ng-show="groupList" ng-model="groupList")
+									.well
+										h4 Group list
+										table(class="table")
+											tr(style="font-weight: bold;")
+												td(class="accordion-group-heading") Name
+												td(class="accordion-group-heading") Members
+												td(class="accordion-group-heading") Project
+												td(class="accordion-group-heading") Delete
+
+										accordion(close-others="oneAtATime")
+											accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
+												accordion-heading(style="display: inline;") 
+													span(class="accordion-group-heading") {{group.groupName}} 
+													span(class="accordion-group-heading") {{members}}
+													span(class="accordion-group-heading") {{group.groupProject}}				
+													span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete
+												//img(ng-src="{{groupImage}}")	
+												img(ng-src="data:image/png;base64,{{groupImage}}")
+
+												span {{group.groupDescription}}
+
+												br 
+												h4 Share the love!!
+												small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
+												br
+												div(ng-controller="wFEmailContentCtrl")
+													div(ng-controller="wFUserCtrl")
+														table(class="table table-bordered table-hover table-condensed")
+															tr(style="font-weight: bold;")
+																td(style="width: 20%") Email
+																td(style="width: 20%;") Name
+																td(style="width: 12%") Status
+																td(style="width: 20%") Send Mail
+																td(style="width: 5%") Delete
+															tr(ng-repeat="user in users track by $index")
+																td
+																	input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
+																td
+																	input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
+																td
+																	select(class="form-control" ng-model="setStatus.type" ng-options="status.value as status.name for status in userStatus")
+																td
+																	button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.project_name)") {{emailButtonValue}}
+																	{{project}}
+																td
+																	button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
+							button(class="create-group-button" ng-click="toggleGroupForm()") {{buttonLabel}}
 			//- button(class="create-project-button") Create		
 			bg-pane
 				.row(id="groups" class="row-collaboration-elements")

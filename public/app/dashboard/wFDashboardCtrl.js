@@ -5,6 +5,7 @@ angular.module('app').controller('wFDashboardCtrl',
     	var getUserProjects = [];
     	var userProjects = [];
       var user = wFIdentity.currentUser;
+      $scope.buttonLabel = 'Create Group';
 
       $scope.message = '';
 
@@ -21,9 +22,18 @@ angular.module('app').controller('wFDashboardCtrl',
         }
 
         $scope.toggleGroupForm = function() {
-          console.log('toggle');
+
+          if($scope.groupForm === true ) {
+            $scope.buttonLabel = 'Create Group';
+
+          } else if($scope.groupForm === false ) {
+            $scope.buttonLabel = 'Show Groups';
+            $scope.buttonLabel = 'Create Groups';
+          }
+
           $scope.groupForm = !$scope.groupForm;
           $scope.groupList = !$scope.groupList;
+
         }
 
         $scope.toggleUserForm = function(state) {
