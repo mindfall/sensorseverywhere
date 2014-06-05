@@ -1,5 +1,6 @@
 angular.module('app').controller('wFFileUploadCtrl', function($scope, $upload) {
  $scope.onFileSelect = function($files, model) {
+    console.log($files);
     //$files: an array of files selected, each file has name, size, and type.
     for (var i = 0; i < $files.length; i++) {
       var file = $files[i];

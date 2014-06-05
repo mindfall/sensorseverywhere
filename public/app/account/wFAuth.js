@@ -14,6 +14,7 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 			});
 			return dfd.promise;
 		}, 
+		
 		createUser: function(newUserData){
 			var newUser = new wFUser(newUserData);
 			var dfd = $q.defer();
@@ -27,6 +28,7 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 
 			return dfd.promise;
 		},
+
 		updateCurrentUser: function(newUserData){
 			var dfd = $q.defer();
 
@@ -40,6 +42,7 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 			});
 			return dfd.promise;
 		},
+
 		logoutUser: function(){
 			var dfd = $q.defer();
 			$http.post('/logout', {logout:true}).then(function(){
@@ -48,6 +51,7 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 			});
 			return dfd.promise;
 		}, 
+
 		authorizeCurrentUserForRoute: function(role){
 			if(wFIdentity.isAuthorized(role)){
 				return true;
@@ -55,6 +59,7 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 				return $q.reject('not authorized');
 			}
 		},
+
 		authorizeAuthenticatedUserForRoute: function(){
 			if(wFIdentity.isAuthenticated()){
 				return true;

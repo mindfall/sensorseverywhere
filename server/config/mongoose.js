@@ -21,6 +21,6 @@ module.exports = function(config){
 	userModel.createDefaultUsers();
 	wildlifeModel.createDefaultWildlife();
 	mailModel.createDefaultMail();
-	groupModel.createDefaultGroups();
+//	groupModel.createDefaultGroups();
 
 };

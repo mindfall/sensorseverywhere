@@ -9,7 +9,7 @@ angular.module('app')
 					var loggedIn = true;
 					$location.path('/dashboard')
 				} else {
-					wFNotifier.notify('Username/Password combination incorrect.');
+					wFNotifier.error('Username/Password combination incorrect.');
 				}
 			});
 			

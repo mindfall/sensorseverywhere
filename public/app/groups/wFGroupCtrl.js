@@ -10,13 +10,10 @@ angular.module('app')
 		var projectNames = [];
 		var user = wFIdentity.currentUser;
 
+		
 		$scope.oneAtATime = true;
-//		$scope.groupList = false;
 
 	    $scope.createGroup = function(name, belongsTo, description) {
-
-//	    	$scope.groupForm = !$scope.groupForm;
- //         	$scope.groupList = !$scope.groupList;
 
 	    	var groupData = {
 	    		owner : user._id,
@@ -27,11 +24,13 @@ angular.module('app')
 	    
 	    	createGroup = wFGroupFactory.addGroup(groupData);
 	    	createGroup.then(function(createGroup) {
+
 	    		groupArray.push(JSON.stringify(createGroup));
 	    		$scope.groupArray = groupArray;
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
+	    	$location.url('/dashboard');
 	    }
 
 		/**
@@ -46,7 +45,6 @@ angular.module('app')
 				for(var name in groupArray) {
 					if(typeof groupArray[name] !== 'function') {
 						$scope.groups = groupArray;
-					 	console.log('getGroups ' + $scope.groups);
 					}
 				}
 			}, function(status){
@@ -54,25 +52,6 @@ angular.module('app')
 			});
 		}
 
-		$scope.getGroupsByUser = function() {
-			console.log('getGroupsByUser');
-			getUserGroups = wFGroupFactory.getGroupsByUser(user._id);
-			getUserGroups.then(function(getUserGroups){
-		    if(getUserGroups.length === 0) {
-		      $scope.message = 'There are currently no groups to display.';
-		    } else {
-		      $scope.message = '';
-		      for(var i = 0; i < getUserGroups.length; i++){
-		        userGroups.push(getUserGroups[i]);
-		      }
-		    }
-				$scope.groups = userGroups;
-				$scope.members = 1;
-
-			}, function(status){
-				console.log(status);
-			});
-		}
 
 	 	$scope.removeGroup = function(id) {
 			var removeGroup = wFGroupFactory.removeGroup(id);
@@ -108,21 +87,6 @@ angular.module('app')
 				console.log(status);
 			});
 		}
-
-		$scope.getGroupImages = function(name) {
-	
-			var dfd = $q.defer();
-			$http({method: 'GET', url: '/api/groupImages/' + name})
-				.success(function(data, success, headers, config) {
-					dfd.resolve(data);
-					$scope.groupImage = data;
-					console.log($scope.groupImage);
-				}).
-				error(function(data, status, headers, config) {
-					dfd.reject(status);
-			});
-			return dfd.promise;
-		} 
 
 		$scope.getProjectNames();
 }]);

@@ -48,10 +48,8 @@ angular.module('app')
 	 			for(var i = 0; i < project.project_coords.points.length; i++) {
 	 				coords.push(project.project_coords.points[i]);
 	 			}
-	 		//	$scope.coords = coords;
 
 	 			showLayer = wFMapFactory.setEditMapData(coords);
-	 		//	editLayer = wFMapFactory.getEditMapData();
 
 	 		}, function(status) {
 	 			console.log(status);

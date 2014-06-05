@@ -1,4 +1,5 @@
-angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 'wFMailService', '$location', function($scope, $rootScope, $location, wFMailService){
+angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 'wFMailService', '$location', 
+	function($scope, $rootScope, $location, wFMailService){
 	
 	$scope.showingReply = false;
 	$scope.reply = {};

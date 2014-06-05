@@ -6,7 +6,8 @@ var GroupSchema = new Schema({
 	owner: String,
 	groupName: String,
 	groupProject: String,
-	groupDescription: String
+	groupDescription: String,
+	filename: String
 }, {strict: 'true'});
 
 var Group = mongoose.model('Group', GroupSchema);

@@ -17,6 +17,9 @@ var ProjectSchema = new Schema({
             owner_name: String
         //    owner_gravatar: String
     }],
+/*    project_group: {
+        group_id: {type: Number}
+    },*/
     project_wildlife: {
         name: String
     },

@@ -1,12 +1,14 @@
 var fs = require('fs');
 var util = require('util');
-var mime = require('mime');
+var mime = require('mime'); 
+var path = require('path');
+var group = require('../controllers/groups');
 
-
+var imageName = null;
 
 exports.groupFiles = function(req, res){
 
-	var imageName = req.files.file.name;
+	imageName = req.files.file.name;
 	var filePath = req.files.file.path;
 	var serverPath = '/uploads/group-files/' + req.files.file.name;
 	moveImage(imageName, filePath, serverPath);
@@ -14,7 +16,14 @@ exports.groupFiles = function(req, res){
 	res.send({
 	 	name: imageName
 	 });
+
 };
+
+exports.getImageName = function() {
+	return imageName;
+}
+
+
 
 exports.taskFiles = function(req, res){
 
@@ -44,7 +53,6 @@ exports.projectFiles = function(req, res){
 };
 
 function moveImage(imageName, filePath, serverPath) {
-	console.log(1 + ' ' + imageName);
 	fs.rename(
 	 	filePath,
 	 	'/home/miriad/codes/wildfire/server/' + serverPath,
@@ -55,7 +63,6 @@ function moveImage(imageName, filePath, serverPath) {
 	 			});
 	 			return;
 	 		} else {
-	 			console.log(2 + '  ' + imageName);
 	 			return imageName;
 	 		}
 	 	}
@@ -63,20 +70,20 @@ function moveImage(imageName, filePath, serverPath) {
 }
 
 
-exports.getGroupImages = function(req, res) {
-//	var files = fs.readdirSync(dir);
+exports.getGroupFiles = function(req, res) {
 
-	var path = __dirname + '/../uploads/group-images/';
+	var path = __dirname + '/../uploads/group-files/';
 	var file = req.params.name;
-
+//	var ext = path.extname(file);
+//	console.log(ext);
 	var filepath = path + file;
-
+	console.log(filepath);
 	fs.exists(filepath, function(exists) {
 		if(exists) {
 			fs.readFile(filepath, function(err, contents) {
 				if(!err) {
 					res.writeHead(200, {
-						"Content-type": "image/png",
+						"Content-type": "image/jpg",
 						"Content-length": contents.length
 					});
 					//console.log(contents.length);

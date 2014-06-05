@@ -19,11 +19,6 @@ module.exports = function(){
 		}
 	));
 
-	/*app.use(function(req, res, next){
-		console.log(req.user);
-		next();
-	});*/
-
 	passport.serializeUser(function(user, done) {
 		if(user){
 			done(null, user.id);

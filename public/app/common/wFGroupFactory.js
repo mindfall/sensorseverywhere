@@ -2,7 +2,7 @@ angular.module('app')
 	.factory('wFGroupFactory', function($rootScope, $http, $q, $location, wFNotifier){
 
 		var groupData = [];
-
+		var callNumber = 0;
 
 		return {
 
@@ -25,12 +25,17 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groupsByUser/' + user_id})
 						.success(function(data, success, headers, config) {
-							dfd.resolve(data);
+							if(callNumber === 0) {
+								dfd.resolve(data);
+								callNumber++;
+							}
 						}).
 						error(function(data, status, headers, config) {
 							dfd.reject(status);
 						});
+
 					return dfd.promise;
+					
 				},
 
 				viewGroupDetails : function(id) {
@@ -50,7 +55,6 @@ angular.module('app')
 						.success(function(data, status, headers, config) {
 							group = data;
 							dfd.resolve(data);
-							console.log(data);
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);

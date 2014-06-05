@@ -1,11 +1,14 @@
 var mongoose = require('mongoose'),
 	Group = mongoose.model('Group'),
 	User = mongoose.model('User'),
-	Project = mongoose.model('Project');
+	Project = mongoose.model('Project'),
+	files = require('../controllers/files');;
 
 /**
 * get all groups
 */
+
+
 
 exports.getGroups = function(req, res){
 	Group.find({}).exec(function(err, collection){	
@@ -30,13 +33,17 @@ exports.createGroup = function(req, res, next){
 	var groupName = groupData.groupName;
 	var groupProject = groupData.belongsToProject;
 	var groupDescription = groupData.groupDescription;
+
+	filename = files.getImageName();
+	console.log('create group: ' + filename);
 	
 	//stub
 	var saveGroup = Group.create ({
 		"owner" : groupOwner,
 		"groupName" : groupName,
 		"groupProject": groupProject,
-		"groupDescription": groupDescription
+		"groupDescription": groupDescription,
+		"filename": filename
 	}, 
 	function(){
 	 	res.send(saveGroup);

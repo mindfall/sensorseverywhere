@@ -42,16 +42,16 @@ module.exports = function(app){
 	app.get('/api/users', auth.requiresRole('owner'), users.getUsers);
 	app.post('/api/users', users.createUser);
 	app.post('/api/users/:id', auth.requiresRole('admin'), users.removeUser);
-	app.put('/api/users/:id', users.updateUser);
+	app.put('/api/users', users.updateUser);
 
 	app.get('/api/mail', mail.getMail);
 	app.post('/api/sendInvite', mail.sendInvitationEmail);
 	
-	//app.post('/api/uploads', mail.upload);
+	//app.post('/api/mailAttachments', files.mailUploads);
 	app.post('/api/groupFileUploads', files.groupFiles);
 	app.post('/api/taskFileUploads', files.taskFiles);
 	app.post('/api/projectFileUploads', files.projectFiles);
-	app.get('/api/groupImages/:name', files.getGroupImages);
+	app.get('/api/groupFiles/:name', files.getGroupFiles);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params);
