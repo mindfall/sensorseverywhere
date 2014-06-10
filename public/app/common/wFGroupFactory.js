@@ -62,6 +62,19 @@ angular.module('app')
 					return dfd.promise;
 				}, 
 
+				addUserToGroup : function(userData) {
+					var dfd = $q.defer();
+					$http.post('/api/addUserToGroup', userData)
+						.success(function(data, succcess, headers, config) {
+							dfd.resolve(data);
+							console.log(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
 				removeGroup : function(id) {
 					var dfd = $q.defer();
 					$http.post('/api/removeGroup/' + id)

@@ -1,37 +1,30 @@
 var mongoose = require('mongoose'),
 	encrypt = require('../utilities/encryption');
 
-
-
-var userSchema = mongoose.Schema({
+var UserSchema = mongoose.Schema({
 	firstname: {type: String, unique: true }, 
 	lastname: {type: String, unique: true },
 	username: {type: String, required: true, unique: true, index: true }, 
 	salt: String, 
 	hashed_pwd: String,
-	roles: [String],
-	/*has_projects: [{
-		project_id: {type: Number},
-		status: Boolean,
-		funded: Boolean
-	}],
-	contributes_to: [{
-        project_id: {type: Number},
-        contribution_amount: {type: Number}
-    }],
-    total_contributions: {type: Number}*/
+	roles: [String]
 
 },{strict: true});
-userSchema.methods = {
+
+UserSchema.methods = {
 	authenticate: function(passwordToMatch){
 		return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
 	},
 	hasRole: function(role){
 		return this.roles.indexOf(role) > -1;
+	}, 
+	createDefaultUsers: function() {
+
 	}
 }
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', UserSchema);
+
 
 function createDefaultUsers(){
 
@@ -40,15 +33,16 @@ function createDefaultUsers(){
 			var salt, hash;
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'joe');
-			User.create({firstname: 'Joe', lastname: 'Eames', username: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin']});
+			User.create({firstname: 'Joe', lastname: 'Eames', username: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin'], belongsTo: "groupOne"});
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'wade');
-			User.create({firstname: 'wade', lastname: 'Mansell', username: 'wade', salt: salt, hashed_pwd: hash, roles: ['owner']});
+			User.create({firstname: 'wade', lastname: 'Mansell', username: 'wade', salt: salt, hashed_pwd: hash, roles: ['owner'], belongsTo: "groupOne"});
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'soph');
-			User.create({firstname: 'Soph', lastname: 'Buttner', username: 'soph', salt: salt, hashed_pwd: hash, roles: ['contributor']});
+			User.create({firstname: 'Soph', lastname: 'Buttner', username: 'soph', salt: salt, hashed_pwd: hash, roles: ['contributor'], belongsTo: "groupThree"});
 		}
-	})
+	});
+
 }
 
 exports.createDefaultUsers = createDefaultUsers;

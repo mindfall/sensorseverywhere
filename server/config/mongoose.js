@@ -16,11 +16,16 @@ module.exports = function(config){
 	db.on('error', console.error.bind('console', 'connection error...'));
 	db.once('open', function callback(){
 		console.log('wildFire db opened');
+	/*	mongoose.connection.db.collectionNames(function(err, names) {
+			mongoose.connection.db.dropCollection(names[10]);
+		})*/
 	});
 
+
+	
 	userModel.createDefaultUsers();
 	wildlifeModel.createDefaultWildlife();
 	mailModel.createDefaultMail();
-//	groupModel.createDefaultGroups();
+	groupModel.createDefaultGroups();
 
 };

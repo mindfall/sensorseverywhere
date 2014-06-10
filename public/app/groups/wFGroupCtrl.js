@@ -33,6 +33,22 @@ angular.module('app')
 	    	$location.url('/dashboard');
 	    }
 
+	    $scope.addUserToGroup = function(email, username, gid) {
+
+	    	var userData = {
+	    		email: email,
+	    		username: username,
+	    		gid: gid
+	    	};
+
+	    	addUserToGroup = wFGroupFactory.addUserToGroup(userData);
+	    	addUserToGroup.then(function(user) {
+	    		$scope.status = 'pending';
+	    	}, function(status) {
+	    		console.log(status);
+	    	})
+	    }
+
 		/**
 		*	Main groups page, shows all groups.
 		*/

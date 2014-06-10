@@ -14,7 +14,7 @@ exports.sendInvitationEmail = function(req, res, address){
 	var name = req.body.name;
 	var group = req.body.gid;
 	var project = req.body.project;
-	console.log(req.body);
+	
 	var subject = 'Invitation to wildFire';
 	var message = "<h3>Hey " + name + "</h3>,  we'd like to invite you to join our group on wildFire. To do so just click the link below.";
 	var mailOpts, smtpTran;

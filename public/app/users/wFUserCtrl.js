@@ -60,7 +60,7 @@ angular.module('app').controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMa
 					$scope.emailButtonValue = 'Email';
 					$scope.emailStatus = 'Sending...';
 					$scope.users.push($scope.addInvite);
-					console.log($scope.users.length);
+				//	console.log($scope.users.length);
 				}, function(err) {
 					console.log(status);
 			});

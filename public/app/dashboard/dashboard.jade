@@ -137,7 +137,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 													td
 														select(class="form-control" ng-model="setStatus.type" ng-options="status.value as status.name for status in userStatus")
 													td
-														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.project_name)") {{emailButtonValue}}
+														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.project_name); addUserToGroup(invite.email, invite.name, group._id)") {{emailButtonValue}}
 														{{project}}
 													td
 														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete

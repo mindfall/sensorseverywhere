@@ -33,6 +33,9 @@ exports.createGroup = function(req, res, next){
 	var groupName = groupData.groupName;
 	var groupProject = groupData.belongsToProject;
 	var groupDescription = groupData.groupDescription;
+	var email = '';
+	var username = '';
+	var status = '';
 
 	filename = files.getImageName();
 	console.log('create group: ' + filename);
@@ -43,6 +46,11 @@ exports.createGroup = function(req, res, next){
 		"groupName" : groupName,
 		"groupProject": groupProject,
 		"groupDescription": groupDescription,
+		"groupMembers":[{
+			"email" : email,
+			"username": username,
+			"status" : status
+		}],
 		"filename": filename
 	}, 
 	function(){
@@ -54,16 +62,41 @@ exports.createGroup = function(req, res, next){
 * add new member(s) to group
 */
 
-exports.addMembers = function(req, res, next){
-	var GroupData = req.body;
-	
+exports.addUser = function(req, res, next){
+
 	//stub - not sure if update is right in mongoose
-	var updateGroup = Group.update ({
-	}, 
+	//var gid = req.body.gid;
+	var updateGroup = Group.update ({_id: req.body.gid}, 
+		{ $push: {
+			groupMembers: {
+				email: req.body.email,
+				username: req.body.username,
+				status: req.body.status
+			}
+		}}, 
 	function(){
-	 	res.send(updateGroup);
+	 	res.send(req.body);
 	});
 };
+
+/*
+
+exports.updateUserInGroup = function(req, res, next){
+
+	//stub - not sure if update is right in mongoose
+	var updateGroup = Group.update ({_id: req.body.gid}, {
+		$set: {
+			groupMembers: {
+				email: req.body.email,
+				username: req.body.username,
+				status: req.body.status
+			}
+		}
+	}, 
+	function(){
+	 	res.send(req.body);
+	});
+};*/
 
 
 /**
