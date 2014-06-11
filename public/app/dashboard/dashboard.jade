@@ -32,9 +32,9 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									td
 										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
 									td
-										div(class="button btn-default" ng-click="getProjectById(project._id)") Edit	
+										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit	
 									td
-										div(class="button btn-default" ng-click="removeProject(project._id)") Delete
+										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
 							div(ng-controller="wFTaskCtrl")
 								accordion(ng-controller="wFTaskCtrl" close-others="oneAtATime")
 									accordion-group(heading="View Tasks")
@@ -45,26 +45,30 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												td(style="width: 36%;") Description
 												td(style="width: 9%;") Owner
 												td(style="width: 12%") Status
+												td(style="width: 11%") Save
 												//- td(style="width: 8%") Upload Task File
 												td(style="width: 5%") Delete
-											tr(ng-repeat="task in tasks")
+											tr(ng-repeat="task in tasks track by $index")
 												td
-													select(class="form-control" ng-model="task.setPriority", ng-options="priority.value as priority.name for priority in selectPriority")
+													select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
 												td
-													span(editable-text="task.name") {{task.name}}
+													input(class="form-control" ng-model="taskName" type="text" placeholder="Enter task name...")
 												td
-													span(editable-text="task.description") {{task.description}}
+													input(class="form-control" ng-model="taskDesc" type="text" placeholder="Enter task description...")
 												td
-													select(class="form-control" ng-model="task.setOwner", ng-options="owner.value as owner.name for owner in selectOwner")
+													select(class="form-control" ng-model="taskOwner", ng-options="owner.value as owner.name for owner in selectOwner")
 												td
-													select(class="form-control" ng-model="task.setStatus", ng-options="status.value as status.name for status in selectStatus")
+													select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
 												//- td(ng-controller="wFFileUploadCtrl")
 												//- 	input(type="hidden" ng-model="fileUpload")
 												//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
 												td
-													div(class="button btn-default" ng-click="removeTask($index)") Delete
+				
+													button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
+												td
+													button(class="btn btn-default" ng-click="removeTask($index)") Delete
+
 										button(class="btn btn-default" ng-click="addTask()") Add task
-										button(class="btn btn-default" ng-click="saveTask()") Save task
 					div(ui-view="project-pane")
 				button(class="create-project-button" ng-click="createProject()" ) Create Project
 			bg-pane
@@ -78,13 +82,13 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									legend Create a Group
 										.form-group
 											.col-md-12
-												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupname" )
+												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" )
 										.form-group
 											.col-md-12
-												select(class="form-control" ng-model="belongsTo", ng-options="project.name as project.value for project in projectNames")
+												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames")
 										.form-group
 											.col-md-12
-												textarea(class="form-control" ng-model="description", rows=5 cols=15)
+												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15)
 										.form-group
 											.col-md-12(ng-controller="wFFileUploadCtrl")
 												input(type="text" ng-model="fileUpload")
@@ -92,7 +96,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												
 										.form-group
 											.col-md-12
-												span(class="btn btn-default" ng-click="createGroup(groupname, belongsTo, description);") Create Group
+												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);") Create Group
 					.col-md-12(class="group-list-container" ng-show="groupList" ng-model="groupList")
 						.well
 							h4 Group list
@@ -146,14 +150,3 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 				div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbspX
 					img(ng-src="data:image/png;base64,{{groupImage}}")
 					{{groupImage}}
-
-			//- button(class="create-project-button") Create		
-			//- bg-pane
-			//- 	.row(id="groups" class="row-collaboration-elements")
-			//- 		//- img(src="img/spinner.gif" ng-show="loading")
-
-			//- 		.col-md-3(class="chat-files")
-			//- 			ul(class="nav nav-tabs")
-			//- 				li
-			//- 					a(ui-sref=".chat") Chat
-			//- 			<div ui-view="right-pane"></div>

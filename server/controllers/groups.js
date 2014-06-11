@@ -64,8 +64,6 @@ exports.createGroup = function(req, res, next){
 
 exports.addUser = function(req, res, next){
 
-	//stub - not sure if update is right in mongoose
-	//var gid = req.body.gid;
 	var updateGroup = Group.update ({_id: req.body.gid}, 
 		{ $push: {
 			groupMembers: {

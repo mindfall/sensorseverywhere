@@ -17,9 +17,9 @@ var ProjectSchema = new Schema({
             owner_name: String
         //    owner_gravatar: String
     }],
-/*    project_group: {
-        group_id: {type: Number}
-    },*/
+    project_group: [{
+        groupName: String
+    }],
     project_wildlife: {
         name: String
     },
@@ -32,13 +32,19 @@ var ProjectSchema = new Schema({
         nearestTown: String,
         distance_to_town: {type: Number}
     },
-
     project_description: String,
     project_start_date: Date,
     project_end_date: Date,
     project_funding_required: Number,
     total_contributions: {type: Number},
-    project_type: String
+    project_type: String,
+    projectTasks: [{
+        taskPriority: String,
+        taskName: String,
+        taskDescription: String,
+        taskOwner: String,
+        taskStatus: String
+    }]
  //   project_image: String
 }, {strict: 'true'});
 

@@ -100,6 +100,7 @@ angular.module('app')
 			project_area: corridorData.area,
 			project_town: nearestTown,
 			project_distance_to_town: nearestTownDistance
+
 		//	project_monitors : corridorData.monitors
 		}
 	//	var inspectProjectData = JSON.stringify(projectData);

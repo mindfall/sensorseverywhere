@@ -13,12 +13,12 @@ angular.module('app')
 		
 		$scope.oneAtATime = true;
 
-	    $scope.createGroup = function(name, belongsTo, description) {
+	    $scope.createGroup = function(groupName, projectName, description) {
 
 	    	var groupData = {
 	    		owner : user._id,
-	    		groupName : name,
-	    		belongsToProject: belongsTo,
+	    		groupName : groupName,
+	    		projectName: projectName,
 	    		groupDescription: description
 	    	};
 	    
@@ -30,6 +30,19 @@ angular.module('app')
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
+
+	    	var groupToProject = {
+	    		groupName : groupName,
+	    		projectName: projectName
+	    	};
+
+	    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
+	    	addGroupToProject.then(function(addGroup) {
+	    		console.log('Your group has been added to project ' + projectName);
+	    	}, function(status) {
+	    		console.log(status);
+	    	});
+
 	    	$location.url('/dashboard');
 	    }
 
@@ -38,6 +51,7 @@ angular.module('app')
 	    	var userData = {
 	    		email: email,
 	    		username: username,
+	    		status: 'pending',
 	    		gid: gid
 	    	};
 

@@ -1,5 +1,5 @@
 angular.module('app')
-	.factory('wFProjectFactory', function($rootScope, $http, $q, $location, wFNotifier){
+	.factory('wFProjectFactory', ['$rootScope', '$http', '$q', '$location', 'wFNotifier', function($rootScope, $http, $q, $location, wFNotifier){
 
 		var mapData = [];
 		var wildlifeData = [];
@@ -76,6 +76,18 @@ angular.module('app')
 					return dfd.promise;
 				}, 
 
+				addGroupToProject : function(groupToProjectData) {
+					var dfd = $q.defer();
+					$http.post('/api/addGroupToProject', groupToProjectData)
+						.success(function(data, status, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
 				removeProject : function(id) {
 					var dfd = $q.defer();
 					$http.post('/api/removeProject/' + id)
@@ -114,4 +126,4 @@ angular.module('app')
 					
 				}
 		} 
-	})
+	}]);

@@ -36,6 +36,12 @@ exports.createProject = function(req, res, next){
 
 	var projectType = req.body.project_type;
 
+	var taskPriority = '';
+	var taskName = '';
+	var taskDescription = '';
+	var taskOwner = '';
+ 	var taskStatus = '';
+
 
 //	var numberOfMonitors = req.body.project_monitors;
 
@@ -56,6 +62,9 @@ exports.createProject = function(req, res, next){
 		        "owner_name": projectOwnerFirstName
 		         //   owner_gravatar: String
 		    }],
+		    "project_group": [{
+		        "groupName": null
+		    }],
 		    "project_wildlife": {
 		        "name": wildlifeNames,
 		    },
@@ -73,7 +82,14 @@ exports.createProject = function(req, res, next){
 	        "project_end_date": projectEndDate,
 	        "project_funding_required": projectFundingRequired,
 	        "total_contributions":0,
-	        "project_type": projectType
+	        "project_type": projectType,
+	        "projectTasks": [{
+				"taskPriority": taskPriority,
+				"taskName": taskName,
+				"taskDescription": taskDescription,
+				"taskOwner": taskOwner,
+				"taskStatus": taskStatus
+			}]
 
 	}, 
 	function(){
@@ -82,6 +98,46 @@ exports.createProject = function(req, res, next){
 	});
 
 };
+
+exports.addGroupToProject = function(req, res) {
+//	console.log('adding group to project ' + JSON.stringify(req.body));
+	var addGroup = Project.update( { project_name: req.body.projectName},
+		{ $push: {
+			project_group: {
+				groupName: req.body.groupName
+			}
+		}},
+		function() {
+			res.send(req.body);
+		});
+}
+
+exports.addTaskToProject = function(req, res) {
+
+	var updateTask = Project.update( {_id: req.body.pid},
+					{ $push: {
+						projectTasks: {
+							taskPriority: req.body.taskPriority,
+							taskName: req.body.taskName,
+							taskDescription: req.body.taskDescription,
+							taskOwner: req.body.taskOwner,
+							taskStatus: req.body.taskStatus
+						}
+					}},
+		function(){
+			console.log('something happened, I just dont know what' + req.body.pid);
+			res.send(req.body);
+		});
+}
+/*
+var Kitten = db.model('Kitten', kittySchema);
+Kitten.update({name: 'fluffy'},{$pushAll: {values:[2,3]}},{upsert:true},function(err){
+        if(err){
+                console.log(err);
+        }else{
+                console.log("Successfully added");
+        }
+});*/
 
 exports.updateTotalContributions = function(req, res){
 	var contributionAmount = req.body.amount;

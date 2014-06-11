@@ -24,6 +24,7 @@ module.exports = function(app){
 	app.put('/api/projects/edit/:id', projects.updateProject);
 	app.put('/api/projects/:id', projects.updateTotalContributions);
 	app.post('/api/createProject', projects.createProject);
+	app.post('/api/addGroupToProject', projects.addGroupToProject);
 	app.post('/api/removeProject/:id', projects.removeProject);
 
 	app.get('/api/groups', groups.getGroups);
@@ -34,6 +35,7 @@ module.exports = function(app){
 	app.post('/api/removeUserFromGroup/:gid/:uid', groups.removeUserFromGroup);
 
 	app.get('/api/tasks', tasks.getTasks);
+	app.post('/api/addTaskToProject', projects.addTaskToProject);
 
 	app.get('/api/chat', chat.getChatLogs);
 

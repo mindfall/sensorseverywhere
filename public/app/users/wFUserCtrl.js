@@ -1,17 +1,5 @@
 angular.module('app').controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMailService', function($scope, wFUserFactory, wFMailService) {
-	//	$scope.users = ['User 1', 'User 2', 'User 3'];
-	//	var newUserNo = [];
-/*
-		$scope.users = {
-			firstname  : 'Enter name...',
-		};
 
-	    $scope.addUserToGroup = function() {
-	//  	  newUserNo = $scope.users.length + 1;
-	//      $scope.users.push('User ' + newUserNo);
-	      var addUser = wFUserFactory.addUserToGroup();
-
-	    }*/
 	    $scope.userStatus = [
 	    	{name: 'not sent', value: 'not sent'},
 	    	{name: 'accepted', value: 'accepted'},

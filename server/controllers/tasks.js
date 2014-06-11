@@ -30,6 +30,32 @@ exports.createTask = function(req, res, next){
 
 };
 
+exports.addTaskToProject = function(req, res) {
+	//console.log('adding task: ' + req.body.pid);
+
+	var project = Project.findOne({_id: req.body.pid}).exec(function(err, project) {
+		console.log(project._id)
+		var addTask = Project.update(
+							project._id,
+							{ $set: {
+								projectTasks: {
+									priority: req.body.priority,
+									name: req.body.name,
+									description: req.body.description,
+									owner: req.body.owner,
+									status: req.body.status
+								}
+							}},
+		function(){
+			res.send(req.body);
+		});
+	});
+
+	
+
+	
+}
+
 /**
 * organise tasks by project
 */

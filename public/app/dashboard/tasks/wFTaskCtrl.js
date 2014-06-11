@@ -1,4 +1,46 @@
-angular.module('app').controller('wFTaskCtrl', function($scope) {
+angular.module('app').controller('wFTaskCtrl', ['$scope', 'wFTaskFactory', function($scope, wFTaskFactory) {
+
+
+	$scope.saveTask = function(pid, taskPriority, taskName, taskDesc, taskOwner, taskStatus) {
+
+		var taskData = {
+			pid: pid,
+			taskPriority: taskPriority,
+			taskName: taskName,
+			taskDescription: taskDesc,
+			taskOwner: taskOwner,
+			taskStatus: taskStatus
+		};
+		console.log(taskData);
+		addTaskToProject = wFTaskFactory.addTaskToProject(taskData);
+		addTaskToProject.then(function(task) {
+			console.log(task);
+		}, function(status) {
+			console.log(status);
+		});
+	}
+
+	$scope.addTask = function() {
+		var task = {
+			id: $scope.tasks.length + 1,
+			priority: 0,
+			name: 'Enter task name...',
+			description: 'Enter task description...',
+			owner: "",
+			status: 0
+		};
+		$scope.tasks.push(task);
+		console.log('task added')
+	}
+
+	$scope.removeTask = function(index) {
+		$scope.tasks.splice(index, 1);
+	}
+
+	$scope.uploadTaskFile = function() {
+		console.log('uploading task file');
+	}
+
 
 	$scope.selectPriority = [
 		{name: 'urgent', value: 'urgent'},
@@ -22,67 +64,16 @@ angular.module('app').controller('wFTaskCtrl', function($scope) {
 	];
 	$scope.setStatus = {type: $scope.selectStatus[0].value};
 
-	$scope.addTask = function() {
-		$scope.inserted = {
-			id: $scope.tasks.length + 1,
-			priority: 0,
-			name: "Enter name",
-			description: "Enter description",
-			owner: "",
-			status: 0
-		};
-		$scope.tasks.push($scope.inserted);
-	}
-
-	$scope.saveTask = function() {
-		console.log('save task, create wFProjectFactory method and save out to server. Best to make an insert into the project table. (Remember to create a task array + wildlife + in the project model');
-	}
-
-	$scope.removeTask = function(index) {
-		$scope.tasks.splice(index, 1);
-	}
-
-	$scope.uploadTaskFile = function() {
-		console.log('uploading task file');
-	}
-
-	
 	$scope.tasks = [
 		{
 			id: 1,
 			priority: 0,
-			name: "Clean Up",
-			description: "Clean up site to find locations for monitors.",
-			owner: "Joe",
-			status: 0
-		},
-		{
-			id: 2,
-			priority: 0,
-			name: "Purchase Monitors",
-			description: "Best place to do this?.",
-			owner: "Joe",
-			status: 0
-
-		},
-		{
-			id: 3,
-			priority: 2,
-			name: "Calculate work data",
-			description: "Create scope for project.",
-			owner: "Nancy",
-			status: 0
-
-		},
-		{
-			id: 4,			
-			priority: 0,
-			name: "Volunteers",
-			description: "Find volunteers.",
-			owner: "Wade",
+			name: 'Enter task name...',
+			description: 'Enter task description...',
+			owner: "",
 			status: 0
 
 		}
 	];
 
-});
+}]);
