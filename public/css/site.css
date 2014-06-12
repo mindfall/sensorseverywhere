@@ -1,7 +1,7 @@
-/*.ng-pristine {border: 1px solid green; }*/
-/*.ng-dirty { border: 1px solid yellow; }
-.ng-invalid.ng-dirty { border: 1px solid red; }
-.ng-valid.ng-dirty { border: 1px solid green; }*/
+/*.ng-pristine {border 1px solid green }*/
+/*.ng-dirty { border 1px solid yellow }
+.ng-invalid.ng-dirty { border 1px solid red }
+.ng-valid.ng-dirty { border 1px solid green }*/
 .showMapBtn {
   z-index: 1000;
   margin-top: 50px;
@@ -17,14 +17,14 @@
   top: 150px;
   margin-left: 50%;
   left: -400px;
-/*	border-bottom: 5px solid #d7e0e2
-	-webkit-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-	-moz-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-	box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-	border-radius: 3px
-	-moz-border-radius: 3px
-	-webkit-border-radius: 3px
-	z-index: 1001*/
+/*	border-bottom 5px solid #d7e0e2
+	-webkit-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	-moz-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	border-radius 3px
+	-moz-border-radius 3px
+	-webkit-border-radius 3px
+	z-index 1001*/
 }
 .document-overlay .document-overlay-close-btn {
   width: 20px;
@@ -124,6 +124,11 @@ footer p {
   border: 1px solid #808080;
   width: 750px;
 }
+.accordion-remove-project,
+.accordion-remove-group {
+  float: right;
+  width: 10px !important;
+}
 /* END DASHBOARD */
 /* MAIN PAGE */
 /* EMAIL */
@@ -133,8 +138,7 @@ footer p {
   min-height: 300px;
   width: 228px;
   position: relative;
-  z-index: 1;
-scrs
+  z-index: 1s crs;
 }
 #emailListing {
   margin-top: 20px;
@@ -170,25 +174,25 @@ scrs
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
 }
-.navbar-header a.navbar-brand:hover {
+.navbar-header a.navbar-brandhover {
   color: #000;
 }
-.navbar-header a.navbar-brand:active {
+.navbar-header a.navbar-brandactive {
   color: #000;
 }
-.navbar-header a.navbar-brand:link {
+.navbar-header a.navbar-brandlink {
   color: #000;
 }
-.navbar-inverse .navbar-nav > li > a:hover {
+.navbar-inverse .navbar-nav > li > ahover {
   color: #000;
 }
-.navbar-inverse .navbar-nav > li > a:active {
+.navbar-inverse .navbar-nav > li > aactive {
   color: #000;
 }
-.navbar-inverse .navbar-nav > li > a:link {
+.navbar-inverse .navbar-nav > li > alink {
   color: #000;
 }
-.navbar-inverse .navbar-nav > li > a:focus {
+.navbar-inverse .navbar-nav > li > afocus {
   color: #000;
 }
 .slogan {
@@ -386,11 +390,18 @@ ul.nav.navbar-nav a.navbar-nav-link {
   float: left;
 }
 .project-popup {
-  width: 600px;
-  height: 900px;
-  margin-top: 50px;
-  margin-left: 25%;
+  width: 80%;
+  height: 800px;
+  margin-left: 10%;
   z-index: 1002;
+}
+.what-we-have {
+  width: 50%;
+  float: left;
+}
+.further-info {
+  width: 50%;
+  float: right;
 }
 .project-popup,
 .comment-popup {
@@ -480,7 +491,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
   left: 0;
   margin-top: 4.5%;
   width: 100%;
-  height: 75%;
+  height: 95% !important;
   display: block;
 }
 .map-frontpage {
@@ -520,3 +531,13 @@ ul.nav.navbar-nav a.navbar-nav-link {
   margin-left: 15%;
 }
 /* END PROJECT / FUND LIST PAGE */
+/* VIEW DETAILS */
+.map-details-container {
+  height: 500px;
+  width: 50%;
+}
+.map-details {
+  height: 300px !important;
+  width: 50%;
+}
+/* END VIEW DETAILS */

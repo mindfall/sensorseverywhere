@@ -1,31 +1,31 @@
 div
 	div.closePopUp(ng-click="closePopup()") X
-	h3 Hey there. 
-	p So far we've got: 
-	p You: {{identity.currentUser.firstname}} {{identity.currentUser.lastname}}
-	p The nearest town to the center of the corridor is: {{nearestTownName}}
-	p and is {{nearestTownDistance}} kms away.
-	p The area you have mapped is {{area}} acres.
-	p The wildlife within the corridor: {{wildlife[0].name}}
-	p And the types of monitors you're using:
-		p Audio: {{audioMonitors}}
-		p Video: {{videoMonitors}}
-	p
-	p But before we can begin we need to ask just a few more questions like:
-	p What is name of the project? <br>
-		input(type="text" ng-model="projectName")
-	p How would you describe the project? <br>
-		textarea(cols="30" rows="10" ng-model="projectDescription")
-	p The project start and end dates: <br>
-		input(type="date" ng-model="start_date") 
-		input(type="date" ng-model="end_date")
-	p Is this a private, public or government project 
-		select(class="form-control" ng-model="orgs.type", ng-options="org.value as org.name for org in selectOrg")
-	p What is the required funding target? <br>
-		input(type="number" min="0" value="0" ng-model="fundingRequired")
-	p An image
-
-	p Finally would you like to invite anyone?
+	div.what-we-have
+		h3 Hey, we're nearly there. 
+		p So far we've got: 
+		p You: {{identity.currentUser.firstname}} {{identity.currentUser.lastname}}
+		p The nearest town to the center of the corridor is: {{nearestTownName}}
+		p and is {{nearestTownDistance}} kms away.
+		p The area you have mapped is {{area}} acres.
+		p The wildlife within the corridor: {{wildlife[0].name}}
+		p And the types of monitors you're using:
+			p Audio: {{audioMonitors}}
+			p Video: {{videoMonitors}}
+		p
+	div.further-info
+		p But before we can begin we need to ask just a few more questions like:
+		p What is name of the project? <br>
+			input(type="text" ng-model="projectName")
+		p How would you describe the project? <br>
+			textarea(cols="30" rows="10" ng-model="projectDescription")
+		p The project start and end dates: <br>
+			input(type="date" ng-model="start_date") 
+			input(type="date" ng-model="end_date")
+		p Is this a private, public or government project 
+			select(class="form-control" ng-model="orgs.type", ng-options="org.value as org.name for org in selectOrg")
+		p What is the required funding target? <br>
+			input(type="number" min="0" value="0" ng-model="fundingRequired")
+		p An image
 
 	div
 		b(class="popupCancel" ng-click="cancelProject()") Clear

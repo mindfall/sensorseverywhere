@@ -6,8 +6,8 @@ var GroupSchema = mongoose.Schema({
 	groupProject: String,
 	groupDescription: String,
 	groupMembers: [{
-		email: String,
-		username: String,
+		email: {type: String},
+		username: {type: String},
 		status: String
 	}],
 	filename: String

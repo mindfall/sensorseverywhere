@@ -6,7 +6,7 @@ div(class="main-container" ng-controller="wFProjectCtrl")
 				div(class="col-{{$index % 4}}")
 					p
 					b Name: 
-					a(href="/projects/viewProjectDetails/{{project._id}}") {{project.project_name}}<br>
+					a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
 					b Description: 
 					{{project.project_description}} <br> 
 					b Amount Required: 

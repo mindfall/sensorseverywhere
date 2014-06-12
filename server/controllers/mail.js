@@ -12,9 +12,10 @@ exports.getMail = function(req, res){
 exports.sendInvitationEmail = function(req, res, address){
 	var email = req.body.email;
 	var name = req.body.name;
-	var group = req.body.gid;
+	var gid = req.body.gid;
+	var group = req.body.group;
 	var project = req.body.project;
-	
+
 	var subject = 'Invitation to wildFire';
 	var message = "<h3>Hey " + name + "</h3>,  we'd like to invite you to join our group on wildFire. To do so just click the link below.";
 	var mailOpts, smtpTran;
@@ -32,7 +33,10 @@ exports.sendInvitationEmail = function(req, res, address){
 		to: email,
 		subject: subject,
 		text: message,
-		html: "Hey " + name + ", come and join our group. To do so just click on the link below. <br><a href='http://localhost:3030/signup-to-group'>Join group: " + group + " in project: " + project + " and make a difference today!</a>"
+		html: "Hey " + name + ", come and join our group the <b>" + group + "</b>. <br> You can view the details <a href='http://localhost:3033/projects/viewProjectDetails/" + project +"'>here.</a>" +
+							  "<br><br><a href='http://localhost:3033/groupSignup/"+gid+"'>" + 
+							  "<button style='background-color=#5cb85c; color=white'>Accept</button></a>" +
+							  "&nbsp&nbsp<button style='background-color=#f0ad4e; color=white'>Decline</button>"
 	};
 
 	smtpTrans.sendMail(mailOpts, function (error, response) {

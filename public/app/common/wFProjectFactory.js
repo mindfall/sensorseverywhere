@@ -50,9 +50,9 @@ angular.module('app')
 					return dfd.promise;
 				},
 
-				viewProjectDetails : function(id) {
+				viewProjectDetails : function(name) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url:'/api/projects/viewProjectDetails/' + id})
+					$http({method: 'GET', url:'/api/projects/viewProjectDetails/' + name})
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
 						})

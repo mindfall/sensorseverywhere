@@ -19,7 +19,7 @@ module.exports = function(app){
 
 	app.get('/api/projects', projects.getProjects);
 	app.get('/api/getProjectById/:id', projects.getProjectById);
-	app.get('/api/projects/viewProjectDetails/:id', projects.viewProjectDetails);
+	app.get('/api/projects/project-details/:name', projects.viewProjectDetails);
 	app.get('/api/projectsByUser/:id', projects.getProjectsByUserId);
 	app.put('/api/projects/edit/:id', projects.updateProject);
 	app.put('/api/projects/:id', projects.updateTotalContributions);
@@ -28,11 +28,13 @@ module.exports = function(app){
 	app.post('/api/removeProject/:id', projects.removeProject);
 
 	app.get('/api/groups', groups.getGroups);
+	app.get('/api/groupById/:id', groups.getGroupById);
 	app.get('/api/groupsByUser/:id', groups.getGroupsByUser);
 	app.post('/api/createGroup', groups.createGroup);
 	app.post('/api/addUserToGroup', groups.addUser);
 	app.post('/api/removeGroup/:id', groups.removeGroup);
 	app.post('/api/removeUserFromGroup/:gid/:uid', groups.removeUserFromGroup);
+	app.put('/api/updateUserStatus/:data', groups.updateUserStatus);
 
 	app.get('/api/tasks', tasks.getTasks);
 	app.post('/api/addTaskToProject', projects.addTaskToProject);

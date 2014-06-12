@@ -41,8 +41,9 @@ angular.module('app').controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMa
 	      isFirstDisabled: false
 	    };
 
-	    $scope.sendInvite = function(email, name, group, project) {
-			wFMailService.sendInvite(email, name, group, project) 
+	    $scope.sendInvite = function(email, name, gid, group, project) {
+
+			wFMailService.sendInvite(email, name, gid, group, project) 
 				.then(function(status) {
 					$scope.setStatus = {type: $scope.userStatus[2].value};
 					$scope.emailButtonValue = 'Email';

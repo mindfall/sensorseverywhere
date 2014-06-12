@@ -129,15 +129,6 @@ exports.addTaskToProject = function(req, res) {
 			res.send(req.body);
 		});
 }
-/*
-var Kitten = db.model('Kitten', kittySchema);
-Kitten.update({name: 'fluffy'},{$pushAll: {values:[2,3]}},{upsert:true},function(err){
-        if(err){
-                console.log(err);
-        }else{
-                console.log("Successfully added");
-        }
-});*/
 
 exports.updateTotalContributions = function(req, res){
 	var contributionAmount = req.body.amount;
@@ -162,7 +153,7 @@ exports.getProjectById = function(req, res){
 }
 
 exports.viewProjectDetails = function(req, res){
-	Project.findOne({_id:req.params.id}).exec(function(err, projects) {
+	Project.findOne({project_name:req.params.name}).exec(function(err, projects) {
 		res.send(projects);
 	});
 }

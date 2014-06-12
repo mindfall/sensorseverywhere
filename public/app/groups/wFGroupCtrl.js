@@ -102,6 +102,7 @@ angular.module('app')
 				for(var i = 0; i < projectList.length; i++){
 					projectNames.push(projectList[i].project_name);
 				}
+				
 				for(var project_name in projectNames) {
 					if(typeof projectNames[project_name] !== 'function') {
 						var newProject = {

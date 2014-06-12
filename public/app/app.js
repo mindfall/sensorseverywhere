@@ -58,8 +58,8 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 			templateUrl: '/partials/projects/edit',
 			controller: 'wFProjectCtrl'
 		})
-		.state('projects/viewProjectDetails/:id', {
-				url: '/projects/viewProjectDetails/:id',
+		.state('projects/project-details/:id', {
+				url: '/projects/project-details/:id',
 				templateUrl: '/partials/projects/project-details', 
 				controller: 'wFProjectDetailsCtrl'
 		})
@@ -79,9 +79,9 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/account/signup',
 				controller: 'wFSignupCtrl', 
 		})
-		.state('sign-to-group', {
-				url: '/signup-to-group',
-				templateUrl: '/partials/account/signup-to-group',
+		.state('groupSignup/:gid', {
+				url: '/groupSignup/:gid',
+				templateUrl: '/partials/account/groupSignup',
 				controller: 'wFSignupCtrl'
 		})
 		.state('profile', {

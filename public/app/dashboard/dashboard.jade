@@ -9,32 +9,29 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 						accordion-group(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 							accordion-heading(style="display: inline;") 
 										span(class="accordion-group-heading") {{project.project_name}} 
-										span(class="accordion-group-heading button btn-default" ng-click="removeProject(project._id)") X
+										span(class="accordion-group-heading button btn-default accordion-remove-project" ng-click="removeProject(project._id)") X
 							table
-								tr
-									th(style="width: 22%;") Name
-									th(style="width: 38%;") Summary
-									th(style="width: 11%;") Upload
-									th(style="width: 11%;") View Files
-									th(style="width: 10%") Status
-									th(style="width: 14%") Edit
-									th(style="width: 7%") Delete
+									
 								tr
 									td
-										a(href="/projects/viewProjectDetails/{{project._id}}") {{project.project_name}}
+										div.accordion-project-name
+											a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}
 									td
-										span {{project.project_description}}
+										div.accordion-project-summary
+											span {{project.project_description}}
+					
+									td
+										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit
+										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
+								tr
 									td(ng-controller="wFFileUploadCtrl")
 										input(type="hidden" ng-model="fileUpload")
 										input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
 									td
 										button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
-									td
-										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
-									td
-										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit	
-									td
-										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
+
+										
 							div(ng-controller="wFTaskCtrl")
 								accordion(ng-controller="wFTaskCtrl" close-others="oneAtATime")
 									accordion-group(heading="View Tasks")
@@ -105,7 +102,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									td(class="accordion-group-heading") Name
 									td(class="accordion-group-heading") Members
 									td(class="accordion-group-heading") Project
-									td(class="accordion-group-heading") Delete
+									td(class="accordion-group-heading")
 
 							accordion(close-others="oneAtATime")
 								accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
@@ -113,7 +110,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 											span(class="accordion-group-heading") {{group.groupName}} 
 											span(class="accordion-group-heading") {{members}}
 											span(class="accordion-group-heading") {{group.groupProject}}	
-											span(class="accordion-group-heading button btn-default" ng-click="removeGroup(group._id)") Delete
+											span(class="accordion-group-heading button btn-default accordion-remove-group" ng-click="removeGroup(group._id)") X
 
 									//img(ng-src="data:image/png;base64,{{groupImage}}")
 									button(class="btn btn-default" ng-click="getFiles(group.filename, 'group'); toggleDocumentOverlay();") View Group Documents
@@ -141,8 +138,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 													td
 														select(class="form-control" ng-model="setStatus.type" ng-options="status.value as status.name for status in userStatus")
 													td
-														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.project_name); addUserToGroup(invite.email, invite.name, group._id)") {{emailButtonValue}}
-														{{project}}
+														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") {{emailButtonValue}}
 													td
 														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
 				button(class="create-group-button" ng-controller="wFGroupCtrl" ng-model="clickModel" ng-click="toggleGroupForm(); getGroupsByUser();") {{buttonLabel}}

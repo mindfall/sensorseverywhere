@@ -21,6 +21,18 @@ angular.module('app')
 
 				},
 
+				getGroupById : function(id) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: '/api/groupById/' + id})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
 				getGroupsByUser : function(user_id) {
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groupsByUser/' + user_id})
@@ -67,7 +79,20 @@ angular.module('app')
 					$http.post('/api/addUserToGroup', userData)
 						.success(function(data, succcess, headers, config) {
 							dfd.resolve(data);
-							console.log(data);
+						//	console.log(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
+				updateUserStatus : function(userData) {
+					var dfd = $q.defer();
+					//$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
+					$http({method: 'PUT', url: '/api/updateUserStatus/' + userData, data:{gid: userData.gid, username: userData.username, email: userData.email}})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {
 							dfd.reject(status);

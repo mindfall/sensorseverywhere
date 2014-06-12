@@ -20,6 +20,12 @@ exports.getGroupsByUser = function(req, res) {
 	Group.find({'owner': req.params.id}, function(err, groups) {
 		res.send(groups);
 	});
+};
+
+exports.getGroupById = function(req, res) {
+	Group.findOne({_id: req.params.id}, function(err, group) {
+		res.send(group);
+	});
 }
 
 /**
@@ -63,7 +69,7 @@ exports.createGroup = function(req, res, next){
 */
 
 exports.addUser = function(req, res, next){
-
+	console.log('adding user');
 	var updateGroup = Group.update ({_id: req.body.gid}, 
 		{ $push: {
 			groupMembers: {
@@ -77,24 +83,24 @@ exports.addUser = function(req, res, next){
 	});
 };
 
-/*
 
-exports.updateUserInGroup = function(req, res, next){
 
-	//stub - not sure if update is right in mongoose
-	var updateGroup = Group.update ({_id: req.body.gid}, {
+exports.updateUserStatus = function(req, res, next){
+	console.log('updateUser ' + JSON.stringify(req.body));
+
+	var updateUser = Group.update ({_id: req.body.gid}, {
 		$set: {
-			groupMembers: {
+			groupMembers: [{
 				email: req.body.email,
 				username: req.body.username,
-				status: req.body.status
-			}
+				status: 'accepted'
+			}]
 		}
 	}, 
 	function(){
-	 	res.send(req.body);
+	 	res.send(req.params);
 	});
-};*/
+};
 
 
 /**

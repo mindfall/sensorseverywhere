@@ -9,12 +9,13 @@ angular.module('app').service('wFMailService', ['$http', '$q', function($http, $
 			});
 		},
 
-		sendInvite : function(email, name, groupId, project){
+		sendInvite : function(email, name, gid, group, project){
 
 			var invite = {
 				email : email, 
 				name : name,
-				gid : groupId,
+				gid: gid,
+				group : group,
 				project : project
 			};
 			var dfd = $q.defer();
