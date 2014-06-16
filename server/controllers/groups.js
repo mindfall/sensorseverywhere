@@ -37,14 +37,14 @@ exports.createGroup = function(req, res, next){
 	var groupData = req.body;
 	var groupOwner = groupData.owner;
 	var groupName = groupData.groupName;
-	var groupProject = groupData.belongsToProject;
+	var groupProject = groupData.projectName;
 	var groupDescription = groupData.groupDescription;
 	var email = '';
 	var username = '';
 	var status = '';
 
 	filename = files.getImageName();
-	console.log('create group: ' + filename);
+//	console.log('create group: ' + groupProject);
 	
 	//stub
 	var saveGroup = Group.create ({
@@ -86,19 +86,25 @@ exports.addUser = function(req, res, next){
 
 
 exports.updateUserStatus = function(req, res, next){
-	console.log('updateUser ' + JSON.stringify(req.body));
 
-	var updateUser = Group.update ({_id: req.body.gid}, {
-		$set: {
-			groupMembers: [{
-				email: req.body.email,
-				username: req.body.username,
-				status: 'accepted'
-			}]
+	var updateUser = Group.update ({'groupMembers.email': req.body.email}, {
+			$set: {
+				'groupMembers.$.status': 'accepted'
 		}
 	}, 
 	function(){
-	 	res.send(req.params);
+
+	/*	var user = User.findOne({'username': req.body.email}, 
+			function(err, doc) {
+				if(err) console.log('ERR ' + err);
+				if(doc) {
+					console.log('DOC ' + doc);
+				} else {
+					console.log('this is the third option' + username)
+				}
+			});*/
+
+		res.send(req.params);
 	});
 };
 

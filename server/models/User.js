@@ -5,6 +5,7 @@ var UserSchema = mongoose.Schema({
 	firstname: {type: String, unique: true }, 
 	lastname: {type: String, unique: true },
 	username: {type: String, required: true, unique: true, index: true }, 
+	email: {type: String, unique: true},
 	salt: String, 
 	hashed_pwd: String,
 	roles: [String]
@@ -17,9 +18,6 @@ UserSchema.methods = {
 	},
 	hasRole: function(role){
 		return this.roles.indexOf(role) > -1;
-	}, 
-	createDefaultUsers: function() {
-
 	}
 }
 

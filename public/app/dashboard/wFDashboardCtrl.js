@@ -1,12 +1,13 @@
-angular.module('app').controller('wFDashboardCtrl', 
-                                ['$scope', '$location', '$q', '$http', 'wFIdentity', 'wFProjectFactory', 'wFGroupFactory',
-                        function($scope, $location, $q, $http, wFIdentity, wFProjectFactory, wFGroupFactory) {
+angular.module('app').
+  controller('wFDashboardCtrl', ['$scope', '$location', '$q', '$http', 'wFIdentity', 'wFProjectFactory', 'wFGroupFactory',
+    function($scope, $location, $q, $http, wFIdentity, wFProjectFactory, wFGroupFactory) {
 
     	var getUserProjects = [];
     	var userProjects = [];
       var getUserGroups = [];
       var userGroups = [];
       var user = wFIdentity.currentUser;
+      $scope.users = [];
       $scope.buttonLabel = 'Create Group';
 
       $scope.message = '';
@@ -64,12 +65,11 @@ angular.module('app').controller('wFDashboardCtrl',
               $scope.message = '';
               for(var i = 0; i < getUserGroups.length; i++){
                 userGroups.push(getUserGroups[i]);
+                }
                /* if(getUserGroups[i].filename) {
                   var filename = getUserGroups[i].filename;
                   $scope.getGroupImages(filename);
                 }*/
-              }
-
             }
             $scope.groups = userGroups;
             $scope.members = 1;
@@ -82,4 +82,5 @@ angular.module('app').controller('wFDashboardCtrl',
         $scope.toggleDocumentOverlay = function() {
           $scope.documentOverlay = !$scope.documentOverlay;
         }
+        if(user) $scope.getGroupsByUser();
 }]);

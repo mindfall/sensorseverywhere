@@ -1,6 +1,6 @@
 angular.module('app')
-
-	.controller('wFProjectCtrl', function($scope, $http, $q, $location, wFIdentity, wFProjectFactory, wFMapFactory){
+	.controller('wFProjectCtrl', 
+		function($scope, $http, $q, $location, wFIdentity, wFProjectFactory, wFMapFactory){
 
 		var projectList = [];
 		var projectArray = [];

@@ -121,27 +121,40 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									h4 Share the love!!
 									small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
 									br
+									
 									div(ng-controller="wFEmailContentCtrl")
 										div(ng-controller="wFUserCtrl")
 											table(class="table table-bordered table-hover table-condensed")
 												tr(style="font-weight: bold;")
-													td(style="width: 20%") Email
-													td(style="width: 20%;") Name
-													td(style="width: 12%") Status
-													td(style="width: 20%") Send Mail
-													td(style="width: 5%") Delete
-												tr(ng-repeat="user in users track by $index")
+													td(style="width: 25%;") Name
+													td(style="width: 25%") Status
+													td(style="width: 25%") Contact
+													td(style="width: 25%") Delete
+												tr(ng-repeat="member in group.groupMembers track by $index")
+													td
+														span {{member.username}}
+													td
+														span {{member.status}}
+													td
+														button(class="btn btn-default" ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);") Email
+														button(class="btn btn-default" ng-click="openChat();") Chat
+													td
+														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
+												tr(style="font-weight: bold;") Send Invitation
+													td(style="width: 25%;") Email
+													td(style="width: 25%") Name
+													td(style="width: 25%") Send Invite
+													td(style="width: 25%") Cancel
+												tr
 													td
 														input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
 													td
 														input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
 													td
-														select(class="form-control" ng-model="setStatus.type" ng-options="status.value as status.name for status in userStatus")
+														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
 													td
-														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") {{emailButtonValue}}
-													td
-														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
-				button(class="create-group-button" ng-controller="wFGroupCtrl" ng-model="clickModel" ng-click="toggleGroupForm(); getGroupsByUser();") {{buttonLabel}}
+														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
+				button(class="create-group-button" ng-controller="wFGroupCtrl" ng-model="clickModel" ng-click="toggleGroupForm();") {{buttonLabel}}
 			div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
 				div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbspX
 					img(ng-src="data:image/png;base64,{{groupImage}}")

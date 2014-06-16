@@ -3,6 +3,7 @@ angular.module('app')
 
 		var groupData = [];
 		var callNumber = 0;
+		var users = [];
 
 		return {
 
@@ -33,21 +34,32 @@ angular.module('app')
 					return dfd.promise;
 				},
 
+
 				getGroupsByUser : function(user_id) {
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groupsByUser/' + user_id})
 						.success(function(data, success, headers, config) {
 							if(callNumber === 0) {
 								dfd.resolve(data);
+								for(var i = 0; i < data.length; i++) {
+									for(var j = 0; j < data[i].groupMembers.length; j++) {
+					                  var usersInGroup = {
+					                        priority: 0,
+					                        email: data[i].groupMembers[j].email,
+					                        name: data[i].groupMembers[j].username,
+					                        setStatus: data[i].groupMembers[j].status,
+					                        emailButtonValue: 'Email'
+					                  }
+					                  users.push(usersInGroup);
+					                }
+				            	}
 								callNumber++;
 							}
 						}).
 						error(function(data, status, headers, config) {
 							dfd.reject(status);
 						});
-
 					return dfd.promise;
-					
 				},
 
 				viewGroupDetails : function(id) {
@@ -112,8 +124,6 @@ angular.module('app')
 					return dfd.promise;
 				},
 
-
-
 			/*	contributeToProject: function(id, amount, name) {
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
@@ -128,4 +138,7 @@ angular.module('app')
 					
 				},*/
 		} 
-	})
+});
+
+
+

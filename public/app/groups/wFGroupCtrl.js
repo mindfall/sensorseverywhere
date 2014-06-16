@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFGroupCtrl', ['$scope', '$http', '$q', '$location', 'wFIdentity', 'wFGroupFactory', 'wFProjectFactory',
-								function($scope, $http, $q, $location, wFIdentity, wFGroupFactory, wFProjectFactory){
+	.controller('wFGroupCtrl', ['$scope', '$http', '$q', '$location', 'wFNotifier', 'wFIdentity', 'wFGroupFactory', 'wFProjectFactory',
+								function($scope, $http, $q, $location, wFNotifier, wFIdentity, wFGroupFactory, wFProjectFactory){
 
 		var groupList = [];
 		var groupArray = [];
@@ -38,7 +38,7 @@ angular.module('app')
 
 	    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
 	    	addGroupToProject.then(function(addGroup) {
-	    		console.log('Your group has been added to project ' + projectName);
+	    		wFNotifier.notify('Your group has been added to project ' + projectName);
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
@@ -118,7 +118,6 @@ angular.module('app')
 				console.log(status);
 			});
 		}
-
 		$scope.getProjectNames();
 }]);
 

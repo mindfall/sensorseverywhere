@@ -39,6 +39,7 @@ exports.updateUser = function(req, res){
 	req.user.firstname = userUpdates.firstname;
 	req.user.lastname = userUpdates.lastname;
 	req.user.username = userUpdates.username;
+	req.user.email = userUpdates.email;
 	if(userUpdates.password && userUpdates.password.length > 0){
 		req.user.salt = encrypt.createSalt();
 		req.user.hashed_pwd = encrypt.hashPwd(req.user.salt, userUpdates.password);
