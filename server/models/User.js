@@ -4,8 +4,7 @@ var mongoose = require('mongoose'),
 var UserSchema = mongoose.Schema({
 	firstname: {type: String, unique: true }, 
 	lastname: {type: String, unique: true },
-	username: {type: String, required: true, unique: true, index: true }, 
-	email: {type: String, unique: true},
+	username: {type: String, required: true, unique: true }, 
 	salt: String, 
 	hashed_pwd: String,
 	roles: [String]
@@ -31,13 +30,13 @@ function createDefaultUsers(){
 			var salt, hash;
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'joe');
-			User.create({firstname: 'Joe', lastname: 'Eames', username: 'joe', email: 'joe@joe.com', salt: salt, hashed_pwd: hash, roles: ['admin'], belongsTo: "groupOne"});
+			User.create({firstname: 'Joe', lastname: 'Eames', username: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin'], belongsTo: "groupOne"});
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'wade');
-			User.create({firstname: 'wade', lastname: 'Mansell', username: 'wade', email: 'wade_mansell@hotmail.com', salt: salt, hashed_pwd: hash, roles: ['owner'], belongsTo: "groupOne"});
+			User.create({firstname: 'wade', lastname: 'Mansell', username: 'wade', salt: salt, hashed_pwd: hash, roles: ['owner'], belongsTo: "groupOne"});
 			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'soph');
-			User.create({firstname: 'Soph', lastname: 'Buttner', username: 'soph', email: 'rrellish@yahoo.com', salt: salt, hashed_pwd: hash, roles: ['contributor'], belongsTo: "groupThree"});
+			User.create({firstname: 'Soph', lastname: 'Buttner', username: 'soph', salt: salt, hashed_pwd: hash, roles: ['contributor'], belongsTo: "groupThree"});
 		}
 	});
 

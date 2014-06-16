@@ -65,7 +65,6 @@ angular.module('app').
               $scope.message = '';
               for(var i = 0; i < getUserGroups.length; i++){
                 userGroups.push(getUserGroups[i]);
-                console.log(userGroups);
                 }
                /* if(getUserGroups[i].filename) {
                   var filename = getUserGroups[i].filename;

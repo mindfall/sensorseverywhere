@@ -125,7 +125,6 @@ exports.addTaskToProject = function(req, res) {
 						}
 					}},
 		function(){
-			console.log('something happened, I just dont know what' + req.body.pid);
 			res.send(req.body);
 		});
 }

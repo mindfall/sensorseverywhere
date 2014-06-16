@@ -5,7 +5,6 @@ var GroupSchema = mongoose.Schema({
 	groupProject: String,
 	groupDescription: String,
 	groupMembers: [{
-		email: {type: String},
 		username: {type: String},
 		role: {type: String},
 		status: String

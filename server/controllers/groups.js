@@ -45,7 +45,6 @@ exports.createGroup = function(req, res, next){
 	var role = groupData.role;
 
 	filename = files.getImageName();
-//	console.log('create group: ' + groupProject);
 	
 	//stub
 	var saveGroup = Group.create ({
@@ -53,7 +52,6 @@ exports.createGroup = function(req, res, next){
 		"groupProject": groupProject,
 		"groupDescription": groupDescription,
 		"groupMembers":[{
-			"email" : email,
 			"username": username,
 			"role": role,
 			"status" : status
@@ -74,7 +72,6 @@ exports.addUser = function(req, res, next){
 	var updateGroup = Group.update ({_id: req.body.gid}, 
 		{ $push: {
 			groupMembers: {
-				email: req.body.email,
 				username: req.body.username,
 				role: 'member',
 				status: req.body.status
@@ -95,17 +92,6 @@ exports.updateUserStatus = function(req, res, next){
 		}
 	}, 
 	function(){
-
-	/*	var user = User.findOne({'username': req.body.email}, 
-			function(err, doc) {
-				if(err) console.log('ERR ' + err);
-				if(doc) {
-					console.log('DOC ' + doc);
-				} else {
-					console.log('this is the third option' + username)
-				}
-			});*/
-
 		res.send(req.params);
 	});
 };

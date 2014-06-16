@@ -41,7 +41,6 @@ angular.module('app')
 						.success(function(data, success, headers, config) {
 							if(callNumber === 0) {
 								dfd.resolve(data);
-								console.log('data' + data);
 								for(var i = 0; i < data.length; i++) {
 									for(var j = 0; j < data[i].groupMembers.length; j++) {
 					                  var usersInGroup = {

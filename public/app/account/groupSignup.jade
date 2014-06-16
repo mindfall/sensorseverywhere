@@ -1,4 +1,4 @@
-.container.col-md-6.col-md-offset-3(ng-controller="wFSignupCtrl")
+.container.col-md-6.col-md-offset-3(ng-controller="wFSignUpToGroupCtrl")
   h3 Become a member of {{groupName}}
   .well
     form.form-horizontal(name="groupSignUpForm")
@@ -7,15 +7,15 @@
         .form-group
           label.col-md-2.control-label(for="email") Email
           .col-md-8
-            input.form-control(name="email", type="email", placeholder="Email", ng-model="memberEmail", required)
-         .form-group
+            input.form-control(placeholder="email", ng-model="username")
+        .form-group
           label.col-md-2.control-label(for="password") Password
           .col-md-8
-            input.form-control(name="password", type="password", placeholder="Password", ng-model="memberPass", required)
+            input.form-control(type="password", placeholder="password", ng-model="password")
         .form-group
           .col-md-8.col-md-offset-2
             .pull-right
-              button.btn.btn-primary(ng-click="groupSignIn()", ng-disabled="signupForm.$invalid") Submit
+              button.btn.btn-primary(ng-click="groupSignIn(username, password)", ng-disabled="signupForm.$invalid") Submit
               | &nbsp;
               a.btn.btn-default(href="/") Cancel
 
@@ -27,24 +27,24 @@
         .form-group
           label.col-md-2.control-label(for="email") Email
           .col-md-8
-            input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
+            input.form-control(name="email", type="email", placeholder="email", ng-model="m_username", required)
         .form-group
           label.col-md-2.control-label(for="password") Password
           .col-md-8
-            input.form-control(name="password", type="password", placeholder="Password", ng-model="password", required)
+            input.form-control(name="password", type="password", placeholder="password", ng-model="m_password", required)
         .form-group
           label.col-md-2.control-label(for="fname") First Name
           .col-md-8
-            input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
+            input.form-control(name="fname", type="text", placeholder="first name", ng-model="m_fname", required)
         .form-group
           label.col-md-2.control-label(for="lname") Last Name
           .col-md-8
-            input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
+            input.form-control(name="lname", type="text", placeholder="last name", ng-model="m_lname", required)
 
         .form-group
           .col-md-8.col-md-offset-2
             .pull-right
-              button.btn.btn-primary(ng-click="groupSignUp()", ng-disabled="signupForm.$invalid") Submit
+              button.btn.btn-primary(ng-click="groupSignUp()", ng-disabled="groupSignupForm.$invalid") Submit
               | &nbsp;
               a.btn.btn-default(href="/") Cancel
       

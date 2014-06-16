@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFSignupCtrl', ['$scope', '$location', '$stateParams', 'wFUser', 'wFUserFactory', 'wFGroupFactory', 'wFNotifier', 'wFAuth', 
-		function($scope, $location, $stateParams, wFUser, wFUserFactory, wFGroupFactory, wFNotifier, wFAuth){
+	.controller('wFSignupCtrl', ['$scope', '$location', '$stateParams', 'wFAuth', 'wFGroupFactory', 'wFNotifier', 
+		function($scope, $location, $stateParams, wFAuth, wFGroupFactory, wFNotifier){
 
 			var gid = $stateParams.gid;
 
@@ -28,54 +28,15 @@ angular.module('app')
 					//usericon: $scope.usericon
 				};
 
-				wFAuth.createUser(newUserData).then(function(){
+				wFAuth.createUser(newUserData).then(function() {
 					wFNotifier.notify('User account created!');
 					$location.path('/dashboard');
+	
 				}, function(reason) {
 					wFNotifier.error(reason);
 				});
 			}
 
-			$scope.groupSignIn = function() {
-				var userData = {
-					gid: gid,
-					username: $scope.fname,
-					email: $scope.email
-				};
-
-
-				wFGroupFactory.updateUserStatus(userData).then(function() {
-					wFNotifier.notify('You are now a member of ' + $scope.groupName);
-					$location.path('/dashboard');	
-				}, function(reason){
-					wFNotifier.error(reason);
-				});
-			}
-
-
-			$scope.groupSignUp = function() {
-
-				var userData = {
-					gid: gid,
-					username: $scope.fname,
-					email: $scope.email
-				};
-
-/*				wFUserFactory.findUserByUsername(userData.email).then(function(){
-					console.log('found user');
-					wFNotifier.notify('Welcome ' + $scope.fname +'!');
-					$location.path('/');
-				}, function(reason) {
-					wFNotifier.error(reason);
-				});*/
-
-				wFGroupFactory.updateUserStatus(userData).then(function() {
-					wFNotifier.notify('Your account is now active.');
-					$location.path('/dashboard');	
-				}, function(reason){
-					wFNotifier.error(reason);
-				});
-
-			}
+	
 
 }]);
