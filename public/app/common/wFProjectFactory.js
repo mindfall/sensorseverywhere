@@ -39,6 +39,7 @@ angular.module('app')
 				},
 
 				getProjectsByUser : function(user_id) {
+			
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/projectsByUser/' + user_id})
 						.success(function(data, success, headers, config) {

@@ -1,8 +1,29 @@
-.container(ng-controller="wFSignupCtrl")
+.container.col-md-6.col-md-offset-3(ng-controller="wFSignupCtrl")
+  h3 Become a member of {{groupName}}
   .well
-    form.form-horizontal(name="groupSignForm")
+    form.form-horizontal(name="groupSignUpForm")
       fieldset
-        legend Become a member of {{groupName}}
+        legend Sign in...
+        .form-group
+          label.col-md-2.control-label(for="email") Email
+          .col-md-8
+            input.form-control(name="email", type="email", placeholder="Email", ng-model="memberEmail", required)
+         .form-group
+          label.col-md-2.control-label(for="password") Password
+          .col-md-8
+            input.form-control(name="password", type="password", placeholder="Password", ng-model="memberPass", required)
+        .form-group
+          .col-md-8.col-md-offset-2
+            .pull-right
+              button.btn.btn-primary(ng-click="groupSignIn()", ng-disabled="signupForm.$invalid") Submit
+              | &nbsp;
+              a.btn.btn-default(href="/") Cancel
+
+
+  .well
+    form.form-horizontal(name="groupSignUpForm")
+      fieldset
+        legend ...or sign up!
         .form-group
           label.col-md-2.control-label(for="email") Email
           .col-md-8
@@ -23,7 +44,7 @@
         .form-group
           .col-md-8.col-md-offset-2
             .pull-right
-              button.btn.btn-primary(ng-click="signupToGroup()", ng-disabled="signupForm.$invalid") Submit
+              button.btn.btn-primary(ng-click="groupSignUp()", ng-disabled="signupForm.$invalid") Submit
               | &nbsp;
               a.btn.btn-default(href="/") Cancel
       

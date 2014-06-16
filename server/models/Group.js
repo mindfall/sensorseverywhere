@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 
 var GroupSchema = mongoose.Schema({
-	owner: String,
 	groupName: String,
 	groupProject: String,
 	groupDescription: String,
 	groupMembers: [{
 		email: {type: String},
 		username: {type: String},
+		role: {type: String},
 		status: String
 	}],
 	filename: String

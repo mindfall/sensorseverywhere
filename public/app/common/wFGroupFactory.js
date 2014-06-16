@@ -35,12 +35,13 @@ angular.module('app')
 				},
 
 
-				getGroupsByUser : function(user_id) {
+				getGroupsByUser : function(username) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url: '/api/groupsByUser/' + user_id})
+					$http({method: 'GET', url: '/api/groupsByUser/' + username})
 						.success(function(data, success, headers, config) {
 							if(callNumber === 0) {
 								dfd.resolve(data);
+								console.log('data' + data);
 								for(var i = 0; i < data.length; i++) {
 									for(var j = 0; j < data[i].groupMembers.length; j++) {
 					                  var usersInGroup = {

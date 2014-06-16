@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFSignupCtrl', ['$scope', '$location', '$stateParams', 'wFUser', 'wFGroupFactory', 'wFNotifier', 'wFAuth', 
-		function($scope, $location, $stateParams, wFUser, wFGroupFactory, wFNotifier, wFAuth){
+	.controller('wFSignupCtrl', ['$scope', '$location', '$stateParams', 'wFUser', 'wFUserFactory', 'wFGroupFactory', 'wFNotifier', 'wFAuth', 
+		function($scope, $location, $stateParams, wFUser, wFUserFactory, wFGroupFactory, wFNotifier, wFAuth){
 
 			var gid = $stateParams.gid;
 
@@ -10,11 +10,11 @@ angular.module('app')
 				console.log(reason);
 			});
 
-			$scope.selectRole = [
+/*			$scope.selectRole = [
 				{name: 'owner', value: 'owner'},
 				{name: 'contributor', value: 'contributor'}
 			];
-			$scope.roles = {type: $scope.selectRole[0].value};
+			$scope.roles = {type: $scope.selectRole[0].value};*/
 			$scope.usericon = "";
 
 			$scope.signup = function() {
@@ -24,19 +24,36 @@ angular.module('app')
 					password: $scope.password,
 					firstname: $scope.fname,
 					lastname: $scope.lname,
-					roles: $scope.roles.type
+					roles: 'owner'
 					//usericon: $scope.usericon
 				};
 
 				wFAuth.createUser(newUserData).then(function(){
 					wFNotifier.notify('User account created!');
-					$location.path('/');
+					$location.path('/dashboard');
 				}, function(reason) {
 					wFNotifier.error(reason);
 				});
 			}
 
-			$scope.signupToGroup = function() {
+			$scope.groupSignIn = function() {
+				var userData = {
+					gid: gid,
+					username: $scope.fname,
+					email: $scope.email
+				};
+
+
+				wFGroupFactory.updateUserStatus(userData).then(function() {
+					wFNotifier.notify('You are now a member of ' + $scope.groupName);
+					$location.path('/dashboard');	
+				}, function(reason){
+					wFNotifier.error(reason);
+				});
+			}
+
+
+			$scope.groupSignUp = function() {
 
 				var userData = {
 					gid: gid,
@@ -44,7 +61,8 @@ angular.module('app')
 					email: $scope.email
 				};
 
-/*				wFAuth.createUser(userData).then(function(){
+/*				wFUserFactory.findUserByUsername(userData.email).then(function(){
+					console.log('found user');
 					wFNotifier.notify('Welcome ' + $scope.fname +'!');
 					$location.path('/');
 				}, function(reason) {
@@ -52,7 +70,8 @@ angular.module('app')
 				});*/
 
 				wFGroupFactory.updateUserStatus(userData).then(function() {
-					wFNotifier.notify('Your account is now active.')	
+					wFNotifier.notify('Your account is now active.');
+					$location.path('/dashboard');	
 				}, function(reason){
 					wFNotifier.error(reason);
 				});

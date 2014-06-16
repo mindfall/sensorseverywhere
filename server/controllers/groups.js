@@ -17,7 +17,8 @@ exports.getGroups = function(req, res){
 };
 
 exports.getGroupsByUser = function(req, res) {
-	Group.find({'owner': req.params.id}, function(err, groups) {
+
+	Group.find({'groupMembers.username': req.params.username}, function(err, groups) {
 		res.send(groups);
 	});
 };
@@ -35,26 +36,26 @@ exports.getGroupById = function(req, res) {
 exports.createGroup = function(req, res, next){
 
 	var groupData = req.body;
-	var groupOwner = groupData.owner;
 	var groupName = groupData.groupName;
 	var groupProject = groupData.projectName;
 	var groupDescription = groupData.groupDescription;
-	var email = '';
-	var username = '';
-	var status = '';
+	var email = groupData.email;
+	var username = groupData.username;
+	var status = groupData.status;
+	var role = groupData.role;
 
 	filename = files.getImageName();
 //	console.log('create group: ' + groupProject);
 	
 	//stub
 	var saveGroup = Group.create ({
-		"owner" : groupOwner,
 		"groupName" : groupName,
 		"groupProject": groupProject,
 		"groupDescription": groupDescription,
 		"groupMembers":[{
 			"email" : email,
 			"username": username,
+			"role": role,
 			"status" : status
 		}],
 		"filename": filename
@@ -69,12 +70,13 @@ exports.createGroup = function(req, res, next){
 */
 
 exports.addUser = function(req, res, next){
-	console.log('adding user');
+
 	var updateGroup = Group.update ({_id: req.body.gid}, 
 		{ $push: {
 			groupMembers: {
 				email: req.body.email,
 				username: req.body.username,
+				role: 'member',
 				status: req.body.status
 			}
 		}}, 

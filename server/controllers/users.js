@@ -50,6 +50,19 @@ exports.updateUser = function(req, res){
 	});
 };
 
+exports.findUserByUsername = function(req, res) {
+	
+	User.findOne({username: req.params.username}).exec(function(err, user) {
+		if(err) console.log('There was an error.');
+		if(!user) {
+			res.send('No user found.');
+		} else {
+			res.send(user);
+		}
+	});
+
+}
+
 exports.removeUser = function(req, res) {
 	console.log(req.params.id);
 }

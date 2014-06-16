@@ -16,7 +16,10 @@ angular.module('app')
 	    $scope.createGroup = function(groupName, projectName, description) {
 
 	    	var groupData = {
-	    		owner : user._id,
+	    		email : user.email,
+	    		username : user.username,
+	    		status : 'accepted',
+	    		role : 'owner',
 	    		groupName : groupName,
 	    		projectName: projectName,
 	    		groupDescription: description
@@ -38,7 +41,7 @@ angular.module('app')
 
 	    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
 	    	addGroupToProject.then(function(addGroup) {
-	    		wFNotifier.notify('Your group has been added to project ' + projectName);
+	    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
@@ -71,6 +74,7 @@ angular.module('app')
 			groupList.then(function(groupList){
 				for(var i = 0; i < groupList.length; i++){
 					groupArray.push(groupList[i]);
+					console.log(groupArray);
 				}
 				for(var name in groupArray) {
 					if(typeof groupArray[name] !== 'function') {

@@ -29,7 +29,7 @@ module.exports = function(app){
 
 	app.get('/api/groups', groups.getGroups);
 	app.get('/api/groupById/:id', groups.getGroupById);
-	app.get('/api/groupsByUser/:id', groups.getGroupsByUser);
+	app.get('/api/groupsByUser/:username', groups.getGroupsByUser);
 	app.post('/api/createGroup', groups.createGroup);
 	app.post('/api/addUserToGroup', groups.addUser);
 	app.post('/api/removeGroup/:id', groups.removeGroup);
@@ -45,6 +45,7 @@ module.exports = function(app){
 
 	app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
 	app.get('/api/users', auth.requiresRole('owner'), users.getUsers);
+	app.get('/api/findUser/:username', users.findUserByUsername);
 	app.post('/api/users', users.createUser);
 	app.post('/api/users/:id', auth.requiresRole('admin'), users.removeUser);
 	app.put('/api/users', users.updateUser);

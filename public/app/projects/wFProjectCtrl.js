@@ -30,6 +30,7 @@ angular.module('app')
 		*/
 
 		$scope.getProjects = function() {
+		
 			projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
@@ -42,7 +43,7 @@ angular.module('app')
 		}
 
 		$scope.getProjectById = function(id) {
-
+		
 	 		var project = wFProjectFactory.getProjectById(id);
 	 		project.then(function(project) {
 	 			for(var i = 0; i < project.project_coords.points.length; i++) {
@@ -59,6 +60,7 @@ angular.module('app')
 
 
 		$scope.getProjectsByUser = function() {
+		
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
 			getUserProjects.then(function(getUserProjects){
 		    if(getUserProjects.length === 0) {
@@ -109,7 +111,7 @@ angular.module('app')
 		*/
 
 
-		$scope.getProjects();
+		$scope.getProjectsByUser();
 
 
 
