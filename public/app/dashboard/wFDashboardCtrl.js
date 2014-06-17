@@ -2,6 +2,8 @@ angular.module('app').
   controller('wFDashboardCtrl', ['$scope', '$location', '$q', '$http', 'wFIdentity', 'wFProjectFactory', 'wFGroupFactory',
     function($scope, $location, $q, $http, wFIdentity, wFProjectFactory, wFGroupFactory) {
 
+      var emailPopup = false;
+      var chatPopup = false;
     	var getUserProjects = [];
     	var userProjects = [];
       var getUserGroups = [];
@@ -82,5 +84,49 @@ angular.module('app').
         $scope.toggleDocumentOverlay = function() {
           $scope.documentOverlay = !$scope.documentOverlay;
         }
+
+        $scope.emailPopup = function(state) {
+          if(state === 'show') {
+            emailPopup = true;
+
+          }
+          if(state === 'hide') {
+            emailPopup = false;
+          }
+          return emailPopup;
+        }
+
+        $scope.chatPopup = function(state) {
+          console.log(state);
+          if(state === 'show') {
+            chatPopup = true;
+          }
+          if(state === 'hide') {
+            chatPopup = false;
+          }
+          return chatPopup;
+        }
+
         if(user) $scope.getGroupsByUser();
-}]);
+
+}]).directive('emailPopup', function() {
+
+    return {
+      priority: 1000,
+      restrict: 'EA',
+      transclude: 'element',
+      templateUrl: '/partials/dashboard/email/emailPopup',
+      replace: true,
+
+    }
+  }).directive('chatPopup', function() {
+
+    return {
+      priority: 1000,
+      restrict: 'EA',
+      transclude: 'element',
+      templateUrl: '/partials/dashboard/chat/chatPopup',
+      replace: true,
+
+    }
+  });

@@ -90,22 +90,6 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				controller: 'wFProfileCtrl',
 				resolve: routeRoleChecks.user
 		})
-		.state('dashboard.groups.email', {
-				url: '/email',
-				views: {
-					'group-pane@dashboard': {templateUrl: '/partials/dashboard/email/dashboard-email',
-										controller: 'wFEmailCtrl'
-									},
-				}
-		})
-		.state('dashboard.chat', {
-				url: '/chat',
-				views: {
-					'group-pane@dashboard': {templateUrl: '/partials/dashboard/dashboard-chat',
-										controller: 'wFChatCtrl'
-									},
-				}
-		})
 		.state('dashboard.files', {
 				url: '/files',
 				views: {

@@ -27,4 +27,6 @@ angular.module('app').controller('wFEmailContentCtrl', ['$scope', '$rootScope', 
 		$scope.showingReply = false;
 		$scope.reply = {};
 	});
+
+
 }]);

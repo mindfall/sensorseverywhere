@@ -137,8 +137,9 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 													td
 														span {{member.status}}
 													td
-														button(class="btn btn-default" ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);") Email
-														button(class="btn btn-default" ng-click="openChat();") Chat
+														button(class="btn btn-default" ng-click="emailPopup('show')") Email
+														//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
+														button(class="btn btn-default" ng-click="chatPopup('show');") Chat
 													td
 														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
 												tr(style="font-weight: bold;") Send Invitation
@@ -155,7 +156,12 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
 													td
 														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
+			
+										
+
 				button(class="create-group-button" ng-controller="wFGroupCtrl" ng-model="clickModel" ng-click="toggleGroupForm();") {{buttonLabel}}
+			email-popup(ng-show="emailPopup()" draggability)
+			chat-popup(ng-show="chatPopup()" draggability)
 			div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
 				div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbspX
 					img(ng-src="data:image/png;base64,{{groupImage}}")
