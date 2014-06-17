@@ -1,4 +1,4 @@
-angular.module('app').factory('wFTaskFactory', ['$http', '$q', '$location', 'wFNotifier', 
+angular.module('app').factory('wFTaskFactory', ['$http', '$q', '$location', 'wFNotifier',
 	function($http, $q, $location, wFNotifier) {
 
 		return {
@@ -13,6 +13,22 @@ angular.module('app').factory('wFTaskFactory', ['$http', '$q', '$location', 'wFN
 						dfd.reject();
 					});
 				return dfd.promise;
+			},		
+		
+
+			findActiveGroupMembers: function(project) {
+				var activeUsers = [];
+				var activeMembers = [];
+				var dfd = $q.defer();
+				$http({method: 'GET', url: '/api/findActiveMembers/' + project})
+					.success(function(data, success, headers, config) {
+						dfd.resolve(data);
+					}).
+					error(function(data, status, headers, config) {
+						dfd.reject(status);
+					});
+				return dfd.promise;
+
 			}
-		}
+	}
 }]);

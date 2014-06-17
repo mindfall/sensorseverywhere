@@ -30,6 +30,7 @@ module.exports = function(app){
 	app.get('/api/groups', groups.getGroups);
 	app.get('/api/groupById/:id', groups.getGroupById);
 	app.get('/api/groupsByUser/:username', groups.getGroupsByUser);
+	app.get('/api/findActiveMembers/:project', groups.findActiveMembers);
 	app.post('/api/createGroup', groups.createGroup);
 	app.post('/api/addUserToGroup', groups.addUser);
 	app.post('/api/removeGroup/:id', groups.removeGroup);

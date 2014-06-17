@@ -42,11 +42,19 @@ angular.module('app')
 					roles: 'member'
 					//usericon: $scope.usericon
 				};
-				console.log(newUserData);
+
+				var userData = {
+					gid: gid,
+					username: $scope.m_username
+				}
+
 				wFAuth.createUser(newUserData).then(function() {
-					wFNotifier.notify('User account created!');
-					$location.path('/dashboard');
-	
+					wFGroupFactory.updateUserStatus(userData).then(function() {
+						wFNotifier.notify('You have signed up and are now a member of ' + $scope.groupName);
+						$location.path('/dashboard');	
+					}, function(reason){
+						wFNotifier.error(reason);
+					});
 				}, function(reason) {
 					wFNotifier.error(reason);
 				});

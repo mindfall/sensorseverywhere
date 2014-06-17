@@ -100,9 +100,10 @@ angular.module('app')
 				},
 
 				updateUserStatus : function(userData) {
+					console.log(userData);
 					var dfd = $q.defer();
 					//$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
-					$http({method: 'PUT', url: '/api/updateUserStatus/' + userData, data:{gid: userData.gid, username: userData.username, email: userData.email}})
+					$http({method: 'PUT', url: '/api/updateUserStatus/' + userData, data:{gid: userData.gid, username: userData.username}})
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
 						})

@@ -1,7 +1,8 @@
 angular.module('app')
-	.controller('wFTaskCtrl', ['$scope', 'wFTaskFactory', 'wFGroupFactory', 
-		function($scope, wFTaskFactory, wFGroupFactory) {
+	.controller('wFTaskCtrl', ['$scope', 'wFTaskFactory', 'wFGroupFactory', 'wFIdentity',
+		function($scope, wFTaskFactory, wFGroupFactory, wFIdentity) {
 
+			var user = wFIdentity.currentUser;
 
 			$scope.saveTask = function(pid, taskPriority, taskName, taskDesc, taskOwner, taskStatus) {
 
@@ -44,22 +45,27 @@ angular.module('app')
 				console.log('uploading task file');
 			}
 
-			$scope.getGroupMembers = function() {
-				var selectOwner = [];
-				var groupMembers = wFGroupFactory.getGroupsByUser();
+			$scope.findActiveMembers = function(project) {
 				
-				groupMembers.then(function(members) {
-					for(var i = 0; i < members.length; i++) {
-						console.log(members[i]);
-						var ownerAttrs = {
-							name: members[i].username,
-							value: members[i].username
-						}
-						selectOwner.push(ownerAttrs);
-					}
+				var selectOwner = [];
+				var activeMembers = wFTaskFactory.findActiveGroupMembers(project);
+				
+				activeMembers.then(function(data) {
 
-					$scope.selectOwner = selectOwner;
-		//			$scope.setOwner = {type: $scope.selectOwner[0].value};
+					for(var i = 0; i < data.length; i++) {
+
+						for(var j = 0; j < data[i].groupMembers.length; j++) {
+							var ownerAttrs = {
+								name: data[i].groupMembers[j].username.toString(),
+								value: data[i].groupMembers[j].username.toString()
+							}
+							selectOwner.push(ownerAttrs);
+						}
+						$scope.selectOwner = selectOwner;
+						$scope.setOwner = {type: $scope.selectOwner[0].value};
+
+						console.log($scope.selectOwner);
+					}
 				});
 			}
 
@@ -91,6 +97,6 @@ angular.module('app')
 				}
 			];
 
-			$scope.getGroupMembers();
+			$scope.findActiveMembers();
 
 }]);

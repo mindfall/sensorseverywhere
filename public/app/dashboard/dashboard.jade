@@ -33,7 +33,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 
 										
 							div(ng-controller="wFTaskCtrl")
-								accordion(ng-controller="wFTaskCtrl" close-others="oneAtATime")
+								accordion(close-others="oneAtATime")
 									accordion-group(heading="View Tasks")
 										table(class="table table-bordered table-hover table-condensed")
 											tr(style="font-weight: bold;")
@@ -53,7 +53,8 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												td
 													input(class="form-control" ng-model="taskDesc" type="text" placeholder="Enter task description...")
 												td
-													select(class="form-control" ng-model="taskOwner", ng-options="owner.value as owner.name for owner in selectOwner")
+													select(class="form-control" ng-model="taskOwner", ng-click="findActiveMembers(project.project_name)" ng-options="owner.value as owner.name for owner in selectOwner") 
+												//	{{selectOwner[0].value}}
 												td
 													select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
 												//- td(ng-controller="wFFileUploadCtrl")

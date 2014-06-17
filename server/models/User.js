@@ -8,6 +8,11 @@ var UserSchema = mongoose.Schema({
 	salt: String, 
 	hashed_pwd: String,
 	roles: [String]
+/*	projectsGroupsRoles: [{
+		project: {type: String},
+		group: {type: String},
+		role: {type: String}
+	}]*/
 
 },{strict: true});
 

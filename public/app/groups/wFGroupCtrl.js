@@ -49,11 +49,11 @@ angular.module('app')
 	    	$location.url('/dashboard');
 	    }
 
-	    $scope.addUserToGroup = function(email, username, gid) {
+	    $scope.addUserToGroup = function(username, firstname, gid) {
 
 	    	var userData = {
-	    		email: email,
 	    		username: username,
+	    		firstname: firstname,
 	    		status: 'pending',
 	    		gid: gid
 	    	};
@@ -101,7 +101,7 @@ angular.module('app')
 
 	 	$scope.getProjectNames = function() {
 
-			projectList = wFProjectFactory.getProjects();
+			projectList = wFProjectFactory.getProjectsByUser(user._id);
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
 					projectNames.push(projectList[i].project_name);

@@ -17,7 +17,6 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 		
 		createUser: function(newUserData){
 			var newUser = new wFUser(newUserData);
-			console.log(newUser);
 			var dfd = $q.defer();
 
 			newUser.$save().then(function(){

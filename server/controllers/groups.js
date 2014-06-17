@@ -63,6 +63,15 @@ exports.createGroup = function(req, res, next){
 	});
 };
 
+exports.findActiveMembers = function(req, res) {
+	console.log(req.params);
+	var activeMembers = Group.find({'groupMembers.status': 'accepted', 'groupProject': req.params.project},
+		{'groupMembers.username': 1, _id: 0},
+		function(err, activeMembers) {
+			res.send(activeMembers);
+		});
+}
+
 /**
 * add new member(s) to group
 */
@@ -85,8 +94,8 @@ exports.addUser = function(req, res, next){
 
 
 exports.updateUserStatus = function(req, res, next){
-
-	var updateUser = Group.update ({'groupMembers.email': req.body.email}, {
+	console.log(req.body.username);
+	var updateUser = Group.update ({_id: req.body.gid, 'groupMembers.username': req.body.username}, {
 			$set: {
 				'groupMembers.$.status': 'accepted'
 		}
