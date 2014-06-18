@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
+	Group = mongoose.model('Group'),
 	User = mongoose.model('User');
 
 exports.getProjects = function(req, res){
@@ -11,11 +12,10 @@ exports.getProjects = function(req, res){
 exports.createProject = function(req, res, next){
 	var projectData = req.body;
 	var i = 0;
-//	console.log(projectData.project_location[0].length);
-//	console.log(projectData.project_location[0])
 	var projectOwner = projectData.project_owner;
 	var projectOwnerFirstName = projectData.project_owner_firstname;
 	var projectName = projectData.project_name;
+	var groupName = 'Not set';
 	var projectDescription = projectData.project_description;
 	var projectStartDate = req.body.project_start;
 	var projectEndDate = req.body.project_end;
@@ -57,14 +57,12 @@ exports.createProject = function(req, res, next){
 
 		    //id: Number,
 		    "project_name": projectName,
-		    "project_owner": [{
+		    "project_group": groupName,
+		    "project_owner": {
 		       	"owner_id": projectOwner,
 		        "owner_name": projectOwnerFirstName
 		         //   owner_gravatar: String
-		    }],
-		    "project_group": [{
-		        "groupName": null
-		    }],
+		    },
 		    "project_wildlife": {
 		        "name": wildlifeNames,
 		    },
@@ -91,21 +89,27 @@ exports.createProject = function(req, res, next){
 				"taskStatus": taskStatus
 			}]
 
+
 	}, 
 	function(){
-//		console.log(saveProject);
-	 	res.send(saveProject);
-	});
+		var addUserToProject = User.update({_id: projectOwner},
+			{ $push: {
+				projectGroupRole: {
+					project: projectData.project_name,
+				}
 
+			}},
+			function() {
+				res.send(saveProject);
+			});
+	});
 };
 
 exports.addGroupToProject = function(req, res) {
 //	console.log('adding group to project ' + JSON.stringify(req.body));
 	var addGroup = Project.update( { project_name: req.body.projectName},
-		{ $push: {
-			project_group: {
-				groupName: req.body.groupName
-			}
+		{ $set: {
+			project_group: req.body.groupName
 		}},
 		function() {
 			res.send(req.body);
@@ -170,9 +174,24 @@ exports.updateProject = function(req, res) {
 }
 
 exports.removeProject = function(req, res, next){
+
 	Project.findById(req.params.id, function(err, project) {
+		Group.find({'groupName': project.project_group}, function(err, group) {
+			Group.remove(function(err, group) {
+				console.log('removed group');
+			})
+		});
+			console.log(project.project_owner.owner_id);
+		User.update({_id: project.project_owner.owner_id}, {
+ 			$pull: {
+				projectGroupRole: {
+					project: project.project_name
+				}
+			}}, function(err, user) {
+			console.log('removed project from user');
+		});
 		project.remove(function(err, project) {
 			res.send(project);
-		})
+		});
 	});
 }

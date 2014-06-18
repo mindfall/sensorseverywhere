@@ -4,6 +4,7 @@ angular.module('app')
 	var projectPopup = false;
 	var corridorData = {};
 
+	$scope.checked;
 	$scope.identity = wFIdentity;
 	$scope.project_name = '';
 	$scope.project_description = '';

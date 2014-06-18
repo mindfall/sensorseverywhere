@@ -97,7 +97,6 @@ angular.module('app').
         }
 
         $scope.chatPopup = function(state) {
-          console.log(state);
           if(state === 'show') {
             chatPopup = true;
           }

@@ -3,13 +3,15 @@ angular.module('app').factory('wFUserFactory', function($q, $http, $location, wF
 
 	return {
 
-		removeUserFromGroup : function(group_id, user_id) {
+		removeUserFromGroup : function(groupname, username) {
 			var dfd = $q.defer();
-			$http.post('/api/groups/' + group_id + '/' + user_id) 
+			$http.post('/api/removeUserFromGroup/' + groupname + '/' + username) 
 				.success(function(data, success, headers, config) {
 					dfd.resolve(data);
+					console.log(data);
 				})
 				.error(function(data, success, headers, config) {
+					console.log('there was an error');
 					dfd.reject(status);
 				}); 
 			return dfd.promise;

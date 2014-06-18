@@ -17,7 +17,6 @@ exports.getGroups = function(req, res){
 };
 
 exports.getGroupsByUser = function(req, res) {
-
 	Group.find({'groupMembers.username': req.params.username}, function(err, groups) {
 		res.send(groups);
 	});
@@ -41,6 +40,7 @@ exports.createGroup = function(req, res, next){
 	var groupDescription = groupData.groupDescription;
 	var email = groupData.email;
 	var username = groupData.username;
+	console.log(username);
 	var status = groupData.status;
 	var role = groupData.role;
 
@@ -59,12 +59,19 @@ exports.createGroup = function(req, res, next){
 		"filename": filename
 	}, 
 	function(){
-	 	res.send(saveGroup);
+		var addGroupToUser = User.update({username: username, 'projectGroupRole.project': groupData.projectName},
+			{ $set: {
+				'projectGroupRole.$.group': groupData.groupName,
+				'projectGroupRole.$.role': 'owner'
+			}},
+			function() {
+				res.send(saveGroup);
+			});
+ 	
 	});
 };
 
 exports.findActiveMembers = function(req, res) {
-	console.log(req.params);
 	var activeMembers = Group.find({'groupMembers.status': 'accepted', 'groupProject': req.params.project},
 		{'groupMembers.username': 1, _id: 0},
 		function(err, activeMembers) {
@@ -149,6 +156,24 @@ exports.removeGroup = function(req, res, next){
 }
 
 exports.removeUserFromGroup = function(req, res) {
-	console.log(req.params);
-	//Group.findById(req.pa)
+	console.log(req.params)
+
+	Group.update({groupName: req.params.groupname}, {
+		$pull: {
+			groupMembers: {
+				username: req.params.username
+			}
+		}}, function(err, user) {
+		console.log('removed project from user');
+	});
+
+
+	User.update({username: req.params.username}, {
+		$pull: {
+			projectGroupRole: {
+				group: req.params.groupname
+			}
+		}}, function(err, user) {
+		console.log('removed project from user');
+	});
 }

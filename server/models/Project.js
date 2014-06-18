@@ -12,14 +12,12 @@ var Schema = mongoose.Schema;
 var ProjectSchema = new Schema({
   //  id: Number,
     project_name:String,
-    project_owner: [{
+    project_group: String,
+    project_owner: {
             owner_id: {type: String},
             owner_name: String
         //    owner_gravatar: String
-    }],
-    project_group: [{
-        groupName: String
-    }],
+    },
     project_wildlife: {
         name: String
     },

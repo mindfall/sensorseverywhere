@@ -22,8 +22,16 @@ angular.module('app')
 				emailButtonValue: 'Invite'
 			};
 
-		    $scope.removeUserFromGroup = function(index) {
-		    	$scope.users.splice(index, 1);
+		    $scope.removeUserFromGroup = function(index, groupname, username) {
+		    	console.log(groupname + '   ' + username);
+		    	wFUserFactory.removeUserFromGroup(groupname, username)
+		    		.then(function(response) {
+		    			console.log(response);
+		    			$scope.users.splice(index, 1);
+		    		}, function(err) {
+		    			console.log(status);
+		    		});
+		    	
 		    }
 
 

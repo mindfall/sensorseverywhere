@@ -12,7 +12,7 @@ angular.module('app').factory('wFIdentity', function($window, wFUser){
 			return !!this.currentUser;
 		}, 
 		isAuthorized: function(role){
-			return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
+			return !!this.currentUser && this.currentUser.siteRole.indexOf(role) > -1;
 		}
 	}
 });

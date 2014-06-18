@@ -11,25 +11,25 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										span(class="accordion-group-heading") {{project.project_name}} 
 										span(class="accordion-group-heading button btn-default accordion-remove-project" ng-click="removeProject(project._id)") X
 							table
-									
-								tr
+								tr.project-summary
 									td
 										div.accordion-project-name
 											a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}
-									td
+									td(colspan="4")
 										div.accordion-project-summary
 											span {{project.project_description}}
-					
-									td
-										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
-										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit
-										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
-								tr
-									td(ng-controller="wFFileUploadCtrl")
+								tr.project-controls
+									td.control-cell(ng-controller="wFFileUploadCtrl")
 										input(type="hidden" ng-model="fileUpload")
 										input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
-									td
+									td.control-cell
 										button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
+									td.control-cell
+										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+									td.control-cell
+										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit
+									td.control-cell
+										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
 
 										
 							div(ng-controller="wFTaskCtrl")
@@ -133,7 +133,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 													td(style="width: 25%") Delete
 												tr(ng-repeat="member in group.groupMembers track by $index")
 													td
-														span {{member.username}}
+														span(ng-model="member.username") {{member.username}}
 													td
 														span {{member.status}}
 													td
@@ -141,7 +141,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 														//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
 														button(class="btn btn-default" ng-click="chatPopup('show');") Chat
 													td
-														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Delete
+														button(class="btn btn-default" ng-click="removeUserFromGroup($index, group.groupName, member.username)") Delete
 												tr(style="font-weight: bold;") Send Invitation
 													td(style="width: 25%;") Email
 													td(style="width: 25%") Name

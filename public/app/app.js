@@ -6,7 +6,8 @@ angular.module('app', [
 	'ui.router',
 	'bgDirectives',
 	'xeditable',
-	'angularFileUpload'	
+	'angularFileUpload',
+	'pageslide-directive'	
 ]);
 
 angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){

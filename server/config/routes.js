@@ -34,7 +34,7 @@ module.exports = function(app){
 	app.post('/api/createGroup', groups.createGroup);
 	app.post('/api/addUserToGroup', groups.addUser);
 	app.post('/api/removeGroup/:id', groups.removeGroup);
-	app.post('/api/removeUserFromGroup/:gid/:uid', groups.removeUserFromGroup);
+	app.post('/api/removeUserFromGroup/:groupname/:username', groups.removeUserFromGroup);
 	app.put('/api/updateUserStatus/:data', groups.updateUserStatus);
 
 	app.get('/api/tasks', tasks.getTasks);

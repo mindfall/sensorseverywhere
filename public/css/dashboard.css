@@ -1,0 +1,167 @@
+/* DASHBOARD */
+.dashboard-message {
+  font-family: arial;
+  font-weight: bold;
+  color: #d7e0e2;
+}
+.project-summary {
+  width: 100%;
+  float: left;
+  display: inline-block;
+}
+.accordion-project-name {
+  margin-right: 20px;
+}
+.accordion-project-summary {
+  float: left;
+  padding-left: 20px;
+}
+.project-controls {
+  display: inline;
+  padding: 20px;
+}
+.control-cell {
+  width: 20%;
+  padding: 10px;
+}
+.create-project-table {
+  width: 100%;
+  display: block;
+}
+.create-group-table {
+  border: 1px solid #808080;
+  width: 750px;
+}
+.accordion-remove-project,
+.accordion-remove-group {
+  float: right;
+  width: 10px !important;
+}
+/* END DASHBOARD */
+/* EMAIL */
+#sidebar {
+  clear: left;
+  float: left;
+  min-height: 300px;
+  width: 228px;
+  position: relative;
+  z-index: 1s crs;
+}
+#emailListing {
+  margin-top: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.emailListing {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  height: 120px;
+  overflow: hidden;
+  padding: 8px;
+}
+#emailListing li {
+  list-style-type: none;
+}
+.emailListing .date {
+  font-size: 0.5em;
+  color: #00f;
+  display: none;
+}
+.emailListing .subject {
+  font-size: 0.8em;
+}
+/* END EMAIL */
+/* GROUPS */
+.accordion-group-heading {
+  width: 25%;
+  display: inline-block;
+}
+.group-container {
+  min-height: 60px;
+  margin-top: 100px;
+}
+.group-list-container,
+.group-form-container {
+  top: -50px;
+  position: absolute;
+}
+.create-group-form {
+  margin-top: 40px;
+}
+.row-collaboration-elements {
+  height: 25%;
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 200px;
+  z-index: 200;
+}
+.chat-files-panel {
+  border: 1px solid #d7e0e2;
+}
+.chat-panel {
+  padding: 0px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: 300px;
+  position: absolute;
+  margin-left: 61%;
+}
+.overflowable {
+  height: 190px;
+  overflow-y: auto;
+  border: 1px solid #d7e0e2;
+}
+.overflowable p {
+  margin: 0;
+}
+.col {
+  float: left;
+}
+.clr {
+  clear: both;
+}
+.message-form {
+  margin-left: 15px;
+}
+.send-message {
+  margin-left: 10px;
+}
+.email-popup {
+  clear: both;
+  width: 650px;
+  height: 700px;
+  margin-left: 33%;
+  margin-top: 10%;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -webkit-box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  -moz-box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  border: 5px solid #d7e0e2;
+  background-color: #fff;
+  position: absolute;
+  padding: 10px;
+  z-index: 1000;
+}
+.chat-popup {
+  clear: both;
+  width: 350px;
+  height: 500px;
+  margin-left: 33%;
+  margin-top: 10%;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -webkit-box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  -moz-box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  box-shadow: 15px 15px 15px 10px rgba(155,157,157,0.5);
+  border: 5px solid #d7e0e2;
+  background-color: #fff;
+  position: absolute;
+  padding: 10px;
+  z-index: 1001;
+}
+/* END GROUPS */
