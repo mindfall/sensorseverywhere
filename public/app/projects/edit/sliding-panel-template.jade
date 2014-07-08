@@ -1,0 +1,16 @@
+div(id="slide-panel")
+	div(ng-controller="wFWebRTCCtrl")
+		div(class="spacer")
+			h1 WebRTC  
+				div(class="col-md-9")
+					web-rtc.rtc-container
+						video(id="video" autoplay="autoplay" controls="true")
+						div(class="buttons-wrapper") 
+							button(id="button-play-gum" class="button-demo" href="#") Play demo 
+							button(id="button-stop-gum" class="button-demo" href="#") Stop demo 
+							span(id="gum-unsupported" class="hidden") API not supported 
+							span(id="gum-partially-supported" class="hidden") API partially supported - video only 
+
+		div(class="sliding-panel-border-img")
+				div(class="sliding-panel-border-tab")
+					div(class="sliding-panel-border-arrow") 

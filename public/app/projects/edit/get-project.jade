@@ -1,0 +1,22 @@
+div(class="main-container" ng-controller="wFMainCtrl")
+	.container(ng-if="isLoggedIn")
+		.row(class="create-row-map-container")
+			div(ng-controller="wMSlidingPanelCtrl")
+				slide-panel
+			.col-md-9(class="col-9-map-container")
+				
+				div(ng-controller="wFMapCtrl" id="map" class="map")
+					leaflet
+					div(class="showMapBtn" ng-init="editMap()") Show Map
+
+			.col-md-3(ng-controller="wFEditProjectCtrl" class="col-3-selection-container")
+				h3 Project Details
+				div(editable-text="project.project_name") {{project.project_name}}
+				div(editable-text="project.project_start_date") {{project.project_start_date}}
+				div(editable-text="project.project_end_date") {{project.project_end_date}}
+				div(editable-text="project.project_group") {{project.project_group}}
+				div(editable-text="project.project_owner.owner_id") {{project.project_owner.owner_id}}
+				div(editable-text="project.project_type") {{project.project_type}}
+				div(editable-text="project.project_wildlife.name") {{project.project_wildlife.name}}
+
+		button(class="save-project-button") Edit
