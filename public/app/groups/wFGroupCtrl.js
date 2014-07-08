@@ -38,15 +38,21 @@ angular.module('app')
 	    		groupName : groupName,
 	    		projectName: projectName
 	    	};
+	    	console.log(projectName)
+	    	if(projectName === '' || projectName === 'undefined' || projectName === null) {
+	    		wFNotifier.error('The group must be added to a project.');
+	    		return;
+	    	} else {
+		    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
+		    	addGroupToProject.then(function(addGroup) {
+		    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
+		    	}, function(status) {
+		    		console.log(status);
+		    	});
 
-	    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
-	    	addGroupToProject.then(function(addGroup) {
-	    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
-	    	}, function(status) {
-	    		console.log(status);
-	    	});
+		    	$location.url('/dashboard');
+	    	}
 
-	    	$location.url('/dashboard');
 	    }
 
 	    $scope.addUserToGroup = function(username, firstname, gid) {

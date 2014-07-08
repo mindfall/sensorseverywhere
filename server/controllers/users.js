@@ -10,10 +10,29 @@ exports.getUsers = function(req, res){
 
 exports.createUser = function(req, res, next){
 	var userData = req.body;
+	var project = userData.project;
+	var group = userData.group;
+	var role = userData.role;
+
+
 	userData.username = userData.username.toLowerCase();
 	userData.salt = encrypt.createSalt();
 	userData.hashed_pwd = encrypt.hashPwd(userData.salt, userData.password);
-	User.create(userData, function(err, user){
+
+	var saveUser = User.create ({
+		"firstname" : req.body.firstname,
+		"lastname": req.body.lastname,
+		"username": req.body.username,
+		"salt": userData.salt,
+		"hashed_pwd": userData.hashed_pwd,
+		"siteRole" : [],
+		"projectGroupRole":[{
+			"project": project,
+			"group": group,
+			"role" : role
+		}]
+	}, 
+	function(err, user){
 		if(err){
 			if(err.toString().indexOf('E11000') > -1){
 				err = new Error('Duplicate username');
@@ -25,8 +44,14 @@ exports.createUser = function(req, res, next){
 			if(err) {return next(err);}
 			res.send(user);
 		})
-	})
+ 	
+	});
 };
+
+exports.updateUserGroupRole = function(req, res) {
+	console.log(req.data);
+}
+
 
 exports.updateUser = function(req, res){
 	var userUpdates = req.body;

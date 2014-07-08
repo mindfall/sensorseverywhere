@@ -149,7 +149,9 @@ exports.updateTotalContributions = function(req, res){
 
 }
 
-exports.getProjectById = function(req, res){
+exports.getProject = function(req, res){
+	console.log(req.params);
+	//console.log(req.params);
 	Project.findOne({_id:req.params.id}).exec(function(err, projects) {
 		res.send(projects);
 	});
@@ -157,7 +159,7 @@ exports.getProjectById = function(req, res){
 
 exports.viewProjectDetails = function(req, res){
 	Project.findOne({project_name:req.params.name}).exec(function(err, projects) {
-		res.send(projects);
+	//	res.send(projects);
 	});
 }
 
@@ -168,9 +170,9 @@ exports.getProjectsByUserId = function(req, res) {
 }
 
 exports.updateProject = function(req, res) {
-	Project.find({'project._id' : req.params.id}, function(err, project) {
+/*	Project.find({'project._id' : req.params.id}, function(err, project) {
 		res.send(project);
-	});
+	});*/
 }
 
 exports.removeProject = function(req, res, next){

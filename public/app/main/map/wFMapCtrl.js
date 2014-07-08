@@ -1,4 +1,6 @@
-angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
+angular.module('app')
+	.controller('wFMapCtrl', ['$scope', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
+		function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	setMapHeight();
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -115,8 +117,9 @@ angular.module('app').controller('wFMapCtrl', function($scope, wFMapFactory, wFI
 			points.push([coords[i][1], coords[i][0]]);
 		}
 		var polyline = L.polygon(points).addTo(map);
+
 	}
-});
+}]);
 
 function setMapHeight(){
 	var map = document.getElementById('map');

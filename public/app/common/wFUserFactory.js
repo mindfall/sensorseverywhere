@@ -36,12 +36,16 @@ angular.module('app').factory('wFUserFactory', function($q, $http, $location, wF
 			return dfd.promise;
 		},
 
-		addUserToGroup : function() {
-			console.log('add user');
-		},
-
-		updateUser : function(id) {
-			console.log('update user');
+		updateUserGroupRole : function(groupRole) {
+			var dfd = $q.defer();
+			$http({method: 'PUT', url: '/api/updateUserGroupRole/' + groupRole, data:{group: groupRole.group, role: groupRole.role}})
+					.success(function(data, success, headers, config) {
+						dfd.resolve(data);
+					})
+					.error(function(data, status, headers, config) {
+						dfd.reject(status);
+					});
+				return dfd.promise;
 		},
 
 		viewUser : function(id) {

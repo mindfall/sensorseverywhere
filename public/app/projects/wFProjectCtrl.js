@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFProjectCtrl', 
-		function($scope, $http, $q, $location, wFIdentity, wFProjectFactory, wFMapFactory){
+	.controller('wFProjectCtrl', ['$scope', '$http', '$q', '$location', '$interval', 'wFIdentity', 'wFProjectFactory', 'wFMapFactory',
+		function($scope, $http, $q, $location, $interval, wFIdentity, wFProjectFactory, wFMapFactory){
 
 		var projectList = [];
 		var projectArray = [];
@@ -42,25 +42,15 @@ angular.module('app')
 			});
 		}
 
-		$scope.getProjectById = function(id) {
-		
-	 		var project = wFProjectFactory.getProjectById(id);
-	 		project.then(function(project) {
-	 			for(var i = 0; i < project.project_coords.points.length; i++) {
-	 				coords.push(project.project_coords.points[i]);
-	 			}
+		$scope.editProject = function(id) {
 
-	 			showLayer = wFMapFactory.setEditMapData(coords);
+	 		$location.url('/projects/getProject/' + id);
+		}
 
-	 		}, function(status) {
-	 			console.log(status);
-	 		})
-	 		$location.url('/projects/edit/' + id);
-	 	}
 
 
 		$scope.getProjectsByUser = function() {
-		
+			console.log(user._id);
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
 			getUserProjects.then(function(getUserProjects){
 		    if(getUserProjects.length === 0) {
@@ -87,10 +77,6 @@ angular.module('app')
 	 		});
 	 	}
 
-
-
-
-
 /*		var requiredFunding = $http.get('api/fundAmount');
 
 		requiredFunding.success(function(data, status, headers, config) {
@@ -109,11 +95,10 @@ angular.module('app')
 			console.log($scope.funds);
 	     });
 		*/
+		//console.log($location.path().split('/')[1]);
+		if($location.path().split('/')[1] === 'dashboard') {
+			$scope.getProjectsByUser();
+		}
 
-
-		$scope.getProjectsByUser();
-
-
-
-	});
+	}]);
 

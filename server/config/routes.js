@@ -18,7 +18,7 @@ module.exports = function(app){
 	app.get('/api/wildlife', wildlife.getWildlife);
 
 	app.get('/api/projects', projects.getProjects);
-	app.get('/api/getProjectById/:id', projects.getProjectById);
+	app.get('/api/getProject/:id', projects.getProject);
 	app.get('/api/projects/project-details/:name', projects.viewProjectDetails);
 	app.get('/api/projectsByUser/:id', projects.getProjectsByUserId);
 	app.put('/api/projects/edit/:id', projects.updateProject);
@@ -50,6 +50,7 @@ module.exports = function(app){
 	app.post('/api/users', users.createUser);
 	app.post('/api/users/:id', auth.requiresRole('admin'), users.removeUser);
 	app.put('/api/users', users.updateUser);
+	app.put('/api/updateUserGroupRole/:data', users.updateUserGroupRole);
 
 	app.get('/api/mail', mail.getMail);
 	app.post('/api/sendInvite', mail.sendInvitationEmail);

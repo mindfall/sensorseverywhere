@@ -134,7 +134,7 @@ angular.module('app')
 	}
 
  	$scope.projectPopup = function(state){
- 		if(state === 'show')	projectPopup = true;
+ 		if(state === 'show') projectPopup = true;
 
  		if(state === 'hide') projectPopup = false;
 

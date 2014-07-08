@@ -5,6 +5,7 @@ angular.module('app')
 			var gid = $stateParams.gid;
 
 			wFGroupFactory.getGroupById(gid).then(function(data) {
+				console.log(data);
 				$scope.groupName = data.groupName;
 			}, function(reason) {
 				console.log(reason);
@@ -16,11 +17,20 @@ angular.module('app')
 					gid: gid, 
 					username: $scope.username
 				};
+
+				var groupRole = {
+					project: '',
+					group: $scope.groupName,
+					role: 'member'
+				}
 			
 				wFAuth.authenticateUser(username, password).then(function(success){
 					if(success){
 						var loggedIn = true;
 						wFGroupFactory.updateUserStatus(userData).then(function() {
+							wFUserFactory.updateUserGroupRole(groupRole).then(function() {
+								wFNotifier.notify($scope.groupName  + ' has been added to your user profile.');
+							});
 							wFNotifier.notify('You are now a member of ' + $scope.groupName);
 							$location.path('/dashboard');	
 						}, function(reason){
@@ -39,7 +49,9 @@ angular.module('app')
 					password: $scope.m_password,
 					firstname: $scope.m_fname,
 					lastname: $scope.m_lname,
-					roles: 'member'
+					project: '',
+					group: $scope.groupName,
+					role: 'member'
 					//usericon: $scope.usericon
 				};
 

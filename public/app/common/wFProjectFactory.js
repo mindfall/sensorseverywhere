@@ -1,5 +1,6 @@
 angular.module('app')
-	.factory('wFProjectFactory', ['$rootScope', '$http', '$q', '$location', 'wFNotifier', function($rootScope, $http, $q, $location, wFNotifier){
+	.factory('wFProjectFactory', ['$rootScope', '$http', '$q', '$location', 'wFNotifier', 
+		function($rootScope, $http, $q, $location, wFNotifier){
 
 		var mapData = [];
 		var wildlifeData = [];
@@ -28,8 +29,9 @@ angular.module('app')
 
 				getProjectById : function(id) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url: 'api/getProjectById/' + id})
+					$http({method: 'GET', url: '/api/getProject/' + id})
 						.success(function(data, success, headers, config) {
+							console.log(data);
 							dfd.resolve(data);				
 						})
 						.error(function(data, status, headers, config) {

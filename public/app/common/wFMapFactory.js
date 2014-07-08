@@ -146,7 +146,7 @@ angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
 
 
 	}
-
+	getMapData();
 });
 
 function polygonArea(x, y, numPoints) 

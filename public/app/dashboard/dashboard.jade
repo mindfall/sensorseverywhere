@@ -27,7 +27,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									td.control-cell
 										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
 									td.control-cell
-										div(class="btn btn-default" ng-click="getProjectById(project._id)") Edit
+										div(class="btn btn-default" ng-click="editProject(project._id)") Edit
 									td.control-cell
 										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
 
@@ -80,13 +80,13 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									legend Create a Group
 										.form-group
 											.col-md-12
-												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" )
+												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" required)
 										.form-group
 											.col-md-12
-												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames")
+												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames" required)
 										.form-group
 											.col-md-12
-												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15)
+												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15 required)
 										.form-group
 											.col-md-12(ng-controller="wFFileUploadCtrl")
 												input(type="text" ng-model="fileUpload")
@@ -94,7 +94,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												
 										.form-group
 											.col-md-12
-												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);") Create Group
+												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);" ng-disabled="createGroupForm.$invalid") Create Group
 					.col-md-12(class="group-list-container" ng-show="groupList" ng-model="groupList")
 						.well
 							h4 Group list
