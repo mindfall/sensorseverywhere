@@ -91,10 +91,10 @@
 }
 .wildlife-popup {
   clear: both;
-  width: 650px;
+  width: 300%;
   height: 700px;
-  margin-left: -70%;
-  top: -50%;
+  margin-left: -304%;
+  top: 5px;
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;

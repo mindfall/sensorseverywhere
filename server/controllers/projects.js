@@ -150,8 +150,6 @@ exports.updateTotalContributions = function(req, res){
 }
 
 exports.getProject = function(req, res){
-	console.log(req.params);
-	//console.log(req.params);
 	Project.findOne({_id:req.params.id}).exec(function(err, projects) {
 		res.send(projects);
 	});
@@ -183,7 +181,6 @@ exports.removeProject = function(req, res, next){
 				console.log('removed group');
 			})
 		});
-			console.log(project.project_owner.owner_id);
 		User.update({_id: project.project_owner.owner_id}, {
  			$pull: {
 				projectGroupRole: {

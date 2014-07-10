@@ -9,8 +9,16 @@ div(id="slide-panel")
 							button(id="button-play-gum" class="button-demo" href="#") Play demo 
 							button(id="button-stop-gum" class="button-demo" href="#") Stop demo 
 							span(id="gum-unsupported" class="hidden") API not supported 
-							span(id="gum-partially-supported" class="hidden") API partially supported - video only 
-
+							span(id="gum-partially-supported" class="hidden") API partially supported - video only
+		div(class="monitor-info")
+			input(class="monitor-check" type="checkbox" value="1" ng-model="hasMonitor")
+				span Is this wildlife monitored?
+				div(ng-if="hasMonitor")
+					span(class="monitor-label") Audio <br>
+					input(class="monitor-counter" type="number" ng-model="audioMonitors" ng-change="setAudioValue(audioMonitors)" value="0")
+					span(class="monitor-label video-label") Video <br>
+					input(class="monitor-counter" type="number" ng-model="videoMonitors" ng-change="setVideoValue(videoMonitors)" value="0")
+					//- saveMonitors(audioMonitors, videoMonitors);
 		div(class="sliding-panel-border-img")
 				div(class="sliding-panel-border-tab")
 					div(class="sliding-panel-border-arrow") 

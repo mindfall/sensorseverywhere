@@ -7,6 +7,10 @@ var wildlifeSchema = new Schema({
 	name: String,
 	image_thumb: String,
 	image_full: String,
+  country: String,
+  province: String,
+  population: {type: Number},
+  desctription: String,
 	classification: String
 }, {collection: 'wildlife', strict: true});
 

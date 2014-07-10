@@ -16,6 +16,10 @@ var auth = require('./auth'),
 module.exports = function(app){
 
 	app.get('/api/wildlife', wildlife.getWildlife);
+	app.get('/api/removeWildLife/:id', wildlife.removeWildlife);
+	app.post('/api/addWildlife', wildlife.addWildlife);
+	app.put('/api/updateWildlife/:id', wildlife.updateWildlife);
+
 
 	app.get('/api/projects', projects.getProjects);
 	app.get('/api/getProject/:id', projects.getProject);
