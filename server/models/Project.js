@@ -18,14 +18,34 @@ var ProjectSchema = new Schema({
             owner_name: String
         //    owner_gravatar: String
     },
-    project_wildlife: {
-        name: String
-    },
+    project_wildlife: [{
+        id: String,
+        name: String,
+        number: {type: Number},
+        comments: [{
+            owner: String,
+            comment: String
+        }]
+    }],
+/*    project_monitors: {
+        name: String,
+        type: String,
+        number: Number,
+        coords: Array,
+        comment: String,
+        active: Boolean,
+        last_user: String,
+        last_used: Date,
+        total_hours: Number
+    },*/
     project_coords: {
         points: Array,
     },
     project_location_data: {
         layer_type: String,
+/*      project_coords: {
+            points: Array,
+        },*/
         area_acres: {type: Number},
         nearestTown: String,
         distance_to_town: {type: Number}

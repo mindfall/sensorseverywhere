@@ -30,7 +30,7 @@ angular.module('app')
 		*/
 
 		$scope.getProjects = function() {
-		
+			console.log('getting projects');
 			projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
@@ -50,7 +50,6 @@ angular.module('app')
 
 
 		$scope.getProjectsByUser = function() {
-			console.log(user._id);
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
 			getUserProjects.then(function(getUserProjects){
 		    if(getUserProjects.length === 0) {
@@ -98,6 +97,9 @@ angular.module('app')
 		//console.log($location.path().split('/')[1]);
 		if($location.path().split('/')[1] === 'dashboard') {
 			$scope.getProjectsByUser();
+		}
+		if($location.path().split('/')[1] === 'projects') {
+			$scope.getProjects();
 		}
 
 	}]);

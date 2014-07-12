@@ -3,11 +3,40 @@ div.wildlife-popup(ng-style="newDims")
 	h4 {{wildlifeDetails.name}}
 	div
 		img(ng-src="{{wildlifeDetails.image_full}}" class="textwrap")
-		div(class="wildlife-description") Some sample description text for each wildlife item 
+		div(class="wildlife-country") 
+			span 
+				b Country:
+				{{wildlifeDetails.country}}
+		div(class="wildlife-province")
+			span 
+				b Province:
+				{{wildlifeDetails.province}}
+		div(class="wildlife-population")
+			span 
+				b Population:
+				{{wildlifeDetails.population}}
+		div(class="wildlife-survival-rating")
+			span 
+				b Survival Rating:
+				{{wildlifeDetails.survival_rating}}
+		div(class="wildlife-classification")
+			span 
+				b Classification:
+				{{wildlifeDetails.classification}}
+		div(class="wildlife-description")
+			span 
+				b Description:
+				{{wildlifeDetails.description}}
+
+		div(class="peer-review-btn")
+			span 
+				b Found a problem?
+				br
+				div(class="btn btn-success") Edit and submit for Peer Review 
 	
 	div
 		div(class="label-comments") Comments
 		div(class="saved-wildlife-comments") {{wildlifeComments}}
 	div
 		div(class="popupComments" ng-click="commentPopup('show')") Add Comment
-		div(class="popupSave" ng-click="wildlifePopup('hide'); saveMonitors(audioMonitors, videoMonitors);") Save
+		div(class="popupSave" ng-click="wildlifePopup('hide'); ") Save

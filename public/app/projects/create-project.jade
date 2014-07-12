@@ -33,6 +33,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 				
 						wildlife-popup(ng-show="wildlifePopup()")
 						comment-popup(ng-show="commentPopup()" draggability)
+			marker-popup(ng-controller="wFMonitorCtrl")
 			
 			project-popup(class="project-popup" ng-show="projectPopup()")
 		button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save

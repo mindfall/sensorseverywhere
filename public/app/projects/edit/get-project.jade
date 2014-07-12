@@ -7,13 +7,14 @@ div(class="main-container" ng-controller="wFMainCtrl")
 				
 				div(ng-controller="wFMapCtrl" id="map" class="map")
 					leaflet
-					div(class="showMapBtn" ng-init="editMap()") Show Map
+					//- div(class="showMapBtn" ng-init="editMap()") Show Map
 
 			.col-md-3(ng-controller="wFEditProjectCtrl" class="col-3-selection-container")
 				h3 Project Details
 				div(editable-text="project.project_name") {{project.project_name}}
-				div(editable-text="project.project_start_date") {{project.project_start_date | date}}
-				div(editable-text="project.project_end_date") {{project.project_end_date | date}}
+				a(href="#" editable-bsdate="project.project_start_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_start_date | date}}
+				a(href="#" editable-bsdate="project.project_end_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_end_date | date}}
+
 				div(editable-text="project.project_group") {{project.project_group}}
 				div(editable-text="project.project_owner.owner_id") {{project.project_owner.owner_id}}
 				div(editable-text="project.project_type") {{project.project_type}}

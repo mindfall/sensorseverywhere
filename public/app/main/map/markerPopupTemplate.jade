@@ -1,0 +1,33 @@
+div(class="marker-popup" ng-show="monitorPopup")
+	div(class="monitor-intro" ng-show="monitorIntro")
+		span You are about to create a monitor, would you like to continue?
+		br
+		div(class="btn btn-warning monitor-intro-no-thanks-btn" ng-click="monitorNoThanks()") No Thanks 
+		div(class="btn btn-success monitor-intro-continue-btn" ng-click="monitorContinue()") Continue
+	div(class="monitor-details" ng-show="monitorDetails")
+		span What is the name of this monitor?
+		br
+		input(class="form-control" ng-model="monitorName" type="text")
+		br
+		span What type of monitor is this?
+		select(class="form-control" ng-model="setMonitor.type" ng-change="selectMonitor()" ng-options="monitor.value as monitor.name for monitor in monitors")
+		div(ng-show="monitorTypeText")
+			span Enter the monitor type here:
+			br
+			input(class="form-control" type="text" ng-model="monitorOther") 
+		br
+		span Are you using it to monitor specific wildlife
+		br
+		div(class="btn btn-warning monitor-specific-no" ng-click="monitorSpecificWildlifeNo()") No 
+		div(class="btn btn-success monitor-specific-yes" ng-click="monitorSpecificWildlifeYes()") Yes
+		br
+		br
+		div(ng-show="monitorWildlife")
+			select(class="form-control" ng-model="setWildlife.type" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
+		span Is this monitor active?
+		br
+		div(class="btn btn-warning monitor-specific-no" ng-click="monitorActiveNo()" ) No 
+		div(class="btn btn-success monitor-specific-yes" ng-click="monitorActiveYes()") Yes	
+		div(class="btn btn-default monitor-popup-close-btn" ng-click="closeMonitorPanel()") Close
+
+

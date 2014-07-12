@@ -3,16 +3,18 @@
   position: absolute;
   height: 90%;
   width: 20%;
-  background-color: #d7e0e2;
-  z-index: 1005;
+  background-color: #fff;
+  z-index: 1000;
+  -webkit-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
+  -moz-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
+  box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
 }
 .sliding-panel-border-img {
   margin-left: 100%;
   width: 5px;
-  height: 100%;
+  height: 800px;
   background-image: url("../img/assets/img/slidebar.svg");
-  margin-top: 100%;
-  top: -50%;
+  margin-top: -20%;
 }
 .sliding-panel-border-tab {
   margin-left: 100%;

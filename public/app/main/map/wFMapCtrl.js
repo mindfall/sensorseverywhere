@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFMapCtrl', ['$scope', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
-		function($scope, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
+	.controller('wFMapCtrl', ['$scope', '$rootScope', '$location', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
+		function($scope,$rootScope, $location, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	setMapHeight();
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -25,7 +25,8 @@ angular.module('app')
 		layers: [basemap],
 		center: new L.LatLng(-25, 135), //25, 135
 		zoom: 5,
-		scrollWheelZoom: false
+		scrollWheelZoom: false,
+		dragging: false
 	});
 
     new L.Control.GeoSearch({
@@ -55,6 +56,35 @@ angular.module('app')
    			//console.log('no draw control to remove');
    		}
    	}
+
+
+   	map.on('click', function(e) {
+   		if($location.path().split('/')[1] === 'create-project') {
+			var geojsonFeature = {
+				"type": "Feature",
+				"properties": {},
+				"geometry": {
+					"type": "Point",
+					"coordinates": [e.latlng.lat, e.latlng.lng]
+				}
+			}
+			var marker;
+			L.geoJson(geojsonFeature, {
+				pointToLayer: function(feature, latlng) {
+					marker = L.marker(e.latlng, {
+						title: "Wildlife Monitor",
+						alt: "Wildlife Monitor",
+						riseOnHover: true,
+						draggable: true,
+						clickable: false,
+					}).bindPopup($scope.showMonitorPopup());
+					
+					return marker;
+				}
+			}).addTo(map);
+		}
+   	});
+
 
 	// Set the title to show on the polygon button
 	//L.drawLocal.draw.toolbar.buttons.polygon = 'Draw a sexy polygon!';
@@ -97,8 +127,6 @@ angular.module('app')
 
     	wFMapFactory.setMapData(geojson);
 		drawnItems.addLayer(e.layer);
-
-
 	});
 
 	map.on('draw:edited', function (e) {
@@ -117,13 +145,29 @@ angular.module('app')
 			points.push([coords[i][1], coords[i][0]]);
 		}
 		var polyline = L.polygon(points).addTo(map);
-
 	}
+
+	$scope.showMonitorPopup = function() {
+		console.log('show Monitor Popup')
+		$rootScope.$broadcast('showMonitorPopup');
+	}
+
 }]);
 
 function setMapHeight(){
 	var map = document.getElementById('map');
 	map.style.height = '100%';
+}
+
+
+function onPopupOpen() {
+
+    var tempMarker = this;
+
+    // To remove marker on click of delete button in the popup of marker
+    $(".marker-delete-button:visible").click(function () {
+        map.removeLayer(tempMarker);
+    });
 }
 
 

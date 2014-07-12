@@ -16,6 +16,7 @@ exports.addWildlife = function(req, res) {
 	var country = wildlife.country;
 	var province = wildlife.province;
 	var population = wildlife.population;
+	var survival_rating = wildlife.survival_rating;
 	var description = wildlife.description;
 	var classification = wildlife.classification;
 
@@ -27,6 +28,7 @@ exports.addWildlife = function(req, res) {
 		"country": country,
 		"province": province,
 		"population": population,
+		"survival_rating": survival_rating,
 		"description": description,
 		"classification": classification
 	});

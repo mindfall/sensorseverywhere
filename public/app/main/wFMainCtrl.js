@@ -1,8 +1,10 @@
 angular.module('app')
-	.controller('wFMainCtrl', function($scope, $location, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
+	.controller('wFMainCtrl', ['$scope', '$location', '$http', '$compile', '$element', 'wFIdentity', 'wFMapFactory', 'wFWildlifeFactory', 'wFProjectFactory', 
+		function($scope, $location, $http, $compile, $element, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
 
 	var projectPopup = false;
 	var corridorData = {};
+	$scope.monitorIntro = true;
 
 	$scope.checked;
 	$scope.identity = wFIdentity;
@@ -72,6 +74,7 @@ angular.module('app')
 	 	return corridorData;
 
 	}
+
 	
 	$scope.saveProject = function(name, description, start, end, type, total){
 		//console.log('owner: ' + wFIdentity.currentUser.firstname);
@@ -147,8 +150,7 @@ angular.module('app')
  		return projectPopup;
  	}
 
-
-}).directive('projectPopup', function(){
+}]).directive('projectPopup', function(){
 	return {
 		restrict: 'E',
 		transclude: true,

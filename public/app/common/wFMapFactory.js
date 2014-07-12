@@ -1,4 +1,6 @@
-angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
+angular.module('app')
+	.factory('wFMapFactory', ['$rootScope', '$location', '$http', '$q', 
+		function($rootScope, $location, $http, $q) {
 
 	var mapData = {};
 	var editPoints = [];
@@ -107,6 +109,7 @@ angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
 			return area;
 		},
 
+
 		addCustomMarker: function(wildlifeClass, monitorType) {
 
 		    var customMarker = L.icon({
@@ -147,7 +150,7 @@ angular.module('app').factory('wFMapFactory', function($rootScope, $http, $q) {
 
 	}
 	getMapData();
-});
+}]);
 
 function polygonArea(x, y, numPoints) 
 { 

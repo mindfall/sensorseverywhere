@@ -1,8 +1,9 @@
 div(class="main-container" ng-controller="wFMainCtrl")
 	.container(ng-if="!isLoggedIn")
-			.row(class="row-map-container")
-				.col-md-12(class="col-12-map-container")
-					div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
-						leaflet
+		.row(class="row-map-container")
+			.col-md-12(class="col-12-map-container")
+				div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
+					leaflet
+					marker-popup(ng-controller="wFMonitorCtrl")
 
 		

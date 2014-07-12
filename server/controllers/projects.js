@@ -22,8 +22,32 @@ exports.createProject = function(req, res, next){
 	var projectType = req.body.project_type;
 	var projectFundingRequired = req.body.project_funding_required;
 
+	//number of species in santuary
+	var wildlife_id = req.body.project_wildlife.id;
 	var numberOfWildlife = req.body.project_wildlife.length;
+	//names of species
 	var wildlifeNames = [];
+	var wildlifeNumbers = [];
+	var wildlifeComments = {
+		poster: req.body.wildlife_comment_owner,
+		comment: req.body.wildlife_comment
+	}
+
+	var monitorNumber = req.body.project_monitor.length;
+	var monitorPointData = [];
+	var	monitorPointsArray = [];
+
+	var monitorData = {
+		monitorName : req.body.monitorName,
+		monitorType : req.body.monitorType,
+		monitorCoords : req.body.monitor_location,
+		monitorComment : req.body.monitorComment,
+		monitorActive : req.body.monitorActive,
+		monitorLastUser : req.body.monitor_lastUser,
+		monitorLastUsed : req.body.monitor_lastUsed,
+		monitor_totalHours :req.body.monitor_totalHours
+	}
+
 
 	var coordinatesLength = req.body.project_location[0].length;
 	var pointData = [];
@@ -63,9 +87,26 @@ exports.createProject = function(req, res, next){
 		        "owner_name": projectOwnerFirstName
 		         //   owner_gravatar: String
 		    },
-		    "project_wildlife": {
+		    "project_wildlife": [{
+		        "id": wildlife_id,
 		        "name": wildlifeNames,
-		    },
+		        "number": wildlifeNumbers,
+		        "comments": [{
+		            "owner": wildlifeComments.poster,
+		            "comment": wildlifeComments.comment
+		        }]
+		    }],
+/*		    "project_monitors": {
+		    	"name": monitorData.monitorName,
+		        "type": monitorData.monitorType,
+		        "number": monitorData.monitorNumber,
+		        "coords": monitorData.monitorCoords,
+		        "comment": monitorData.monitorComment,
+		        "active": monitorData.monitorActive,
+		        "last_user": monitorData.monitorLastUser,
+		        "last_used": monitorData.monitorLastUsed,
+		        "total_hours": monitorData.monitor_totalHours
+		    },*/
 		    "project_coords": {
 		    	"points": pointsArray,
 		    },

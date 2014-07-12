@@ -10,7 +10,8 @@ var wildlifeSchema = new Schema({
   country: String,
   province: String,
   population: {type: Number},
-  desctription: String,
+  survival_rating: String,
+  description: String,
 	classification: String
 }, {collection: 'wildlife', strict: true});
 
@@ -26,7 +27,12 @@ function createDefaultWildlife(){
     "name":"Abbotts Booby",
     "image_thumb":"/img/wildlife_thumbs/Abbotts_Booby.jpg",
     "image_full":"/img/wildlife_full/Abbotts_Booby.jpg",
-    "classification":"bird"
+    "country": "Australia",
+    "province": "Christmas Island",
+    "population": "600",
+    "survival_rating": "Endangered",
+    "description": "Abbott's booby (Papasula abbotti) is an endangered seabird of the sulid family, which includes gannets and boobies. It is a large booby, smaller than gannets, and is placed within its own monotypic genus. It was first identified from a specimen collected by William Louis Abbott, who discovered it on Assumption Island in 1892. Abbott's booby breeds only in a few spots on the Australian territory of Christmas Island in the eastern Indian Ocean, although it formerly had a much wider range. It has white plumage with black markings, and is adapted for long-distance flight. It forages around Christmas Island, often around nutrient-rich oceanic upwellings, although individuals can travel for thousands of kilometres. Pairs mate for life and raise one chick every two or three years, nesting near the top of emergent trees in the rainforest canopy.The population is decreasing. Historically much of its former habitat was logged to make way for phosphate mining. Some logging continues, and the effects of the former logging continue to adversely affect the current population. Another threat has been caused by the introduction of yellow crazy ants, which decrease habitat quality. Minimal habitat declines have a significant effect on the bird population. All nesting areas have been included in a national park. ",
+    "classification":"aves"
   },
   {
     "id":2,
