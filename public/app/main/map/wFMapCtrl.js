@@ -58,72 +58,45 @@ angular.module('app')
    	}
 
 
-   	map.on('click', function(e) {
-   		if($location.path().split('/')[1] === 'create-project') {
-			var geojsonFeature = {
-				"type": "Feature",
-				"properties": {},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [e.latlng.lat, e.latlng.lng]
-				}
-			}
-			var marker;
-			L.geoJson(geojsonFeature, {
-				pointToLayer: function(feature, latlng) {
-					marker = L.marker(e.latlng, {
-						title: "Wildlife Monitor",
-						alt: "Wildlife Monitor",
-						riseOnHover: true,
-						draggable: true,
-						clickable: false,
-					}).bindPopup($scope.showMonitorPopup());
-					
-					return marker;
-				}
-			}).addTo(map);
-		}
-   	});
+  
 
 
-	// Set the title to show on the polygon button
-	//L.drawLocal.draw.toolbar.buttons.polygon = 'Draw a sexy polygon!';
+
 
 	map.on('draw:created', function (e) {
 		var type = e.layerType,
-			layer = e.layer,
-			popupContent = '<b>Canvas</b><br><canvas style="width: 400px; height: 400px; border: 1px solid grey; "></canvas>';
+			layer = e.layer;
 
-		if (type === 'marker') {
-			layer.bindPopup(popupContent);
-		}
+
 		var geojson = e.layer.toGeoJSON();
 		selectedWildlife = wFWildlifeFactory.selectWildlife();
-		var customMarker;
-		if(selectedWildlife != ''){
-			//console.log(selectedWildlife);
-			switch(selectedWildlife[0].classification){
-				case 'bird':
-					customMarker = 'bird';
-					break;
-				case 'reptile':
-					customMarker = 'reptile';
-					break;
-				case 'fish':
-					customMarker = 'fish';
-					break;
-				case 'mammal':
-					customMarker = 'mammal';
-					break;
-				default:
+		layer.on('click', function(e) {
 
-					break;
-
-			}
-			//customMarker = wFMapFactory.addCustomMarker(customMarker);
-			//marker = L.marker([-25, 135], {icon: customMarker, draggable: true}).addTo(map);
-			//marker.bindPopup(popupContent).openPopup();
-		}
+		   		if($location.path().split('/')[1] === 'create-project') {
+					var geojsonFeature = {
+						"type": "Feature",
+						"properties": {},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [e.latlng.lat, e.latlng.lng]
+						}
+					}
+					var marker;
+					L.geoJson(geojsonFeature, {
+						pointToLayer: function(feature, latlng) {
+							marker = L.marker(e.latlng, {
+								title: "Wildlife Monitor",
+								alt: "Wildlife Monitor",
+								riseOnHover: true,
+								draggable: true,
+								clickable: false,
+							}).bindPopup($scope.showMonitorPopup());
+							
+							return marker;
+						}
+					}).addTo(map);
+				}
+		   	});
 
     	wFMapFactory.setMapData(geojson);
 		drawnItems.addLayer(e.layer);
@@ -138,6 +111,10 @@ angular.module('app')
 		console.log("Edited " + countOfEditedLayers + " layers");
 	});
 
+	/*
+	* editMap is used to retrieve per project map data from database
+	*/
+
 	$scope.editMap = function() {
 		var coords = wFMapFactory.getEditMapData();
 		var points = [];
@@ -145,6 +122,7 @@ angular.module('app')
 			points.push([coords[i][1], coords[i][0]]);
 		}
 		var polyline = L.polygon(points).addTo(map);
+
 	}
 
 	$scope.showMonitorPopup = function() {
@@ -168,6 +146,30 @@ function onPopupOpen() {
     $(".marker-delete-button:visible").click(function () {
         map.removeLayer(tempMarker);
     });
+}
+
+
+function customMarker() {
+	var customMarker;
+	if(selectedWildlife != ''){
+		switch(selectedWildlife[0].classification){
+			case 'bird':
+				customMarker = 'bird';
+				break;
+			case 'reptile':
+				customMarker = 'reptile';
+				break;
+			case 'fish':
+				customMarker = 'fish';
+				break;
+			case 'mammal':
+				customMarker = 'mammal';
+				break;
+			default:
+				break;
+		}
+	}
+	return customMarker;
 }
 
 
