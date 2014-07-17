@@ -27,13 +27,14 @@ exports.createProject = function(req, res, next){
 	var numberOfWildlife = req.body.project_wildlife.length;
 	//names of species
 	var wildlifeNames = [];
-	var wildlifeNumbers = [];
+	var wildlifeNumbers = 0;
 	var wildlifeComments = {
 		poster: req.body.wildlife_comment_owner,
 		comment: req.body.wildlife_comment
 	}
 
-	var monitorNumber = req.body.project_monitor.length;
+	//var monitorNumber = req.body.project_monitor.length;
+	var monitorNumber = 0;
 	var monitorPointData = [];
 	var	monitorPointsArray = [];
 
@@ -96,7 +97,7 @@ exports.createProject = function(req, res, next){
 		            "comment": wildlifeComments.comment
 		        }]
 		    }],
-/*		    "project_monitors": {
+		    "project_monitors": {
 		    	"name": monitorData.monitorName,
 		        "type": monitorData.monitorType,
 		        "number": monitorData.monitorNumber,
@@ -106,12 +107,12 @@ exports.createProject = function(req, res, next){
 		        "last_user": monitorData.monitorLastUser,
 		        "last_used": monitorData.monitorLastUsed,
 		        "total_hours": monitorData.monitor_totalHours
-		    },*/
-		    "project_coords": {
-		    	"points": pointsArray,
 		    },
  		    "project_location_data": {
 				"layer_type": projectMapType,
+				 "project_coords": {
+		    	"points": pointsArray,
+		    	},
 				"area_acres": projectArea,
 				"nearestTown": projectNearestTown,
 				"distance_to_town": projectTownDistance
@@ -141,8 +142,11 @@ exports.createProject = function(req, res, next){
 
 			}},
 			function() {
+				console.log('save project ' + JSON.stringify(saveProject));
 				res.send(saveProject);
 			});
+	}, function(err){
+		console.log(err);
 	});
 };
 
@@ -203,7 +207,9 @@ exports.viewProjectDetails = function(req, res){
 }
 
 exports.getProjectsByUserId = function(req, res) {
+	console.log(req.params);
 	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
+	 	console.log(project);
 	 	res.send(project)
 	 });
 }

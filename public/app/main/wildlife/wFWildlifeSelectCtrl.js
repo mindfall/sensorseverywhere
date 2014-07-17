@@ -43,7 +43,6 @@ angular.module('app')
 	    $scope.selectWildlife = function(wildlife) {
 
 	      	if(this.wildlifeSelect) {
-	      		//console.log(this.wildlifeSelect);
 	      		$rootScope.dupeList.push(this.wildlifeSelect);
 	      		var dupes = $rootScope.dupeList.length,
 		        	found,

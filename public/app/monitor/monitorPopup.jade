@@ -10,7 +10,7 @@ div(class="marker-popup" ng-show="monitorPopup")
 		input(class="form-control" ng-model="monitorName" type="text")
 		br
 		span What type of monitor is this?
-		select(class="form-control" ng-model="setMonitor.type" ng-change="selectMonitor()" ng-options="monitor.value as monitor.name for monitor in monitors")
+		select(class="form-control" ng-model="monitorType" ng-change="selectMonitor()" ng-options="monitor.value as monitor.name for monitor in monitors")
 		div(ng-show="monitorTypeText")
 			span Enter the monitor type here:
 			br
@@ -23,11 +23,10 @@ div(class="marker-popup" ng-show="monitorPopup")
 		br
 		br
 		div(ng-show="monitorWildlife")
-			select(class="form-control" ng-model="setWildlife.type" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
+			select(class="form-control" ng-model="wildlifeName" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
 		span Is this monitor active?
-		br
-		div(class="btn btn-warning monitor-specific-no" ng-click="monitorActiveNo()" ) No 
-		div(class="btn btn-success monitor-specific-yes" ng-click="monitorActiveYes()") Yes	
+		select(class="form-control" ng-model="monitorActive" ng-change="selectActive()" ng-options="state.value as state.name for state in active")
+		div(class="btn btn-default monitor-popup-save-btn" ng-click="saveMonitor(monitorName, monitorType, monitorActive, wildlifeName)") Save
 		div(class="btn btn-default monitor-popup-close-btn" ng-click="closeMonitorPanel()") Close
 
 

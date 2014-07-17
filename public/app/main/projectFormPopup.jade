@@ -7,11 +7,23 @@ div
 		p The nearest town to the center of the corridor is: {{nearestTownName}}
 		p and is {{nearestTownDistance}} kms away.
 		p The area you have mapped is {{area}} acres.
-		p The wildlife within the corridor: {{wildlife[0].name}}
+		p The wildlife within the corridor: 
+			div(ng-repeat="wildlife in wildlifeData")
+				{{wildlife.numbers}} of {{wildlife.name}}
 		p And the types of monitors you're using:
-			p Audio: {{audioMonitors}}
-			p Video: {{videoMonitors}}
-		p
+			div(ng-repeat="monitor in monitorData")
+				span You have called this monitor:
+					strong {{monitor.name}}
+				br
+				span It is monitoring: 
+					strong {{monitor.specificWildlife}} 
+					span with: 
+					strong {{monitor.type}}
+				br
+				span Is this monitor active: 
+					strong {{monitor.active}}
+				br
+			
 	div.further-info
 		p But before we can begin we need to ask just a few more questions like:
 		p What is name of the project? <br>

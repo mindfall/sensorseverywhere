@@ -19,6 +19,8 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 			var easing = 0.05;
 			var arrow = ele[0].lastChild.lastElementChild.lastChild.lastChild;
 			ele.bind('click', function(e) {
+				
+				e.stopPropagation();
 				counter += 1;
 				if(counter % 2 == 0) {
 					var panelWidth = ele[0].offsetWidth;

@@ -1,6 +1,6 @@
 angular.module('app')
 	.controller('wFMapCtrl', ['$scope', '$rootScope', '$location', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
-		function($scope,$rootScope, $location, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
+		function($scope, $rootScope, $location, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	setMapHeight();
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -102,6 +102,8 @@ angular.module('app')
 		drawnItems.addLayer(e.layer);
 	});
 
+	//marker.fire('click');
+
 	map.on('draw:edited', function (e) {
 		var layers = e.layers;
 		var countOfEditedLayers = 0;
@@ -130,22 +132,20 @@ angular.module('app')
 		$rootScope.$broadcast('showMonitorPopup');
 	}
 
+	$scope.onPopupRemove = function() {
+		console.log('remove');
+	    var tempMarker = this;
+	    // To remove marker on click of delete button in the popup of marker
+	 //   $(".marker-delete-button:visible").click(function () {
+	        map.removeLayer(tempMarker);
+	 //   });
+	}
+
 }]);
 
 function setMapHeight(){
 	var map = document.getElementById('map');
 	map.style.height = '100%';
-}
-
-
-function onPopupOpen() {
-
-    var tempMarker = this;
-
-    // To remove marker on click of delete button in the popup of marker
-    $(".marker-delete-button:visible").click(function () {
-        map.removeLayer(tempMarker);
-    });
 }
 
 

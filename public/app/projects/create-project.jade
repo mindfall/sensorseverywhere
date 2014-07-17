@@ -4,6 +4,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 			.col-md-9(class="col-9-map-container")
 				div(ng-controller="wFMapCtrl" id="map" class="map")
 					leaflet
+					marker-popup(ng-controller="wFMonitorCtrl")
 		
 			.col-md-3(class="col-3-selection-container")
 				p
@@ -23,7 +24,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 									table.selectedWildlife
 										tr
 											td.wildlifeCell
-												input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-change="setWildlifeValue(wildlifeCounter)" value="1" type="number" min="0")
+												input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setWildlifeValue(creature.name, wildlifeCounter)" value="0" type="number" min="0")
 											td.wildlifeCell
 												div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
 											td.wildlifeCell
@@ -33,7 +34,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 				
 						wildlife-popup(ng-show="wildlifePopup()")
 						comment-popup(ng-show="commentPopup()" draggability)
-			marker-popup(ng-controller="wFMonitorCtrl")
+						
 			
 			project-popup(class="project-popup" ng-show="projectPopup()")
 		button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save

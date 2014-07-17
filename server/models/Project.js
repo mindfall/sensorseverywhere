@@ -27,7 +27,7 @@ var ProjectSchema = new Schema({
             comment: String
         }]
     }],
-/*    project_monitors: {
+    project_monitors: {
         name: String,
         type: String,
         number: Number,
@@ -37,15 +37,12 @@ var ProjectSchema = new Schema({
         last_user: String,
         last_used: Date,
         total_hours: Number
-    },*/
-    project_coords: {
-        points: Array,
     },
     project_location_data: {
         layer_type: String,
-/*      project_coords: {
+        project_coords: {
             points: Array,
-        },*/
+        },
         area_acres: {type: Number},
         nearestTown: String,
         distance_to_town: {type: Number}

@@ -2,8 +2,17 @@ angular.module('app')
 	.controller('wFMainCtrl', ['$scope', '$location', '$http', '$compile', '$element', 'wFIdentity', 'wFMapFactory', 'wFWildlifeFactory', 'wFProjectFactory', 
 		function($scope, $location, $http, $compile, $element, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
 
+	var userIsLoggedIn = wFIdentity.isAuthenticated();
+	if(userIsLoggedIn == true){
+    	$scope.isLoggedIn = userIsLoggedIn;
+   	}else{
+   		$location.url('/');
+   	}
+
 	var projectPopup = false;
 	var corridorData = {};
+	var wildlifeNumbers = [];
+	var checkWildlife = [];
 	$scope.monitorIntro = true;
 
 	$scope.checked;
@@ -23,35 +32,80 @@ angular.module('app')
 	$scope.total_contributions = 0;
 	$scope.project_image = "";
 
-	var userIsLoggedIn = wFIdentity.isAuthenticated();
-	if(userIsLoggedIn == true){
-    	$scope.isLoggedIn = userIsLoggedIn;
-   	}else{
-   		$location.url('/');
+
+   	$scope.setWildlifeValue = function(creature, value) {
+
+   		wildlife = {
+   			name: creature,
+   			numbers: value
+   		}
+   		var found;
+   		checkWildlife.push(wildlife);
+   		for(var i = 0; i < checkWildlife.length; i++) {
+   			found = false;
+   			for(var j = 0; j < wildlifeNumbers.length; j++) {
+   				if(checkWildlife[i].name === wildlifeNumbers[j].name) {
+   					found = true;
+   					break;
+   				}
+   			}
+   			if(!found) {
+   				wildlifeNumbers.push(wildlife);
+ 				return wildlifeNumbers;
+   			}
+   		}
+
+   		
+//   		return wildlifeNumbers;
    	}
 
-   	$scope.setWildlifeValue = function(value) {
-   		console.log(value);
-   		$scope.wildlifeCounter = value;
-   	}
-
-   	$scope.setAudioValue = function(value) {
-   		console.log(value);
-   		$scope.audioMonitors = value;
-   	}
-
-   	$scope.setVideoValue = function(value) {
-   		console.log(value);
-   		$scope.videoMonitors = value;
-   	}
 
     $scope.saveCorridor = function(user){
+
+    	var totalSpecies = wildlifeNumbers.length;
+    	var audioMonitors, videoMonitors, other = 0;
+    	$scope.wildlifeData = [];
+    	$scope.monitorData = [];
 
 	 	mapData = wFMapFactory.getMapData();
 
 	 	mapTDA = wFMapFactory.getTownAndDistance(mapData.geometry.coordinates);
 	 	mapArea = wFMapFactory.getMapArea(mapData.geometry.coordinates);
 	 	wildlifeData = wFWildlifeFactory.selectWildlife();
+
+	 	for(var i = 0; i < wildlifeNumbers.length; i++) {
+			species = {
+
+				name: wildlifeNumbers[i].name, 
+				numbers: wildlifeNumbers[i].numbers
+			}
+			$scope.wildlifeData.push(species);
+	 	}
+
+	 	var monitors = wFProjectFactory.getMonitorData();
+
+	 	for(var i = 0; i < monitors.length; i++) {
+
+	 		if(monitors.type === 'audio') {
+	 			audioMonitors++;
+	 		} else if (monitors.type === 'video') {
+	 			videoMonitors++;
+	 		} else {
+	 			other++;
+	 		}
+	 		
+			 var monitors = {
+	 			active: monitors[i].active,
+	 			name: monitors[i].name,
+	 			specificWildlife: monitors[i].specificWildlife,
+	 			type: monitors[i].type
+/*	 			audio: audioMonitors, 
+	 			video: videoMonitors,
+	 			other: other*/
+	 		}	
+
+	 		$scope.monitorData.push(monitors);
+	 	}
 
 	 	mapTDA.then(function(mapTDA) {
 	 		$scope.nearestTownName = JSON.stringify(mapTDA.geonames[0].name);
@@ -60,17 +114,16 @@ angular.module('app')
 	 	});
 
 	 	$scope.area = +mapArea.toFixed(2);
-	 	$scope.wildlife = wildlifeData;
 	 	
 	 	//hold the project data to date.
 	 	corridorData = {
 	 		user: user,
-	 		wildlife: wildlifeData,
-	 		wildlifeNumber: $scope.wildlifeCounter,
+	 		wildlifeData: $scope.wildlifeData,
+	 		totalSpecies: totalSpecies,
 	 		geopoints: mapData,
 	 		area: $scope.area
 	 	}
-	 	//console.log('geopoints: ' + JSON.stringigy(corridorData.geopoints));
+	 	//console.log('geopoints: ' + JSON.stringify(corridorData.geopoints));
 	 	return corridorData;
 
 	}
@@ -88,6 +141,10 @@ angular.module('app')
 		var nearestTown = $scope.nearestTownName;
 	 	var nearestTownDistance = $scope.nearestTownDistance;	
 
+	 	/*
+			Need to include wildlife and monitor info.
+	 	*/
+	 	console.log(corridorData.wildlifeData);
 
 		var projectData = {
 			project_owner: wFIdentity.currentUser._id,
@@ -98,7 +155,7 @@ angular.module('app')
 			project_end : project_end,
 			project_type : type,
 			project_funding_required : project_funding_required,
-			project_wildlife : corridorData.wildlife,
+			project_wildlife : corridorData.wildlifeData,
 			project_location : corridorData.geopoints.geometry.coordinates,
 			project_map_layer_type: corridorData.geopoints.geometry.type,
 			project_area: corridorData.area,
