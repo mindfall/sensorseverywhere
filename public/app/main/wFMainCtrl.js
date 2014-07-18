@@ -32,10 +32,11 @@ angular.module('app')
 	$scope.total_contributions = 0;
 	$scope.project_image = "";
 
-
-   	$scope.setWildlifeValue = function(creature, value) {
+	//This is just to get the 
+   	$scope.setWildlifeNumbers = function(id, creature, value) {
 
    		wildlife = {
+   			id: id,
    			name: creature,
    			numbers: value
    		}
@@ -54,54 +55,73 @@ angular.module('app')
  				return wildlifeNumbers;
    			}
    		}
-
-   		
-//   		return wildlifeNumbers;
    	}
 
 
     $scope.saveCorridor = function(user){
 
-    	var totalSpecies = wildlifeNumbers.length;
-    	var audioMonitors, videoMonitors, other = 0;
+    	var totalSpecies = [];
+    	var monitors = {};
+    	var species = {};
+    	var wildLifedata = [];
     	$scope.wildlifeData = [];
     	$scope.monitorData = [];
+    	var found = [];
 
 	 	mapData = wFMapFactory.getMapData();
 
 	 	mapTDA = wFMapFactory.getTownAndDistance(mapData.geometry.coordinates);
 	 	mapArea = wFMapFactory.getMapArea(mapData.geometry.coordinates);
+
 	 	wildlifeData = wFWildlifeFactory.selectWildlife();
 
-	 	for(var i = 0; i < wildlifeNumbers.length; i++) {
-			species = {
+	 	//This loop is desig
+	 	for(var i = 0; i < wildlifeData.length; i++) {
+	 		if(wildlifeNumbers.length === 0) {
+	 			species = {
+					id: wildlifeData[i]._id,
+					name: wildlifeData[i].name, 
+					numbers: 1
+				}
+				$scope.wildlifeData.push(species);
+	 		} else {
+		 		for(var j = 0; j < wildlifeNumbers.length; j++) {
+		 			if(wildlifeData[i]._id === wildlifeNumbers[j].id) {
+		 				species = {
+							id: wildlifeData[i]._id,
+							name: wildlifeData[i].name, 
+							numbers: wildlifeNumbers[j].numbers
+						}
+						$scope.wildlifeData.push(species);
+						found.push(wildlifeData[i]._id);
+		 			} 
+		 		}
 
-				name: wildlifeNumbers[i].name, 
-				numbers: wildlifeNumbers[i].numbers
-			}
-			$scope.wildlifeData.push(species);
+		 		if(found[0] === wildlifeData[i]._id || found[i] === wildlifeData[i]._id) {
+					//do nothing
+		 		} else {
+		 			species = {
+						id: wildlifeData[i]._id,
+						name: wildlifeData[i].name, 
+						numbers: 1
+					}
+		 			$scope.wildlifeData.push(species);
+		 		}
+
+	 		}
 	 	}
 
-	 	var monitors = wFProjectFactory.getMonitorData();
+	 	totalSpecies = $scope.wildlifeData.length;
+	 	monitors = wFProjectFactory.getMonitorData();
 
 	 	for(var i = 0; i < monitors.length; i++) {
 
-	 		if(monitors.type === 'audio') {
-	 			audioMonitors++;
-	 		} else if (monitors.type === 'video') {
-	 			videoMonitors++;
-	 		} else {
-	 			other++;
-	 		}
-	 		
+ 		
 			 var monitors = {
 	 			active: monitors[i].active,
 	 			name: monitors[i].name,
 	 			specificWildlife: monitors[i].specificWildlife,
 	 			type: monitors[i].type
-/*	 			audio: audioMonitors, 
-	 			video: videoMonitors,
-	 			other: other*/
 	 		}	
 
 	 		$scope.monitorData.push(monitors);
@@ -114,12 +134,19 @@ angular.module('app')
 	 	});
 
 	 	$scope.area = +mapArea.toFixed(2);
+
+/*	 	console.log($scope.wildlifeData);
+	 	console.log(totalSpecies);
+	 	console.log($scope.monitorData);
+	 	console.log(mapData);
+	 	console.log($scope.area);*/
 	 	
 	 	//hold the project data to date.
 	 	corridorData = {
 	 		user: user,
 	 		wildlifeData: $scope.wildlifeData,
 	 		totalSpecies: totalSpecies,
+	 		monitors: $scope.monitorData,
 	 		geopoints: mapData,
 	 		area: $scope.area
 	 	}
@@ -144,7 +171,7 @@ angular.module('app')
 	 	/*
 			Need to include wildlife and monitor info.
 	 	*/
-	 	console.log(corridorData.wildlifeData);
+	 	console.log(corridorData);
 
 		var projectData = {
 			project_owner: wFIdentity.currentUser._id,
@@ -156,6 +183,8 @@ angular.module('app')
 			project_type : type,
 			project_funding_required : project_funding_required,
 			project_wildlife : corridorData.wildlifeData,
+			project_monitors : corridorData.monitors,
+			project_total_species: corridorData.totalSpecies,
 			project_location : corridorData.geopoints.geometry.coordinates,
 			project_map_layer_type: corridorData.geopoints.geometry.type,
 			project_area: corridorData.area,
@@ -216,3 +245,4 @@ angular.module('app')
 
 	};
 });
+

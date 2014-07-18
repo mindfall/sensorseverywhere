@@ -128,7 +128,6 @@ angular.module('app')
 	}
 
 	$scope.showMonitorPopup = function() {
-		console.log('show Monitor Popup')
 		$rootScope.$broadcast('showMonitorPopup');
 	}
 

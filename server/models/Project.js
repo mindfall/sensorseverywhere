@@ -27,17 +27,13 @@ var ProjectSchema = new Schema({
             comment: String
         }]
     }],
-    project_monitors: {
+    project_monitors: [{
         name: String,
         type: String,
-        number: Number,
+        specificWildlife: String,
         coords: Array,
-        comment: String,
-        active: Boolean,
-        last_user: String,
-        last_used: Date,
-        total_hours: Number
-    },
+        active: String,
+    }],
     project_location_data: {
         layer_type: String,
         project_coords: {
@@ -67,4 +63,10 @@ var ProjectSchema = new Schema({
 var Project = mongoose.model('Project', ProjectSchema);
 
 
+/* 
+     comment: String,
+    last_user: String,
+    last_used: Date,
+    total_hours: Number
 
+*/

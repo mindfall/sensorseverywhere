@@ -33,23 +33,6 @@ exports.createProject = function(req, res, next){
 		comment: req.body.wildlife_comment
 	}
 
-	//var monitorNumber = req.body.project_monitor.length;
-	var monitorNumber = 0;
-	var monitorPointData = [];
-	var	monitorPointsArray = [];
-
-	var monitorData = {
-		monitorName : req.body.monitorName,
-		monitorType : req.body.monitorType,
-		monitorCoords : req.body.monitor_location,
-		monitorComment : req.body.monitorComment,
-		monitorActive : req.body.monitorActive,
-		monitorLastUser : req.body.monitor_lastUser,
-		monitorLastUsed : req.body.monitor_lastUsed,
-		monitor_totalHours :req.body.monitor_totalHours
-	}
-
-
 	var coordinatesLength = req.body.project_location[0].length;
 	var pointData = [];
 	var pointsArray = [];
@@ -67,8 +50,21 @@ exports.createProject = function(req, res, next){
 	var taskOwner = '';
  	var taskStatus = '';
 
+	var monitorNumber = req.body.project_monitors.length;
 
-//	var numberOfMonitors = req.body.project_monitors;
+	var monitorName = '';
+	var monitorType = '';
+	var monitorSpecificWildlife = '';
+	var monitorActive = '';
+	var monitorCoords = [];
+
+	for(i; i < monitorNumber; i++) {
+		monitorName = req.body.project_monitors[i].name;
+		monitorType = req.body.project_monitors[i].type;
+		monitorSpecificWildlife = req.body.project_monitors[i].specificWildlife;
+		monitorActive = req.body.project_monitors[i].active;
+		console.log(req.body.project_monitors[i]);
+	}
 
 	for(i; i < numberOfWildlife; i++){
 		wildlifeNames.push(req.body.project_wildlife[i].name);
@@ -98,20 +94,16 @@ exports.createProject = function(req, res, next){
 		        }]
 		    }],
 		    "project_monitors": {
-		    	"name": monitorData.monitorName,
-		        "type": monitorData.monitorType,
-		        "number": monitorData.monitorNumber,
-		        "coords": monitorData.monitorCoords,
-		        "comment": monitorData.monitorComment,
-		        "active": monitorData.monitorActive,
-		        "last_user": monitorData.monitorLastUser,
-		        "last_used": monitorData.monitorLastUsed,
-		        "total_hours": monitorData.monitor_totalHours
+		    	"name": monitorName,
+		        "type": monitorType,
+		        "specificWildlife": monitorSpecificWildlife,
+		        "coords": monitorCoords,
+		        "active": monitorActive,
 		    },
  		    "project_location_data": {
 				"layer_type": projectMapType,
 				 "project_coords": {
-		    	"points": pointsArray,
+		    		"points": pointsArray,
 		    	},
 				"area_acres": projectArea,
 				"nearestTown": projectNearestTown,
@@ -142,7 +134,6 @@ exports.createProject = function(req, res, next){
 
 			}},
 			function() {
-				console.log('save project ' + JSON.stringify(saveProject));
 				res.send(saveProject);
 			});
 	}, function(err){
@@ -207,9 +198,8 @@ exports.viewProjectDetails = function(req, res){
 }
 
 exports.getProjectsByUserId = function(req, res) {
-	console.log(req.params);
+
 	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
-	 	console.log(project);
 	 	res.send(project)
 	 });
 }

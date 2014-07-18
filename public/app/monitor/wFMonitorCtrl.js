@@ -12,7 +12,7 @@ angular.module('app')
 			templateUrl: '/partials/main/map/monitorPopup',
 			replace: true,
 			scope: {
-				removeMarker: '&onPopupRemove'
+
 			},
 			link: function(scope, ele, attrs) {
 				scope.monitorPopup = false;
@@ -88,10 +88,6 @@ angular.module('app')
 				}
 				scope.monitorActiveNo = function() {
 					scope.monitorSetup = true;
-				}
-				scope.removeMarker = function() {
-					console.log('delete');
-				//	$rootScope.$broadcast('removeMarker');
 				}
 				scope.closeMonitorPanel = function() {
 					scope.monitorPopup = false;
