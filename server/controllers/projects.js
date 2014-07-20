@@ -199,6 +199,12 @@ exports.getProjectsByUserId = function(req, res) {
 	 });
 }
 
+exports.getProjectTasks = function(req, res) {
+	Project.findById(req.params.id, function(err, project) {
+		res.send(project.projectTasks);
+	})
+}
+
 exports.updateProject = function(req, res) {
 /*	Project.find({'project._id' : req.params.id}, function(err, project) {
 		res.send(project);

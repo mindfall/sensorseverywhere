@@ -84,7 +84,7 @@ angular.module('app')
 				{name: 'in_progress', value: 'in progress'}
 			];
 			$scope.setStatus = {type: $scope.selectStatus[0].value};
-
+/*
 			$scope.tasks = [
 				{
 					id: 1,
@@ -95,7 +95,7 @@ angular.module('app')
 					status: 0
 
 				}
-			];
+			];*/
 
 			$scope.findActiveMembers();
 

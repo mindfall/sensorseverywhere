@@ -30,7 +30,6 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										div(class="btn btn-default" ng-click="editProject(project._id)") Edit
 									td.control-cell
 										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
-
 										
 							div(ng-controller="wFTaskCtrl")
 								accordion(close-others="oneAtATime")
@@ -46,6 +45,24 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												//- td(style="width: 8%") Upload Task File
 												td(style="width: 5%") Delete
 											tr(ng-repeat="task in tasks track by $index")
+												td
+													{{task.taskPriority}}
+												td
+													{{task.taskName}}	
+												td
+													{{task.taskDescription}}
+												td
+													{{task.taskOwner}}
+												td
+													{{task.taskStatus}}
+												td
+				
+													button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
+												td
+													button(class="btn btn-default" ng-click="removeTask($index)") Delete
+
+											tr(class="add-task")
+
 												td
 													select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
 												td

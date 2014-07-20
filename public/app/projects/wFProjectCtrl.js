@@ -7,7 +7,9 @@ angular.module('app')
 		var projectAdd = {};
 
 		var getUserProjects = [];
+		var projectTasks = [];
 		var userProjects = [];
+
 		var coords = [];
 		
 		var user = wFIdentity.currentUser;
@@ -46,7 +48,24 @@ angular.module('app')
 	 		$location.url('/projects/getProject/' + id);
 		}
 
+		$scope.getProjectTasks = function(id) {
 
+			getProjectTasks = wFProjectFactory.getProjectTasks(id);
+
+			getProjectTasks.then(function(tasks) {
+				if(tasks.length === 0 ) {
+					//
+				} else {
+					for(var i = 0; i < tasks.length; i++ ) {
+						projectTasks.push(tasks[i]);
+					}
+				}
+				$scope.tasks = projectTasks;
+				console.log($scope.tasks);
+			}, function(err) {
+				console.log(err);
+			});
+		}
 
 		$scope.getProjectsByUser = function() {
 			
@@ -59,6 +78,9 @@ angular.module('app')
 		      $scope.message = '';
 		      for(var i = 0; i < getUserProjects.length; i++){
 		        userProjects.push(getUserProjects[i]);
+		        //call to getProjectTasks using project id
+		        $scope.getProjectTasks(getUserProjects[i]._id);
+		       
 		      }
 		    }
 				$scope.projects = userProjects;

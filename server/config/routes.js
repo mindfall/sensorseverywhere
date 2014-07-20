@@ -23,6 +23,7 @@ module.exports = function(app){
 
 	app.get('/api/projects', projects.getProjects);
 	app.get('/api/getProject/:id', projects.getProject);
+	app.get('/api/getProjectTasks/:id', projects.getProjectTasks);
 	app.get('/api/projects/project-details/:name', projects.viewProjectDetails);
 	app.get('/api/projectsByUser/:id', projects.getProjectsByUserId);
 	app.put('/api/projects/edit/:id', projects.updateProject);

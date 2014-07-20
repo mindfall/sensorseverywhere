@@ -49,6 +49,19 @@ angular.module('app')
 					return dfd.promise;
 				},
 
+				getProjectTasks : function(id) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: '/api/getProjectTasks/' + id})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
+
 				getProjectsByUser : function(user_id) {
 			
 					var dfd = $q.defer();
