@@ -112,21 +112,20 @@ angular.module('app')
 	 	}
 
 	 	totalSpecies = $scope.wildlifeData.length;
-	 	monitors = wFProjectFactory.getMonitorData();
+	 	monitorData = wFProjectFactory.getMonitorData();
+	
+	 	for(var i = 0; i < monitorData.length; i++) {
 
-	 	for(var i = 0; i < monitors.length; i++) {
-
- 		
-			 var monitors = {
-	 			active: monitors[i].active,
-	 			name: monitors[i].name,
-	 			specificWildlife: monitors[i].specificWildlife,
-	 			type: monitors[i].type
+			monitors = {
+	 			active: monitorData[i].active,
+	 			name: monitorData[i].name,
+	 			specificWildlife: monitorData[i].specificWildlife,
+	 			type: monitorData[i].type
 	 		}	
-
+	 		console.log(monitorData);
 	 		$scope.monitorData.push(monitors);
 	 	}
-
+	 	console.log($scope.monitorData);
 	 	mapTDA.then(function(mapTDA) {
 	 		$scope.nearestTownName = JSON.stringify(mapTDA.geonames[0].name);
 	 		var distance = mapTDA.geonames[0].distance;
@@ -150,7 +149,7 @@ angular.module('app')
 	 		geopoints: mapData,
 	 		area: $scope.area
 	 	}
-	 	//console.log('geopoints: ' + JSON.stringify(corridorData.geopoints));
+	 	console.log(corridorData.monitors);
 	 	return corridorData;
 
 	}
@@ -171,7 +170,7 @@ angular.module('app')
 	 	/*
 			Need to include wildlife and monitor info.
 	 	*/
-	 	console.log(corridorData);
+	 	console.log(corridorData.monitors);
 
 		var projectData = {
 			project_owner: wFIdentity.currentUser._id,

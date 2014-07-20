@@ -18,22 +18,8 @@ var ProjectSchema = new Schema({
             owner_name: String
         //    owner_gravatar: String
     },
-    project_wildlife: [{
-        id: String,
-        name: String,
-        number: {type: Number},
-        comments: [{
-            owner: String,
-            comment: String
-        }]
-    }],
-    project_monitors: [{
-        name: String,
-        type: String,
-        specificWildlife: String,
-        coords: Array,
-        active: String,
-    }],
+    project_wildlife: Array,
+    project_monitors: Array,
     project_location_data: {
         layer_type: String,
         project_coords: {

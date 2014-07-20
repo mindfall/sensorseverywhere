@@ -31,6 +31,8 @@ angular.module('app')
 				scope.monitors = [
 					{name: 'audio', value: 'audio'},
 					{name: 'video', value: 'video'},
+					{name: 'temperature', value: 'temperature'},
+					{name: 'moisture', value: 'moisture'},
 					{name: 'other', value: 'other'}
 				];
 				scope.setMonitor = {type: scope.monitors[0].value};

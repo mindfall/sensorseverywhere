@@ -22,17 +22,6 @@ exports.createProject = function(req, res, next){
 	var projectType = req.body.project_type;
 	var projectFundingRequired = req.body.project_funding_required;
 
-	//number of species in santuary
-	var wildlife_id = req.body.project_wildlife.id;
-	var numberOfWildlife = req.body.project_wildlife.length;
-	//names of species
-	var wildlifeNames = [];
-	var wildlifeNumbers = 0;
-	var wildlifeComments = {
-		poster: req.body.wildlife_comment_owner,
-		comment: req.body.wildlife_comment
-	}
-
 	var coordinatesLength = req.body.project_location[0].length;
 	var pointData = [];
 	var pointsArray = [];
@@ -52,23 +41,43 @@ exports.createProject = function(req, res, next){
 
 	var monitorNumber = req.body.project_monitors.length;
 
-	var monitorName = '';
-	var monitorType = '';
-	var monitorSpecificWildlife = '';
-	var monitorActive = '';
 	var monitorCoords = [];
+	var monitor = {};
+	var project_monitors = [];
+
+
+/*	var wildlifeComments = {
+		poster: req.body.wildlife_comment_owner,
+		comment: req.body.wildlife_comment
+	}*/
 
 	for(i; i < monitorNumber; i++) {
-		monitorName = req.body.project_monitors[i].name;
-		monitorType = req.body.project_monitors[i].type;
-		monitorSpecificWildlife = req.body.project_monitors[i].specificWildlife;
-		monitorActive = req.body.project_monitors[i].active;
-		console.log(req.body.project_monitors[i]);
+
+		monitor = {	
+			monitorName : req.body.project_monitors[i].name,
+			monitorType : req.body.project_monitors[i].type,
+			monitorSpecificWildlife : req.body.project_monitors[i].specificWildlife,
+			monitorActive : req.body.project_monitors[i].active		
+		}
+		console.log(monitor);
+		project_monitors.push(monitor);
 	}
 
+	var numberOfWildlife = req.body.project_wildlife.length;
+	var wildlife = {};
+	var project_wildlife = [];
+
+
 	for(i; i < numberOfWildlife; i++){
-		wildlifeNames.push(req.body.project_wildlife[i].name);
+
+		wildlife = {
+			wildlifeId: req.body.project_wildlife[i].id,
+			wildlifeNames: req.body.project_wildlife[i].name,
+			wildlifeNumbers: req.body.project_wildlife[i].numbers
+		}
+		project_wildlife.push(wildlife);
 	}
+
 	
 	for(i; i < coordinatesLength; i++){
 		pointsArray.push(req.body.project_location[0][i]);
@@ -84,22 +93,8 @@ exports.createProject = function(req, res, next){
 		        "owner_name": projectOwnerFirstName
 		         //   owner_gravatar: String
 		    },
-		    "project_wildlife": [{
-		        "id": wildlife_id,
-		        "name": wildlifeNames,
-		        "number": wildlifeNumbers,
-		        "comments": [{
-		            "owner": wildlifeComments.poster,
-		            "comment": wildlifeComments.comment
-		        }]
-		    }],
-		    "project_monitors": {
-		    	"name": monitorName,
-		        "type": monitorType,
-		        "specificWildlife": monitorSpecificWildlife,
-		        "coords": monitorCoords,
-		        "active": monitorActive,
-		    },
+		    "project_wildlife": project_wildlife,
+		    "project_monitors": project_monitors,
  		    "project_location_data": {
 				"layer_type": projectMapType,
 				 "project_coords": {
@@ -216,7 +211,9 @@ exports.removeProject = function(req, res, next){
 		Group.find({'groupName': project.project_group}, function(err, group) {
 			Group.remove(function(err, group) {
 				console.log('removed group');
-			})
+			}, function(err) {
+				console.log(err);
+			});
 		});
 		User.update({_id: project.project_owner.owner_id}, {
  			$pull: {
