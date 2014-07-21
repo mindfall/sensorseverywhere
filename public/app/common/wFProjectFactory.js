@@ -62,10 +62,22 @@ angular.module('app')
 				},
 
 
-				getProjectsByUser : function(user_id) {
+				getProjectsByUser : function(user) {
 			
 					var dfd = $q.defer();
-					$http({method: 'GET', url: '/api/projectsByUser/' + user_id})
+					$http({method: 'GET', url: '/api/projectsByUser/' + user})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
+
+				getProjectsByGroup : function(group) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: '/api/projectsByGroup/' + group})
 						.success(function(data, success, headers, config) {
 							dfd.resolve(data);
 						})

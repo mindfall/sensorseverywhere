@@ -9,6 +9,8 @@ angular.module('app')
 		var getUserProjects = [];
 		var projectTasks = [];
 		var userProjects = [];
+		var groups = [];
+		var groupProjects = [];
 
 		var coords = [];
 		
@@ -61,8 +63,7 @@ angular.module('app')
 					}
 				}
 				$scope.tasks = projectTasks;
-				console.log($scope.tasks);
-			}, function(err) {
+				}, function(err) {
 				console.log(err);
 			});
 		}
@@ -73,7 +74,11 @@ angular.module('app')
 
 			getUserProjects.then(function(getUserProjects){
 		    if(getUserProjects.length === 0) {
-		      $scope.message = 'There are currently no projects to display.'
+		    	try {
+		    		$scope.getProjectsByGroup();
+		    	} catch(e) {
+		    		$scope.message = 'There are currently no projects to display.'
+		    	}
 		    } else {
 		      $scope.message = '';
 		      for(var i = 0; i < getUserProjects.length; i++){
@@ -84,6 +89,29 @@ angular.module('app')
 		      }
 		    }
 				$scope.projects = userProjects;
+			}, function(status){
+				console.log(status);
+			});
+		}
+
+		$scope.getProjectsByGroup = function() {
+		
+			for(var i = 0; i < user.projectGroupRole.length; i++ ) {
+				getGroupProjects = wFProjectFactory.getProjectsByGroup(user.projectGroupRole[i].group);
+			}
+
+			getGroupProjects.then(function(getGroupProjects){
+		    if(getGroupProjects.length === 0) {
+		      $scope.message = 'There are currently no projects to display.'
+		    } else {
+		      $scope.message = '';
+		      for(var i = 0; i < getGroupProjects.length; i++){
+		        groupProjects.push(getGroupProjects[i]);
+		        //call to getProjectTasks using project id
+		        $scope.getProjectTasks(getGroupProjects[i]._id); 
+		      }
+		    }
+				$scope.projects = groupProjects;
 			}, function(status){
 				console.log(status);
 			});

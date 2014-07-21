@@ -9,6 +9,7 @@ angular.module('app').
       var getUserGroups = [];
       var userGroups = [];
       var user = wFIdentity.currentUser;
+      $scope.identity = wFIdentity;
       $scope.users = [];
       $scope.buttonLabel = 'Create Group';
 
@@ -41,7 +42,6 @@ angular.module('app').
         }
         
         $scope.getFiles = function(name, type) {
-          console.log(name + ' ' + type);
           var dfd = $q.defer();
           $http({method: 'GET', url: '/api/'+type+'Files/' + name})
             .success(function(data, success, headers, config) {

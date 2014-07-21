@@ -1,11 +1,20 @@
 angular.module('app')
-	.controller('wFSignUpToGroupCtrl', ['$scope', '$location', '$stateParams', 'wFUser', 'wFAuth', 'wFUserFactory', 'wFGroupFactory', 'wFNotifier', 'wFAuth', 
-		function($scope, $location, $stateParams, wFUser, wFAuth, wFUserFactory, wFGroupFactory, wFNotifier, wFAuth){
+	.controller('wFSignUpToGroupCtrl', ['$scope', '$location', '$stateParams', 'wFUser', 'wFAuth', 'wFIdentity', 'wFUserFactory', 'wFGroupFactory', 'wFProjectFactory', 'wFNotifier', 'wFAuth', 
+		function($scope, $location, $stateParams, wFUser, wFAuth, wFIdentity, wFUserFactory, wFGroupFactory, wFProjectFactory, wFNotifier, wFAuth){
 
 			var gid = $stateParams.gid;
+			var loggedIn = false;
+			var groupProjects = [];
+			var user = '';
+			if(!loggedIn) {
+				console.log('not logged in');
+			} else {
+				user = wFIdentity.currentUser;
+				console.log(user);
+			}
 
 			wFGroupFactory.getGroupById(gid).then(function(data) {
-				console.log(data);
+				
 				$scope.groupName = data.groupName;
 			}, function(reason) {
 				console.log(reason);
@@ -26,12 +35,13 @@ angular.module('app')
 			
 				wFAuth.authenticateUser(username, password).then(function(success){
 					if(success){
-						var loggedIn = true;
+						loggedIn = true;
 						wFGroupFactory.updateUserStatus(userData).then(function() {
 							wFUserFactory.updateUserGroupRole(groupRole).then(function() {
 								wFNotifier.notify($scope.groupName  + ' has been added to your user profile.');
 							});
 							wFNotifier.notify('You are now a member of ' + $scope.groupName);
+
 							$location.path('/dashboard');	
 						}, function(reason){
 							wFNotifier.error(reason);
@@ -63,7 +73,7 @@ angular.module('app')
 				wFAuth.createUser(newUserData).then(function() {
 					wFGroupFactory.updateUserStatus(userData).then(function() {
 						wFNotifier.notify('You have signed up and are now a member of ' + $scope.groupName);
-						$location.path('/dashboard');	
+						$location.path('/dashboard');
 					}, function(reason){
 						wFNotifier.error(reason);
 					});

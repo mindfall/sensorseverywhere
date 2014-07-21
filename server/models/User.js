@@ -34,14 +34,9 @@ function createDefaultUsers(){
 		if(collection.length === 0){
 			var salt, hash;
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'joe');
-			User.create({firstname: 'Joe', lastname: 'Eames', username: 'joe', salt: salt, hashed_pwd: hash});
-			salt = encrypt.createSalt();
 			hash = encrypt.hashPwd(salt, 'wade');
 			User.create({firstname: 'wade', lastname: 'Mansell', username: 'wade', salt: salt, hashed_pwd: hash, siteRole: ['admin']});
-			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'soph');
-			User.create({firstname: 'Soph', lastname: 'Buttner', username: 'soph', salt: salt, hashed_pwd: hash});
+
 		}
 	});
 

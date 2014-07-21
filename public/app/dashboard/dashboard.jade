@@ -13,7 +13,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 							table
 								tr.project-summary
 									td
-										div.accordion-project-name
+										div.accordion-project-name 
 											a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}
 									td(colspan="4")
 										div.accordion-project-summary
@@ -27,9 +27,9 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 									td.control-cell
 										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
 									td.control-cell
-										div(class="btn btn-default" ng-click="editProject(project._id)") Edit
+										div(ng-show="project.project_owner" class="btn btn-default" ng-click="editProject(project._id)") Edit
 									td.control-cell
-										div(class="btn btn-default" ng-click="removeProject(project._id)") Delete
+										div(ng-show="project.project_owner" class="btn btn-default" ng-click="removeProject(project._id)") Delete
 										
 							div(ng-controller="wFTaskCtrl")
 								accordion(close-others="oneAtATime")
@@ -48,9 +48,9 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 												td
 													{{task.taskPriority}}
 												td
-													{{task.taskName}}	
+													span(editable-text="task.taskName") {{task.taskName}}	
 												td
-													{{task.taskDescription}}
+													span(editable-text="task.taskDescription") {{task.taskDescription}}
 												td
 													{{task.taskOwner}}
 												td
@@ -59,7 +59,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 				
 													button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
 												td
-													button(class="btn btn-default" ng-click="removeTask($index)") Delete
+													button(ng-show="identity.currentUser.isOwner()" class="btn btn-default" ng-click="removeTask($index)") Delete
 
 											tr(class="add-task")
 

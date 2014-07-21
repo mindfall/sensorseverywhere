@@ -24,7 +24,7 @@ exports.sendInvitationEmail = function(req, res, address){
 	    service: 'Gmail',
 		auth: {
 			user: "yourhsa@gmail.com",
-			pass: "afro12can"
+			pass: "[wO9uy#2]FI^#SUn(p"
 		}
 	});
 
