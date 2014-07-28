@@ -63,7 +63,7 @@ angular.module('app')
     	var totalSpecies = [];
     	var monitors = {};
     	var species = {};
-    	var wildLifedata = [];
+    	var wildLifeData = [];
     	$scope.wildlifeData = [];
     	$scope.monitorData = [];
     	var found = [];
@@ -80,7 +80,7 @@ angular.module('app')
 	 		if(wildlifeNumbers.length === 0) {
 	 			species = {
 					id: wildlifeData[i]._id,
-					name: wildlifeData[i].name, 
+					name: wildlifeData[i].name,
 					numbers: 1
 				}
 				$scope.wildlifeData.push(species);
@@ -122,7 +122,6 @@ angular.module('app')
 	 			specificWildlife: monitorData[i].specificWildlife,
 	 			type: monitorData[i].type
 	 		}	
-	 		console.log(monitorData);
 	 		$scope.monitorData.push(monitors);
 	 	}
 	 	console.log($scope.monitorData);

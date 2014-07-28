@@ -40,7 +40,6 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/getProject/' + id})
 						.success(function(data, success, headers, config) {
-							console.log(data);
 							dfd.resolve(data);				
 						})
 						.error(function(data, status, headers, config) {

@@ -57,7 +57,7 @@ angular.module('app')
 			//grab my location area from here.
 			
 			mapData = geojson;
-
+	
 		},
 
 		getMapData : function() {
@@ -134,7 +134,7 @@ angular.module('app')
 					numPoints = i + 1;
 				}
 				editPoints = coords;
-		
+		//		console.log(editPoints);
 		},
 
 		getEditMapData : function() {

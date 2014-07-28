@@ -1,6 +1,7 @@
 angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $q){
 
 	var selectedWildlife = [];
+	var wildlife = [];
 
 	return {
 
@@ -8,6 +9,7 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 			var deferred = $q.defer();
 			$http({method: 'GET', url: 'api/wildlife'}).
 				success(function(data, status, headers, config){
+					wildlife = data;
 					deferred.resolve(data);
 				}).
 				error(function(data, status, headers, config){
@@ -23,6 +25,10 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 	    	selectedWildlifeArray = selectedWildlife;
 	   		return selectedWildlifeArray;
 		},
+
+		getWildlife : function() {
+			return wildlife;
+		}
 
 	}
 });

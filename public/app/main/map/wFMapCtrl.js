@@ -124,7 +124,6 @@ angular.module('app')
 			points.push([coords[i][1], coords[i][0]]);
 		}
 		var polyline = L.polygon(points).addTo(map);
-
 	}
 
 	$scope.showMonitorPopup = function() {
@@ -138,6 +137,10 @@ angular.module('app')
 	 //   $(".marker-delete-button:visible").click(function () {
 	        map.removeLayer(tempMarker);
 	 //   });
+	}
+//
+	if($location.path().split('/')[2] === 'getProject') {
+			$scope.editMap();
 	}
 
 }]);

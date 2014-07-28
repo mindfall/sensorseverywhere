@@ -1,23 +1,76 @@
-div(class="main-container" ng-controller="wFMainCtrl")
+div(class="edit-container" ng-controller="wFMainCtrl")
 	.container(ng-if="isLoggedIn")
-		.row(class="create-row-map-container")
-			div(ng-controller="wMSlidingPanelCtrl")
-				slide-panel
-			.col-md-9(class="col-9-map-container")
-				
-				div(ng-controller="wFMapCtrl" id="map" class="map")
-					leaflet
-					//- div(class="showMapBtn" ng-init="editMap()") Show Map
+		
+		.col-md-5(class="map-edit-container")
+			
+			div(ng-controller="wFMapCtrl" id="map" class="map")
+				leaflet
 
-			.col-md-3(ng-controller="wFEditProjectCtrl" class="col-3-selection-container")
-				h3 Project Details
+		.col-md-2(ng-controller="wFEditProjectCtrl" class="col-2-edit-selection-container")
+			h3 Project Details
+			span Project Name:
 				div(editable-text="project.project_name") {{project.project_name}}
-				a(href="#" editable-bsdate="project.project_start_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_start_date | date}}
+			span This project started on: 
+			br
+			span start: 
+				a(href="#" editable-bsdate="project.project_start_date" e-datepicker-popup="dd-MMMM-yy"){{project.project_start_date | date}}
+			br
+			span and ends on: 
+			br
+			span end: 
 				a(href="#" editable-bsdate="project.project_end_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_end_date | date}}
-
+			br
+			span Group Name: 
 				div(editable-text="project.project_group") {{project.project_group}}
-				div(editable-text="project.project_owner.owner_id") {{project.project_owner.owner_id}}
+			span Project Owner: 
+				div(editable-text="project.project_owner.owner_id") {{project.project_owner.owner_name}}
+			span Project Type: 
 				div(editable-text="project.project_type") {{project.project_type}}
-				div(editable-text="project.project_wildlife.name") {{project.project_wildlife.name}}
+
+		.col-md-2(class="col-2-edit-selection-container")
+			p
+				.selection-layout
+					div.edit-selection-input
+						form.selectAnimalInput(ng-submit="editSelectedWildlife()")
+							input(id='wildlife_search' 
+								type='search' 
+								ng-model="wildlifeSelect" 
+								typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+								class="form-control edit-selection-input" 
+								placeholder="Search for wildlife...")
+
+					div.projectWildlifeContainer
+						div(ng-repeat="species in projectWildlife track by $index") 
+							.well.project-wildlife
+								table.selectedWildlife
+									tr
+										td.wildlifeCell
+											div(class="edit-project-wildlife-numbers" ng-model="wildlifeNumber") {{species.wildlifeNumbers}}
+										td.wildlifeCell
+											div(class="edit-project-wildlife-names") {{species.wildlifeNames}}
+										td.wildlifeBtnCell
+											div(class="edit-remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife("project")') X
+
+					div.selectedWildlifeContainer
+						div(ng-repeat="creature in selectedWildlife track by $index") 
+							.well
+								table.selectedWildlife
+									tr
+										td.wildlifeCell
+											input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
+										td.wildlifeCell
+											div(class="selectedThumb")<img ng-src="{{creature.image_thumb}}"> 
+										td.wildlifeCell
+											div(class="selectedWildlifeName") {{creature.name}}
+										td.wildlifeBtnCell
+											div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife("selection")') X
+		.col-md-2
+			h3 Monitors
+			span {{monitorMessage}}
+			br
+			div(ng-repeat="monitor in monitors track by $index")
+				div(editable-text="monitor.name") {{monitor.name}}
+				select(class="form-control" ng-model="monitorType" ng-change="selectMonitor()" ng-options="monitorType.value as monitorType.name for monitorType in monitorTypes")
+			div(class="btn btn-default") Add Monitor
 
 		button(class="save-project-button") Edit
