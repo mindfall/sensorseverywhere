@@ -30,28 +30,31 @@ angular.module('app')
 
 	    		groupArray.push(JSON.stringify(createGroup));
 	    		$scope.groupArray = groupArray;
+
+		    	var groupToProject = {
+		    		groupName : groupName,
+		    		projectName: projectName
+		    	};
+
+		    	if(projectName === '' || projectName === 'undefined' || projectName === null) {
+		    		wFNotifier.error('The group must be added to a project.');
+		    		return;
+		    	} else {
+			    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
+			    	addGroupToProject.then(function(addGroup) {
+			    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
+			    	}, function(status) {
+			    		console.log(status);
+			    	});
+
+			    	$location.url('/dashboard');
+		    	}
+
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
 
-	    	var groupToProject = {
-	    		groupName : groupName,
-	    		projectName: projectName
-	    	};
-	    	console.log(projectName)
-	    	if(projectName === '' || projectName === 'undefined' || projectName === null) {
-	    		wFNotifier.error('The group must be added to a project.');
-	    		return;
-	    	} else {
-		    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
-		    	addGroupToProject.then(function(addGroup) {
-		    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
-		    	}, function(status) {
-		    		console.log(status);
-		    	});
 
-		    	$location.url('/dashboard');
-	    	}
 
 	    }
 

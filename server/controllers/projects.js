@@ -121,6 +121,7 @@ exports.createProject = function(req, res, next){
 
 	}, 
 	function(){
+
 		var addUserToProject = User.update({_id: projectOwner},
 			{ $push: {
 				projectGroupRole: {
@@ -131,8 +132,14 @@ exports.createProject = function(req, res, next){
 			function() {
 				res.send(saveProject);
 			});
-	}, function(err){
-		console.log(err);
+	}, function(err, project){
+		if(err){
+			if(err.toString().indexOf('E11000') > -1){
+				err = new Error('Duplicate project name.');
+			}
+			res.status(400);
+			return res.send({reason:err.toString()});
+		}
 	});
 };
 
@@ -195,12 +202,13 @@ exports.viewProjectDetails = function(req, res){
 exports.getProjectsByUserId = function(req, res) {
 
 	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
+	 	console.log(project);
 	 	res.send(project)
 	 });
 }
 
 exports.getProjectsByGroup = function(req, res) {
-	console.log(req.params.group);
+
 	 Project.find({'project_group': req.params.group}, function(err, project) {
 	 	res.send(project)
 	 });

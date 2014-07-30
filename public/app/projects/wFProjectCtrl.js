@@ -67,12 +67,15 @@ angular.module('app')
 				console.log(err);
 			});
 		}
-
+		/**
+		* Function to check if user is owner or member 
+		**/
 		$scope.getProjectsByUser = function() {
 			
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
 
 			getUserProjects.then(function(getUserProjects){
+			//
 		    if(getUserProjects.length === 0) {
 		    	try {
 		    		$scope.getProjectsByGroup();

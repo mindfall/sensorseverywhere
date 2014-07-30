@@ -80,7 +80,8 @@ angular.module('app')
 							group = data;
 							dfd.resolve(data);
 						})
-						.error(function(data, status, headers, config) {
+						.error(function(response, status) {
+							wFNotifier.error(response.reason);
 							dfd.reject(status);
 						});
 					return dfd.promise;

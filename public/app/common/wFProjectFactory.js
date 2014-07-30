@@ -66,6 +66,7 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/projectsByUser/' + user})
 						.success(function(data, success, headers, config) {
+							console.log(data);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {
@@ -78,9 +79,11 @@ angular.module('app')
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/projectsByGroup/' + group})
 						.success(function(data, success, headers, config) {
+							console.log(data);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {
+
 							dfd.reject(status);
 						});
 					return dfd.promise;
@@ -106,7 +109,8 @@ angular.module('app')
 							dfd.resolve(data);
 							console.log(data);
 						})
-						.error(function(data, status, headers, config) {
+						.error(function(response, status) {
+							wFNotifier.error(response.reason);
 							dfd.reject(status);
 						});
 					return dfd.promise;

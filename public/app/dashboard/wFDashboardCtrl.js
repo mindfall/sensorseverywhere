@@ -9,10 +9,9 @@ angular.module('app').
       var getUserGroups = [];
       var userGroups = [];
       var user = wFIdentity.currentUser;
+      var counter = 0;
       $scope.identity = wFIdentity;
       $scope.users = [];
-      $scope.buttonLabel = 'Create Group';
-
       $scope.message = '';
 
     	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -28,16 +27,15 @@ angular.module('app').
         }
 
         $scope.toggleGroupForm = function() {
-
-          if($scope.groupForm === false ) {
+          if(counter % 2 == 0) {
             $scope.buttonLabel = 'Create Group';
-
-          } else if($scope.groupForm === true ) {
+          } else {
             $scope.buttonLabel = 'Show Groups';
           }
-
           $scope.groupForm = !$scope.groupForm;
           $scope.groupList = !$scope.groupList;
+
+          counter++;
 
         }
         
@@ -107,6 +105,7 @@ angular.module('app').
         }
 
         if(user) $scope.getGroupsByUser();
+        $scope.toggleGroupForm();
 
 }]).directive('emailPopup', function() {
 

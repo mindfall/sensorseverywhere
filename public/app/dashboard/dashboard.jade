@@ -89,30 +89,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 			bg-pane
 				h4 Groups
 				.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
-					.col-md-12(class="group-form-container" ng-model="groupForm" ng-show="!groupForm")
-						.well
-							span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
-							form.form-horizontal(class="create-group-form" name="createGroupForm")
-								fieldset
-									legend Create a Group
-										.form-group
-											.col-md-12
-												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" required)
-										.form-group
-											.col-md-12
-												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames" required)
-										.form-group
-											.col-md-12
-												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15 required)
-										.form-group
-											.col-md-12(ng-controller="wFFileUploadCtrl")
-												input(type="text" ng-model="fileUpload")
-												input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'group')")
-												
-										.form-group
-											.col-md-12
-												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);" ng-disabled="createGroupForm.$invalid") Create Group
-					.col-md-12(class="group-list-container" ng-show="groupList" ng-model="groupList")
+					.col-md-12(class="group-list-container" ng-model="groupList")
 						.well
 							h4 Group list
 							table(class="table")
@@ -173,10 +150,33 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
 													td
 														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
+					.col-md-12(class="group-form-container" ng-model="groupForm" ng-show="groupForm")
+						.well
+							span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
+							form.form-horizontal(class="create-group-form" name="createGroupForm")
+								fieldset
+									legend Create a Group
+										.form-group
+											.col-md-12
+												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" required)
+										.form-group
+											.col-md-12
+												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames" required)
+										.form-group
+											.col-md-12
+												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15 required)
+										.form-group
+											.col-md-12(ng-controller="wFFileUploadCtrl")
+												input(type="text" ng-model="fileUpload")
+												input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'group')")
+										.form-group
+											.col-md-12
+												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);" ng-disabled="createGroupForm.$invalid") Create Group
+				
 			
 										
 
-				button(class="create-group-button" ng-controller="wFGroupCtrl" ng-model="clickModel" ng-click="toggleGroupForm();") {{buttonLabel}}
+				button(class="create-group-button" ng-model="clickModel" ng-click="toggleGroupForm();") {{buttonLabel}}
 			email-popup(ng-show="emailPopup()" draggability)
 			chat-popup(ng-show="chatPopup()" draggability)
 			div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")

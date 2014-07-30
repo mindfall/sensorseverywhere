@@ -40,7 +40,6 @@ exports.createGroup = function(req, res, next){
 	var groupDescription = groupData.groupDescription;
 	var email = groupData.email;
 	var username = groupData.username;
-	console.log(username);
 	var status = groupData.status;
 	var role = groupData.role;
 
@@ -58,8 +57,16 @@ exports.createGroup = function(req, res, next){
 		}],
 		"filename": filename
 	}, 
-	function(){
-		var addGroupToUser = User.update({username: username, 'projectGroupRole.project': groupData.projectName},
+
+	 function(err, group) {
+		if(err){
+			if(err.toString().indexOf('E11000') > -1){
+				err = new Error('Duplicate group name');
+			}
+			res.status(400);
+			return res.send({reason:err.toString()});
+		} else {
+			var addGroupToUser = User.update({username: username, 'projectGroupRole.project': groupData.projectName},
 			{ $set: {
 				'projectGroupRole.$.group': groupData.groupName,
 				'projectGroupRole.$.role': 'owner'
@@ -67,7 +74,7 @@ exports.createGroup = function(req, res, next){
 			function() {
 				res.send(saveGroup);
 			});
- 	
+ 		}
 	});
 };
 

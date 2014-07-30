@@ -11,7 +11,7 @@ var Schema = mongoose.Schema;
 
 var ProjectSchema = new Schema({
   //  id: Number,
-    project_name:String,
+    project_name:{ type: String, unique: true},
     project_group: String,
     project_owner: {
             owner_id: {type: String},
