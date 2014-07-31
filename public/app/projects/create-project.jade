@@ -30,11 +30,11 @@ div(class="main-container" ng-controller="wFMainCtrl")
 											td.wildlifeCell
 												div(class="selectedWildlifeName") {{creature.name}}
 											td.wildlifeBtnCell
-												div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife()') X
+												div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
 				
 						wildlife-popup(ng-show="wildlifePopup()")
 						comment-popup(ng-show="commentPopup()" draggability)
-			marker-popup(ng-controller="wFMonitorCtrl")			
+			monitor		
 			
 			project-popup(class="project-popup" ng-show="projectPopup()")
 		button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save

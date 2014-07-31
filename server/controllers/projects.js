@@ -59,7 +59,6 @@ exports.createProject = function(req, res, next){
 			monitorSpecificWildlife : req.body.project_monitors[i].specificWildlife,
 			monitorActive : req.body.project_monitors[i].active		
 		}
-		console.log(monitor);
 		project_monitors.push(monitor);
 	}
 
@@ -82,6 +81,7 @@ exports.createProject = function(req, res, next){
 	for(i; i < coordinatesLength; i++){
 		pointsArray.push(req.body.project_location[0][i]);
 	}
+	pointData.push(pointsArray);
 
 	var saveProject = Project.create ({
 
@@ -96,9 +96,10 @@ exports.createProject = function(req, res, next){
 		    "project_wildlife": project_wildlife,
 		    "project_monitors": project_monitors,
  		    "project_location_data": {
-				"layer_type": projectMapType,
-				 "project_coords": {
-		    		"points": pointsArray,
+				
+				"project_coords": {
+					"layer_type": projectMapType,
+		    		"coordinates": pointData,
 		    	},
 				"area_acres": projectArea,
 				"nearestTown": projectNearestTown,
@@ -120,9 +121,15 @@ exports.createProject = function(req, res, next){
 
 
 	}, 
-	function(){
-
-		var addUserToProject = User.update({_id: projectOwner},
+	 function(err, project){
+		if(err){
+			if(err.toString().indexOf('E11000') > -1){
+				err = new Error('Duplicate project name.');
+			}
+			res.status(400);
+			return res.send({reason:err.toString()});
+		} else {
+			var addUserToProject = User.update({_id: projectOwner},
 			{ $push: {
 				projectGroupRole: {
 					project: projectData.project_name,
@@ -132,13 +139,6 @@ exports.createProject = function(req, res, next){
 			function() {
 				res.send(saveProject);
 			});
-	}, function(err, project){
-		if(err){
-			if(err.toString().indexOf('E11000') > -1){
-				err = new Error('Duplicate project name.');
-			}
-			res.status(400);
-			return res.send({reason:err.toString()});
 		}
 	});
 };

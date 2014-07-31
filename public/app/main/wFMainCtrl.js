@@ -124,7 +124,6 @@ angular.module('app')
 	 		}	
 	 		$scope.monitorData.push(monitors);
 	 	}
-	 	console.log($scope.monitorData);
 	 	mapTDA.then(function(mapTDA) {
 	 		$scope.nearestTownName = JSON.stringify(mapTDA.geonames[0].name);
 	 		var distance = mapTDA.geonames[0].distance;
@@ -148,7 +147,6 @@ angular.module('app')
 	 		geopoints: mapData,
 	 		area: $scope.area
 	 	}
-	 	console.log(corridorData.monitors);
 	 	return corridorData;
 
 	}
@@ -169,7 +167,6 @@ angular.module('app')
 	 	/*
 			Need to include wildlife and monitor info.
 	 	*/
-	 	console.log(corridorData.monitors);
 
 		var projectData = {
 			project_owner: wFIdentity.currentUser._id,

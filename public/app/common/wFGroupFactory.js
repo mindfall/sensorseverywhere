@@ -19,7 +19,6 @@ angular.module('app')
 							dfd.reject(status);
 						});
 					return dfd.promise;
-
 				},
 
 				getGroupById : function(id) {
@@ -34,12 +33,23 @@ angular.module('app')
 					return dfd.promise;
 				},
 
+				getGroupByName : function(name) {
+					var dfd = $q.defer();
+					$http({method: 'GET', url: '/api/groupByName/' + name})
+						.success(function(data, success, headers, config) {
+							dfd.resolve(data);
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(status);
+						});
+					return dfd.promise;
+				},
 
 				getGroupsByUser : function(username) {
 					var dfd = $q.defer();
 					$http({method: 'GET', url: '/api/groupsByUser/' + username})
 						.success(function(data, success, headers, config) {
-							if(callNumber === 0) {
+						/*	if(callNumber === 0) {*/
 								dfd.resolve(data);
 								for(var i = 0; i < data.length; i++) {
 									for(var j = 0; j < data[i].groupMembers.length; j++) {
@@ -52,8 +62,8 @@ angular.module('app')
 					                  }
 					                  users.push(usersInGroup);
 					                }
-				            	}
-								callNumber++;
+				           /* 	}
+								callNumber++;*/
 							}
 						}).
 						error(function(data, status, headers, config) {

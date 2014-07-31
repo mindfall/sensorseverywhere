@@ -1,15 +1,10 @@
 angular.module('app')
-	.controller('wFMonitorCtrl', ['$scope', 
-		function($scope){
-
-
-
-}]).directive('markerPopup', ['$rootScope', 'wFProjectFactory', 'wFWildlifeFactory', 'wFNotifier', 
+	.directive('monitor', ['$rootScope', 'wFProjectFactory', 'wFWildlifeFactory', 'wFNotifier', 
 		function($rootScope, wFProjectFactory, wFWildlifeFactory, wFNotifier) {
 			return {
 			restrict: 'E',
 			transclude: true,
-			templateUrl: '/partials/main/map/monitorPopup',
+			templateUrl: '/partials/monitor/monitor',
 			replace: true,
 			scope: {
 
@@ -52,7 +47,10 @@ angular.module('app')
 
 				scope.$on('showMonitorPopup', function() {
 					scope.monitorPopup = true;
-					scope.$apply();
+					if(!$rootScope.$$phase) {
+						scope.$apply();	
+					}
+					
 				});
 				scope.monitorNoThanks = function() {
 					scope.monitorPopup = false;
@@ -105,7 +103,7 @@ angular.module('app')
 					scope.monitorPopup = false;
 				}
 				ele.on('click', function(e) {
-
+					
 					e.stopPropagation();
 				});
 				

@@ -28,6 +28,12 @@ exports.getGroupById = function(req, res) {
 	});
 }
 
+exports.getGroupByName = function(req, res) {
+	Group.findOne({groupName: req.params.name}, function(err, group) {
+		res.send(group);
+	});
+}
+
 /**
 * create a chat log
 */

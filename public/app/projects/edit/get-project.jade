@@ -1,6 +1,7 @@
 div(class="edit-container" ng-controller="wFMainCtrl")
+
 	.container(ng-if="isLoggedIn")
-		
+
 		.col-md-5(class="map-edit-container")
 			
 			div(ng-controller="wFMapCtrl" id="map" class="map")
@@ -38,21 +39,10 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 								typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
 								class="form-control edit-selection-input" 
 								placeholder="Search for wildlife...")
-
-					div.projectWildlifeContainer
-						div(ng-repeat="species in projectWildlife track by $index") 
-							.well.project-wildlife
-								table.selectedWildlife
-									tr
-										td.wildlifeCell
-											div(class="edit-project-wildlife-numbers" ng-model="wildlifeNumber") {{species.wildlifeNumbers}}
-										td.wildlifeCell
-											div(class="edit-project-wildlife-names") {{species.wildlifeNames}}
-										td.wildlifeBtnCell
-											div(class="edit-remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife("project")') X
-
+				
 					div.selectedWildlifeContainer
 						div(ng-repeat="creature in selectedWildlife track by $index") 
+							//- {{creature}}
 							.well
 								table.selectedWildlife
 									tr
@@ -63,14 +53,24 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 										td.wildlifeCell
 											div(class="selectedWildlifeName") {{creature.name}}
 										td.wildlifeBtnCell
-											div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife("selection")') X
-		.col-md-2
+											div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
+		.col-md-3
 			h3 Monitors
 			span {{monitorMessage}}
 			br
 			div(ng-repeat="monitor in monitors track by $index")
-				div(editable-text="monitor.name") {{monitor.name}}
-				select(class="form-control" ng-model="monitorType" ng-change="selectMonitor()" ng-options="monitorType.value as monitorType.name for monitorType in monitorTypes")
-			div(class="btn btn-default") Add Monitor
+				.well
+					div(class="remove-selected-monitor-btn" ng-click="removeSelectedMonitor()") X
+					span Monitor Name:
+						div(editable-text="monitor.name") {{monitor.monitorName}}
+					span Monitor Type:
+						select(class="form-control" ng-model="monitor.monitorType" ng-change="selectMonitor()" ng-options="monitorType.value as monitorType.name for monitorType in monitorTypes")
+					span and is monitoring: 
+						{{monitor.monitorSpecificWildlife}}
+					br
+					span is active? {{monitor.monitorActive}}
+					
+			div(class="btn btn-default" ng-click="showMonitorPopup()") Add Monitor
+		monitor
 
 		button(class="save-project-button") Edit

@@ -21,9 +21,10 @@ var ProjectSchema = new Schema({
     project_wildlife: Array,
     project_monitors: Array,
     project_location_data: {
-        layer_type: String,
+        
         project_coords: {
-            points: Array,
+            layer_type: String,
+            coordinates: Array,
         },
         area_acres: {type: Number},
         nearestTown: String,
@@ -49,10 +50,4 @@ var ProjectSchema = new Schema({
 var Project = mongoose.model('Project', ProjectSchema);
 
 
-/* 
-     comment: String,
-    last_user: String,
-    last_used: Date,
-    total_hours: Number
 
-*/

@@ -54,31 +54,6 @@ angular.module('app').
           return dfd.promise;
         } 
 
-
-        $scope.getGroupsByUser = function() {
-          getUserGroups = wFGroupFactory.getGroupsByUser(user.username);
-        
-          getUserGroups.then(function(getUserGroups){
-            if(getUserGroups.length === 0) {
-              $scope.message = 'There are currently no groups to display.';
-            } else {
-              $scope.message = '';
-              for(var i = 0; i < getUserGroups.length; i++){
-                userGroups.push(getUserGroups[i]);
-                }
-               /* if(getUserGroups[i].filename) {
-                  var filename = getUserGroups[i].filename;
-                  $scope.getGroupImages(filename);
-                }*/
-            }
-            $scope.groups = userGroups;
-            $scope.members = 1;
-
-          }, function(status){
-            console.log(status);
-          });
-        }
-
         $scope.toggleDocumentOverlay = function() {
           $scope.documentOverlay = !$scope.documentOverlay;
         }
@@ -104,7 +79,6 @@ angular.module('app').
           return chatPopup;
         }
 
-        if(user) $scope.getGroupsByUser();
         $scope.toggleGroupForm();
 
 }]).directive('emailPopup', function() {

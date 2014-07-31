@@ -35,6 +35,7 @@ module.exports = function(app){
 
 	app.get('/api/groups', groups.getGroups);
 	app.get('/api/groupById/:id', groups.getGroupById);
+	app.get('/api/groupByName/:name', groups.getGroupByName);
 	app.get('/api/groupsByUser/:username', groups.getGroupsByUser);
 	app.get('/api/findActiveMembers/:project', groups.findActiveMembers);
 	app.post('/api/createGroup', groups.createGroup);

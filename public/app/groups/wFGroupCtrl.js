@@ -10,7 +10,7 @@ angular.module('app')
 		var projectNames = [];
 		var user = wFIdentity.currentUser;
 
-		
+		$scope.groups = [];
 		$scope.oneAtATime = true;
 
 	    $scope.createGroup = function(groupName, projectName, description) {
@@ -30,7 +30,6 @@ angular.module('app')
 
 	    		groupArray.push(JSON.stringify(createGroup));
 	    		$scope.groupArray = groupArray;
-
 		    	var groupToProject = {
 		    		groupName : groupName,
 		    		projectName: projectName
@@ -43,6 +42,7 @@ angular.module('app')
 			    	addGroupToProject = wFProjectFactory.addGroupToProject(groupToProject);
 			    	addGroupToProject.then(function(addGroup) {
 			    		wFNotifier.notify('The group ' + groupName + ' has been added to project ' + projectName);
+			    		$scope.getGroupByName(addGroup.groupName);
 			    	}, function(status) {
 			    		console.log(status);
 			    	});
@@ -53,10 +53,43 @@ angular.module('app')
 	    	}, function(status) {
 	    		console.log(status);
 	    	});
-
-
-
 	    }
+
+	    $scope.getGroupByName = function(groupName) {
+
+	    	getGroupByName = wFGroupFactory.getGroupByName(groupName);
+	          
+            getGroupByName.then(function(group){
+	          	$scope.groups.push(group);
+            }, function(status){
+            	console.log(status);
+            });
+	    }
+
+	    $scope.getGroupsByUser = function() {
+
+	          getUserGroups = wFGroupFactory.getGroupsByUser(user.username);
+	          
+	          getUserGroups.then(function(getUserGroups){
+		            if(getUserGroups.length === 0) {
+		              	$scope.message = 'There are currently no groups to display.';
+		            } else {
+		             	$scope.message = '';
+		              	for(var i = 0; i < getUserGroups.length; i++){
+		               		userGroups.push(getUserGroups[i]);
+		                }
+		               /* if(getUserGroups[i].filename) {
+		                  var filename = getUserGroups[i].filename;
+		                  $scope.getGroupImages(filename);
+		                }*/
+		            }
+		            $scope.groups = userGroups;
+		            $scope.members = 1;
+
+	          }, function(status){
+	            	console.log(status);
+	          });
+        }
 
 	    $scope.addUserToGroup = function(username, firstname, gid) {
 
@@ -132,6 +165,7 @@ angular.module('app')
 			});
 		}
 		$scope.getProjectNames();
+		if(user) $scope.getGroupsByUser();
 }]);
 
 angular.module('app').directive('span', function() {

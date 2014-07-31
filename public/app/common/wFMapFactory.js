@@ -24,13 +24,13 @@ angular.module('app')
 							color: '#b00b00',
 							timeout: 1000
 						},
-						shapeOptions: {
+/*						shapeOptions: {
 							color: '#bada55'
-						},
+						},*/
 						showArea: true,
 						metric: true
 					},
-					marker: true,
+/*					marker: true,*/
 				},
 				edit: {
 					featureGroup: drawnItems,
@@ -55,7 +55,6 @@ angular.module('app')
 				numPoints = i + 1;
 			}
 			//grab my location area from here.
-			
 			mapData = geojson;
 	
 		},
@@ -124,17 +123,16 @@ angular.module('app')
 
 		setEditMapData : function(coords) {
 
-				var xPts = [];
-				var yPts = [];
-				var numPoints = 0;
+			var xPts = [];
+			var yPts = [];
+			var numPoints = 0;
 
-				for(var i = 0; i < coords.length; i++) {
-					xPts.push(coords[i][0]);
-					yPts.push(coords[i][1]);
-					numPoints = i + 1;
-				}
-				editPoints = coords;
-		//		console.log(editPoints);
+			for(var i = 0; i < coords.length; i++) {
+				xPts.push(coords[i][0]);
+				yPts.push(coords[i][1]);
+				numPoints = i + 1;
+			}
+			editPoints = coords;
 		},
 
 		getEditMapData : function() {
@@ -145,9 +143,6 @@ angular.module('app')
 			}
 			return points;		
 		}
-
-
-
 	}
 	getMapData();
 }]);

@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFMapCtrl', ['$scope', '$rootScope', '$location', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
-		function($scope, $rootScope, $location, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
+	.controller('wFMapCtrl', ['$scope', '$rootScope', '$location', '$timeout', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
+		function($scope, $rootScope, $location, $timeout, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	setMapHeight();
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
@@ -57,12 +57,6 @@ angular.module('app')
    		}
    	}
 
-
-  
-
-
-
-
 	map.on('draw:created', function (e) {
 		var type = e.layerType,
 			layer = e.layer;
@@ -72,7 +66,7 @@ angular.module('app')
 		selectedWildlife = wFWildlifeFactory.selectWildlife();
 		layer.on('click', function(e) {
 
-		   		if($location.path().split('/')[1] === 'create-project') {
+		   		if($location.path().split('/')[1] === 'create-project' || $location.path().split('/')[1] === 'get-project') {
 					var geojsonFeature = {
 						"type": "Feature",
 						"properties": {},
@@ -102,7 +96,6 @@ angular.module('app')
 		drawnItems.addLayer(e.layer);
 	});
 
-	//marker.fire('click');
 
 	map.on('draw:edited', function (e) {
 		var layers = e.layers;
@@ -118,12 +111,26 @@ angular.module('app')
 	*/
 
 	$scope.editMap = function() {
+
 		var coords = wFMapFactory.getEditMapData();
-		var points = [];
-		for(var i = 0; i < coords.length; i ++) {
-			points.push([coords[i][1], coords[i][0]]);
-		}
-		var polyline = L.polygon(points).addTo(map);
+		var geojsonFeature = {
+		    "type": "Feature",
+		    "properties": {},
+		    "geometry": {
+		        "type": "Polygon",
+		        "coordinates": coords
+
+		    }
+		};
+
+		var layers = L.geoJson(geojsonFeature, {
+			onEachFeature: function (feature, layer) {
+				layer.on('click', function(e) {
+					e.target.editing.enable();
+				})
+			}
+		}).addTo(map);
+
 	}
 
 	$scope.showMonitorPopup = function() {
@@ -140,7 +147,10 @@ angular.module('app')
 	}
 //
 	if($location.path().split('/')[2] === 'getProject') {
+		$timeout(function() {
 			$scope.editMap();
+		}, 1000);
+			
 	}
 
 }]);

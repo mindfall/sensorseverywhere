@@ -66,9 +66,8 @@ angular.module('app')
 	    	}
 	 	}
 
-	    $scope.removeSelectedWildlife = function(listtype) {
+	    $scope.removeSelectedWildlife = function() {
 
-	    	if(listtype === 'selection') {
 	    		$scope.selectedWildlife.splice(this.$index, 1);
 		    	for(i = 0; i < $rootScope.dupeList.length; i += 1 ) {
 		    		$rootScope.dupeList.splice(i, 1);
@@ -76,14 +75,12 @@ angular.module('app')
 		    	for(i = 0; i < $rootScope.selectedWildlife.length; i += 1 ) {
 		    		$rootScope.selectedWildlife.splice(i, 1);
 		    	}
-	    	} /*else if(listtype === 'project') {
-		    	$scope.projectWildlife.splice(this.$index, 1);
-		    	for(i = 0; i < $rootScope.projectWildlife.length; i += 1 ) {
-		    		$rootScope.projectWildlife.splice(i, 1);
-		    	}
-	    	}*/
-	    	
 	    }
+
+	    $scope.removeSelectedMonitor = function() {
+	    	$scope.monitors.splice(this.$index, 1);
+  	    }
+
 
 		$scope.getProjectById = function(id) {
 			var i = 0;
@@ -92,9 +89,11 @@ angular.module('app')
 		 			$scope.project = project;
 
 		 			//map points for layer
-		 			points = project.project_location_data.project_coords.points;
-		 			for(i; i < points.length; i++) {
-		 				coords.push(points[i]);
+
+		 			project_coords = project.project_location_data.project_coords.coordinates;
+
+		 			for(i; i < project_coords.length; i++) {
+		 				coords.push(project_coords[i]);
 		 			}
 		 			wFMapFactory.setEditMapData(coords);
 		 			
@@ -102,9 +101,14 @@ angular.module('app')
 		 				$scope.monitorMessage = 'There are no monitors to display.';
 		 			} else {
 			 			for(i = 0; i < project.project_monitors.length; i++) {
+			 				if(project.project_monitors[i].monitorSpecificWildlife === undefined) {
+			 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
+			 				}
+
 			 				monitors.push(project.project_monitors[i]);
 		 				}
 		 				$scope.monitors = monitors;
+
 		 			}
 
 		 			if(project.project_wildlife === 0) {
@@ -127,27 +131,31 @@ angular.module('app')
 
 	 	$scope.findActiveMembers = function(project) {
 				
-				var selectOwner = [];
-				var activeMembers = wFTaskFactory.findActiveGroupMembers(project);
-				
-				activeMembers.then(function(data) {
+			var selectOwner = [];
+			var activeMembers = wFTaskFactory.findActiveGroupMembers(project);
+			
+			activeMembers.then(function(data) {
 
-					for(var i = 0; i < data.length; i++) {
+				for(var i = 0; i < data.length; i++) {
 
-						for(var j = 0; j < data[i].groupMembers.length; j++) {
-							var ownerAttrs = {
-								name: data[i].groupMembers[j].username.toString(),
-								value: data[i].groupMembers[j].username.toString()
-							}
-							selectOwner.push(ownerAttrs);
+					for(var j = 0; j < data[i].groupMembers.length; j++) {
+						var ownerAttrs = {
+							name: data[i].groupMembers[j].username.toString(),
+							value: data[i].groupMembers[j].username.toString()
 						}
-						$scope.selectOwner = selectOwner;
-						$scope.setOwner = {type: $scope.selectOwner[0].value};
-
-						console.log($scope.selectOwner);
+						selectOwner.push(ownerAttrs);
 					}
-				});
-			}
+					$scope.selectOwner = selectOwner;
+					$scope.setOwner = {type: $scope.selectOwner[0].value};
+
+					console.log($scope.selectOwner);
+				}
+			});
+		}
+
+		$scope.showMonitorPopup = function() {
+			$rootScope.$broadcast('showMonitorPopup');
+		}
 
 	 	$scope.monitorTypes = [
 			{name: 'audio', value: 'audio'},

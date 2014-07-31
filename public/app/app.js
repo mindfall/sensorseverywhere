@@ -68,11 +68,6 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/projects/project-details', 
 				controller: 'wFProjectDetailsCtrl'
 		})
-		.state('monitor/main', {
-				url: '/monitor/main', 
-				templateUrl: '/partials/monitor/main', 
-				controller: 'wFMonitorCtrl'
-		})
 		.state('admin/users', {
 				url: '/admin/users',
 				templateUrl: '/partials/admin/user-list', 
