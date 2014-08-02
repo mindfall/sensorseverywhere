@@ -88,6 +88,7 @@ exports.findActiveMembers = function(req, res) {
 	var activeMembers = Group.find({'groupMembers.status': 'accepted', 'groupProject': req.params.project},
 		{'groupMembers.username': 1, _id: 0},
 		function(err, activeMembers) {
+			console.log(activeMembers);
 			res.send(activeMembers);
 		});
 }
@@ -114,7 +115,6 @@ exports.addUser = function(req, res, next){
 
 
 exports.updateUserStatus = function(req, res, next){
-	console.log(req.body.username);
 	var updateUser = Group.update ({_id: req.body.gid, 'groupMembers.username': req.body.username}, {
 			$set: {
 				'groupMembers.$.status': 'accepted'
@@ -169,7 +169,6 @@ exports.removeGroup = function(req, res, next){
 }
 
 exports.removeUserFromGroup = function(req, res) {
-	console.log(req.params)
 
 	Group.update({groupName: req.params.groupname}, {
 		$pull: {

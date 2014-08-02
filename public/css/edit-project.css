@@ -3,5 +3,5 @@ a.editable-click {
   font-family: arial;
   font-weight: bold;
   color: #999 !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid #d7e0e2 !important;
 }

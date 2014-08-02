@@ -36,7 +36,6 @@ exports.addWildlife = function(req, res) {
 
 exports.updateWildlife = function(req, res) {
 	Wildlife.findById(req.params.id, function(err, wildlife) {
-		console.log(req.params.id + '     found');
 		Wildlife.update();
 	});
 }

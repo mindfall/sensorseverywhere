@@ -72,7 +72,8 @@ exports.createProject = function(req, res, next){
 		wildlife = {
 			wildlifeId: req.body.project_wildlife[i].id,
 			wildlifeNames: req.body.project_wildlife[i].name,
-			wildlifeNumbers: req.body.project_wildlife[i].numbers
+			wildlifeNumbers: req.body.project_wildlife[i].numbers,
+			wildlifeThumb: req.body.project_wildlife[i].thumb
 		}
 		project_wildlife.push(wildlife);
 	}
@@ -144,7 +145,7 @@ exports.createProject = function(req, res, next){
 };
 
 exports.addGroupToProject = function(req, res) {
-//	console.log('adding group to project ' + JSON.stringify(req.body));
+
 	var addGroup = Project.update( { project_name: req.body.projectName},
 		{ $set: {
 			project_group: req.body.groupName
@@ -174,7 +175,6 @@ exports.addTaskToProject = function(req, res) {
 exports.updateTotalContributions = function(req, res){
 	var contributionAmount = req.body.amount;
 	var addAmount = parseInt(contributionAmount);
-	//console.log('Thie amount is: ' + contributionAmount);
 	Project.update(
 		{_id:req.params.id},
 		{
@@ -202,7 +202,6 @@ exports.viewProjectDetails = function(req, res){
 exports.getProjectsByUserId = function(req, res) {
 
 	 Project.find({'project_owner.owner_id': req.params.id}, function(err, project) {
-	 	console.log(project);
 	 	res.send(project)
 	 });
 }
@@ -231,7 +230,7 @@ exports.removeProject = function(req, res, next){
 	Project.findById(req.params.id, function(err, project) {
 		Group.find({'groupName': project.project_group}, function(err, group) {
 			Group.remove(function(err, group) {
-				console.log('removed group');
+				// group removed
 			}, function(err) {
 				console.log(err);
 			});

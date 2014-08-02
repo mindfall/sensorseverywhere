@@ -8,29 +8,35 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 				leaflet
 
 		.col-md-2(ng-controller="wFEditProjectCtrl" class="col-2-edit-selection-container")
-			h3 Project Details
+			h4 Project Details {{position}}
 			span Project Name:
-				div(editable-text="project.project_name") {{project.project_name}}
-			span This project started on: 
-			br
-			span start: 
-				a(href="#" editable-bsdate="project.project_start_date" e-datepicker-popup="dd-MMMM-yy"){{project.project_start_date | date}}
-			br
-			span and ends on: 
-			br
-			span end: 
-				a(href="#" editable-bsdate="project.project_end_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_end_date | date}}
-			br
+				div(class="edit-text-box" editable-text="project.project_name") {{project.project_name}}
+				br
+			span Project Timeframe: 
+				br
+				span start: 
+					br
+					a(class="edit-date-box" href="#" editable-bsdate="project.project_start_date" e-datepicker-popup="dd-MMMM-yy"){{project.project_start_date | date}}
+					br
+				span end: 
+					br
+					a(class="edit-date-box" href="#" editable-bsdate="project.project_end_date" e-datepicker-popup="dd-MMMM-yy") {{project.project_end_date | date}}
+				br
+				br
 			span Group Name: 
-				div(editable-text="project.project_group") {{project.project_group}}
+				div(class="edit-text-box" editable-text="project.project_group") {{project.project_group}}
+				br
 			span Project Owner: 
-				div(editable-text="project.project_owner.owner_id") {{project.project_owner.owner_name}}
+				select(class="form-control" ng-model="setOwner", ng-options="owner.value as owner.name for owner in selectOwner")
+				br
 			span Project Type: 
-				div(editable-text="project.project_type") {{project.project_type}}
+				select(class="form-control" ng-model="project.project_type", ng-options="org.value as org.name for org in selectOrg") 
+				br
 
-		.col-md-2(class="col-2-edit-selection-container")
-			p
-				.selection-layout
+		.col-md-3(class="col-3-edit-selection-container")
+			h4 Wildlife
+				br
+				.edit-selection-layout
 					div.edit-selection-input
 						form.selectAnimalInput(ng-submit="editSelectedWildlife()")
 							input(id='wildlife_search' 
@@ -40,9 +46,22 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 								class="form-control edit-selection-input" 
 								placeholder="Search for wildlife...")
 				
-					div.selectedWildlifeContainer
+					div.edit-wildlife-container
+						div(ng-repeat="creature in projectWildlife track by $index") 
+							h5
+								.well
+									table.selectedWildlife
+										tr
+											td.wildlifeCell
+												input.wildlifeCount(class="wildlifeCounter" ng-model="creature.wildlifeNumbers" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
+											td.wildlifeCell
+												div(class="selectedThumb")<img ng-src="{{creature.wildlifeThumb}}"> 
+											td.wildlifeCell
+												div(class="selectedWildlifeName") {{creature.wildlifeNames}}
+											td.wildlifeBtnCell
+												div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife("project")') X
+
 						div(ng-repeat="creature in selectedWildlife track by $index") 
-							//- {{creature}}
 							.well
 								table.selectedWildlife
 									tr
@@ -53,24 +72,54 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 										td.wildlifeCell
 											div(class="selectedWildlifeName") {{creature.name}}
 										td.wildlifeBtnCell
-											div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
-		.col-md-3
-			h3 Monitors
+											div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife("selection")') X
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		.col-md-2.col-2-edit-selection-container
+			h4 Monitors
 			span {{monitorMessage}}
 			br
 			div(ng-repeat="monitor in monitors track by $index")
 				.well
 					div(class="remove-selected-monitor-btn" ng-click="removeSelectedMonitor()") X
 					span Monitor Name:
-						div(editable-text="monitor.name") {{monitor.monitorName}}
+						span {{monitor.name}}
 					span Monitor Type:
-						select(class="form-control" ng-model="monitor.monitorType" ng-change="selectMonitor()" ng-options="monitorType.value as monitorType.name for monitorType in monitorTypes")
+						span {{monitor.type}}
 					span and is monitoring: 
-						{{monitor.monitorSpecificWildlife}}
+						{{monitor.specificWildlife}}
 					br
-					span is active? {{monitor.monitorActive}}
+					span is active? {{monitor.active}}
 					
-			div(class="btn btn-default" ng-click="showMonitorPopup()") Add Monitor
 		monitor
 
 		button(class="save-project-button") Edit

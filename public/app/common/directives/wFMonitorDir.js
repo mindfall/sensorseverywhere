@@ -1,13 +1,14 @@
 angular.module('app')
-	.directive('monitor', ['$rootScope', 'wFProjectFactory', 'wFWildlifeFactory', 'wFNotifier', 
-		function($rootScope, wFProjectFactory, wFWildlifeFactory, wFNotifier) {
+	.directive('monitor', ['$rootScope', '$location', 'wFProjectFactory', 'wFWildlifeFactory', 'wFMapFactory', 'wFNotifier', 
+		function($rootScope, $location, wFProjectFactory, wFWildlifeFactory, wFMapFactory, wFNotifier) {
 			return {
 			restrict: 'E',
 			transclude: true,
 			templateUrl: '/partials/monitor/monitor',
 			replace: true,
 			scope: {
-
+				addMonitorData: '=',
+				addMarker: '='
 			},
 			link: function(scope, ele, attrs) {
 				scope.monitorPopup = false;
@@ -73,7 +74,7 @@ angular.module('app')
 							scope.wildlifeSelection.push(wildlife);
 						}
 
-						scope.setWildlife= {type: selectedWildlife[0].name};
+						scope.setWildlife = {type: selectedWildlife[0].name};
 						scope.monitorWildlife = true;
 					} else {
 						wFNotifier.error('You have not selected any wildlife.');
@@ -101,7 +102,13 @@ angular.module('app')
 					}
 					wFProjectFactory.setMonitorData(monitorData);
 					scope.monitorPopup = false;
+					if($location.path().split('/')[2]) {
+						scope.$parent.addMonitorData();
+					}
+					scope.$parent.addMarker();
+
 				}
+
 				ele.on('click', function(e) {
 					
 					e.stopPropagation();

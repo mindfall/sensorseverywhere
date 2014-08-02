@@ -75,13 +75,14 @@ angular.module('app')
 
 	 	wildlifeData = wFWildlifeFactory.selectWildlife();
 
-	 	//This loop is desig
+	 	//This loop is in case the wildlife numbers form control wasn't used.
 	 	for(var i = 0; i < wildlifeData.length; i++) {
 	 		if(wildlifeNumbers.length === 0) {
 	 			species = {
 					id: wildlifeData[i]._id,
 					name: wildlifeData[i].name,
-					numbers: 1
+					numbers: 1,
+					thumb: wildlifeData[i].image_thumb
 				}
 				$scope.wildlifeData.push(species);
 	 		} else {
@@ -90,7 +91,8 @@ angular.module('app')
 		 				species = {
 							id: wildlifeData[i]._id,
 							name: wildlifeData[i].name, 
-							numbers: wildlifeNumbers[j].numbers
+							numbers: wildlifeNumbers[j].numbers,
+							thumb: wildlifeData[i].image_thumb
 						}
 						$scope.wildlifeData.push(species);
 						found.push(wildlifeData[i]._id);
@@ -103,7 +105,8 @@ angular.module('app')
 		 			species = {
 						id: wildlifeData[i]._id,
 						name: wildlifeData[i].name, 
-						numbers: 1
+						numbers: 1,
+						thumb: wildlifeData[i].image_thumb
 					}
 		 			$scope.wildlifeData.push(species);
 		 		}

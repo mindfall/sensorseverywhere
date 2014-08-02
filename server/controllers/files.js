@@ -74,8 +74,6 @@ exports.getGroupFiles = function(req, res) {
 
 	var path = __dirname + '/../uploads/group-files/';
 	var file = req.params.name;
-//	var ext = path.extname(file);
-//	console.log(ext);
 	var filepath = path + file;
 	console.log(filepath);
 	fs.exists(filepath, function(exists) {
@@ -86,10 +84,8 @@ exports.getGroupFiles = function(req, res) {
 						"Content-type": "image/jpg",
 						"Content-length": contents.length
 					});
-					//console.log(contents.length);
 					contents = contents.toString("base64");
 					util.format("data:%s;base64,%s", mime.lookup(contents), contents);
-					//console.log(contents);
 					res.end(contents);
 				} else {
 					console.log('contents: ' + contents);		

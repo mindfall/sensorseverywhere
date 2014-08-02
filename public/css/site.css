@@ -186,7 +186,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
 }
 /* END VIEW DETAILS */
 .map-edit-container {
-  height: 800px;
+  height: 640px;
   width: 40%;
 }
 .map-edit {
@@ -198,11 +198,57 @@ ul.nav.navbar-nav a.navbar-nav-link {
 }
 .col-3-edit-selection-container {
   float: left;
+  margin-left: 0.5%;
+  height: 600px;
+  width: 20%;
+  margin-bottom: 1%;
+  border: 3px solid #d7e0e2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 2%;
+  overflow-x: hidden;
 }
 .col-2-edit-selection-container {
   float: left;
-  height: 500px;
+  margin-left: 0.5%;
+  height: 600px;
   margin-bottom: 1%;
+  border: 3px solid #d7e0e2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 2%;
+  overflow-x: hidden;
+}
+.edit-wildlife-container {
+  border: 1px solid #d7e0e2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  float: right;
+  width: 100%;
+  height: 500px;
+  display: block;
+  margin-top: -5%;
+  overflow-x: hidden;
+}
+.edit-text-box,
+.edit-date-box {
+  border: 1px solid #d7e0e2;
+  line-height: 2;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 3px;
+}
+editable-bsdate {
+  border-bottom: none !important;
+}
+.edit-date-box {
+  padding: 5px;
 }
 .project-wildlife {
   margin-top: 45px;

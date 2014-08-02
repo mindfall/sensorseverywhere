@@ -4,6 +4,7 @@ angular.module('app')
 
 	var mapData = {};
 	var editPoints = [];
+	var markerPosition = [];
 
 	return {
 		getMapControls : function() {
@@ -65,6 +66,15 @@ angular.module('app')
 		 	}
 			return mapData;
 		}, 
+
+		setMarkerPosition : function(position) {
+			markerPosition = position;
+		},
+
+		getMarkerPosition : function() {
+			$rootScope.$broadcast('addMarker', { pos: markerPosition});
+
+		},
 
 		getTownAndDistance : function(points) {
 	
@@ -142,7 +152,9 @@ angular.module('app')
 				points.push(editPoints[i]);
 			}
 			return points;		
-		}
+		},
+
+
 	}
 	getMapData();
 }]);

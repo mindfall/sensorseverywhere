@@ -65,7 +65,7 @@ angular.module('app')
 		var geojson = e.layer.toGeoJSON();
 		selectedWildlife = wFWildlifeFactory.selectWildlife();
 		layer.on('click', function(e) {
-
+				e.target.editing.enable();
 		   		if($location.path().split('/')[1] === 'create-project' || $location.path().split('/')[1] === 'get-project') {
 					var geojsonFeature = {
 						"type": "Feature",
@@ -111,7 +111,7 @@ angular.module('app')
 	*/
 
 	$scope.editMap = function() {
-
+		var counter = 0;
 		var coords = wFMapFactory.getEditMapData();
 		var geojsonFeature = {
 		    "type": "Feature",
@@ -125,12 +125,45 @@ angular.module('app')
 
 		var layers = L.geoJson(geojsonFeature, {
 			onEachFeature: function (feature, layer) {
-				layer.on('click', function(e) {
-					e.target.editing.enable();
-				})
+				layer.on('dblclick', function(e) {
+					
+					$scope.showMonitorPopup();
+					var position = [e.latlng.lat, e.latlng.lng];
+					wFMapFactory.setMarkerPosition(position);
+				});
+				layer.on('click', function(e){
+					if(counter % 2 == 0) {
+						e.target.editing.enable();
+					} else {
+						e.target.editing.disable();
+					}
+					counter++;
+				});
+				
+				layer.on('mousedown', function(e) {
+					e.target.dragging = true;
+				});
 			}
 		}).addTo(map);
 
+	}
+
+	$scope.$on('addMarker', function(event, args) {
+		var monitor,
+			wildlife;
+		var marker = wFProjectFactory.getMonitorData();
+		if(marker[0].type !== '' || marker[0].type !== undefined) {
+			monitor = marker[0].type;
+		}
+		if(marker[0].specificWildlife !== '' || marker[0].specificWildlife !== undefined) {
+			wildlife = marker[0].specificWildlife;
+		}
+		$scope.updateMarker(args.pos, wildlife, monitor);
+
+	});
+
+	$scope.updateMarker = function(position, wildlife, monitor) {
+		console.log(args.pos, wildlife, monitor);
 	}
 
 	$scope.showMonitorPopup = function() {
@@ -138,7 +171,6 @@ angular.module('app')
 	}
 
 	$scope.onPopupRemove = function() {
-		console.log('remove');
 	    var tempMarker = this;
 	    // To remove marker on click of delete button in the popup of marker
 	 //   $(".marker-delete-button:visible").click(function () {

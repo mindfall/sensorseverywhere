@@ -16,7 +16,7 @@
 .wildlife-description
 	clear both
 
-.selectedWildlifeContainer
+.selected-wildlife-container
 	border 3px solid #d7e0e2
 	-moz-border-radius 5px
 	-webkit-border-radius 5px
@@ -308,11 +308,17 @@
 /* END MAIN PAGE */
 
 
-.leaflet-draw-draw-circle, .leaflet-draw-draw-marker, .leaflet-draw-draw-polyline
+.leaflet-draw-draw-circle, .leaflet-draw-draw-marker, .leaflet-draw-draw-polyline, .leaflet-draw-edit-edit
 	visibility hidden
 	height 0px !important
 	margin 0 !important
 	padding 0 !important
 
-.leaflet-draw-draw-polygon, .leaflet-draw-draw-rectangle
-	margin-bottom -1px
+.leaflet-draw-draw-rectangle
+	visibility hidden
+	height 0px !important
+	margin 0 !important
+	padding 0 !important
+
+.leaflet-draw-draw-polygon
+	margin-bottom -2px

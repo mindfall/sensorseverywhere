@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFEditProjectCtrl', ['$scope', '$location', '$rootScope', '$http', '$q', 'wFWildlifeFactory', 'wFProjectFactory', 'wFMapFactory',
-		function($scope, $location, $rootScope, $http, $q, wFWildlifeFactory, wFProjectFactory, wFMapFactory){
+	.controller('wFEditProjectCtrl', ['$scope', '$location', '$rootScope', '$http', '$q', 'wFWildlifeFactory', 'wFProjectFactory', 'wFMapFactory', 'wFTaskFactory',
+		function($scope, $location, $rootScope, $http, $q, wFWildlifeFactory, wFProjectFactory, wFMapFactory, wFTaskFactory){
 
 		var coords = [];
 		var points = [];
@@ -66,8 +66,9 @@ angular.module('app')
 	    	}
 	 	}
 
-	    $scope.removeSelectedWildlife = function() {
+	    $scope.removeSelectedWildlife = function(type) {
 
+	    	if(type === "selection") {
 	    		$scope.selectedWildlife.splice(this.$index, 1);
 		    	for(i = 0; i < $rootScope.dupeList.length; i += 1 ) {
 		    		$rootScope.dupeList.splice(i, 1);
@@ -75,6 +76,9 @@ angular.module('app')
 		    	for(i = 0; i < $rootScope.selectedWildlife.length; i += 1 ) {
 		    		$rootScope.selectedWildlife.splice(i, 1);
 		    	}
+		    } else {
+		    	$scope.projectWildlife.splice(this.$index, 1);
+		    }
 	    }
 
 	    $scope.removeSelectedMonitor = function() {
@@ -119,6 +123,9 @@ angular.module('app')
 		 					
 		 				}
 		 				$scope.projectWildlife = projectWildlife;
+		 				console.log($scope.projectWildlife);
+		 				//find members for this project
+		 				$scope.findActiveMembers(project.project_name);
 		 			}
 	 	 		}, function(status) {
 	 			console.log(status);
@@ -135,7 +142,6 @@ angular.module('app')
 			var activeMembers = wFTaskFactory.findActiveGroupMembers(project);
 			
 			activeMembers.then(function(data) {
-
 				for(var i = 0; i < data.length; i++) {
 
 					for(var j = 0; j < data[i].groupMembers.length; j++) {
@@ -148,7 +154,6 @@ angular.module('app')
 					$scope.selectOwner = selectOwner;
 					$scope.setOwner = {type: $scope.selectOwner[0].value};
 
-					console.log($scope.selectOwner);
 				}
 			});
 		}
@@ -156,6 +161,17 @@ angular.module('app')
 		$scope.showMonitorPopup = function() {
 			$rootScope.$broadcast('showMonitorPopup');
 		}
+		//called from wFMonitorDir
+		$scope.addMonitorData = function() {
+			var addMonitor = wFProjectFactory.getMonitorData();
+			$scope.monitors.push(addMonitor[0]);
+		}
+
+		$scope.addMarker = function() {
+			wFMapFactory.getMarkerPosition();
+		}
+
+		
 
 	 	$scope.monitorTypes = [
 			{name: 'audio', value: 'audio'},
@@ -165,6 +181,14 @@ angular.module('app')
 			{name: 'other', value: 'other'}
 		];
 		$scope.setMonitor = {type: $scope.monitorTypes[0].value};
+
+		$scope.selectOrg = [
+			{name: 'public', value: 'public'},
+			{name: 'private', value: 'private'},
+			{name: 'ngo', value: 'ngo'},
+			{name: 'government', value: 'government'}
+		];
+		$scope.orgs = {type: $scope.selectOrg[0].value};
 
 
 	 	var id = $location.path().split('/')[3] || "Unknown";
