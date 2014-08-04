@@ -65,33 +65,13 @@ angular.module('app')
 		var geojson = e.layer.toGeoJSON();
 		selectedWildlife = wFWildlifeFactory.selectWildlife();
 		layer.on('click', function(e) {
-				e.target.editing.enable();
-		   		if($location.path().split('/')[1] === 'create-project' || $location.path().split('/')[1] === 'get-project') {
-					var geojsonFeature = {
-						"type": "Feature",
-						"properties": {},
-						"geometry": {
-							"type": "Point",
-							"coordinates": [e.latlng.lat, e.latlng.lng]
-						}
-					}
-					var marker;
-					L.geoJson(geojsonFeature, {
-						pointToLayer: function(feature, latlng) {
-							marker = L.marker(e.latlng, {
-								title: "Wildlife Monitor",
-								alt: "Wildlife Monitor",
-								riseOnHover: true,
-								draggable: true,
-								clickable: false,
-							}).bindPopup($scope.showMonitorPopup());
-							
-							return marker;
-						}
-					}).addTo(map);
+				if($location.path().split('/')[1] === 'create-project') {
+					e.target.editing.enable();
+		   			$scope.showMonitorPopup()
+		   			var position = [e.latlng.lat, e.latlng.lng];
+		   			wFMapFactory.setMarkerPosition(position);
 				}
 		   	});
-
     	wFMapFactory.setMapData(geojson);
 		drawnItems.addLayer(e.layer);
 	});
@@ -155,15 +135,19 @@ angular.module('app')
 		if(marker[0].type !== '' || marker[0].type !== undefined) {
 			monitor = marker[0].type;
 		}
-		if(marker[0].specificWildlife !== '' || marker[0].specificWildlife !== undefined) {
-			wildlife = marker[0].specificWildlife;
-		}
+		if(marker[0].wildlifeClass !== '' || marker[0].wildlifeClass !== undefined || marker[0].wildlifeClass !== 'undefined') {
+			wildlife = marker[0].wildlifeClass;
+		} 
 		$scope.updateMarker(args.pos, wildlife, monitor);
 
 	});
 
 	$scope.updateMarker = function(position, wildlife, monitor) {
-		console.log(args.pos, wildlife, monitor);
+
+		var markerIcon = wFMapFactory.addCustomMarker(wildlife, monitor);
+		L.marker(position, {icon: markerIcon}).addTo(map);
+
+	//	console.log(position, wildlife, monitor);
 	}
 
 	$scope.showMonitorPopup = function() {

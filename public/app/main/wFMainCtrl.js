@@ -82,7 +82,8 @@ angular.module('app')
 					id: wildlifeData[i]._id,
 					name: wildlifeData[i].name,
 					numbers: 1,
-					thumb: wildlifeData[i].image_thumb
+					thumb: wildlifeData[i].image_thumb,
+					classification: wildlifeData[i].classification
 				}
 				$scope.wildlifeData.push(species);
 	 		} else {
@@ -92,7 +93,8 @@ angular.module('app')
 							id: wildlifeData[i]._id,
 							name: wildlifeData[i].name, 
 							numbers: wildlifeNumbers[j].numbers,
-							thumb: wildlifeData[i].image_thumb
+							thumb: wildlifeData[i].image_thumb,
+							classification: wildlifeData[i].classification
 						}
 						$scope.wildlifeData.push(species);
 						found.push(wildlifeData[i]._id);
@@ -106,7 +108,8 @@ angular.module('app')
 						id: wildlifeData[i]._id,
 						name: wildlifeData[i].name, 
 						numbers: 1,
-						thumb: wildlifeData[i].image_thumb
+						thumb: wildlifeData[i].image_thumb,
+						classification: wildlifeData[i].classification
 					}
 		 			$scope.wildlifeData.push(species);
 		 		}
@@ -116,17 +119,19 @@ angular.module('app')
 
 	 	totalSpecies = $scope.wildlifeData.length;
 	 	monitorData = wFProjectFactory.getMonitorData();
-	
-	 	for(var i = 0; i < monitorData.length; i++) {
+		for(var i = 0; i < monitorData.length; i++) {
 
 			monitors = {
 	 			active: monitorData[i].active,
 	 			name: monitorData[i].name,
 	 			specificWildlife: monitorData[i].specificWildlife,
-	 			type: monitorData[i].type
+	 			type: monitorData[i].type,
+	 			wildlifeClass: monitorData[i].wildlifeClass,
+	 			position: monitorData[i].position
 	 		}	
 	 		$scope.monitorData.push(monitors);
 	 	}
+
 	 	mapTDA.then(function(mapTDA) {
 	 		$scope.nearestTownName = JSON.stringify(mapTDA.geonames[0].name);
 	 		var distance = mapTDA.geonames[0].distance;
@@ -195,6 +200,16 @@ angular.module('app')
 	//	console.log(inspectProjectData);
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
+	}
+
+		//called from wFMonitorDir
+	$scope.addMonitorData = function() {
+		var addMonitor = wFProjectFactory.getMonitorData();
+		$scope.monitors.push(addMonitor[0]);
+	}
+
+	$scope.addMarker = function() {
+		wFMapFactory.broadcastMarkerPosition();
 	}
 
 	$scope.cancelProject = function(){

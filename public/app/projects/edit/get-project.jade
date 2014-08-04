@@ -1,16 +1,15 @@
 div(class="edit-container" ng-controller="wFMainCtrl")
-
 	.container(ng-if="isLoggedIn")
-
 		.col-md-5(class="map-edit-container")
-			
 			div(ng-controller="wFMapCtrl" id="map" class="map")
 				leaflet
-
 		.col-md-2(ng-controller="wFEditProjectCtrl" class="col-2-edit-selection-container")
 			h4 Project Details {{position}}
 			span Project Name:
 				div(class="edit-text-box" editable-text="project.project_name") {{project.project_name}}
+				br
+			span Project Description:
+				div(class="edit-text-box" editable-text="project.project_desc") {{project.project_desc}}
 				br
 			span Project Timeframe: 
 				br
@@ -53,56 +52,27 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 									table.selectedWildlife
 										tr
 											td.wildlifeCell
-												input.wildlifeCount(class="wildlifeCounter" ng-model="creature.wildlifeNumbers" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
+												input.wildlifeCount(class="wildlifeCounter" ng-model="creature.wildlifeNumbers" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter, creature.wildlifeClassifiction, creature.wildlifeThumb)" value="0" type="number" min="0")
 											td.wildlifeCell
 												div(class="selectedThumb")<img ng-src="{{creature.wildlifeThumb}}"> 
 											td.wildlifeCell
-												div(class="selectedWildlifeName") {{creature.wildlifeNames}}
+												div(ng-model="wildlifeNameProject" class="selectedWildlifeName") {{creature.wildlifeNames}}
 											td.wildlifeBtnCell
 												div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife("project")') X
 
 						div(ng-repeat="creature in selectedWildlife track by $index") 
-							.well
-								table.selectedWildlife
-									tr
-										td.wildlifeCell
-											input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
-										td.wildlifeCell
-											div(class="selectedThumb")<img ng-src="{{creature.image_thumb}}"> 
-										td.wildlifeCell
-											div(class="selectedWildlifeName") {{creature.name}}
-										td.wildlifeBtnCell
-											div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife("selection")') X
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+							h5
+								.well
+									table.selectedWildlife
+										tr
+											td.wildlifeCell
+												input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setSelectionNumber(creature._id, creature.name, wildlifeCounter, creature.classification, creature.image_thumb)" value="0" type="number" min="0")
+											td.wildlifeCell
+												div(class="selectedThumb")<img ng-src="{{creature.image_thumb}}"> 
+											td.wildlifeCell
+												div(ng-model="wildlifeNameSelect" class="selectedWildlifeName") {{creature.name}}
+											td.wildlifeBtnCell
+												div(class="removeSelectedWildlilfeBtn" ng-click='removeSelectedWildlife("selection")') X
 
 		.col-md-2.col-2-edit-selection-container
 			h4 Monitors
@@ -112,14 +82,16 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 				.well
 					div(class="remove-selected-monitor-btn" ng-click="removeSelectedMonitor()") X
 					span Monitor Name:
-						span {{monitor.name}}
+						span(ng-model="monitorName") {{monitor.name}}
 					span Monitor Type:
-						span {{monitor.type}}
+						span(ng-model="monitorType") {{monitor.type}}
 					span and is monitoring: 
-						{{monitor.specificWildlife}}
+						span(ng-model="monitorSpecificWildlife") {{monitor.specificWildlife}}
 					br
-					span is active? {{monitor.active}}
+					span is active? 
+						span(ng-model="monitorIsActive") {{monitor.active}}
 					
 		monitor
 
-		button(class="save-project-button") Edit
+		button(class="save-project-button"  ng-click="editProject(project.project_name, project.project_desc, project.project_start_date, project.project_end_date, project.project_group, setOwner, project.project_type, wildlifeNameSelect, wildlifeCounter, wildlifeNameProject, monitorName, monitorType, monitorSpecificWildlife, monitorIsActive)") Edit
+		

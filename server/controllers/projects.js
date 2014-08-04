@@ -57,7 +57,9 @@ exports.createProject = function(req, res, next){
 			monitorName : req.body.project_monitors[i].name,
 			monitorType : req.body.project_monitors[i].type,
 			monitorSpecificWildlife : req.body.project_monitors[i].specificWildlife,
-			monitorActive : req.body.project_monitors[i].active		
+			monitorActive : req.body.project_monitors[i].active,
+			monitorWildlifeClass: req.body.project_monitors[i].wildlifeClass,
+			monitorPosition: req.body.project_monitors[i].position	
 		}
 		project_monitors.push(monitor);
 	}
@@ -73,7 +75,8 @@ exports.createProject = function(req, res, next){
 			wildlifeId: req.body.project_wildlife[i].id,
 			wildlifeNames: req.body.project_wildlife[i].name,
 			wildlifeNumbers: req.body.project_wildlife[i].numbers,
-			wildlifeThumb: req.body.project_wildlife[i].thumb
+			wildlifeThumb: req.body.project_wildlife[i].thumb,
+			wildlifeClassification: req.body.project_wildlife[i].classification
 		}
 		project_wildlife.push(wildlife);
 	}

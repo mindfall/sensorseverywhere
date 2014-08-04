@@ -63,7 +63,6 @@ angular.module('app')
 			        if ( !found) {
 			        	$rootScope.selectedWildlife.push($rootScope.dupeList[x]);
 			        	$scope.selectedWildlife.push(this.wildlifeSelect);
-			        //	console.log($scope.selectedWildlife);
 			         }    
 			    }
 	    	}

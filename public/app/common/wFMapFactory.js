@@ -71,10 +71,49 @@ angular.module('app')
 			markerPosition = position;
 		},
 
+		//used to add marker pos to db
+		//caller: wFMainCtrl->saveProject()
 		getMarkerPosition : function() {
-			$rootScope.$broadcast('addMarker', { pos: markerPosition});
-
+			return markerPosition;
 		},
+
+		//used on monitor save popup to add marker icon to map. 
+		//caller: wFMainCtrl->addMarker()
+		broadcastMarkerPosition : function() {
+			$rootScope.$broadcast('addMarker', { pos: markerPosition});
+		},
+
+		addCustomMarker: function(wildlifeClass, monitorType) {
+			var customMarker;
+
+		  if(wildlifeClass === '' || wildlifeClass === undefined) {
+		   		var url = '../../img/icons/marker_' + monitorType + '.png';
+			    customMarker = L.icon({
+			    	iconUrl: url,
+			    	iconSize: [32, 32],
+			    	iconAnchor: [15, 15],
+			    	popupAnchor: [-3, -10]
+			    });
+			} else if (monitorType === '' || monitorType === undefined) {
+				console.log(2);
+				var url = '../../img/icons/marker_' + wildlifeClass + '.png'
+			    customMarker = L.icon({
+			    	iconUrl: url,
+			    	iconSize: [32, 32],
+			    	iconAnchor: [15, 15],
+			    	popupAnchor: [-3, -10]
+			    });
+			} else if(wildlifeClass !== '' || wildlifeClass !== undefined && monitorType !== '' || monitorType !== undefined) {
+				console.log(1);
+			    customMarker = L.icon({
+			    	iconUrl: '../../img/icons/marker_' + monitorType + '_' + wildlifeClass + '.png',
+			    	iconSize: [32, 32],
+			    	iconAnchor: [15, 15],
+			    	popupAnchor: [-3, -10]
+			    });
+			}
+		    return customMarker;
+			},
 
 		getTownAndDistance : function(points) {
 	
@@ -116,19 +155,6 @@ angular.module('app')
 			//grab my location area from here.
 			var area = polygonArea(xPts, yPts, numPoints);
 			return area;
-		},
-
-
-		addCustomMarker: function(wildlifeClass, monitorType) {
-
-		    var customMarker = L.icon({
-		    	iconUrl: '../../img/icons/marker_' + wildlifeClass + '.png',
-		    	iconSize: [32, 32],
-		    	iconAnchor: [15, 15],
-		    	popupAnchor: [-3, -10]
-		    });
-
-		    return customMarker;
 		},
 
 		setEditMapData : function(coords) {

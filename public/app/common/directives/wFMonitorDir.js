@@ -19,6 +19,7 @@ angular.module('app')
 				scope.monitorIPAddress = false;
 				scope.monitorSetup = false;
 				var topMargin = 100;
+				var wildlifeClass = '';
 
 				ele.css({
 					'position': 'absolute',
@@ -62,8 +63,8 @@ angular.module('app')
 				}
 				scope.monitorSpecificWildlifeYes = function() {
 					scope.wildlifeSelection = [];
-					var selectedWildlife = wFWildlifeFactory.selectWildlife();
-
+					selectedWildlife = wFWildlifeFactory.selectWildlife();
+					wildlifeClass = selectedWildlife[0].classification;
 					if(selectedWildlife.length !== 0) {
 						for(var i = 0; i < selectedWildlife.length; i++) {
 							wildlife = {
@@ -94,23 +95,38 @@ angular.module('app')
 					scope.monitorPopup = false;
 				}
 				scope.saveMonitor = function(name, type, active, specificWildlife) {
+					if(wildlifeClass === undefined) {
+						wildlifeClass = '';
+					}
+					monitorPos = wFMapFactory.getMarkerPosition();
 					var monitorData = {
 						name: name, 
 						type: type,
 						active: active,
-						specificWildlife: specificWildlife
+						specificWildlife: specificWildlife,
+						wildlifeClass: wildlifeClass,
+						position: monitorPos
 					}
 					wFProjectFactory.setMonitorData(monitorData);
 					scope.monitorPopup = false;
+					var monitorData = {};
+					scope.wildlifeSelection = [];
+					scope.monitorName = '';
+					scope.monitorType = '';
+					//if the 3 element is a project id
+
 					if($location.path().split('/')[2]) {
-						scope.$parent.addMonitorData();
+						scope.$parent.$parent.addMonitorData();
+						scope.$parent.$parent.addMarker();
 					}
-					scope.$parent.addMarker();
+					if($location.path().split('/')[1] === 'create-project') {
+					//	scope.$parent.addMonitorData();
+						scope.$parent.addMarker();
+					}
 
 				}
 
 				ele.on('click', function(e) {
-					
 					e.stopPropagation();
 				});
 				

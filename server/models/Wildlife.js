@@ -760,7 +760,7 @@ function createDefaultWildlife(){
     "name":"arctic tern",
     "image_thumb":"/img/wildlife_thumbs/arctic-tern.jpg",
     "image_full":"/img/wildlife_full/arctic-tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":106,
@@ -1012,7 +1012,7 @@ function createDefaultWildlife(){
     "name":"Australian Pipit",
     "image_thumb":"/img/wildlife_thumbs/Australian_Pipit.jpg",
     "image_full":"/img/wildlife_full/Australian_Pipit.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":142,
@@ -1082,532 +1082,532 @@ function createDefaultWildlife(){
     "name":"Baillons crake",
     "image_thumb":"/img/wildlife_thumbs/Baillons_crake.jpg",
     "image_full":"/img/wildlife_full/Baillons_crake.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":152,
     "name":"Baillons Crake",
     "image_thumb":"/img/wildlife_thumbs/Baillons_Crake.jpg",
     "image_full":"/img/wildlife_full/Baillons_Crake.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":153,
     "name":"Bairds Sandpiper",
     "image_thumb":"/img/wildlife_thumbs/Bairds-Sandpiper.jpg",
     "image_full":"/img/wildlife_full/Bairds-Sandpiper.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":154,
     "name":"Balistoides viridescens",
     "image_thumb":"/img/wildlife_thumbs/Balistoides-viridescens.jpg",
     "image_full":"/img/wildlife_full/Balistoides-viridescens.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":155,
     "name":"Banks brown",
     "image_thumb":"/img/wildlife_thumbs/Banks-brown.jpg",
     "image_full":"/img/wildlife_full/Banks-brown.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":156,
     "name":"Bar breasted Honeyeater1",
     "image_thumb":"/img/wildlife_thumbs/Bar-breasted_Honeyeater1.jpg",
     "image_full":"/img/wildlife_full/Bar-breasted_Honeyeater1.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":157,
     "name":"Abispa ephippium",
     "image_thumb":"/img/wildlife_thumbs/Bar-breasted_Honeyeater.jpg",
     "image_full":"/img/wildlife_full/Bar-breasted_Honeyeater.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":158,
     "name":"Barcheek trevally",
     "image_thumb":"/img/wildlife_thumbs/Barcheek_trevally.jpg",
     "image_full":"/img/wildlife_full/Barcheek_trevally.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":159,
     "name":"Barnardius zonarius macgillivrayi",
     "image_thumb":"/img/wildlife_thumbs/Barnardius-zonarius-macgillivrayi.jpg",
     "image_full":"/img/wildlife_full/Barnardius-zonarius-macgillivrayi.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":160,
     "name":"Barnardius zonarius semitorquatus",
     "image_thumb":"/img/wildlife_thumbs/Barnardius-zonarius-semitorquatus.jpg",
     "image_full":"/img/wildlife_full/Barnardius-zonarius-semitorquatus.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":161,
     "name":"Barnardius zonarius zonarius",
     "image_thumb":"/img/wildlife_thumbs/Barnardius-zonarius-zonarius.jpg",
     "image_full":"/img/wildlife_full/Barnardius-zonarius-zonarius.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":162,
     "name":"barn swallow",
     "image_thumb":"/img/wildlife_thumbs/barn-swallow.jpg",
     "image_full":"/img/wildlife_full/barn-swallow.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":163,
     "name":"Barramundi",
     "image_thumb":"/img/wildlife_thumbs/Barramundi.jpg",
     "image_full":"/img/wildlife_full/Barramundi.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":164,
     "name":"Barritt May EasternQuoll",
     "image_thumb":"/img/wildlife_thumbs/Barritt-May-EasternQuoll.jpg",
     "image_full":"/img/wildlife_full/Barritt-May-EasternQuoll.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":165,
     "name":"bar shouldered dove",
     "image_thumb":"/img/wildlife_thumbs/bar-shouldered-dove.jpg",
     "image_full":"/img/wildlife_full/bar-shouldered-dove.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":166,
     "name":"Bar tailed Godwit",
     "image_thumb":"/img/wildlife_thumbs/Bar-tailed-Godwit.jpg",
     "image_full":"/img/wildlife_full/Bar-tailed-Godwit.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":167,
     "name":"Basking shark head",
     "image_thumb":"/img/wildlife_thumbs/Basking-shark-head.jpg",
     "image_full":"/img/wildlife_full/Basking-shark-head.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":168,
     "name":"Basking Shark",
     "image_thumb":"/img/wildlife_thumbs/Basking-Shark.jpg",
     "image_full":"/img/wildlife_full/Basking-Shark.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":169,
     "name":"Bassian Thrush",
     "image_thumb":"/img/wildlife_thumbs/Bassian_Thrush.jpg",
     "image_full":"/img/wildlife_full/Bassian_Thrush.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":170,
     "name":"Beach Thick knee",
     "image_thumb":"/img/wildlife_thumbs/Beach-Thick-knee.jpg",
     "image_full":"/img/wildlife_full/Beach-Thick-knee.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":171,
     "name":"beardeddragom",
     "image_thumb":"/img/wildlife_thumbs/beardeddragom.jpg",
     "image_full":"/img/wildlife_full/beardeddragom.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":172,
     "name":"Beardeddragoneggs",
     "image_thumb":"/img/wildlife_thumbs/Beardeddragoneggs.jpg",
     "image_full":"/img/wildlife_full/Beardeddragoneggs.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":173,
     "name":"Beautiful firetail",
     "image_thumb":"/img/wildlife_thumbs/Beautiful_firetail.jpg",
     "image_full":"/img/wildlife_full/Beautiful_firetail.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":174,
     "name":"Bee hawk moth",
     "image_thumb":"/img/wildlife_thumbs/Bee-hawk-moth.jpg",
     "image_full":"/img/wildlife_full/Bee-hawk-moth.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":175,
     "name":"Bell miner",
     "image_thumb":"/img/wildlife_thumbs/Bell_miner.jpg",
     "image_full":"/img/wildlife_full/Bell_miner.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":176,
     "name":"Bemisia tabaci",
     "image_thumb":"/img/wildlife_thumbs/Bemisia_tabaci.jpg",
     "image_full":"/img/wildlife_full/Bemisia_tabaci.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":177,
     "name":"Bemisia tabaci",
     "image_thumb":"/img/wildlife_thumbs/Bemisia-tabaci.jpg",
     "image_full":"/img/wildlife_full/Bemisia-tabaci.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":178,
     "name":"Bennetts Tree kangaroo",
     "image_thumb":"/img/wildlife_thumbs/Bennetts-Tree-kangaroo.jpg",
     "image_full":"/img/wildlife_full/Bennetts-Tree-kangaroo.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":179,
     "name":"Bigeye barracuda",
     "image_thumb":"/img/wildlife_thumbs/Bigeye-barracuda.jpg",
     "image_full":"/img/wildlife_full/Bigeye-barracuda.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":180,
     "name":"bird wrasse",
     "image_thumb":"/img/wildlife_thumbs/bird-wrasse.jpg",
     "image_full":"/img/wildlife_full/bird-wrasse.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":181,
     "name":"Black backed Butcherbird",
     "image_thumb":"/img/wildlife_thumbs/Black-backed_Butcherbird.jpg",
     "image_full":"/img/wildlife_full/Black-backed_Butcherbird.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":182,
     "name":"black backed wagtail",
     "image_thumb":"/img/wildlife_thumbs/black-backed-wagtail.jpg",
     "image_full":"/img/wildlife_full/black-backed-wagtail.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":183,
     "name":"Black bellied Plover",
     "image_thumb":"/img/wildlife_thumbs/Black-bellied_Plover.jpg",
     "image_full":"/img/wildlife_full/Black-bellied_Plover.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":184,
     "name":"blackbird",
     "image_thumb":"/img/wildlife_thumbs/blackbird.jpg",
     "image_full":"/img/wildlife_full/blackbird.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":185,
     "name":"black bittern",
     "image_thumb":"/img/wildlife_thumbs/black-bittern.jpg",
     "image_full":"/img/wildlife_full/black-bittern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":186,
     "name":"Black Bittern",
     "image_thumb":"/img/wildlife_thumbs/Black_Bittern.jpg",
     "image_full":"/img/wildlife_full/Black_Bittern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":187,
     "name":"Black breasted Button quail",
     "image_thumb":"/img/wildlife_thumbs/Black-breasted_Button-quail.jpg",
     "image_full":"/img/wildlife_full/Black-breasted_Button-quail.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":188,
     "name":"Black Breasted Buzzard",
     "image_thumb":"/img/wildlife_thumbs/Black-Breasted-Buzzard.jpg",
     "image_full":"/img/wildlife_full/Black-Breasted-Buzzard.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":189,
     "name":"black browed albatross",
     "image_thumb":"/img/wildlife_thumbs/black-browed-albatross.jpg",
     "image_full":"/img/wildlife_full/black-browed-albatross.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":190,
     "name":"Black browed albatross",
     "image_thumb":"/img/wildlife_thumbs/Black-browed_albatross.jpg",
     "image_full":"/img/wildlife_full/Black-browed_albatross.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":191,
     "name":"Black browed Albatross",
     "image_thumb":"/img/wildlife_thumbs/Black-browed_Albatross.jpg",
     "image_full":"/img/wildlife_full/Black-browed_Albatross.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":192,
     "name":"Black butcherbird",
     "image_thumb":"/img/wildlife_thumbs/Black_butcherbird.jpg",
     "image_full":"/img/wildlife_full/Black_butcherbird.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":193,
     "name":"Black butcherbird juvenile",
     "image_thumb":"/img/wildlife_thumbs/Black_butcherbird_juvenile.jpg",
     "image_full":"/img/wildlife_full/Black_butcherbird_juvenile.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":194,
     "name":"Black chinned Honeyeater",
     "image_thumb":"/img/wildlife_thumbs/Black-chinned-Honeyeater.jpg",
     "image_full":"/img/wildlife_full/Black-chinned-Honeyeater.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":195,
     "name":"Black crowned Night Heron",
     "image_thumb":"/img/wildlife_thumbs/Black-crowned_Night_Heron.jpg",
     "image_full":"/img/wildlife_full/Black-crowned_Night_Heron.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":196,
     "name":"Black Currawong Cradle Mountain",
     "image_thumb":"/img/wildlife_thumbs/Black_Currawong_Cradle_Mountain.jpg",
     "image_full":"/img/wildlife_full/Black_Currawong_Cradle_Mountain.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":197,
     "name":"Black currawong",
     "image_thumb":"/img/wildlife_thumbs/Black_currawong.jpg",
     "image_full":"/img/wildlife_full/Black_currawong.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":198,
     "name":"Black eared Cuckoo imm",
     "image_thumb":"/img/wildlife_thumbs/Black-eared-Cuckoo-imm.jpg",
     "image_full":"/img/wildlife_full/Black-eared-Cuckoo-imm.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":199,
     "name":"black faced cormorant",
     "image_thumb":"/img/wildlife_thumbs/black-faced-cormorant.jpg",
     "image_full":"/img/wildlife_full/black-faced-cormorant.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":200,
     "name":"Black faced Cuckoo shrike",
     "image_thumb":"/img/wildlife_thumbs/Black-faced_Cuckoo-shrike.jpg",
     "image_full":"/img/wildlife_full/Black-faced_Cuckoo-shrike.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":201,
     "name":"Black faced Woodswallow",
     "image_thumb":"/img/wildlife_thumbs/Black-faced-Woodswallow.jpg",
     "image_full":"/img/wildlife_full/Black-faced-Woodswallow.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":202,
     "name":"Black footed Rock wallaby",
     "image_thumb":"/img/wildlife_thumbs/Black-footed_Rock-wallaby.jpg",
     "image_full":"/img/wildlife_full/Black-footed_Rock-wallaby.jpg",
-    "classification":""
+    "classification":"marsupial"
   },
   {
     "id":203,
     "name":"Black fronted dotterel",
     "image_thumb":"/img/wildlife_thumbs/Black-fronted_dotterel.jpg",
     "image_full":"/img/wildlife_full/Black-fronted_dotterel.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":204,
     "name":"black headed gull",
     "image_thumb":"/img/wildlife_thumbs/black-headed-gull.jpg",
     "image_full":"/img/wildlife_full/black-headed-gull.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":205,
     "name":"black headed honeyeater",
     "image_thumb":"/img/wildlife_thumbs/black-headed-honeyeater.jpg",
     "image_full":"/img/wildlife_full/black-headed-honeyeater.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":206,
     "name":"Black headed python",
     "image_thumb":"/img/wildlife_thumbs/Black-headed-python.jpg",
     "image_full":"/img/wildlife_full/Black-headed-python.jpg",
-    "classification":""
+    "classification":"reptile"
   },
   {
     "id":207,
     "name":"Black Honeyeater",
     "image_thumb":"/img/wildlife_thumbs/Black_Honeyeater.jpg",
     "image_full":"/img/wildlife_full/Black_Honeyeater.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":208,
     "name":"Blackish Meadow Katydid",
     "image_thumb":"/img/wildlife_thumbs/Blackish-Meadow-Katydid.jpg",
     "image_full":"/img/wildlife_full/Blackish-Meadow-Katydid.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":209,
     "name":"Black jezebel",
     "image_thumb":"/img/wildlife_thumbs/Black-jezebel.jpg",
     "image_full":"/img/wildlife_full/Black-jezebel.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":210,
     "name":"black kite",
     "image_thumb":"/img/wildlife_thumbs/black-kite.jpg",
     "image_full":"/img/wildlife_full/black-kite.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":211,
     "name":"black marlin",
     "image_thumb":"/img/wildlife_thumbs/black-marlin.jpg",
     "image_full":"/img/wildlife_full/black-marlin.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":212,
     "name":"Black naped Tern",
     "image_thumb":"/img/wildlife_thumbs/Black-naped_Tern.jpg",
     "image_full":"/img/wildlife_full/Black-naped_Tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":213,
     "name":"Black necked Stork",
     "image_thumb":"/img/wildlife_thumbs/Black_necked_Stork.jpg",
     "image_full":"/img/wildlife_full/Black_necked_Stork.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":214,
     "name":"Black petrel",
     "image_thumb":"/img/wildlife_thumbs/Black-petrel.jpg",
     "image_full":"/img/wildlife_full/Black-petrel.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":215,
     "name":"Black sided Hawkfish",
     "image_thumb":"/img/wildlife_thumbs/Black-sided-Hawkfish.jpg",
     "image_full":"/img/wildlife_full/Black-sided-Hawkfish.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":216,
     "name":"Black spotted puffer",
     "image_thumb":"/img/wildlife_thumbs/Black-spotted-puffer.jpg",
     "image_full":"/img/wildlife_full/Black-spotted-puffer.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":217,
     "name":"BlackSwan",
     "image_thumb":"/img/wildlife_thumbs/BlackSwan.jpg",
     "image_full":"/img/wildlife_full/BlackSwan.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":218,
     "name":"black tailed godwit",
     "image_thumb":"/img/wildlife_thumbs/black-tailed-godwit.jpg",
     "image_full":"/img/wildlife_full/black-tailed-godwit.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":219,
     "name":"black tailed gull",
     "image_thumb":"/img/wildlife_thumbs/black-tailed-gull.jpg",
     "image_full":"/img/wildlife_full/black-tailed-gull.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":220,
     "name":"Black tailed Native hen",
     "image_thumb":"/img/wildlife_thumbs/Black-tailed-Native-hen.jpg",
     "image_full":"/img/wildlife_full/Black-tailed-Native-hen.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":221,
     "name":"black tern",
     "image_thumb":"/img/wildlife_thumbs/black_tern.jpg",
     "image_full":"/img/wildlife_full/black_tern.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":222,
     "name":"Blacktip grouper epinephelus fasciatus",
     "image_thumb":"/img/wildlife_thumbs/Blacktip-grouper-epinephelus-fasciatus.jpg",
     "image_full":"/img/wildlife_full/Blacktip-grouper-epinephelus-fasciatus.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":223,
     "name":"Black winged Currawong",
     "image_thumb":"/img/wildlife_thumbs/Black-winged_Currawong.jpg",
     "image_full":"/img/wildlife_full/Black-winged_Currawong.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":224,
     "name":"BlackWingedStilt ",
     "image_thumb":"/img/wildlife_thumbs/BlackWingedStilt_.jpg",
     "image_full":"/img/wildlife_full/BlackWingedStilt_.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":225,
     "name":"Black Wishbone spider",
     "image_thumb":"/img/wildlife_thumbs/Black-Wishbone-spider.jpg",
     "image_full":"/img/wildlife_full/Black-Wishbone-spider.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":226,
     "name":"Blatella germanica",
     "image_thumb":"/img/wildlife_thumbs/Blatella-germanica.jpg",
     "image_full":"/img/wildlife_full/Blatella-germanica.jpg",
-    "classification":""
+    "classification":"insect"
   },
   {
     "id":227,
@@ -1621,14 +1621,14 @@ function createDefaultWildlife(){
     "name":"Blindshark",
     "image_thumb":"/img/wildlife_thumbs/Blindshark.jpg",
     "image_full":"/img/wildlife_full/Blindshark.jpg",
-    "classification":""
+    "classification":"fish"
   },
   {
     "id":229,
     "name":"Blue and white Flycatcher female",
     "image_thumb":"/img/wildlife_thumbs/Blue-and-white_Flycatcher_female.jpg",
     "image_full":"/img/wildlife_full/Blue-and-white_Flycatcher_female.jpg",
-    "classification":""
+    "classification":"bird"
   },
   {
     "id":230,

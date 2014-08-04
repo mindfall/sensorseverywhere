@@ -16,11 +16,11 @@ angular.module('app')
 		$rootScope.selectedWildlife = [];
 		$rootScope.dupeList = [];
 
-	    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
+	//    $scope.wildlifeSelect = ''; //string sent by search form for selectionCtrl
 	    $scope.wildlifeCounter = 1;
-	   	$scope.selectedWildlife = wFWildlifeFactory.selectWildlife();
-	    var getWildlifeList = wFWildlifeFactory.getWildlife();
+	    $scope.selectedWildlife = [];
 
+	    var getWildlifeList = wFWildlifeFactory.getWildlife();
    		for(var i = 0; i < getWildlifeList.length; i++) {
 			typeaheadArray.push(getWildlifeList[i]);
 		}
@@ -28,7 +28,8 @@ angular.module('app')
 			return typeaheadArray.indexOf(elem) == pos;
 		});
 		$scope.wildlife = wildlife;
-	    /**
+
+	 	/**
 	    * 	$scope.submitAnimal
 	    * 	@params 
 		*	add animal to array
@@ -50,21 +51,30 @@ angular.module('app')
 			        found = false;
 			        //loop through the new array - initialised to empty
 			        for ( y = 0; y < $rootScope.selectedWildlife.length; y++ ) {
-			        	if ( $rootScope.dupeList[x] === $rootScope.selectedWildlife[y] ) { 
+			        	if ( $rootScope.dupeList[x] === $rootScope.selectedWildlife[y]) { 
 			              found = true;
 			              break;
 			            }
 			        }
-			        //first loop skips to this statement which adds the first element to the new array.
+			        for ( y = 0; y < $scope.projectWildlife.length; y++ ) {
+/*			        	console.log($scope.projectWildlife[y].wildlifeNames);
+			        	console.log($rootScope.dupeList[x].name);*/
+			        	if ( $rootScope.dupeList[x].name === $scope.projectWildlife[y].wildlifeNames) { 
+			              found = true;
+			              break;
+			            }
+			        }
+   			        //first loop skips to this statement which adds the first element to the new array.
 			        //in other words - this is where the unique elements are kept.
 			        if ( !found) {
-			        	$rootScope.selectedWildlife.push($rootScope.dupeList[x]);
+		        	   	$rootScope.selectedWildlife.push($rootScope.dupeList[x]);
 			        	$scope.selectedWildlife.push(this.wildlifeSelect);
-			        //	console.log($scope.selectedWildlife);
+			        //	wFWildlifeFactory.setEditSelectionWildlife(this.wildlifeSelect);
 			         }    
 			    }
 	    	}
 	 	}
+
 
 	    $scope.removeSelectedWildlife = function(type) {
 
@@ -108,22 +118,19 @@ angular.module('app')
 			 				if(project.project_monitors[i].monitorSpecificWildlife === undefined) {
 			 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
 			 				}
-
 			 				monitors.push(project.project_monitors[i]);
 		 				}
 		 				$scope.monitors = monitors;
-
 		 			}
-
 		 			if(project.project_wildlife === 0) {
 		 				$scope.wildlifeMessage = 'This project has no wildlife.';
 		 			} else {
 		 				for(i = 0; i < project.project_wildlife.length; i++ ) {
 		 					projectWildlife.push(project.project_wildlife[i]);
-		 					
+		 					//...so as not to double up with wildlife selections later on...
+		 				//	$rootScope.dupeList.push(project.project_wildlife[i]);
 		 				}
 		 				$scope.projectWildlife = projectWildlife;
-		 				console.log($scope.projectWildlife);
 		 				//find members for this project
 		 				$scope.findActiveMembers(project.project_name);
 		 			}
@@ -143,7 +150,6 @@ angular.module('app')
 			
 			activeMembers.then(function(data) {
 				for(var i = 0; i < data.length; i++) {
-
 					for(var j = 0; j < data[i].groupMembers.length; j++) {
 						var ownerAttrs = {
 							name: data[i].groupMembers[j].username.toString(),
@@ -153,25 +159,116 @@ angular.module('app')
 					}
 					$scope.selectOwner = selectOwner;
 					$scope.setOwner = {type: $scope.selectOwner[0].value};
-
 				}
 			});
 		}
-
+		var selectionStats = [];
 		$scope.showMonitorPopup = function() {
 			$rootScope.$broadcast('showMonitorPopup');
 		}
-		//called from wFMonitorDir
-		$scope.addMonitorData = function() {
-			var addMonitor = wFProjectFactory.getMonitorData();
-			$scope.monitors.push(addMonitor[0]);
+
+		$scope.setSelectionNumber = function(id, name, number, classification, thumb) {
+			var wildlifeStats = {
+				id: id,
+				name: name,
+				number: number, 
+				classification: classification,
+				thumb: thumb
+			}
+			selectionStats.push(wildlifeStats);
+			return selectionStats;
 		}
 
-		$scope.addMarker = function() {
-			wFMapFactory.getMarkerPosition();
+		$scope.selectedNotUpdated = function() {
+
+		}
+	
+		$scope.editProject = function(name, desc, start_date, end_date, group, owner, type, wildlifeNameSelect, wildlifeNumbersSelect, wildlifeNameProject, monitorName, monitorType, monitorSpecificWildlife, monitorIsActive) {
+
+			var i, j;
+			var selection = [];
+			var wildlifeEditSubmit = [];
+
+			//first push the scoped objects onto a new array so we can mutate it later
+			for(i = 0; i < $scope.selectedWildlife.length; i++) {
+				selection.push($scope.selectedWildlife[i]);
+			}
+			//second add the items already in the project to the submission array.
+			//the number value may or may not have been updated.
+			for(i = 0; i < $scope.projectWildlife.length; i++) {
+				wildlifeEditSubmit.push($scope.projectWildlife[i]);
+			}
+			
+			//if selectionStats has an object in it we know that it is well formed
+			if(selectionStats.length > 0) {
+				//look for a match in the selection array
+				for(i = 0; i < selection.length; i++) {
+					for(j = 0; j < selectionStats.length; j++) {
+						if(selection[i].name === selectionStats[j].name) {
+							//and push it onto the submission array
+							wildlifeEditSubmit.push(selectionStats[j]);
+							selection.splice(i, 1);
+						} 
+					}
+				}
+			}
+
+			//finally, take what's remaining of the selection array and prepare it for
+			//the db.
+			for(i = 0; i < selection.length; i++) {
+				var remainder = {
+					id: selection[i]._id,
+					name: selection[i].name,
+					number: 1,
+					classification: selection[i].classification,
+					thumb: selection[i].image_thumb
+				}
+				wildlifeEditSubmit.push(remainder);
+			}
+
+			console.log(wildlifeEditSubmit);
+
+			monitorData = wFProjectFactory.getMonitorData();
+/*
+			for(var i = 0; i < selection.length; i++ ) {
+
+			}*/
+
+
+			//build the selection object to match db entry
+/*			var selectionObject = {
+				wildlifeId: selection._id,
+				wildlifeNames: selection.name,
+				wildlifeNumbers: selection.number
+			}*/
+
+	/*		//get wildlife info for wildlifeNameSelect and wildlifeNameProject
+			var allWildlife = []; 
+			var newWildlife = wildlifeNameSelect;
+			var newWildlifeNumbers = 1;
+
+			var existingWildlife = wildlifeNameProject;
+
+			if(newWildlifeNumbersSelect !== 1) {
+				newWildlifeNumbers = wildlifeNumbersSelect;
+			}
+
+			allWildlife.push(newWildlife);
+			allWildlife.push(existingWildlife);
+
+			var editProject = {
+				name: name,
+				description: desc,
+				start: start_date,
+				end: end_date,
+				group: group,
+				owner: owner, 
+				type: type, 
+				wildlife: wildlifeData,
+				monitors: monitorData
+			}*/
 		}
 
-		
 
 	 	$scope.monitorTypes = [
 			{name: 'audio', value: 'audio'},

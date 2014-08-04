@@ -1,6 +1,7 @@
 angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $q){
 
 	var selectedWildlife = [];
+	var editSelectionWildlife = [];
 	var wildlife = [];
 
 	return {
@@ -21,7 +22,6 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 		},
 
 	    selectWildlife : function() {
-
 	    	selectedWildlifeArray = selectedWildlife;
 	   		return selectedWildlifeArray;
 		},
@@ -29,7 +29,6 @@ angular.module('app').factory('wFWildlifeFactory', function($rootScope, $http, $
 		getWildlife : function() {
 			return wildlife;
 		}
-
 	}
 });
 
