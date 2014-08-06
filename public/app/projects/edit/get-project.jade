@@ -3,7 +3,7 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 		.col-md-5(class="map-edit-container")
 			div(ng-controller="wFMapCtrl" id="map" class="map")
 				leaflet
-		.col-md-2(ng-controller="wFEditProjectCtrl" class="col-2-edit-selection-container")
+		.col-md-2(class="col-2-edit-selection-container")
 			h4 Project Details {{position}}
 			span Project Name:
 				div(class="edit-text-box" editable-text="project.project_name") {{project.project_name}}

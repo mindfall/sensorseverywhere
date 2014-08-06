@@ -46,8 +46,7 @@ angular.module('app')
 		}
 
 		$scope.editProject = function(id) {
-
-	 		$location.url('/projects/getProject/' + id);
+	 		$location.url('/projects/getProject/' + id + '/');
 		}
 
 		$scope.getProjectTasks = function(id) {

@@ -11,7 +11,8 @@ exports.getProjects = function(req, res){
 
 exports.createProject = function(req, res, next){
 	var projectData = req.body;
-	var i = 0;
+	console.log(projectData);
+	var i;
 	var projectOwner = projectData.project_owner;
 	var projectOwnerFirstName = projectData.project_owner_firstname;
 	var projectName = projectData.project_name;
@@ -51,7 +52,7 @@ exports.createProject = function(req, res, next){
 		comment: req.body.wildlife_comment
 	}*/
 
-	for(i; i < monitorNumber; i++) {
+	for(i = 0; i < monitorNumber; i++) {
 
 		monitor = {	
 			monitorName : req.body.project_monitors[i].name,
@@ -69,7 +70,7 @@ exports.createProject = function(req, res, next){
 	var project_wildlife = [];
 
 
-	for(i; i < numberOfWildlife; i++){
+	for(i = 0; i < numberOfWildlife; i++){
 
 		wildlife = {
 			wildlifeId: req.body.project_wildlife[i].id,
@@ -82,7 +83,7 @@ exports.createProject = function(req, res, next){
 	}
 
 	
-	for(i; i < coordinatesLength; i++){
+	for(i = 0; i < coordinatesLength; i++){
 		pointsArray.push(req.body.project_location[0][i]);
 	}
 	pointData.push(pointsArray);

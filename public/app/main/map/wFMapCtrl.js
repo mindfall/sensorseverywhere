@@ -91,19 +91,21 @@ angular.module('app')
 	*/
 
 	$scope.editMap = function() {
+
 		var counter = 0;
 		var coords = wFMapFactory.getEditMapData();
-		var geojsonFeature = {
+		var markers = wFMapFactory.getEditMarker();
+		
+		var geojsonLayer = {
 		    "type": "Feature",
 		    "properties": {},
 		    "geometry": {
 		        "type": "Polygon",
 		        "coordinates": coords
-
 		    }
 		};
 
-		var layers = L.geoJson(geojsonFeature, {
+		var layers = L.geoJson(geojsonLayer, {
 			onEachFeature: function (feature, layer) {
 				layer.on('dblclick', function(e) {
 					
@@ -125,6 +127,21 @@ angular.module('app')
 				});
 			}
 		}).addTo(map);
+
+		for(var i = 0; i < markers.length; i++) {
+			var marker = wFMapFactory.addCustomMarker(markers[i].wildlife, markers[i].monitorType);
+
+			var icon = L.icon({
+				iconUrl: '../' + marker.options.iconUrl,
+				iconSize: marker.options.iconSize,
+				iconAnchor: marker.options.iconAnchor
+			});
+
+			L.marker(markers[i].position, {icon: icon}).addTo(map);
+		}
+
+
+
 
 	}
 

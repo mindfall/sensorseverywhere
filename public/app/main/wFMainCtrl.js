@@ -140,12 +140,6 @@ angular.module('app')
 
 	 	$scope.area = +mapArea.toFixed(2);
 
-/*	 	console.log($scope.wildlifeData);
-	 	console.log(totalSpecies);
-	 	console.log($scope.monitorData);
-	 	console.log(mapData);
-	 	console.log($scope.area);*/
-	 	
 	 	//hold the project data to date.
 	 	corridorData = {
 	 		user: user,
@@ -155,6 +149,7 @@ angular.module('app')
 	 		geopoints: mapData,
 	 		area: $scope.area
 	 	}
+	// 	console.log(corridorData);
 	 	return corridorData;
 
 	}
@@ -196,8 +191,8 @@ angular.module('app')
 
 		//	project_monitors : corridorData.monitors
 		}
-	//	var inspectProjectData = JSON.stringify(projectData);
-	//	console.log(inspectProjectData);
+/*		var inspectProjectData = JSON.stringify(projectData);
+		console.log(inspectProjectData);*/
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
 	}

@@ -2,6 +2,7 @@ angular.module('app')
 	.controller('wFEditProjectCtrl', ['$scope', '$location', '$rootScope', '$http', '$q', 'wFWildlifeFactory', 'wFProjectFactory', 'wFMapFactory', 'wFTaskFactory',
 		function($scope, $location, $rootScope, $http, $q, wFWildlifeFactory, wFProjectFactory, wFMapFactory, wFTaskFactory){
 
+		var id = $location.path().split('/')[3] || "Unknown";
 		var coords = [];
 		var points = [];
 		var wildlife = [];
@@ -97,51 +98,64 @@ angular.module('app')
 
 
 		$scope.getProjectById = function(id) {
-			var i = 0;
-	 		var project = wFProjectFactory.getProjectById(id);
-	 		project.then(function(project) {
-		 			$scope.project = project;
 
-		 			//map points for layer
+				var i, j;
+				var wildlifeClass = '';
+		 		var project = wFProjectFactory.getProjectById(id);
+		 		project.then(function(project) {
+			 			$scope.project = project;
+			 			//map points for layer
+			 			project_coords = project.project_location_data.project_coords.coordinates;
 
-		 			project_coords = project.project_location_data.project_coords.coordinates;
-
-		 			for(i; i < project_coords.length; i++) {
-		 				coords.push(project_coords[i]);
-		 			}
-		 			wFMapFactory.setEditMapData(coords);
-		 			
-		 			if(project.project_monitors.length === 0 ) {
-		 				$scope.monitorMessage = 'There are no monitors to display.';
-		 			} else {
-			 			for(i = 0; i < project.project_monitors.length; i++) {
-			 				if(project.project_monitors[i].monitorSpecificWildlife === undefined) {
-			 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
+			 			for(i = 0; i < project_coords.length; i++) {
+			 				coords.push(project_coords[i]);
+			 			}
+			 			wFMapFactory.setEditMapData(coords);
+			 			
+			 			if(project.project_monitors.length === 0 ) {
+			 				$scope.monitorMessage = 'There are no monitors to display.';
+			 			} else {
+				 			for(i = 0; i < project.project_monitors.length; i++) {
+				 				if(project.project_monitors[i].monitorSpecificWildlife === undefined) {
+				 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
+				 				}
+				 			//	console.log(project.project_monitors.length);
+				 				monitors.push(project.project_monitors[i]);
 			 				}
-			 				monitors.push(project.project_monitors[i]);
+			 				$scope.monitors = monitors;
+			 			}
+
+			 			if(project.project_wildlife === 0) {
+			 				$scope.wildlifeMessage = 'This project has no wildlife.';
+			 			} else {
+			 				for(i = 0; i < project.project_wildlife.length; i++ ) {
+			 					projectWildlife.push(project.project_wildlife[i]);
+			 					//...so as not to double up with wildlife selections later on...
+			 					//	$rootScope.dupeList.push(project.project_wildlife[i]);
+			 				}
+			 				$scope.projectWildlife = projectWildlife;
+			 				//find members for this project
+			 				$scope.findActiveMembers(project.project_name);
+			 			}
+
+		 				for(i = 0; i < monitors.length; i++) {
+		 					for(j = 0; j < projectWildlife.length; j++) {
+		 						if(monitors[i].monitorSpecificWildlife === projectWildlife[j].wildlifeNames) {
+		 							
+		 							wildlifeClass = projectWildlife[j].wildlifeClassification;
+		 						}
+		 					}
+
+		 					var markerIcon = wFMapFactory.setEditMarker(monitors[i].monitorPosition, wildlifeClass, monitors[i].monitorType);
 		 				}
-		 				$scope.monitors = monitors;
-		 			}
-		 			if(project.project_wildlife === 0) {
-		 				$scope.wildlifeMessage = 'This project has no wildlife.';
-		 			} else {
-		 				for(i = 0; i < project.project_wildlife.length; i++ ) {
-		 					projectWildlife.push(project.project_wildlife[i]);
-		 					//...so as not to double up with wildlife selections later on...
-		 				//	$rootScope.dupeList.push(project.project_wildlife[i]);
-		 				}
-		 				$scope.projectWildlife = projectWildlife;
-		 				//find members for this project
-		 				$scope.findActiveMembers(project.project_name);
-		 			}
-	 	 		}, function(status) {
-	 			console.log(status);
-	 		})
+		 	 		}, function(status) {
+		 			console.log(status);
+		 		})
 
 	 	//	$location.url('/projects/edit/' + id);
 			
 	 	}
-
+	 	$scope.getProjectById(id);
 
 	 	$scope.findActiveMembers = function(project) {
 				
@@ -286,11 +300,6 @@ angular.module('app')
 			{name: 'government', value: 'government'}
 		];
 		$scope.orgs = {type: $scope.selectOrg[0].value};
-
-
-	 	var id = $location.path().split('/')[3] || "Unknown";
-		$scope.getProjectById(id);	
-
 
 	}]);
 

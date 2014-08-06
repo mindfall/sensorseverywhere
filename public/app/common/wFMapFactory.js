@@ -5,6 +5,7 @@ angular.module('app')
 	var mapData = {};
 	var editPoints = [];
 	var markerPosition = [];
+	var markers = [];
 
 	return {
 		getMapControls : function() {
@@ -83,10 +84,15 @@ angular.module('app')
 			$rootScope.$broadcast('addMarker', { pos: markerPosition});
 		},
 
+
 		addCustomMarker: function(wildlifeClass, monitorType) {
 			var customMarker;
 
-		  if(wildlifeClass === '' || wildlifeClass === undefined) {
+			if(wildlifeClass === 'aves') {
+				wildlifeClass = 'bird';
+			}
+
+		  	if(wildlifeClass === '' || wildlifeClass === undefined) {
 		   		var url = '../../img/icons/marker_' + monitorType + '.png';
 			    customMarker = L.icon({
 			    	iconUrl: url,
@@ -95,7 +101,6 @@ angular.module('app')
 			    	popupAnchor: [-3, -10]
 			    });
 			} else if (monitorType === '' || monitorType === undefined) {
-				console.log(2);
 				var url = '../../img/icons/marker_' + wildlifeClass + '.png'
 			    customMarker = L.icon({
 			    	iconUrl: url,
@@ -104,9 +109,16 @@ angular.module('app')
 			    	popupAnchor: [-3, -10]
 			    });
 			} else if(wildlifeClass !== '' || wildlifeClass !== undefined && monitorType !== '' || monitorType !== undefined) {
-				console.log(1);
 			    customMarker = L.icon({
 			    	iconUrl: '../../img/icons/marker_' + monitorType + '_' + wildlifeClass + '.png',
+			    	iconSize: [32, 32],
+			    	iconAnchor: [15, 15],
+			    	popupAnchor: [-3, -10]
+			    });
+			} else {
+				var url = '../../img/icons/marker_undefined.png'
+			    customMarker = L.icon({
+			    	iconUrl: url,
 			    	iconSize: [32, 32],
 			    	iconAnchor: [15, 15],
 			    	popupAnchor: [-3, -10]
@@ -179,6 +191,19 @@ angular.module('app')
 			}
 			return points;		
 		},
+
+		setEditMarker : function(position, wildlife, monitorType) {
+			var markerData = {
+				position: position,
+				wildlife: wildlife,
+				monitorType: monitorType
+			};
+			markers.push(markerData);
+		},
+
+		getEditMarker : function() {
+			return markers;
+		}
 
 
 	}
