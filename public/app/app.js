@@ -48,21 +48,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/projects/contribute', 
 				controller: 'wFContributionCtrl'
 		})
-		.state('projects/create-project', {
-				url: '/projects/create-project',
-				templateUrl: '/partials/projects/create-project',
-				controller: 'wFProjectCtrl'
-		})
 		.state('projects/getProject/:id/', {
 			url: '/projects/getProject/:id/',
 			templateUrl: '/partials/projects/edit/get-project',
 			controller: 'wFEditProjectCtrl'
 		})
-/*		.state('projects/edit/:id', {
-			url: '/projects/edit/:id',
-			templateUrl: '/partials/projects/edit',
-			controller: 'wFProjectCtrl'
-		})*/
 		.state('projects/project-details/:id', {
 				url: '/projects/project-details/:id',
 				templateUrl: '/partials/projects/project-details', 

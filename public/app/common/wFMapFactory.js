@@ -91,6 +91,9 @@ angular.module('app')
 			if(wildlifeClass === 'aves') {
 				wildlifeClass = 'bird';
 			}
+			if(wildlifeClass === 'marsupial') {
+				wildlifeClass = 'mammal';
+			}
 
 		  	if(wildlifeClass === '' || wildlifeClass === undefined) {
 		   		var url = '../../img/icons/marker_' + monitorType + '.png';

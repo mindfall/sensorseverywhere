@@ -8,8 +8,8 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 			span Project Name:
 				div(class="edit-text-box" editable-text="project.project_name") {{project.project_name}}
 				br
-			span Project Description:
-				div(class="edit-text-box" editable-text="project.project_desc") {{project.project_desc}}
+			span Project Description: 
+				div(class="edit-text-box edit-text-area" editable-textarea="project.project_description" e-rows="4" e-cols="30") {{project.project_description}}
 				br
 			span Project Timeframe: 
 				br
@@ -25,8 +25,8 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 			span Group Name: 
 				div(class="edit-text-box" editable-text="project.project_group") {{project.project_group}}
 				br
-			span Project Owner: 
-				select(class="form-control" ng-model="setOwner", ng-options="owner.value as owner.name for owner in selectOwner")
+			span Project Owner:
+				select(class="form-control" ng-model="selectOwner[0].name", ng-options="owner.value as owner.name for owner in selectOwner")
 				br
 			span Project Type: 
 				select(class="form-control" ng-model="project.project_type", ng-options="org.value as org.name for org in selectOrg") 
@@ -78,18 +78,21 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 			h4 Monitors
 			span {{monitorMessage}}
 			br
-			div(ng-repeat="monitor in monitors track by $index")
+			div(ng-repeat="monitor in monitors")
 				.well
 					div(class="remove-selected-monitor-btn" ng-click="removeSelectedMonitor()") X
-					span Monitor Name:
-						span(ng-model="monitorName") {{monitor.name}}
-					span Monitor Type:
-						span(ng-model="monitorType") {{monitor.type}}
-					span and is monitoring: 
-						span(ng-model="monitorSpecificWildlife") {{monitor.specificWildlife}}
+					span Name: &nbsp
+						span( class="edit-text-box" editable-text="monitor.monitorName") {{monitor.monitorName}}
 					br
-					span is active? 
-						span(ng-model="monitorIsActive") {{monitor.active}}
+					span Type: &nbsp
+						select(class="form-control" ng-model="monitor.monitorType" ng-change="selectMonitor()" ng-options="monitor.value as monitor.name for monitor in monitorTypes")
+					span Monitoring: &nbsp
+						select(class="form-control" ng-model="monitor.monitorSpecificWildlife" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in monitoringWildlife")
+					span Active? &nbsp 
+						select(class="form-control" ng-model="monitor.monitorActive" ng-options="activeState.value as activeState.name for activeState in activeStates")
+				
+				
+			
 					
 		monitor
 

@@ -23,10 +23,8 @@ div(class="marker-popup" ng-show="monitorPopup")
 		br
 		br
 		div(ng-show="monitorWildlife")
-			select(class="form-control" ng-model="wildlifeName" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
+			select(class="form-control" ng-model="setWildlife.type" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
 		span Is this monitor active?
 		select(class="form-control" ng-model="monitorActive" ng-change="selectActive()" ng-options="state.value as state.name for state in active")
 		div(class="btn btn-default monitor-popup-save-btn" ng-click="saveMonitor(monitorName, monitorType, monitorActive, wildlifeName)") Save
 		div(class="btn btn-default monitor-popup-close-btn" ng-click="closeMonitorPanel()") Close
-
-

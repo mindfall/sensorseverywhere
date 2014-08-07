@@ -147,14 +147,19 @@ angular.module('app')
 
 	$scope.$on('addMarker', function(event, args) {
 		var monitor,
-			wildlife;
+			wildlife,
+			i;
 		var marker = wFProjectFactory.getMonitorData();
-		if(marker[0].type !== '' || marker[0].type !== undefined) {
-			monitor = marker[0].type;
+
+		for(i = 0; i < marker.length; i++) {
+			if(marker[i].type !== '' || marker[i].type !== undefined) {
+				monitor = marker[i].type;
+			}
+			if(marker[i].wildlifeClass !== '' || marker[i].wildlifeClass !== undefined || marker[i].wildlifeClass !== 'undefined') {
+				wildlife = marker[i].wildlifeClass;
+			} 
 		}
-		if(marker[0].wildlifeClass !== '' || marker[0].wildlifeClass !== undefined || marker[0].wildlifeClass !== 'undefined') {
-			wildlife = marker[0].wildlifeClass;
-		} 
+
 		$scope.updateMarker(args.pos, wildlife, monitor);
 
 	});

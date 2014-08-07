@@ -44,7 +44,7 @@ angular.module('app')
 				console.log(status);
 			});
 		}
-
+		
 		$scope.editProject = function(id) {
 	 		$location.url('/projects/getProject/' + id + '/');
 		}

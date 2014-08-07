@@ -20,6 +20,7 @@ angular.module('app')
 				scope.monitorSetup = false;
 				var topMargin = 100;
 				var wildlifeClass = '';
+				var i;
 
 				ele.css({
 					'position': 'absolute',
@@ -61,26 +62,38 @@ angular.module('app')
 					scope.monitorIntro = false;
 					scope.monitorDetails = true;
 				}
+				//build the selection list from both selectedWildlife and projectWildlife
 				scope.monitorSpecificWildlifeYes = function() {
 					scope.wildlifeSelection = [];
 					selectedWildlife = wFWildlifeFactory.selectWildlife();
-					wildlifeClass = selectedWildlife[0].classification;
-					if(selectedWildlife.length !== 0) {
-						for(var i = 0; i < selectedWildlife.length; i++) {
-							wildlife = {
-								name: selectedWildlife[i].name,
-								value: selectedWildlife[i].name
+					wildlifeInProject = wFProjectFactory.getWildlifeForEdit();
+					if(selectedWildlife || wildlifeInProject) {
+						if(wildlifeInProject.length !== 0 ) {
+							for(i = 0; i < wildlifeInProject.length; i++) {
+								wildlife = {
+									name: wildlifeInProject[i],
+									value: wildlifeInProject[i]	
+								}	
+								scope.wildlifeSelection.push(wildlife);					
 							}
-
-							scope.wildlifeSelection.push(wildlife);
 						}
-
-						scope.setWildlife = {type: selectedWildlife[0].name};
+											
+						if(selectedWildlife.length !== 0) {
+							wildlifeClass = selectedWildlife[0].classification;
+							for(i = 0; i < selectedWildlife.length; i++) {
+								wildlife = {
+									name: selectedWildlife[i].name,
+									value: selectedWildlife[i].name
+								}
+								scope.wildlifeSelection.push(wildlife);
+							}
+						}
+						
+						scope.setWildlife = {type: scope.wildlifeSelection[0].name};
 						scope.monitorWildlife = true;
 					} else {
 						wFNotifier.error('You have not selected any wildlife.');
 					}
-						
 				}
 				scope.monitorSpecificNo = function() {
 					scope.monitorWildlife = false;
@@ -95,8 +108,15 @@ angular.module('app')
 					scope.monitorPopup = false;
 				}
 				scope.saveMonitor = function(name, type, active, specificWildlife) {
+					var monitorData = {};
 					if(wildlifeClass === undefined) {
 						wildlifeClass = '';
+					}
+					if(active === undefined || active === '') {
+						active = 'Not set.';
+					}
+					if(specificWildlife === undefined) {
+						specificWildlife = 'Monitor is unassigned.';
 					}
 					monitorPos = wFMapFactory.getMarkerPosition();
 					var monitorData = {
@@ -107,15 +127,15 @@ angular.module('app')
 						wildlifeClass: wildlifeClass,
 						position: monitorPos
 					}
-					wFProjectFactory.setMonitorData(monitorData);
+					wFProjectFactory.setProjectMonitors(monitorData);
 					scope.monitorPopup = false;
-					var monitorData = {};
 					scope.wildlifeSelection = [];
 					scope.monitorName = '';
 					scope.monitorType = '';
 					//if the 3 element is a project id
 
 					if($location.path().split('/')[2]) {
+						//send to wFMainCtrl
 						scope.$parent.$parent.addMonitorData();
 						scope.$parent.$parent.addMarker();
 					}

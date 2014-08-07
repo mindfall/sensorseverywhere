@@ -158,7 +158,14 @@ angular.module('app')
 	$scope.saveProject = function(name, description, start, end, type, total){
 		//console.log('owner: ' + wFIdentity.currentUser.firstname);
 		var project_name = name;
-		var project_description = description;
+		var project_description;
+		console.log(description);
+		if(description === 0 || description === undefined) {
+			console.log('undefined')
+			project_description = 'No description provided.';
+		} else {
+			project_description = description;
+		}
 		var project_start = start;
 		var project_end = end;
 		var project_type = type;
@@ -191,16 +198,16 @@ angular.module('app')
 
 		//	project_monitors : corridorData.monitors
 		}
-/*		var inspectProjectData = JSON.stringify(projectData);
-		console.log(inspectProjectData);*/
+		var inspectProjectData = JSON.stringify(projectData);
+		console.log(inspectProjectData);
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
 	}
 
-		//called from wFMonitorDir
+	//called from wFMonitorDir
 	$scope.addMonitorData = function() {
 		var addMonitor = wFProjectFactory.getMonitorData();
-		$scope.monitors.push(addMonitor[0]);
+		console.log(addMonitor.length);
 	}
 
 	$scope.addMarker = function() {

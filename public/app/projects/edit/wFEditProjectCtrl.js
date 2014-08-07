@@ -7,6 +7,8 @@ angular.module('app')
 		var points = [];
 		var wildlife = [];
 		var projectWildlife = [];
+		var monitorWildlife = [];
+		$scope.monitoringWildlife = [];
 		var monitors = [];
 		$scope.wildlife = [];
 		$scope.monitors = [];
@@ -29,6 +31,27 @@ angular.module('app')
 			return typeaheadArray.indexOf(elem) == pos;
 		});
 		$scope.wildlife = wildlife;
+
+
+	 	$scope.monitorTypes = [
+			{name: 'audio', value: 'audio'},
+			{name: 'video', value: 'video'},
+			{name: 'temperature', value: 'temperature'},
+			{name: 'moisture', value: 'moisture'},
+			{name: 'other', value: 'other'}
+		];
+		$scope.selectOrg = [
+			{name: 'public', value: 'public'},
+			{name: 'private', value: 'private'},
+			{name: 'ngo', value: 'ngo'},
+			{name: 'government', value: 'government'}
+		];
+		$scope.activeStates = [
+			{name: 'yes', value: 'yes'},
+			{name: 'no', value: 'no'},
+			{name: 'not set', value: 'not set'}
+		];
+	
 
 	 	/**
 	    * 	$scope.submitAnimal
@@ -97,8 +120,7 @@ angular.module('app')
   	    }
 
 
-		$scope.getProjectById = function(id) {
-
+		$scope.getProjectById = function() {
 				var i, j;
 				var wildlifeClass = '';
 		 		var project = wFProjectFactory.getProjectById(id);
@@ -116,13 +138,18 @@ angular.module('app')
 			 				$scope.monitorMessage = 'There are no monitors to display.';
 			 			} else {
 				 			for(i = 0; i < project.project_monitors.length; i++) {
-				 				if(project.project_monitors[i].monitorSpecificWildlife === undefined) {
+				 				if(project.project_monitors[i] === null) {
+				 					continue;
+				 				}
+				 				if(project.project_monitors[i].monitorSpecificWildlife === null || project.project_monitors[i].monitorSpecificWildlife === undefined) {
 				 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
 				 				}
-				 			//	console.log(project.project_monitors.length);
+				 				wFProjectFactory.setProjectMonitors(project.project_monitors[i]);
 				 				monitors.push(project.project_monitors[i]);
 			 				}
 			 				$scope.monitors = monitors;
+			 				//we need to push these monitors to a shared service to be able to play with them later
+			 				
 			 			}
 
 			 			if(project.project_wildlife === 0) {
@@ -130,13 +157,24 @@ angular.module('app')
 			 			} else {
 			 				for(i = 0; i < project.project_wildlife.length; i++ ) {
 			 					projectWildlife.push(project.project_wildlife[i]);
-			 					//...so as not to double up with wildlife selections later on...
-			 					//	$rootScope.dupeList.push(project.project_wildlife[i]);
+			 					monitorWildlife.push(project.project_wildlife[i].wildlifeNames);
+
 			 				}
+			 			    for(i = 0; i < monitorWildlife.length; i++) {
+								var wildlife = {
+									name: monitorWildlife[i],
+									value: monitorWildlife[i]
+								}
+								$scope.monitoringWildlife.push(wildlife);
+							}
+							wFProjectFactory.setWildlifeForEdit(monitorWildlife);
+							$scope.setMonitoredWildlife = {type: monitorWildlife[0]};
 			 				$scope.projectWildlife = projectWildlife;
+
 			 				//find members for this project
-			 				$scope.findActiveMembers(project.project_name);
+			 				$scope.findActiveMembers(project.project_name, project.project_owner.owner_name);
 			 			}
+
 
 		 				for(i = 0; i < monitors.length; i++) {
 		 					for(j = 0; j < projectWildlife.length; j++) {
@@ -151,29 +189,37 @@ angular.module('app')
 		 	 		}, function(status) {
 		 			console.log(status);
 		 		})
-
-	 	//	$location.url('/projects/edit/' + id);
 			
 	 	}
-	 	$scope.getProjectById(id);
 
-	 	$scope.findActiveMembers = function(project) {
-				
+	 	if($location.path().split('/')[3] === id){
+	 		$scope.getProjectById(id);	
+	 	}
+	 	
+
+
+	 	$scope.findActiveMembers = function(project, owner) {
+			var owner = {
+				name: owner,
+				value: owner
+			}
 			var selectOwner = [];
+			selectOwner.push(owner);
+
 			var activeMembers = wFTaskFactory.findActiveGroupMembers(project);
-			
 			activeMembers.then(function(data) {
-				for(var i = 0; i < data.length; i++) {
-					for(var j = 0; j < data[i].groupMembers.length; j++) {
-						var ownerAttrs = {
-							name: data[i].groupMembers[j].username.toString(),
-							value: data[i].groupMembers[j].username.toString()
+				if(data.length > 0) {
+					for(var i = 0; i < data.length; i++) {
+						for(var j = 0; j < data[i].groupMembers.length; j++) {
+							var ownerAttrs = {
+								name: data[i].groupMembers[j].username.toString(),
+								value: data[i].groupMembers[j].username.toString()
+							}
+							selectOwner.push(ownerAttrs);
 						}
-						selectOwner.push(ownerAttrs);
 					}
-					$scope.selectOwner = selectOwner;
-					$scope.setOwner = {type: $scope.selectOwner[0].value};
 				}
+				$scope.selectOwner = selectOwner;
 			});
 		}
 		var selectionStats = [];
@@ -283,23 +329,4 @@ angular.module('app')
 			}*/
 		}
 
-
-	 	$scope.monitorTypes = [
-			{name: 'audio', value: 'audio'},
-			{name: 'video', value: 'video'},
-			{name: 'temperature', value: 'temperature'},
-			{name: 'moisture', value: 'moisture'},
-			{name: 'other', value: 'other'}
-		];
-		$scope.setMonitor = {type: $scope.monitorTypes[0].value};
-
-		$scope.selectOrg = [
-			{name: 'public', value: 'public'},
-			{name: 'private', value: 'private'},
-			{name: 'ngo', value: 'ngo'},
-			{name: 'government', value: 'government'}
-		];
-		$scope.orgs = {type: $scope.selectOrg[0].value};
-
-	}]);
-
+}]);

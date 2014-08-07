@@ -4,7 +4,9 @@ angular.module('app')
 
 		var mapData = [];
 		var wildlifeData = [];
+		var wildlifeInProject = [];
 		var monitorArray = [];
+		var monitor = {};
 
 		return {
 				setWildlifeData : function(wildlife) {
@@ -15,12 +17,20 @@ angular.module('app')
 					return wildlifeData;
 				},
 
-				setMonitorData : function(monitor) {
+				setProjectMonitors : function(monitor) {
 					monitorArray.push(monitor);
 				},
 
 				getMonitorData : function() {
 					return monitorArray;
+				},
+
+				setWildlifeForEdit : function(projectWildlife) {
+					wildlifeInProject = projectWildlife;
+				},
+
+				getWildlifeForEdit : function() {
+					return wildlifeInProject;
 				},
 
 				getProjects : function() {
