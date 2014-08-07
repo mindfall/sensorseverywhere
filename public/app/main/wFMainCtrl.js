@@ -118,7 +118,7 @@ angular.module('app')
 	 	}
 
 	 	totalSpecies = $scope.wildlifeData.length;
-	 	monitorData = wFProjectFactory.getMonitorData();
+	 	monitorData = wFProjectFactory.getProjectMonitors();
 		for(var i = 0; i < monitorData.length; i++) {
 
 			monitors = {
@@ -159,9 +159,7 @@ angular.module('app')
 		//console.log('owner: ' + wFIdentity.currentUser.firstname);
 		var project_name = name;
 		var project_description;
-		console.log(description);
 		if(description === 0 || description === undefined) {
-			console.log('undefined')
 			project_description = 'No description provided.';
 		} else {
 			project_description = description;
@@ -199,16 +197,10 @@ angular.module('app')
 		//	project_monitors : corridorData.monitors
 		}
 		var inspectProjectData = JSON.stringify(projectData);
-		console.log(inspectProjectData);
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
 	}
 
-	//called from wFMonitorDir
-	$scope.addMonitorData = function() {
-		var addMonitor = wFProjectFactory.getMonitorData();
-		console.log(addMonitor.length);
-	}
 
 	$scope.addMarker = function() {
 		wFMapFactory.broadcastMarkerPosition();

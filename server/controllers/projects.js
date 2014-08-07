@@ -148,6 +148,38 @@ exports.createProject = function(req, res, next){
 	});
 };
 
+exports.updateProject = function(req, res) {
+	console.log(req.params.id);
+	console.log(req.body.projectData);
+	Project.find({'project._id' : req.params.id}, function(err, project) {
+		res.send(project);
+	});
+}
+
+exports.removeProject = function(req, res, next){
+
+	Project.findById(req.params.id, function(err, project) {
+		Group.find({'groupName': project.project_group}, function(err, group) {
+			Group.remove(function(err, group) {
+				// group removed
+			}, function(err) {
+				console.log(err);
+			});
+		});
+		User.update({_id: project.project_owner.owner_id}, {
+ 			$pull: {
+				projectGroupRole: {
+					project: project.project_name
+				}
+			}}, function(err, user) {
+			console.log('removed project from user');
+		});
+		project.remove(function(err, project) {
+			res.send(project);
+		});
+	});
+}
+
 exports.addGroupToProject = function(req, res) {
 
 	var addGroup = Project.update( { project_name: req.body.projectName},
@@ -223,32 +255,3 @@ exports.getProjectTasks = function(req, res) {
 	})
 }
 
-exports.updateProject = function(req, res) {
-/*	Project.find({'project._id' : req.params.id}, function(err, project) {
-		res.send(project);
-	});*/
-}
-
-exports.removeProject = function(req, res, next){
-
-	Project.findById(req.params.id, function(err, project) {
-		Group.find({'groupName': project.project_group}, function(err, group) {
-			Group.remove(function(err, group) {
-				// group removed
-			}, function(err) {
-				console.log(err);
-			});
-		});
-		User.update({_id: project.project_owner.owner_id}, {
- 			$pull: {
-				projectGroupRole: {
-					project: project.project_name
-				}
-			}}, function(err, user) {
-			console.log('removed project from user');
-		});
-		project.remove(function(err, project) {
-			res.send(project);
-		});
-	});
-}

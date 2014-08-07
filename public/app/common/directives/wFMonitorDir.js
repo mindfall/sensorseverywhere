@@ -127,20 +127,23 @@ angular.module('app')
 						wildlifeClass: wildlifeClass,
 						position: monitorPos
 					}
-					wFProjectFactory.setProjectMonitors(monitorData);
+					
 					scope.monitorPopup = false;
 					scope.wildlifeSelection = [];
 					scope.monitorName = '';
 					scope.monitorType = '';
 					//if the 3 element is a project id
 
-					if($location.path().split('/')[2]) {
+					if($location.path().split('/')[2] === 'getProject') {
 						//send to wFMainCtrl
-						scope.$parent.$parent.addMonitorData();
+						wFProjectFactory.setEditMonitors(monitorData);
 						scope.$parent.$parent.addMarker();
+						setTimeout(function(){
+							scope.$parent.$parent.$parent.updateMonitors();
+						}, 200);
 					}
 					if($location.path().split('/')[1] === 'create-project') {
-					//	scope.$parent.addMonitorData();
+						wFProjectFactory.setProjectMonitors(monitorData);
 						scope.$parent.addMarker();
 					}
 

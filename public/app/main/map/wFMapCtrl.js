@@ -130,7 +130,6 @@ angular.module('app')
 
 		for(var i = 0; i < markers.length; i++) {
 			var marker = wFMapFactory.addCustomMarker(markers[i].wildlife, markers[i].monitorType);
-
 			var icon = L.icon({
 				iconUrl: '../' + marker.options.iconUrl,
 				iconSize: marker.options.iconSize,
@@ -149,27 +148,44 @@ angular.module('app')
 		var monitor,
 			wildlife,
 			i;
-		var marker = wFProjectFactory.getMonitorData();
-
-		for(i = 0; i < marker.length; i++) {
-			if(marker[i].type !== '' || marker[i].type !== undefined) {
-				monitor = marker[i].type;
+		var projectMarker = wFProjectFactory.getProjectMonitors();
+		for(i = 0; i < projectMarker.length; i++) {
+			if(projectMarker[i].type !== '' || projectMarker[i].type !== undefined) {
+				monitor = projectMarker[i].type;
 			}
-			if(marker[i].wildlifeClass !== '' || marker[i].wildlifeClass !== undefined || marker[i].wildlifeClass !== 'undefined') {
-				wildlife = marker[i].wildlifeClass;
+			if(projectMarker[i].wildlifeClass !== '' || projectMarker[i].wildlifeClass !== undefined || projectMarker[i].wildlifeClass !== 'undefined') {
+				wildlife = projectMarker[i].wildlifeClass;
 			} 
 		}
+		$scope.updateProjectMarker(args.pos, wildlife, monitor);
 
-		$scope.updateMarker(args.pos, wildlife, monitor);
+		/*****************************
+
+		here is some rough stuff!
+
+		******************************/
+		var editMarker = wFProjectFactory.getEditMonitors();
+		for(i = 0; i < editMarker.length; i++) {
+			if(editMarker[i].type !== '' || editMarker[i].type !== undefined) {
+				monitor = editMarker[i].type;
+			}
+			if(editMarker[i].wildlifeClass !== '' || editMarker[i].wildlifeClass !== undefined || editMarker[i].wildlifeClass !== 'undefined') {
+				wildlife = editMarker[i].wildlifeClass;
+			} 
+		}
+		$scope.updateEditMarker(args.pos, wildlife, monitor);
 
 	});
 
-	$scope.updateMarker = function(position, wildlife, monitor) {
-
+	$scope.updateProjectMarker = function(position, wildlife, monitor) {
 		var markerIcon = wFMapFactory.addCustomMarker(wildlife, monitor);
 		L.marker(position, {icon: markerIcon}).addTo(map);
-
-	//	console.log(position, wildlife, monitor);
+	}
+	//and here!
+	$scope.updateEditMarker = function(position, wildlife, monitor) {
+		var markerIcon = wFMapFactory.addCustomMarker(wildlife, monitor);
+		markerIcon.options.iconUrl = '../' + markerIcon.options.iconUrl;
+		L.marker(position, {icon: markerIcon}).addTo(map);
 	}
 
 	$scope.showMonitorPopup = function() {

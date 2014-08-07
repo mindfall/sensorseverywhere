@@ -89,12 +89,10 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 					span Monitoring: &nbsp
 						select(class="form-control" ng-model="monitor.monitorSpecificWildlife" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in monitoringWildlife")
 					span Active? &nbsp 
-						select(class="form-control" ng-model="monitor.monitorActive" ng-options="activeState.value as activeState.name for activeState in activeStates")
-				
-				
+						select(class="form-control" ng-model="monitor.monitorActive" ng-options="activeState.value as activeState.name for activeState in activeStates")		
 			
 					
 		monitor
 
-		button(class="save-project-button"  ng-click="editProject(project.project_name, project.project_desc, project.project_start_date, project.project_end_date, project.project_group, setOwner, project.project_type, wildlifeNameSelect, wildlifeCounter, wildlifeNameProject, monitorName, monitorType, monitorSpecificWildlife, monitorIsActive)") Edit
+		button(class="save-project-button"  ng-click="editProject()") Edit
 		

@@ -5,7 +5,8 @@ angular.module('app')
 		var mapData = [];
 		var wildlifeData = [];
 		var wildlifeInProject = [];
-		var monitorArray = [];
+		var projectMonitorArray = [];
+		var editMonitorArray = [];
 		var monitor = {};
 
 		return {
@@ -18,11 +19,20 @@ angular.module('app')
 				},
 
 				setProjectMonitors : function(monitor) {
-					monitorArray.push(monitor);
+					projectMonitorArray.push(monitor);
 				},
 
-				getMonitorData : function() {
-					return monitorArray;
+				setEditMonitors : function(monitor) {
+					editMonitorArray.push(monitor);
+				},
+				// called by wFEditProjectCtrl->getProjectById();
+				getProjectMonitors : function() {
+					return projectMonitorArray;
+				},
+
+				getEditMonitors : function() {
+					console.log(editMonitorArray);
+					return editMonitorArray;
 				},
 
 				setWildlifeForEdit : function(projectWildlife) {
@@ -147,10 +157,12 @@ angular.module('app')
 					return dfd.promise;
 				},
 
-				updateProject : function(id) {
+				updateProject : function(id, projectData) {
+					console.log(id);
 					var dfd = $q.defer();
-					$http({method: 'PUT', url: '/api/updateProject/' + id})
+					$http({method: 'PUT', url: '/api/updateProject/' + id, data:{projectData: projectData}})
 						.success(function(data, status, headers, config) {
+							console.log(data);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {

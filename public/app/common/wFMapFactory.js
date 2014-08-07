@@ -96,7 +96,7 @@ angular.module('app')
 			}
 
 		  	if(wildlifeClass === '' || wildlifeClass === undefined) {
-		   		var url = '../../img/icons/marker_' + monitorType + '.png';
+		   		url = '../../img/icons/marker_' + monitorType + '.png';
 			    customMarker = L.icon({
 			    	iconUrl: url,
 			    	iconSize: [32, 32],
@@ -104,7 +104,7 @@ angular.module('app')
 			    	popupAnchor: [-3, -10]
 			    });
 			} else if (monitorType === '' || monitorType === undefined) {
-				var url = '../../img/icons/marker_' + wildlifeClass + '.png'
+				url = '../../img/icons/marker_' + wildlifeClass + '.png'
 			    customMarker = L.icon({
 			    	iconUrl: url,
 			    	iconSize: [32, 32],
@@ -119,7 +119,7 @@ angular.module('app')
 			    	popupAnchor: [-3, -10]
 			    });
 			} else {
-				var url = '../../img/icons/marker_undefined.png'
+				url = '../../img/icons/marker_undefined.png'
 			    customMarker = L.icon({
 			    	iconUrl: url,
 			    	iconSize: [32, 32],
@@ -128,7 +128,7 @@ angular.module('app')
 			    });
 			}
 		    return customMarker;
-			},
+		},
 
 		getTownAndDistance : function(points) {
 	

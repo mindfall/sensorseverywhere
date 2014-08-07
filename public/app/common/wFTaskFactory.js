@@ -3,7 +3,6 @@ angular.module('app').factory('wFTaskFactory', ['$http', '$q', '$location', 'wFN
 
 		return {
 			addTaskToProject: function(taskData){
-				console.log(taskData);
 				var dfd = $q.defer();
 				$http.post('/api/addTaskToProject', taskData)
 					.success(function(data, status, headers, config) {

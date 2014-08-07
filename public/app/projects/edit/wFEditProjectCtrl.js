@@ -81,8 +81,6 @@ angular.module('app')
 			            }
 			        }
 			        for ( y = 0; y < $scope.projectWildlife.length; y++ ) {
-/*			        	console.log($scope.projectWildlife[y].wildlifeNames);
-			        	console.log($rootScope.dupeList[x].name);*/
 			        	if ( $rootScope.dupeList[x].name === $scope.projectWildlife[y].wildlifeNames) { 
 			              found = true;
 			              break;
@@ -119,7 +117,9 @@ angular.module('app')
 	    	$scope.monitors.splice(this.$index, 1);
   	    }
 
-
+  	    /**
+  	    * Reinflates the project from db for editing.
+  	    **/
 		$scope.getProjectById = function() {
 				var i, j;
 				var wildlifeClass = '';
@@ -133,7 +133,7 @@ angular.module('app')
 			 				coords.push(project_coords[i]);
 			 			}
 			 			wFMapFactory.setEditMapData(coords);
-			 			
+			 			//These are the monitors already in the project
 			 			if(project.project_monitors.length === 0 ) {
 			 				$scope.monitorMessage = 'There are no monitors to display.';
 			 			} else {
@@ -144,12 +144,10 @@ angular.module('app')
 				 				if(project.project_monitors[i].monitorSpecificWildlife === null || project.project_monitors[i].monitorSpecificWildlife === undefined) {
 				 					project.project_monitors[i].monitorSpecificWildlife = "No wildlife selected."
 				 				}
-				 				wFProjectFactory.setProjectMonitors(project.project_monitors[i]);
 				 				monitors.push(project.project_monitors[i]);
 			 				}
 			 				$scope.monitors = monitors;
-			 				//we need to push these monitors to a shared service to be able to play with them later
-			 				
+			 					 				
 			 			}
 
 			 			if(project.project_wildlife === 0) {
@@ -193,11 +191,34 @@ angular.module('app')
 	 	}
 
 	 	if($location.path().split('/')[3] === id){
+	 	//	console.log($location.path().split('/')[3]);
 	 		$scope.getProjectById(id);	
+	 	}
+
+	 	$scope.updateMonitors = function() {
+	 		var result = wFProjectFactory.getEditMonitors();
+	 		for(var i = 0; i < result.length; i++) {
+
+	 			var monitor = {
+	 				monitorActive: result[i].active,
+	 				monitorName: result[i].name,
+	 				monitorType: result[i].type,
+	 				monitorSpecificWildlife: result[i].specificWildlife,
+	 				monitorWildlifeClass: result[i].wildlifeClass,
+	 				monitorPosition: result[i].position
+	 			}
+	 			$scope.monitors.push(monitor);
+	 		}
+	 		$scope.$apply();
 	 	}
 	 	
 
 
+
+	 	/**
+	 	* This function populates the project owner dropdown with active group members for the project, in case the owner is to be changed
+	 	* @params project, owner
+		*/
 	 	$scope.findActiveMembers = function(project, owner) {
 			var owner = {
 				name: owner,
@@ -222,11 +243,16 @@ angular.module('app')
 				$scope.selectOwner = selectOwner;
 			});
 		}
-		var selectionStats = [];
+
 		$scope.showMonitorPopup = function() {
 			$rootScope.$broadcast('showMonitorPopup');
 		}
 
+		/**
+		* This function prepares wildlife selected on the edit project for the db, ensuring it has the same data structure 
+		* @params id, name, number, classification, thumb
+		**/
+		var selectionStats = [];
 		$scope.setSelectionNumber = function(id, name, number, classification, thumb) {
 			var wildlifeStats = {
 				id: id,
@@ -238,16 +264,15 @@ angular.module('app')
 			selectionStats.push(wildlifeStats);
 			return selectionStats;
 		}
-
-		$scope.selectedNotUpdated = function() {
-
-		}
-	
-		$scope.editProject = function(name, desc, start_date, end_date, group, owner, type, wildlifeNameSelect, wildlifeNumbersSelect, wildlifeNameProject, monitorName, monitorType, monitorSpecificWildlife, monitorIsActive) {
+		/**
+		* Submit to database
+		* @params name, desc, start_date, end_date, group, owner, type, wildlifeNameSelect, wildlifeNumbersSelect, wildlifeNameProject, monitorName, monitorType, monitorSpecificWildlife, monitorIsActive
+		**/
+		$scope.editProject = function() {
 
 			var i, j;
 			var selection = [];
-			var wildlifeEditSubmit = [];
+			var wildlife = [];
 
 			//first push the scoped objects onto a new array so we can mutate it later
 			for(i = 0; i < $scope.selectedWildlife.length; i++) {
@@ -256,7 +281,7 @@ angular.module('app')
 			//second add the items already in the project to the submission array.
 			//the number value may or may not have been updated.
 			for(i = 0; i < $scope.projectWildlife.length; i++) {
-				wildlifeEditSubmit.push($scope.projectWildlife[i]);
+				wildlife.push($scope.projectWildlife[i]);
 			}
 			
 			//if selectionStats has an object in it we know that it is well formed
@@ -266,7 +291,7 @@ angular.module('app')
 					for(j = 0; j < selectionStats.length; j++) {
 						if(selection[i].name === selectionStats[j].name) {
 							//and push it onto the submission array
-							wildlifeEditSubmit.push(selectionStats[j]);
+							wildlife.push(selectionStats[j]);
 							selection.splice(i, 1);
 						} 
 					}
@@ -283,50 +308,35 @@ angular.module('app')
 					classification: selection[i].classification,
 					thumb: selection[i].image_thumb
 				}
-				wildlifeEditSubmit.push(remainder);
+				wildlife.push(remainder);
 			}
 
-			console.log(wildlifeEditSubmit);
-
-			monitorData = wFProjectFactory.getMonitorData();
-/*
-			for(var i = 0; i < selection.length; i++ ) {
-
-			}*/
-
+			var monitors = $scope.monitors;
+			var name = $scope.project.project_name;
+			var description = $scope.project.project_description;
+			var start_date = $scope.project.project_start_date;
+			var end_date = $scope.project.project_end_date;
+			var group = $scope.project.project_group;
+			var owner = $scope.project.project_owner;
+			var type = $scope.project.project_type;
 
 			//build the selection object to match db entry
-/*			var selectionObject = {
-				wildlifeId: selection._id,
-				wildlifeNames: selection.name,
-				wildlifeNumbers: selection.number
-			}*/
 
-	/*		//get wildlife info for wildlifeNameSelect and wildlifeNameProject
-			var allWildlife = []; 
-			var newWildlife = wildlifeNameSelect;
-			var newWildlifeNumbers = 1;
 
-			var existingWildlife = wildlifeNameProject;
-
-			if(newWildlifeNumbersSelect !== 1) {
-				newWildlifeNumbers = wildlifeNumbersSelect;
+			var projectData = {
+				project_name: name,
+				project_description: description,
+				project_start_date: start_date,
+				project_end_date: end_date,
+				project_group: group,
+				project_owner: owner, 
+				project_type: type, 
+				project_wildlife: wildlife,
+				project_monitors: monitors
 			}
 
-			allWildlife.push(newWildlife);
-			allWildlife.push(existingWildlife);
-
-			var editProject = {
-				name: name,
-				description: desc,
-				start: start_date,
-				end: end_date,
-				group: group,
-				owner: owner, 
-				type: type, 
-				wildlife: wildlifeData,
-				monitors: monitorData
-			}*/
+			projectEdit = wFProjectFactory.updateProject(id, projectData);
+			$location.url('/dashboard');
 		}
 
 }]);
