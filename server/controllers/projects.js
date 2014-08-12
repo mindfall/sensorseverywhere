@@ -11,7 +11,6 @@ exports.getProjects = function(req, res){
 
 exports.createProject = function(req, res, next){
 	var projectData = req.body;
-	console.log(projectData);
 	var i;
 	var projectOwner = projectData.project_owner;
 	var projectOwnerFirstName = projectData.project_owner_firstname;
@@ -149,12 +148,98 @@ exports.createProject = function(req, res, next){
 };
 
 exports.updateProject = function(req, res) {
-	console.log(req.params.id);
-	console.log(req.body.projectData);
-	Project.find({'project._id' : req.params.id}, function(err, project) {
-		res.send(project);
+	var edit = req.body.projectData;
+	var name = edit.project_name;
+	var description = edit.project_description;
+	var start_date = edit.project_start_date;
+	var end_date = edit.project_end_date;
+	var group = edit.project_group;
+	var owner = edit.project_owner;
+	var type = edit.project_type;
+	var coords = edit.project_coords;
+	var monitors = edit.project_monitors;
+	var wildlife = edit.project_wildlife;
+
+	Project.findById(req.params.id, function(err, project) {
+		Project.update(
+		{ 
+			$set: {
+				'project_location_data.project_coords.layer_type': "Polygon",
+				'project_location_data.project_coords.coordinates': coords,
+				'project_name': name,
+				'project_description': description,
+				'project_type': type,
+				'project_group': group,
+				'project_owner': owner,
+				'project_wildlife': wildlife,
+				'project_monitors': monitors,
+				'project_start_date': start_date,
+				'project_end_date': end_date,
+			},
+		},
+
+		function(err, project) {
+			res.send(project);
+		});
+
 	});
+
+	Project.findById(req.params.id, function(err, project) {
+		Project.update(
+		{ 
+			$set: {
+				project_name: name,
+			},
+		},
+
+		function(err, project) {
+			res.send(project);
+		});
+
+	});
+
+	Project.findById(req.params.id, function(err, project) {
+		Project.update(
+		{ 
+			$set: {
+				project_description: description,
+			},
+		},
+
+		function(err, project) {
+			res.send(project);
+		});
+
+	});
+
+	Project.findById(req.params.id, function(err, project) {
+		Project.update(
+		{ 
+			$set: {
+				project_type: type,
+			},
+		},
+
+		function(err, project) {
+			res.send(project);
+		});
+
+	});
+
 }
+
+/*			
+			project_name: name,
+			project_description: description,
+			project_start_date: start_date,
+			project_end_date: end_date,
+			project_group: group,
+			project_monitors: monitors,
+			project_wildlife: wildlife,
+			project_type: type,
+			project_owner: owner,
+*/
+
 
 exports.removeProject = function(req, res, next){
 

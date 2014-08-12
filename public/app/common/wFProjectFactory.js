@@ -158,11 +158,9 @@ angular.module('app')
 				},
 
 				updateProject : function(id, projectData) {
-					console.log(id);
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/updateProject/' + id, data:{projectData: projectData}})
 						.success(function(data, status, headers, config) {
-							console.log(data);
 							dfd.resolve(data);
 						})
 						.error(function(data, status, headers, config) {

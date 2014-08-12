@@ -186,8 +186,13 @@ angular.module('app')
 			editPoints = coords;
 		},
 
+		updateEditMapData : function(coords) {
+			editPoints = [];
+			editPoints = coords;
+			return editPoints;
+		},
+
 		getEditMapData : function() {
-		
 			var points = [];
 			for(var i = 0; i < editPoints.length; i ++) {
 				points.push(editPoints[i]);

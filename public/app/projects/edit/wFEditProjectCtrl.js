@@ -4,6 +4,7 @@ angular.module('app')
 
 		var id = $location.path().split('/')[3] || "Unknown";
 		var coords = [];
+		var project_coords = [];
 		var points = [];
 		var wildlife = [];
 		var projectWildlife = [];
@@ -128,7 +129,6 @@ angular.module('app')
 			 			$scope.project = project;
 			 			//map points for layer
 			 			project_coords = project.project_location_data.project_coords.coordinates;
-
 			 			for(i = 0; i < project_coords.length; i++) {
 			 				coords.push(project_coords[i]);
 			 			}
@@ -255,11 +255,11 @@ angular.module('app')
 		var selectionStats = [];
 		$scope.setSelectionNumber = function(id, name, number, classification, thumb) {
 			var wildlifeStats = {
-				id: id,
-				name: name,
-				number: number, 
-				classification: classification,
-				thumb: thumb
+				wildlifeId: id,
+				wildlifeNames: name,
+				wildlifeNumbers: number, 
+				wildlifeClassification: classification,
+				wildlifeThumb: thumb
 			}
 			selectionStats.push(wildlifeStats);
 			return selectionStats;
@@ -273,6 +273,26 @@ angular.module('app')
 			var i, j;
 			var selection = [];
 			var wildlife = [];
+			var coords = [];
+			var	latlngs = [];
+			//console.log(project_coords);
+			mapData = wFMapFactory.getEditMapData();
+			for(i = 0; i < mapData.length; i++) {
+				if(mapData[i].lng !== undefined || mapData[i].lat !== undefined) {
+					latlngs.push([mapData[i].lng, mapData[i].lat]);
+				} else {
+					continue;
+				}
+				
+			}
+
+			if(latlngs.length === 0) {
+				console.log('coords = project_coords');
+				coords = project_coords;
+			} else {
+				console.log('coords = latlngs');
+				coords.push(latlngs);
+			}
 
 			//first push the scoped objects onto a new array so we can mutate it later
 			for(i = 0; i < $scope.selectedWildlife.length; i++) {
@@ -283,7 +303,6 @@ angular.module('app')
 			for(i = 0; i < $scope.projectWildlife.length; i++) {
 				wildlife.push($scope.projectWildlife[i]);
 			}
-			
 			//if selectionStats has an object in it we know that it is well formed
 			if(selectionStats.length > 0) {
 				//look for a match in the selection array
@@ -302,14 +321,17 @@ angular.module('app')
 			//the db.
 			for(i = 0; i < selection.length; i++) {
 				var remainder = {
-					id: selection[i]._id,
-					name: selection[i].name,
-					number: 1,
-					classification: selection[i].classification,
-					thumb: selection[i].image_thumb
+					wildlifeId: selection[i]._id,
+					wildlifeNames: selection[i].name,
+					wildlifeNumbers: 1,
+					wildlifeClassification: selection[i].classification,
+					wildlifeThumb: selection[i].image_thumb
 				}
 				wildlife.push(remainder);
 			}
+
+
+			console.log(wildlife);
 
 			var monitors = $scope.monitors;
 			var name = $scope.project.project_name;
@@ -332,7 +354,8 @@ angular.module('app')
 				project_owner: owner, 
 				project_type: type, 
 				project_wildlife: wildlife,
-				project_monitors: monitors
+				project_monitors: monitors,
+				project_coords: coords
 			}
 
 			projectEdit = wFProjectFactory.updateProject(id, projectData);

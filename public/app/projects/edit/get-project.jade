@@ -3,6 +3,7 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 		.col-md-5(class="map-edit-container")
 			div(ng-controller="wFMapCtrl" id="map" class="map")
 				leaflet
+				button(ng-click="onUpdateMap()" class="save-edit-map-btn") Save Map
 		.col-md-2(class="col-2-edit-selection-container")
 			h4 Project Details {{position}}
 			span Project Name:
@@ -59,6 +60,7 @@ div(class="edit-container" ng-controller="wFMainCtrl")
 												div(ng-model="wildlifeNameProject" class="selectedWildlifeName") {{creature.wildlifeNames}}
 											td.wildlifeBtnCell
 												div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife("project")') X
+								
 
 						div(ng-repeat="creature in selectedWildlife track by $index") 
 							h5

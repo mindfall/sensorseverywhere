@@ -20,6 +20,8 @@ angular.module('app')
 	var drawnItems = {};
 	var drawControl = {};
 	var marker;
+	var currentTarget;
+	var coords = [];
 
 	var map = new L.Map('map', {
 		layers: [basemap],
@@ -77,15 +79,6 @@ angular.module('app')
 	});
 
 
-	map.on('draw:edited', function (e) {
-		var layers = e.layers;
-		var countOfEditedLayers = 0;
-		layers.eachLayer(function(layer) {
-			countOfEditedLayers++;
-		});
-		console.log("Edited " + countOfEditedLayers + " layers");
-	});
-
 	/*
 	* editMap is used to retrieve per project map data from database
 	*/
@@ -93,7 +86,7 @@ angular.module('app')
 	$scope.editMap = function() {
 
 		var counter = 0;
-		var coords = wFMapFactory.getEditMapData();
+		coords = wFMapFactory.getEditMapData();
 		var markers = wFMapFactory.getEditMarker();
 		
 		var geojsonLayer = {
@@ -107,8 +100,10 @@ angular.module('app')
 
 		var layers = L.geoJson(geojsonLayer, {
 			onEachFeature: function (feature, layer) {
+				var coords = [];
+
 				layer.on('dblclick', function(e) {
-					
+
 					$scope.showMonitorPopup();
 					var position = [e.latlng.lat, e.latlng.lng];
 					wFMapFactory.setMarkerPosition(position);
@@ -116,16 +111,25 @@ angular.module('app')
 				layer.on('click', function(e){
 					if(counter % 2 == 0) {
 						e.target.editing.enable();
+						currentTarget = e.target;
+						return currentTarget;
 					} else {
 						e.target.editing.disable();
-					}
+
+							
+					   }
 					counter++;
 				});
 				
 				layer.on('mousedown', function(e) {
-					e.target.dragging = true;
+					//e.target.dragging = true;
 				});
-			}
+
+				layer.on('mouseout', function(e) {
+					//wFMapFactory.updateEditMapData(coords);
+				});
+			},
+
 		}).addTo(map);
 
 		for(var i = 0; i < markers.length; i++) {
@@ -191,6 +195,27 @@ angular.module('app')
 	$scope.showMonitorPopup = function() {
 		$rootScope.$broadcast('showMonitorPopup');
 	}
+
+    $scope.onUpdateMap = function() {
+    	 //confirm
+		if (currentTarget instanceof L.Polygon) {
+		 
+		 	coords = [];
+
+	        var points = currentTarget.getLatLngs();
+		    points.forEach(function(latlngs) {
+		        latlng = {
+		        	lat: latlngs.lat,
+		        	lng: latlngs.lng
+		        }
+		        coords.push(latlng);
+		    });
+		    coords.push(points[0]);
+		    wFMapFactory.updateEditMapData(coords);
+	    }
+
+       console.log(coords);
+    }
 
 	$scope.onPopupRemove = function() {
 	    var tempMarker = this;
