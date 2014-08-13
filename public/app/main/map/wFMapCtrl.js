@@ -62,8 +62,6 @@ angular.module('app')
 	map.on('draw:created', function (e) {
 		var type = e.layerType,
 			layer = e.layer;
-
-
 		var geojson = e.layer.toGeoJSON();
 		selectedWildlife = wFWildlifeFactory.selectWildlife();
 		layer.on('click', function(e) {
@@ -78,6 +76,46 @@ angular.module('app')
 		drawnItems.addLayer(e.layer);
 	});
 
+	/*
+	* get all maps for the home page
+	*/
+
+	if($location.path() === '/') {
+		projectList = wFProjectFactory.getProjects();
+		projectList.then(function(projectList){
+			for(var i = 0; i < projectList.length; i++){
+				coords = projectList[i].project_location_data.project_coords.coordinates;
+				var mapLayer = {
+					"type": "Feature",
+				    "properties": {},
+				    "geometry": {
+				        "type": "Polygon",
+				        "coordinates": coords
+		    		}
+				}
+
+				L.geoJson(mapLayer).addTo(map);
+
+				var monitors = projectList[i].project_monitors;
+				if(monitors.length !== 0) {
+
+					for(var j = 0; j < monitors.length; j++) {
+						var marker = wFMapFactory.addCustomMarker(monitors[j].monitorWildlifeClass, monitors[j].monitorType);
+						var icon = L.icon({
+							iconUrl: '../' + marker.options.iconUrl,
+							iconSize: marker.options.iconSize,
+							iconAnchor: marker.options.iconAnchor
+						});
+						if(monitors[j].monitorPosition !== undefined) {
+							L.marker(monitors[j].monitorPosition, {icon: icon}).addTo(map);		
+					 	}
+					}
+				}	
+			}
+		}, function(status){
+			console.log(status);
+		});
+	}
 
 	/*
 	* editMap is used to retrieve per project map data from database
@@ -224,7 +262,9 @@ angular.module('app')
 	        map.removeLayer(tempMarker);
 	 //   });
 	}
-//
+
+	//I've put a delay in here to allow for the saved map data to propate to the 
+	//getProjectById function in the wFEditProjectCtrl file
 	if($location.path().split('/')[2] === 'getProject') {
 		$timeout(function() {
 			$scope.editMap();
