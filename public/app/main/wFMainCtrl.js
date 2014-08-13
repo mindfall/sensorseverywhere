@@ -206,6 +206,23 @@ angular.module('app')
 		wFMapFactory.broadcastMarkerPosition();
 	}
 
+	$scope.updateMonitors = function() {
+		$scope.monitors = [];
+ 		var result = wFProjectFactory.getProjectMonitors();
+ 	//	console.log(result);
+ 		for(var i = 0; i < result.length; i++) {
+
+ 			var monitor = {
+ 				monitorActive: result[i].active,
+ 				monitorName: result[i].name,
+ 				monitorType: result[i].type,
+ 				monitorSpecificWildlife: result[i].specificWildlife,
+ 			}
+ 			$scope.monitors.push(monitor);
+ 		}
+ 		$scope.$apply();
+ 	}
+
 	$scope.cancelProject = function(){
 
 		var corridorData = {};

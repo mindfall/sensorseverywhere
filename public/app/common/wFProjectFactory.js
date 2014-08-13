@@ -28,10 +28,10 @@ angular.module('app')
 				// called by wFEditProjectCtrl->getProjectById();
 				getProjectMonitors : function() {
 					return projectMonitorArray;
+					console.log(projectMonitorArray);
 				},
 
 				getEditMonitors : function() {
-					console.log(editMonitorArray);
 					return editMonitorArray;
 				},
 

@@ -145,6 +145,9 @@ angular.module('app')
 					if($location.path().split('/')[1] === 'create-project') {
 						wFProjectFactory.setProjectMonitors(monitorData);
 						scope.$parent.addMarker();
+						setTimeout(function(){
+							scope.$parent.updateMonitors();
+						}, 200);
 					}
 
 				}
