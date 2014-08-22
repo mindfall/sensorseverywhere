@@ -19,6 +19,7 @@ angular.module('app')
 				},
 
 				setProjectMonitors : function(monitor) {
+					console.log(monitor);
 					projectMonitorArray.push(monitor);
 				},
 
@@ -28,7 +29,6 @@ angular.module('app')
 				// called by wFEditProjectCtrl->getProjectById();
 				getProjectMonitors : function() {
 					return projectMonitorArray;
-					console.log(projectMonitorArray);
 				},
 
 				getEditMonitors : function() {
@@ -109,7 +109,7 @@ angular.module('app')
 
 				viewProjectDetails : function(name) {
 					var dfd = $q.defer();
-					$http({method: 'GET', url:'/api/projects/viewProjectDetails/' + name})
+					$http({method: 'GET', url:'/api/projectDetails/' + name})
 						.success(function(data, status, headers, config){
 							dfd.resolve(data);
 						})

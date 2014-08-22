@@ -14,6 +14,7 @@ angular.module('app')
 	var wildlifeNumbers = [];
 	var checkWildlife = [];
 	$scope.monitorIntro = true;
+	$scope.monitorName = '';
 
 	$scope.checked;
 	$scope.identity = wFIdentity;

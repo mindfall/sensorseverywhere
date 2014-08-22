@@ -333,3 +333,10 @@
   position: absolute;
   z-index: 9999;
 }
+.view-content-container {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.view-info-block {
+  padding: 50px;
+}

@@ -1,12 +1,11 @@
 div(class="main-container" ng-controller="wFMainCtrl")
 	.container(ng-if="isLoggedIn")
 		.row
-			.col-md-12(class="monitor-view-container")
+			.col-md-12(class="monitor-create-container")
 				span {{monitorMessage}}
 				br
 				div(ng-repeat="monitor in monitors" class="view-monitors")
 					slide-panel
-
 
 		.row(class="create-row-map-container")
 			.col-md-9(class="col-9-map-container")

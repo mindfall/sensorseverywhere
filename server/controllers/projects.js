@@ -21,6 +21,11 @@ exports.createProject = function(req, res, next){
 	var projectEndDate = req.body.project_end;
 	var projectType = req.body.project_type;
 	var projectFundingRequired = req.body.project_funding_required;
+	if(projectFundingRequired === undefined) {
+		projectFundingRequired = 0;
+		console.log('PFR ' + projectFundingRequired);
+	}
+
 
 	var coordinatesLength = req.body.project_location[0].length;
 	var pointData = [];
@@ -228,19 +233,6 @@ exports.updateProject = function(req, res) {
 
 }
 
-/*			
-			project_name: name,
-			project_description: description,
-			project_start_date: start_date,
-			project_end_date: end_date,
-			project_group: group,
-			project_monitors: monitors,
-			project_wildlife: wildlife,
-			project_type: type,
-			project_owner: owner,
-*/
-
-
 exports.removeProject = function(req, res, next){
 
 	Project.findById(req.params.id, function(err, project) {
@@ -316,7 +308,7 @@ exports.getProject = function(req, res){
 
 exports.viewProjectDetails = function(req, res){
 	Project.findOne({project_name:req.params.name}).exec(function(err, projects) {
-	//	res.send(projects);
+		res.send(projects);
 	});
 }
 

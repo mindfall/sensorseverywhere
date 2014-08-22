@@ -1,3 +1,9 @@
 div(class="monitor-panel")
+	div(class="monitor-graph-container")
+		iframe(class="iframe" src="http://192.168.0.17:80" width="250px" height="400px")
+	div(class="monitor-type") Type: {{monitor.monitorType}}
+	div(class="monitor-is-monitoring") Is monitoring: {{monitor.monitorSpecificWildlife}}
+	div(class="monitor-active") This monitor is: {{monitor.monitorActive}}
 	div(class="view-close-monitor-btn" ng-click="removeSelectedMonitor()") X
+	div(class="monitor-name") {{monitor.monitorName}}
 	div(class="slide-panel-indicator" ng-click="slide()") \/

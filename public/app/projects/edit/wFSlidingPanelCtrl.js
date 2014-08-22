@@ -9,9 +9,7 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 		restrict: 'E',
 		replace: true,
 		templateUrl: '/partials/projects/edit/sliding-panel-template',
-		scope: {
-			
-		},
+		scope: false,
 		link: function(scope, ele, attrs) {
 			var counter = 1;
 			var easing = 0.05;
@@ -31,7 +29,6 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 							panelStart += vx;
 							panelStart = Math.ceil(panelStart);
 							ele.css('margin-top', panelStart + 'px');
-							console.log(panelStart);
 						}
 					}, 10);
 				} else {
@@ -47,7 +44,6 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 							panelStart -= vx;
 							panelStart = Math.floor(panelStart);
 							ele.css('margin-top', panelStart + 'px');
-							console.log(panelStart);
 						}
 					}, 10);
 				}

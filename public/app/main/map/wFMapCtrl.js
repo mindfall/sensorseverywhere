@@ -135,13 +135,10 @@ angular.module('app')
 		        "coordinates": coords
 		    }
 		};
-
 		var layers = L.geoJson(geojsonLayer, {
 			onEachFeature: function (feature, layer) {
 				var coords = [];
-
 				layer.on('dblclick', function(e) {
-
 					$scope.showMonitorPopup();
 					var position = [e.latlng.lat, e.latlng.lng];
 					wFMapFactory.setMarkerPosition(position);
@@ -153,21 +150,16 @@ angular.module('app')
 						return currentTarget;
 					} else {
 						e.target.editing.disable();
-
-							
-					   }
+					 }
 					counter++;
 				});
-				
 				layer.on('mousedown', function(e) {
 					//e.target.dragging = true;
 				});
-
 				layer.on('mouseout', function(e) {
 					//wFMapFactory.updateEditMapData(coords);
 				});
 			},
-
 		}).addTo(map);
 
 		for(var i = 0; i < markers.length; i++) {
@@ -181,10 +173,37 @@ angular.module('app')
 			L.marker(markers[i].position, {icon: icon}).addTo(map);
 		}
 
+	}
 
+	$scope.viewMap = function() {
+		coords = wFMapFactory.getEditMapData();
+		var monitors = wFMapFactory.getEditMarker();
+		var mapLayer = {
+		    "type": "Feature",
+		    "properties": {},
+		    "geometry": {
+		        "type": "Polygon",
+		        "coordinates": coords
+		    }
+		};
 
+		if(monitors.length !== 0) {
+			for(var j = 0; j < monitors.length; j++) {
+				var marker = wFMapFactory.addCustomMarker(monitors[j].monitorWildlifeClass, monitors[j].monitorType);
+				var icon = L.icon({
+					iconUrl: '../' + marker.options.iconUrl,
+					iconSize: marker.options.iconSize,
+					iconAnchor: marker.options.iconAnchor
+				});
+				L.marker(monitors[j].position, {icon: icon}).addTo(map);		
+			}
+		}	
+		L.geoJson(mapLayer).addTo(map);
 
 	}
+
+
+
 
 	$scope.$on('addMarker', function(event, args) {
 		var monitor,
@@ -270,6 +289,12 @@ angular.module('app')
 			$scope.editMap();
 		}, 1000);
 			
+	}
+
+	if($location.path().split('/')[2] === 'project-details') {
+		$timeout(function() {
+			$scope.viewMap();
+		}, 1000)
 	}
 
 }]);

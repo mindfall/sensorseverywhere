@@ -24,7 +24,7 @@ module.exports = function(app){
 	app.get('/api/projects', projects.getProjects);
 	app.get('/api/getProject/:id', projects.getProject);
 	app.get('/api/getProjectTasks/:id', projects.getProjectTasks);
-	app.get('/api/projects/project-details/:name', projects.viewProjectDetails);
+	app.get('/api/projectDetails/:name', projects.viewProjectDetails);
 	app.get('/api/projectsByUser/:id', projects.getProjectsByUserId);
 	app.get('/api/projectsByGroup/:group', projects.getProjectsByGroup);
 	app.put('/api/updateProject/:id', projects.updateProject);
