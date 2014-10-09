@@ -1,4 +1,4 @@
-angular.module('app', [
+ angular.module('app', [
 	'ngResource',
 	'ngRoute',
 	'leaflet-directive',
@@ -37,6 +37,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				url: '/create-project',
 				templateUrl: '/partials/projects/create-project', 
 				controller: 'wFWildlifeSelectCtrl'
+		})
+		.state('how-to-use', {
+				url: '/how-to-use',
+				templateUrl: '/partials/main/how-to-use', 
+				controller: 'wFHowToCtrl'
 		})
 		.state('projects', {
 				url: '/projects',

@@ -1,4 +1,4 @@
-angular.module('app').controller('wFFileUploadCtrl', function($scope, $upload) {
+angular.module('app').controller('wFFileUploadCtrl', ['$upload', function($scope, $upload) {
  $scope.onFileSelect = function($files, model) {
     console.log($files);
     //$files: an array of files selected, each file has name, size, and type.
@@ -25,4 +25,4 @@ angular.module('app').controller('wFFileUploadCtrl', function($scope, $upload) {
 
   };
 	
-});
+}]);

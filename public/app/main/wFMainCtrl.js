@@ -269,5 +269,12 @@ angular.module('app')
 		replace: true,
 
 	};
+}).directive('splash', function(){
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: '/partials/main/splash',
+		replace: true,
+	};
 });
 
