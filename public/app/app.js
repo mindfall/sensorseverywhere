@@ -43,6 +43,11 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				templateUrl: '/partials/main/how-to-use', 
 				controller: 'wFHowToCtrl'
 		})
+		.state('about', {
+				url: '/about',
+				templateUrl: '/partials/main/about', 
+				controller: 'wFAboutCtrl'
+		})
 		.state('projects', {
 				url: '/projects',
 				templateUrl: '/partials/projects/projects', 
