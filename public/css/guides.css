@@ -22,7 +22,10 @@
     height: 1140px;
   }
   .main_links {
-    margin-left: -30px;
+    margin-left: -130px;
+  }
+  .dropdown {
+    margin-left: -10px;
   }
   .navbar {
     height: 140px;
