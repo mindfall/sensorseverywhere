@@ -1,6 +1,6 @@
 angular.module('app').value('wFToastr', toastr);
 
-angular.module('app').factory('wFNotifier', function(wFToastr){
+angular.module('app').factory('wFNotifier', ['wFToastr', function(wFToastr){
 	return {
 		notify: function(msg){
 			wFToastr.success(msg);
@@ -9,4 +9,4 @@ angular.module('app').factory('wFNotifier', function(wFToastr){
 			wFToastr.error(msg);
 		}
 	}
-})
+}])

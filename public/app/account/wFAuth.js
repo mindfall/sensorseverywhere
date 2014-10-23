@@ -1,4 +1,4 @@
-angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
+angular.module('app').factory('wFAuth', ['$http', 'wFIdentity', '$q', 'wFUser', function($http, wFIdentity, $q, wFUser){
 	return {
 		authenticateUser: function(username, password){
 			var dfd = $q.defer();
@@ -69,4 +69,4 @@ angular.module('app').factory('wFAuth', function($http, wFIdentity, $q, wFUser){
 		}
 	}
 
-});
+}]);

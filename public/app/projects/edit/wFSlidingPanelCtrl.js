@@ -4,7 +4,7 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 		var ele = angular.element('.monitor-panel');
 	}
 
-}]).directive('slidePanel', function($interval) {
+}]).directive('slidePanel', ['$interval', function($interval) {
 	return {
 		restrict: 'E',
 		replace: true,
@@ -52,5 +52,5 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 			});
 		}
 	}
-});
+}]);
 

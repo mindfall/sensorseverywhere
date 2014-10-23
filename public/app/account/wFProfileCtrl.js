@@ -1,5 +1,6 @@
 angular.module('app')
-	.controller('wFProfileCtrl', function($scope, wFAuth, wFIdentity, wFNotifier){
+	.controller('wFProfileCtrl', ['$scope', 'wFAuth', 'wFIdentity', 'wFNotifier', 
+		function($scope, wFAuth, wFIdentity, wFNotifier){
 		$scope.email = wFIdentity.currentUser.username;
 		$scope.fname= wFIdentity.currentUser.firstname;
 		$scope.lname = wFIdentity.currentUser.lastname;
@@ -21,4 +22,4 @@ angular.module('app')
 				wFNotifier.error(reason);
 			})
 		}
-	})
+	}]);

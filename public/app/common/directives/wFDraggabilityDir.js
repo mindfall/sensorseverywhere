@@ -1,4 +1,4 @@
-angular.module('app').directive('draggability', function($document) {
+angular.module('app').directive('draggability', ['$document', function($document) {
 		return function(scope, element, attr) {
 			var startX = 0, startY = 0, x = 0, y = 0;
 
@@ -31,4 +31,4 @@ angular.module('app').directive('draggability', function($document) {
 				$document.unbind('mouseup', mouseup);
 			}
 		};
-	});
+	}]);

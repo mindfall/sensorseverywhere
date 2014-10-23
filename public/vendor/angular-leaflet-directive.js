@@ -2,7 +2,8 @@
 
 "use strict";
 
-angular.module("leaflet-directive", []).directive('leaflet', function ($q, leafletData, leafletMapDefaults, leafletHelpers, leafletEvents) {
+angular.module("leaflet-directive", []).directive('leaflet', ['$q', 'leafletData', 'leafletMapDefaults', 'leafletHelpers', 'leafletEvents',
+    function ($q, leafletData, leafletMapDefaults, leafletHelpers, leafletEvents) {
     var _leafletMap;
     return {
         restrict: "EA",
@@ -101,9 +102,9 @@ angular.module("leaflet-directive", []).directive('leaflet', function ($q, leafl
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('center', function ($log, $parse, leafletMapDefaults, leafletHelpers) {
+angular.module("leaflet-directive").directive('center', ['$log', '$parse', 'leafletMapDefaults', 'leafletHelpers', function ($log, $parse, leafletMapDefaults, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -187,9 +188,9 @@ angular.module("leaflet-directive").directive('center', function ($log, $parse, 
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('tiles', function ($log, leafletData, leafletMapDefaults, leafletHelpers) {
+angular.module("leaflet-directive").directive('tiles', ['$log', 'leafletData', 'leafletMapDefaults', 'leafletHelpers', function ($log, leafletData, leafletMapDefaults, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -255,9 +256,9 @@ angular.module("leaflet-directive").directive('tiles', function ($log, leafletDa
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('legend', function ($log, leafletHelpers) {
+angular.module("leaflet-directive").directive('legend', ['$log', 'leafletHelpers', function ($log, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -289,9 +290,9 @@ angular.module("leaflet-directive").directive('legend', function ($log, leafletH
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('geojson', function ($log, $rootScope, leafletData, leafletHelpers) {
+angular.module("leaflet-directive").directive('geojson', ['$log', '$rootScope', 'leafletData', 'leafletHelpers', function ($log, $rootScope, leafletData, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -360,9 +361,9 @@ angular.module("leaflet-directive").directive('geojson', function ($log, $rootSc
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('layers', function ($log, $q, leafletData, leafletHelpers, leafletMapDefaults, leafletLayerHelpers) {
+angular.module("leaflet-directive").directive('layers', ['$log', '$q', 'leafletData', 'leafletHelpers', 'leafletMapDefaults', 'leafletLayerHelpers', function ($log, $q, leafletData, leafletHelpers, leafletMapDefaults, leafletLayerHelpers) {
     var _leafletLayers;
 
     return {
@@ -543,9 +544,9 @@ angular.module("leaflet-directive").directive('layers', function ($log, $q, leaf
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('bounds', function ($log, leafletHelpers, leafletBoundsHelpers) {
+angular.module("leaflet-directive").directive('bounds', ['$log', 'leafletHelpers', 'leafletBoundsHelpers', function ($log, leafletHelpers, leafletBoundsHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -585,9 +586,9 @@ angular.module("leaflet-directive").directive('bounds', function ($log, leafletH
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('markers', function ($log, $rootScope, $q, leafletData, leafletHelpers, leafletMapDefaults, leafletMarkerHelpers) {
+angular.module("leaflet-directive").directive('markers', ['$log', '$rootScope', '$q', 'leafletData', 'leafletHelpers', 'leafletMapDefaults', 'leafletMarkerHelpers', function ($log, $rootScope, $q, leafletData, leafletHelpers, leafletMapDefaults, leafletMarkerHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -649,9 +650,9 @@ angular.module("leaflet-directive").directive('markers', function ($log, $rootSc
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('paths', function ($log, leafletData, leafletMapDefaults, leafletHelpers) {
+angular.module("leaflet-directive").directive('paths', ['$log', 'leafletData', 'leafletMapDefaults', 'leafletHelpers', function ($log, leafletData, leafletMapDefaults, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -799,9 +800,9 @@ angular.module("leaflet-directive").directive('paths', function ($log, leafletDa
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('controls', function ($log, leafletHelpers) {
+angular.module("leaflet-directive").directive('controls', ['$log', 'leafletHelpers', function ($log, leafletHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -831,9 +832,9 @@ angular.module("leaflet-directive").directive('controls', function ($log, leafle
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('eventBroadcast', function ($log, $rootScope, leafletHelpers, leafletEvents) {
+angular.module("leaflet-directive").directive('eventBroadcast', ['$log', '$rootScope', 'leafletHelpers', 'leafletEvents', function ($log, $rootScope, leafletHelpers, leafletEvents) {
     return {
         restrict: "A",
         scope: false,
@@ -943,9 +944,9 @@ angular.module("leaflet-directive").directive('eventBroadcast', function ($log, 
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").directive('maxbounds', function ($log, leafletMapDefaults, leafletBoundsHelpers) {
+angular.module("leaflet-directive").directive('maxbounds', ['$log', 'leafletMapDefaults', 'leafletBoundsHelpers', function ($log, leafletMapDefaults, leafletBoundsHelpers) {
     return {
         restrict: "A",
         scope: false,
@@ -975,9 +976,9 @@ angular.module("leaflet-directive").directive('maxbounds', function ($log, leafl
             });
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").service('leafletData', function ($log, $q, leafletHelpers) {
+angular.module("leaflet-directive").service('leafletData', ['$log', '$q', 'leafletHelpers', function ($log, $q, leafletHelpers) {
     var getDefer = leafletHelpers.getDefer,
         getUnresolvedDefer = leafletHelpers.getUnresolvedDefer,
         setResolvedDefer = leafletHelpers.setResolvedDefer;
@@ -1054,9 +1055,9 @@ angular.module("leaflet-directive").service('leafletData', function ($log, $q, l
         var defer = getDefer(geoJSON, scopeId);
         return defer.promise;
     };
-});
+}]);
 
-angular.module("leaflet-directive").factory('leafletMapDefaults', function (leafletHelpers) {
+angular.module("leaflet-directive").factory('leafletMapDefaults', ['leafletHelpers',function (leafletHelpers) {
     function _getDefaults() {
         return {
             keyboard: true,
@@ -1192,10 +1193,10 @@ angular.module("leaflet-directive").factory('leafletMapDefaults', function (leaf
             return newDefaults;
         }
     };
-});
+}]);
 
 
-angular.module("leaflet-directive").factory('leafletEvents', function ($rootScope, $q, leafletHelpers) {
+angular.module("leaflet-directive").factory('leafletEvents', ['$rootScope', '$q', 'leafletHelpers', function ($rootScope, $q, leafletHelpers) {
     var safeApply = leafletHelpers.safeApply;
 
     return {
@@ -1296,10 +1297,10 @@ angular.module("leaflet-directive").factory('leafletEvents', function ($rootScop
             };
         }
     };
-});
+}]);
 
 
-angular.module("leaflet-directive").factory('leafletLayerHelpers', function ($rootScope, $log, leafletHelpers) {
+angular.module("leaflet-directive").factory('leafletLayerHelpers', ['$rootScope', '$log', 'leafletHelpers', function ($rootScope, $log, leafletHelpers) {
     var Helpers = leafletHelpers,
         isString = leafletHelpers.isString,
         isObject = leafletHelpers.isObject,
@@ -1471,9 +1472,9 @@ angular.module("leaflet-directive").factory('leafletLayerHelpers', function ($ro
             return layerTypes[layerDefinition.type].createLayer(params);
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").factory('leafletBoundsHelpers', function ($log, leafletHelpers) {
+angular.module("leaflet-directive").factory('leafletBoundsHelpers', ['$log', 'leafletHelpers', function ($log, leafletHelpers) {
 
     var isArray = leafletHelpers.isArray,
         isNumber = leafletHelpers.isNumber;
@@ -1538,9 +1539,9 @@ angular.module("leaflet-directive").factory('leafletBoundsHelpers', function ($l
             }
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").factory('leafletMarkerHelpers', function ($rootScope, leafletHelpers, $log, leafletEvents) {
+angular.module("leaflet-directive").factory('leafletMarkerHelpers', ['$rootScope', 'leafletHelpers', '$log', 'leafletEvents', function ($rootScope, leafletHelpers, $log, leafletEvents) {
 
     var isDefined = leafletHelpers.isDefined,
         Helpers = leafletHelpers,
@@ -2156,9 +2157,9 @@ angular.module("leaflet-directive").factory('leafletMarkerHelpers', function ($r
             return marker;
         }
     };
-});
+}]);
 
-angular.module("leaflet-directive").factory('leafletHelpers', function ($q, $log) {
+angular.module("leaflet-directive").factory('leafletHelpers', ['$q', '$log', function ($q, $log) {
 
     function _obtainEffectiveMapId(d, mapId) {
         var id, i;
@@ -2420,6 +2421,6 @@ angular.module("leaflet-directive").factory('leafletHelpers', function ($q, $log
             }
         }
     };
-});
+}]);
 
 }());

@@ -1,4 +1,4 @@
 angular.module('app')
-	.controller('wFLinksCtrl', function($scope){
+	.controller('wFLinksCtrl', ['$scope', function($scope){
 		
-	});
+	}]);

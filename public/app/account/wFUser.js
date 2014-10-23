@@ -1,4 +1,4 @@
-angular.module('app').factory('wFUser', function($resource){
+angular.module('app').factory('wFUser', ['$resource', function($resource){
 	var UserResource = $resource('/api/users/:id', {_id: "@id"}, {update: {method: 'PUT', isArray: false}});
 
 	UserResource.prototype.isAdmin = function(){
@@ -10,5 +10,5 @@ angular.module('app').factory('wFUser', function($resource){
 	}
 
 	return UserResource;
-});
+}]);
 

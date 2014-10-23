@@ -182,7 +182,7 @@ angular.module('app').directive('span', function() {
 	}
 });
 
-angular.module('app').directive('fileInput', function($parse) {
+angular.module('app').directive('fileInput', ['$parse', function($parse) {
 	return {
 		restrict: 'A',
 		link: function(scope, elm, attrs) {
@@ -193,6 +193,6 @@ angular.module('app').directive('fileInput', function($parse) {
 			})
 		}
 	}
-});
+}]);
 /*		template: '<input class="button btn-default" type="file" file-input="files" multiple/>"',
 		replace: true,*/

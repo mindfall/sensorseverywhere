@@ -1,5 +1,6 @@
 angular.module('app')
-	.factory('wFGroupFactory', function($rootScope, $http, $q, $location, wFNotifier){
+	.factory('wFGroupFactory', ['$rootScope', '$http', '$q', '$location', 'wFNotifier', 
+		function($rootScope, $http, $q, $location, wFNotifier){
 
 		var groupData = [];
 		var callNumber = 0;
@@ -149,7 +150,7 @@ angular.module('app')
 					
 				},*/
 		} 
-});
+}]);
 
 
 

@@ -1,4 +1,6 @@
-angular.module('app').factory('wFUserFactory', function($q, $http, $location, wFNotifier) {
+angular.module('app')
+	.factory('wFUserFactory', ['$q', '$http', '$location', 'wFNotifier', 
+		function($q, $http, $location, wFNotifier) {
 	
 
 	return {
@@ -52,4 +54,4 @@ angular.module('app').factory('wFUserFactory', function($q, $http, $location, wF
 			console.log('view user');
 		}
 	}
-});
+}]);

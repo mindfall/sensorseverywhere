@@ -1,5 +1,6 @@
-angular.module('app').factory('wFTaskFactory', ['$http', '$q', '$location', 'wFNotifier',
-	function($http, $q, $location, wFNotifier) {
+angular.module('app')
+	.factory('wFTaskFactory', ['$http', '$q', '$location', 'wFNotifier',
+		function($http, $q, $location, wFNotifier) {
 
 		return {
 			addTaskToProject: function(taskData){

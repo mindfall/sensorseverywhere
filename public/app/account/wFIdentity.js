@@ -1,5 +1,5 @@
 
-angular.module('app').factory('wFIdentity', function($window, wFUser){
+angular.module('app').factory('wFIdentity', ['$window', 'wFUser', function($window, wFUser){
 	var currentUser;
 
 	if(!!$window.wFbootstrappedUserObject){
@@ -15,5 +15,5 @@ angular.module('app').factory('wFIdentity', function($window, wFUser){
 			return !!this.currentUser && this.currentUser.siteRole.indexOf(role) > -1;
 		}
 	}
-});
+}]);
 

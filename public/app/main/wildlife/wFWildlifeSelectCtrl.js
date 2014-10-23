@@ -1,5 +1,6 @@
 angular.module('app')
-	.controller('wFWildlifeSelectCtrl', function($scope, $rootScope, $http, $q, wFWildlifeFactory) {
+	.controller('wFWildlifeSelectCtrl', ['$scope','$rootScope','$http','$q','wFWildlifeFactory',
+		function($scope, $rootScope, $http, $q, wFWildlifeFactory) {
 
 		this.toggle = true;
 		var wildlifePopup = false; //used for wildlife popup in selection list
@@ -106,7 +107,7 @@ angular.module('app')
 	 		return $scope.saveWildlifeComments, commentPopup;
 	 	}
 
-	}).directive('wildlifePopup', function() {
+	}]).directive('wildlifePopup', function() {
 		return {
 			priority: 1000,
 			restrict: 'EA',

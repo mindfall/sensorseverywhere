@@ -9,7 +9,7 @@
 	'angularFileUpload'
 ]);
 
-angular.module('app').config(function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
+angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 
 	$locationProvider.html5Mode(true);
 	var routeRoleChecks = {
@@ -97,12 +97,12 @@ angular.module('app').config(function($routeProvider, $locationProvider, $stateP
 				}
 		});
 
-});
+}]);
 
-angular.module('app').run(function($rootScope, $location){
+angular.module('app').run(['$rootScope', '$location', function($rootScope, $location){
 	$rootScope.$on('$routeChangeError',function(evt, current, previous, rejection){
 		if(rejection === 'not authorized') {
 			$location.path('/');
 		}
 	})
-})
+}]);

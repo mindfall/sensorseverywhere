@@ -1,5 +1,6 @@
-
-angular.module('app').controller('wFContributionCtrl', function($scope, $stateParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
+angular.module('app')
+	.controller('wFContributionCtrl', ['$scope','$stateParams','$location','wFProjectFactory','wFIdentity','wFNotifier',
+		function($scope, $stateParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
 
 
 
@@ -47,4 +48,4 @@ angular.module('app').controller('wFContributionCtrl', function($scope, $statePa
 
 
 
-});
+}]);

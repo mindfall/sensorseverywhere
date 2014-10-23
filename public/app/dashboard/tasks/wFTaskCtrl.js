@@ -34,7 +34,6 @@ angular.module('app')
 					status: 0
 				};
 				$scope.tasks.push(task);
-				console.log('task added')
 			}
 
 			$scope.removeTask = function(index) {
