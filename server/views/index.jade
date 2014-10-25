@@ -4,9 +4,10 @@ block main-content
 	.navbar.navbar-inverse.navbar-fixed-top
 		.container
 			.navbar-header
+				div(id="logo")
 				a.navbar-brand(href="/") Sensors Everywhere
 					h6(class="slogan") Fund, Build and Monitor Wildlife Corridors
-				div(id="logo")
+				
 			.navbar-collapse
 				div(ng-include="'/partials/navbar/links'")
 				div(ng-include="'/partials/account/navbar-login'")

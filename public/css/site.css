@@ -86,10 +86,10 @@ img.how-to {
   z-index: 1002;
 }
 #logo {
-  width: 50px;
+  width: 33px;
   height: 50px;
   margin-top: 5px;
-  margin-left: -60px;
+  margin-left: 10px;
   display: block;
   background: url("../img/wFlogo.png");
   float: left;
@@ -119,7 +119,8 @@ footer p {
   height: 100px;
 }
 .navbar-header a.navbar-brand {
-  margin-top: 20px;
+  margin-top: -5px;
+  padding-left: 25px;
 }
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
@@ -131,6 +132,9 @@ footer p {
   color: #000;
 }
 .navbar-header a.navbar-brandlink {
+  color: #000;
+}
+.navbar-header:hover a.navbar-brand:hover {
   color: #000;
 }
 .navbar-inverse .navbar-nav > li > ahover {
@@ -145,6 +149,7 @@ footer p {
 .navbar-inverse .navbar-nav > li > afocus {
   color: #000;
 }
+.,
 .slogan {
   width: 230px;
 }
