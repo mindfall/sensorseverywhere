@@ -1,9 +1,12 @@
 angular.module('app')
-	.controller('wFEmailContentCtrl', ['$scope', '$rootScope', '$location', 'wFMailService', 
-		function($scope, $rootScope, $location, wFMailService){
+	.controller('wFEmailContentCtrl', ['$scope', '$rootScope', '$location', 'wFMailService', 'wFNotifier',
+		function($scope, $rootScope, $location, wFMailService, wFNotifier){
 		
 		$scope.showingReply = false;
 		$scope.reply = {};
+		$scope.enquiry = {};
+
+		var submissionCounter = 1;
 
 		$scope.toggleEmailReply = function(){
 			$scope.showingReply = !$scope.showingReply;
@@ -22,6 +25,33 @@ angular.module('app')
 				}, function(err){
 					$rootScope.loading = false;
 				});
+		}
+
+
+	    $scope.sendEnquiry = function(name, email) {
+	    	
+	    	if(submissionCounter === 1 && name !== undefined && name !== null && name !==  '' && email !== undefined && email !== null && email !==  '') {
+	    			//used so only one email is sent
+	    			submissionCounter++;
+					wFMailService.sendEnquiry(name, email) 
+					.then(function(response) {
+						if(response) {
+							$scope.enquiry.email = '';
+							$scope.enquiry.name = '';
+							wFNotifier.notify('Email successfully sent.')
+						}
+						$scope.$watch('showSplash', function(){
+							$scope.showSplash = false;
+						});
+
+					}, function(err) {
+						console.log(status);
+				});
+	    	}
+		}
+
+		$scope.showSplash = function() {
+			return false;
 		}
 
 		$scope.$watch('selectedMail', function(evt){

@@ -61,6 +61,7 @@ module.exports = function(app){
 
 	app.get('/api/mail', mail.getMail);
 	app.post('/api/sendInvite', mail.sendInvitationEmail);
+	app.post('/api/sendEnquiry', mail.sendEnquiry);
 	
 	//app.post('/api/mailAttachments', files.mailUploads);
 	app.post('/api/groupFileUploads', files.groupFiles);

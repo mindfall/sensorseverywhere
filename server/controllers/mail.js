@@ -24,7 +24,7 @@ exports.sendInvitationEmail = function(req, res, address){
 	    service: 'Gmail',
 		auth: {
 			user: "yourhsa@gmail.com",
-			pass: "[wO9uy#2]FI^#SUn(p"
+			pass: "[wO9uy#2]FI^#SUn("
 		}
 	});
 
@@ -42,7 +42,45 @@ exports.sendInvitationEmail = function(req, res, address){
 	smtpTrans.sendMail(mailOpts, function (error, response) {
 			   //Email not sent
 		if (error) {
-			console.log('There was an error');
+			console.log('There was an error' + error);
+			res.send(error);
+	    }
+		else {
+			console.log('success');
+			res.send(response);
+		}
+	});
+}
+
+exports.sendEnquiry = function(req, res, address){
+	var email = req.body.email;
+	var name = req.body.name;
+
+	var subject = 'Sensors Everywhere enquiry.';
+	var message = name + " from " + email + " has just had a look at Sensors Everywhere.";
+	var mailOpts, smtpTran;
+
+	smtpTrans = nodemailer.createTransport('SMTP', {
+	    service: 'Gmail',
+		auth: {
+			user: "yourhsa@gmail.com",
+			pass: "[wO9uy#2]FI^#SUn("
+		}
+	});
+
+	mailOpts = {
+		from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
+		to: 'wade_mansell@hotmail.com',
+		subject: subject,
+		text: message
+	};
+
+	console.log(mailOpts);
+
+	smtpTrans.sendMail(mailOpts, function (error, response) {
+			   //Email not sent
+		if (error) {
+			console.log('There was an error' + error);
 			res.send(error);
 	    }
 		else {

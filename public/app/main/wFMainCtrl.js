@@ -15,7 +15,7 @@ angular.module('app')
 	var checkWildlife = [];
 	$scope.monitorIntro = true;
 	$scope.monitorName = '';
-
+	
 	$scope.checked;
 	$scope.identity = wFIdentity;
 	$scope.project_name = '';
@@ -260,6 +260,7 @@ angular.module('app')
 
  		return projectPopup;
  	}
+
 
 }]).directive('projectPopup', function(){
 	return {
