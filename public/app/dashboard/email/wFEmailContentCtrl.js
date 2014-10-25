@@ -50,9 +50,9 @@ angular.module('app')
 	    	}
 		}
 
-		$scope.showSplash = function() {
+/*		$scope.showSplash = function() {
 			return false;
-		}
+		}*/
 
 		$scope.$watch('selectedMail', function(evt){
 			$scope.showingReply = false;
