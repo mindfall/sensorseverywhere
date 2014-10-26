@@ -57,12 +57,16 @@ img.how-to {
   width: 72%;
   margin-top: -50px;
 }
-.col-12-map-container {
+.col-12-map-container,
+.col-8-map-container {
   height: 75%;
   width: 90%;
   position: absolute;
   margin-left: 5%;
   margin-right: 5%;
+}
+.col-8-map-container {
+  height: 580px;
 }
 .col-3-selection-container {
   margin-left: 75%;
@@ -100,6 +104,39 @@ body {
 }
 .container {
   height: 5% !important;
+}
+.front-page-map {
+  height: 580px;
+}
+.front-page-top-row {
+  height: 600px;
+}
+.front-page-bottom-row {
+  height: 400px;
+  border-top: 1px solid #d7e0e2;
+}
+.front-page-top-left-col {
+  padding-left: 50px;
+  height: 600px;
+  border-right: 1px solid #d7e0e2;
+}
+.front-page-top-right-col {
+  height: 600px;
+  border-left: 1px solid #d7e0e2;
+}
+.front-page-bottom-left-col {
+  height: 400px;
+  padding: 20px 50px 20px 50px;
+  border-right: 1px solid #d7e0e2;
+}
+.front-page-bottom-middle-col {
+  padding: 20px 50px 20px 50px;
+  height: 400px;
+}
+.front-page-bottom-right-col {
+  padding: 20px 50px 20px 50px;
+  height: 400px;
+  border-left: 1px solid #d7e0e2;
 }
 footer {
   padding-left: 15px;

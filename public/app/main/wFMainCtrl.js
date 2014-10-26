@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFMainCtrl', ['$scope', '$location', '$http', '$compile', '$element', 'wFIdentity', 'wFMapFactory', 'wFWildlifeFactory', 'wFProjectFactory', 
-		function($scope, $location, $http, $compile, $element, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
+	.controller('wFMainCtrl', ['$scope', '$location', '$http', '$compile', 'wFIdentity', 'wFMapFactory', 'wFWildlifeFactory', 'wFProjectFactory', 
+		function($scope, $location, $http, $compile, wFIdentity, wFMapFactory, wFWildlifeFactory, wFProjectFactory){
 
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 	if(userIsLoggedIn == true){

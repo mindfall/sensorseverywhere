@@ -26,7 +26,7 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 		.state('/', {
 				url: '/',
 				templateUrl: '/partials/main/home', 
-				controller: 'wFWildlifeSelectCtrl'
+				controller: 'wFMainCtrl'
 		})
 		.state('dashboard', {
 				url: '/dashboard',
@@ -47,6 +47,11 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 				url: '/about',
 				templateUrl: '/partials/main/about', 
 				controller: 'wFAboutCtrl'
+		})
+		.state('contact', {
+				url: '/contact',
+				templateUrl: '/partials/main/contact',
+				controller: 'wFContactCtrl'
 		})
 		.state('projects', {
 				url: '/projects',
