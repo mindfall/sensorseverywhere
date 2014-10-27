@@ -1,14 +1,10 @@
 div(class="main_nav_links")
 	ul.nav.navbar-nav.main_links
-		li.dropdown Site Info
-			a.dropdown-info-toggle(href="", data-toggle="dropdown")
-					| {{identity.currentUser.firstname + " " + identity.currentUser.lastname}}
-					b.caret
-				ul.dropdown-menu
-					li
-						a.navbar-nav-link(href="/how-to-use") How to
-					li
-						a.navbar-nav-link(href="/about") About
-		a.navbar-nav-link(href="/main") Create a Project
-		a.navbar-nav-link(href="/projects") View Projects
-		a.navbar-nav-link(href="/contact") Contact
+		li
+			a.navbar-nav-link(href="/about") About
+		li(ng-show="identity.currentUser.isAdmin()")
+			a.navbar-nav-link(href="/main") Create a Project
+		li
+			a.navbar-nav-link(href="/projects") View Projects
+		li
+			a.navbar-nav-link(href="/contact") Contact

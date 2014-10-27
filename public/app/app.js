@@ -51,7 +51,7 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 		.state('contact', {
 				url: '/contact',
 				templateUrl: '/partials/main/contact',
-				controller: 'wFContactCtrl'
+				controller: 'wFEmailContentCtrl'
 		})
 		.state('projects', {
 				url: '/projects',

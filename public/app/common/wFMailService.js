@@ -49,7 +49,29 @@ angular.module('app')
 					dfd.reject(data);
 				});
 				return dfd.promise;
+			},
+			sendMessage : function(name, email, message) {
+				var message = {
+					name: name, 
+					email: email,
+					message: message
+				};
+				var dfd = $q.defer();
+				$http({
+					method: 'POST',
+					data: message,
+					url: '/api/sendMessage/'
+				}).success(function(data, status, headers) {
+					dfd.resolve(data);
+				}).error(function(data, status, headers) {
+					dfd.reject(data);
+				});
+				return dfd.promise;
 			}
+
 
 		}
 }]);
+
+
+			

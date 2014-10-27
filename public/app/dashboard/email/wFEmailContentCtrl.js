@@ -50,6 +50,28 @@ angular.module('app')
 	    	}
 		}
 
+		 $scope.sendMessage = function(name, email, message) {
+	    	
+	    	if(submissionCounter === 1 && name !== undefined && name !== null && name !==  '' && 
+	    								  email !== undefined && email !== null && email !==  '' &&
+	    								  message !== undefined && message !== null && message !==  '') {
+	    			//used so only one email is sent
+	    			submissionCounter++;
+					wFMailService.sendMessage(name, email, message) 
+					.then(function(response) {
+						if(response) {
+							$scope.contact.email = '';
+							$scope.contact.name = '';
+							$scope.contact.message = '';
+							wFNotifier.notify('Email successfully sent.')
+						}
+
+					}, function(err) {
+						console.log(status);
+				});
+	    	}
+		}
+
 /*		$scope.showSplash = function() {
 			return false;
 		}*/

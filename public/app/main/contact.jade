@@ -1,2 +1,26 @@
-div(ng-controller="wFContactCtrl")
-	h1 Contact Me
+div(ng-controller="wFEmailContentCtrl")
+		
+	div(class="contact-form")
+		center
+			h4 
+				strong Thanks 
+				span for visiting SensorsEverywhere. To send me a message, fill out the form below.
+			.col-md-8.email-enquiry-form
+				form.form-horizontal(id="contactForm" ng-submit="sendEmailEnquiry()")
+					fieldset
+						legend
+					.form-group
+						label.col-md-2.control-label(for="name") Name
+						.col-md-8
+							input(class="form-control" ng-model="contact.name" type="text" placeholder="Name..." required)
+					.form-group
+						label.col-md-2.control-label(for="Email") Email
+						.col-md-8
+							input(class="form-control" ng-model="contact.email" type="email" placeholder="Email..." required)
+					.form-group
+						label.col-md-2.control-label(for="Message") Message
+						.col-md-8
+							textarea(class="form-control" ng-model="contact.message" rows="10" cols="80" placeholder="Type your message here..." required)
+					.form-group
+						.col-md-4.pull-right
+							button(class="btn btn-success" ng-click="sendMessage(contact.name, contact.email, contact.message);") Send 

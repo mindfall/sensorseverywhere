@@ -75,6 +75,45 @@ exports.sendEnquiry = function(req, res, address){
 		text: message
 	};
 
+	smtpTrans.sendMail(mailOpts, function (error, response) {
+			   //Email not sent
+		if (error) {
+			console.log('There was an error' + error);
+			res.send(error);
+	    }
+		else {
+			console.log('success');
+			res.send(response);
+		}
+	});
+}
+
+exports.sendMessage = function(req, res) {
+	var name = req.body.name;
+	var email = req.body.email;
+	var message = req.body.message;
+	console.log(req.body)
+
+	var subject = 'Message from Sensors Everywhere.';
+	var message = message;
+	var mailOpts, smtpTran;
+
+	smtpTrans = nodemailer.createTransport('SMTP', {
+	    service: 'Gmail',
+		auth: {
+			user: "yourhsa@gmail.com",
+			pass: "[wO9uy#2]FI^#SUn("
+		}
+	});
+
+	mailOpts = {
+		from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
+		to: 'wade_mansell@hotmail.com',
+		subject: subject,
+		text: message,
+		html: "<strong>There was a message from:      </strong>" + name + ", <br> <strong> with email:     </strong> " + email + " <br> <strong> about:     </strong>" + message +"."
+	};
+
 	console.log(mailOpts);
 
 	smtpTrans.sendMail(mailOpts, function (error, response) {
@@ -88,6 +127,7 @@ exports.sendEnquiry = function(req, res, address){
 			res.send(response);
 		}
 	});
+
 }
 
 exports.upload = function(req, res) {
