@@ -1,7 +1,7 @@
 div(class="main-container" ng-controller="wFMainCtrl")
 	splash(ng-hide="splash")
 	div.front-page-top-row
-		.col-md-3.front-page-top-left-col
+		.col-md-5.front-page-top-left-col
 			h3 OVERVIEW
 			div 
 				span Sensors Everywhere has been developed to empower communities by creating a closer connection to the land they love, and 
@@ -30,7 +30,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 					div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
 						leaflet
 					span here is some filler text
-		.col-md-2.front-page-top-right-col
+		//- .col-md-2.front-page-top-right-col
 			//- .row
 			//- 	h4 Stuff
 			//- .row
@@ -39,18 +39,18 @@ div(class="main-container" ng-controller="wFMainCtrl")
 			//- 	h4 Even More Stuff
 
 	div.front-page-bottom-row
-		.col-md-1
-		.col-md-3.front-page-bottom-left-col
+		//- .col-md-1
+		.col-md-4.front-page-bottom-left-col
 			img(src="../../../img/page_images/soil-compaction.jpg" width="320px" height="213px" class="")
 			h4 Precision Agriculture
 			div Monitor the moisture and nutritional content of your farms soil. Track your animals or get alerts notifying you of open gates.
 
-		.col-md-3.front-page-bottom-middle-col
+		.col-md-4.front-page-bottom-middle-col
 			img(src="../../../img/page_images/koala.jpeg" width="320px" height="213px" class="")
 			h4 Monitor Wildlife
 			div Use our incredible monitoring equipment to track there little beggars!
 
-		.col-md-3.front-page-bottom-right-col
+		.col-md-4.front-page-bottom-right-col
 			img(src="../../../img/page_images/corridor.jpeg" width="320px" height="213px" class="")
 			h4 Create Corridors
 			div Map out your parcel of land and create a crowdfunding project.
