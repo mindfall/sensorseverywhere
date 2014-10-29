@@ -2,12 +2,6 @@
 /*.ng-dirty { border 1px solid yellow }
 .ng-invalid.ng-dirty { border 1px solid red }
 .ng-valid.ng-dirty { border 1px solid green }*/
-.showMapBtn {
-  z-index: 1000;
-  margin-top: 50px;
-  position: absolute;
-  margin-left: 100px;
-}
 .document-overlay {
   display: block;
   position: relative;
@@ -33,41 +27,6 @@ html,
   height: 75%;
   margin-top: 50px;
 }
-.how-to-container {
-  margin: 0 auto;
-  width: 1000px;
-  height: 100%;
-  padding-bottom: 100px;
-}
-img.how-to {
-  padding-top: 20px;
-  margin-left: 150px;
-}
-.create-row-map-container {
-  margin-top: -50px;
-}
-.col-9-map-container,
-.col-3-selection-container {
-  height: 78%;
-  margin-bottom: 1%;
-  position: absolute;
-}
-.col-9-map-container {
-  margin-left: 60px;
-  width: 72%;
-  margin-top: -50px;
-}
-.col-12-map-container,
-.col-8-map-container {
-  height: 75%;
-  width: 90%;
-  position: absolute;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-.col-8-map-container {
-  height: 580px;
-}
 .col-3-selection-container {
   margin-left: 75%;
 }
@@ -81,22 +40,6 @@ img.how-to {
   border-left: 5px solid #d7e0e2;
   height: 100%;
   min-width: 100px;
-}
-.navbar-inverse {
-  border-bottom: 5px solid #d7e0e2;
-  -webkit-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  -moz-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  z-index: 1002;
-}
-#logo {
-  width: 33px;
-  height: 50px;
-  margin-top: 5px;
-  margin-left: 10px;
-  display: block;
-  background: url("../img/wFlogo.png");
-  float: left;
 }
 body {
   height: 700px;
@@ -150,69 +93,6 @@ footer {
 footer p {
   border-top: 1px solid #d7e0e2;
 }
-/* NAVBAR */
-.navbar {
-  background-color: #fff;
-  height: 100px;
-}
-.navbar-header a.navbar-brand {
-  margin-top: -5px;
-  padding-left: 25px;
-}
-.navbar-header a.navbar-brand h6 {
-  color: #ccc;
-}
-.navbar-header a.navbar-brandhover {
-  color: #000;
-}
-.navbar-header a.navbar-brandactive {
-  color: #000;
-}
-.navbar-header a.navbar-brandlink {
-  color: #000;
-}
-.navbar-header:hover a.navbar-brand:hover {
-  color: #000;
-}
-.navbar-inverse .navbar-nav > li > ahover {
-  color: #000;
-}
-.navbar-inverse .navbar-nav > li > aactive {
-  color: #000;
-}
-.navbar-inverse .navbar-nav > li > alink {
-  color: #000;
-}
-.navbar-inverse .navbar-nav > li > afocus {
-  color: #000;
-}
-.,
-.slogan {
-  width: 230px;
-}
-.navbar-form .form-group {
-  margin-left: 10px;
-}
-.navbar-form button {
-  margin-left: 10px;
-}
-.main_nav_links {
-  margin: 0 auto;
-  position: relative;
-  width: 30%;
-}
-ul.nav.navbar-nav a.navbar-nav-link {
-  font-size: 1.1em;
-  color: #999;
-  margin-left: 20px;
-}
-.toast-top-right {
-  top: 70px;
-}
-.toast-success {
-  background-color: #090;
-}
-/* END NAVBAR */
 /* PROJECT / FUND LIST PAGE */
 .projectOutline {
   border: 3px solid #d3d3d3;
@@ -228,24 +108,6 @@ ul.nav.navbar-nav a.navbar-nav-link {
   margin-left: 15%;
 }
 /* END PROJECT / FUND LIST PAGE */
-/* VIEW DETAILS */
-.map-details-container {
-  height: 600px;
-  width: 50%;
-}
-.map-details {
-  height: 300px !important;
-  width: 50%;
-}
-/* END VIEW DETAILS */
-.map-edit-container {
-  height: 640px;
-  width: 40%;
-}
-.map-edit {
-  height: 600px !important;
-  width: 40%;
-}
 .edit-container {
   margin-top: -35px;
 }
@@ -328,4 +190,20 @@ editable-bsdate {
 }
 .edit-text-area {
   z-index: 1000;
+}
+/* END MAIN PAGE */
+.save-edit-map-btn {
+  height: 5%;
+  bottom: 0;
+  left: 0.5%;
+  width: 99%;
+  position: absolute;
+  z-index: 9999;
+}
+.view-content-container {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.view-info-block {
+  padding: 50px;
 }

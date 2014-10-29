@@ -13,24 +13,6 @@
 .monitor-name {
   margin-left: 35%;
 }
-.monitor-panel {
-  border-radius: 15px;
-  width: 300px;
-  height: 500px;
-  margin-top: -470px;
-  margin-left: 30px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -webkit-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  -moz-box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  box-shadow: 5px 1px 20px 5px rgba(155,157,157,0.5);
-  border: 5px solid #d7e0e2;
-  position: relative;
-  background-color: #fff;
-  float: left;
-  padding: 10px;
-  z-index: 1001;
-}
 .monitor-create-container,
 .monitor-details-container {
   height: 60px;

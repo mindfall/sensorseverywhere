@@ -3,6 +3,7 @@ angular.module('app')
 		function($scope, $rootScope, $location, $timeout, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	setMapHeight();
+	L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
 	var mapquestLink = '<a href="http://www.mapquest.com//">MapQuest</a>';

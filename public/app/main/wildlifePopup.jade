@@ -1,4 +1,4 @@
-div.wildlife-popup(ng-style="newDims")
+div.wildlife-popup.popup-container(ng-style="newDims")
 	div.closePopUp(ng-click="wildlifePopup('hide')") X 
 	h4 {{wildlifeDetails.name}}
 	div
@@ -38,5 +38,5 @@ div.wildlife-popup(ng-style="newDims")
 		div(class="label-comments") Comments
 		div(class="saved-wildlife-comments") {{wildlifeComments}}
 	div
-		div(class="popupComments" ng-click="commentPopup('show')") Add Comment
-		div(class="popupSave" ng-click="wildlifePopup('hide'); ") Save
+		div(class="popup-comments" ng-click="commentPopup('show')") Add Comment
+		div(class="wildlife-popup-save" ng-click="wildlifePopup('hide'); ") Save
