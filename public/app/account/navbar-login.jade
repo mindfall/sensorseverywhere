@@ -1,4 +1,5 @@
 .navbar-right(ng-controller="wFNavBarLoginCtrl")
+
 	form.navbar-form(ng-hide="identity.isAuthenticated()")
 		ul.nav.navbar-nav
 			//- li
@@ -21,4 +22,4 @@
 				li
 					a(href="/profile") Profile
 				li
-					a(href="", ng-click="signout()") Sign Out
+					a(href="" ng-click="signout()") Sign Out

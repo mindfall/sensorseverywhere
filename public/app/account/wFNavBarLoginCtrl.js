@@ -1,6 +1,7 @@
 angular.module('app')
-	.controller('wFNavBarLoginCtrl', ['$scope', '$http', '$location', 'wFNotifier', 'wFIdentity', 'wFAuth', 
-		function($scope, $http, $location, wFNotifier, wFIdentity, wFAuth){
+	.controller('wFNavBarLoginCtrl', ['$scope', '$http', '$location', '$timeout', 'wFNotifier', 'wFIdentity', 'wFAuth', 
+		function($scope, $http, $location, $timeout, wFNotifier, wFIdentity, wFAuth){
+
 
 		$scope.identity = wFIdentity;
 		$scope.signin = function(username, password){

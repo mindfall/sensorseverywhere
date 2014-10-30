@@ -33,7 +33,6 @@ angular.module('app').controller('wMSlidingPanelCtrl', ['$scope', function($scop
 					}, 10);
 				} else {
 					var panelHeight = ele[0].offsetHeight;
-					console.log(panelHeight);
 					var panelEnd = 0 - (panelHeight - 40);
 					var panelStart = 0;
 					var dx = panelStart - panelEnd;
