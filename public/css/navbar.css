@@ -190,6 +190,9 @@ ul.nav.navbar-nav a.navbar-nav-link {
   }
   ul.main_links {
     margin-top: -6px !important;
+    width: 50%;
+    margin-left: 25%;
+    left: -25%;
   }
   #logo {
     margin-left: -5px;

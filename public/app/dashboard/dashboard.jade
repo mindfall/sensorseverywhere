@@ -2,11 +2,12 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 	.container(ng-if="isLoggedIn")
 		bg-splitter(orientation="horizontal")
 			bg-pane
-				.col-md-6(class="col-6-dashboard-container" ng-controller="wFProjectCtrl")
+				.col-md-12(class="col-6-dashboard-container" ng-controller="wFProjectCtrl")
+
 					h4 Project Dashboard for {{user.firstname}}
 					h4(class="dashboard-message") {{message}}
 					accordion(close-others="oneAtATime")
-						accordion-group(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+						accordion-group.project-headings(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 							accordion-heading(style="display: inline;") 
 										span(class="accordion-group-heading") {{project.project_name}} 
 										span(class="accordion-group-heading button btn-default accordion-remove-project" ng-click="removeProject(project._id)") X
@@ -87,69 +88,67 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 					div(ui-view="project-pane")
 				button(class="create-project-button" ng-click="createProject()" ) Create Project
 			bg-pane
-				h4 Groups
 				.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
 					.col-md-12(class="group-list-container" ng-model="groupList")
-						.well
-							h4 Group list
-							table(class="table")
-								tr(style="font-weight: bold;")
-									td(class="accordion-group-heading") Name
-									td(class="accordion-group-heading") Members
-									td(class="accordion-group-heading") Project
-									td(class="accordion-group-heading")
+						h4 Group list
+						table(class="table")
+							tr(style="font-weight: bold;")
+								td(class="accordion-group-heading") Name
+								td(class="accordion-group-heading") Members
+								td(class="accordion-group-heading") Project
+								td(class="accordion-group-heading")
 
-							accordion(close-others="oneAtATime")
-								accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
-									accordion-heading(style="display: inline;") 
-											span(class="accordion-group-heading") {{group.groupName}} 
-											span(class="accordion-group-heading") {{members}}
-											span(class="accordion-group-heading") {{group.groupProject}}	
-											span(class="accordion-group-heading button btn-default accordion-remove-group" ng-click="removeGroup(group._id)") X
+						accordion(close-others="oneAtATime")
+							accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
+								accordion-heading(style="display: inline;") 
+										span(class="accordion-group-heading") {{group.groupName}} 
+										span(class="accordion-group-heading") {{members}}
+										span(class="accordion-group-heading") {{group.groupProject}}	
+										span(class="accordion-group-heading button btn-default accordion-remove-group" ng-click="removeGroup(group._id)") X
 
-									//img(ng-src="data:image/png;base64,{{groupImage}}")
-									button(class="btn btn-default" ng-click="getFiles(group.filename, 'group'); toggleDocumentOverlay();") View Group Documents
-									br
-									span {{group.groupDescription}}
+								//img(ng-src="data:image/png;base64,{{groupImage}}")
+								button(class="btn btn-default" ng-click="getFiles(group.filename, 'group'); toggleDocumentOverlay();") View Group Documents
+								br
+								span {{group.groupDescription}}
 
-									br 
-									h4 Share the love!!
-									small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
-									br
-									
-									div(ng-controller="wFEmailContentCtrl")
-										div(ng-controller="wFUserCtrl")
-											table(class="table table-bordered table-hover table-condensed")
-												tr(style="font-weight: bold;")
-													td(style="width: 25%;") Name
-													td(style="width: 25%") Status
-													td(style="width: 25%") Contact
-													td(style="width: 25%") Delete
-												tr(ng-repeat="member in group.groupMembers track by $index")
-													td
-														span(ng-model="member.username") {{member.username}}
-													td
-														span {{member.status}}
-													td
-														button(class="btn btn-default" ng-click="emailPopup('show')") Email
-														//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
-														button(class="btn btn-default" ng-click="chatPopup('show');") Chat
-													td
-														button(class="btn btn-default" ng-click="removeUserFromGroup($index, group.groupName, member.username)") Delete
-												tr(style="font-weight: bold;") Send Invitation
-													td(style="width: 25%;") Email
-													td(style="width: 25%") Name
-													td(style="width: 25%") Send Invite
-													td(style="width: 25%") Cancel
-												tr
-													td
-														input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
-													td
-														input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
-													td
-														button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
-													td
-														button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
+								br 
+								h4 Share the love!!
+								small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
+								br
+								
+								div(ng-controller="wFEmailContentCtrl")
+									div(ng-controller="wFUserCtrl")
+										table(class="table table-bordered table-hover table-condensed")
+											tr(style="font-weight: bold;")
+												td(style="width: 25%;") Name
+												td(style="width: 25%") Status
+												td(style="width: 25%") Contact
+												td(style="width: 25%") Delete
+											tr(ng-repeat="member in group.groupMembers track by $index")
+												td
+													span(ng-model="member.username") {{member.username}}
+												td
+													span {{member.status}}
+												td
+													button(class="btn btn-default" ng-click="emailPopup('show')") Email
+													//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
+													button(class="btn btn-default" ng-click="chatPopup('show');") Chat
+												td
+													button(class="btn btn-default" ng-click="removeUserFromGroup($index, group.groupName, member.username)") Delete
+											tr(style="font-weight: bold;") Send Invitation
+												td(style="width: 25%;") Email
+												td(style="width: 25%") Name
+												td(style="width: 25%") Send Invite
+												td(style="width: 25%") Cancel
+											tr
+												td
+													input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
+												td
+													input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
+												td
+													button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
+												td
+													button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
 					.col-md-12(class="group-form-container" ng-model="groupForm" ng-show="groupForm")
 						.well
 							span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
