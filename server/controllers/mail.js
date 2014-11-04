@@ -24,7 +24,7 @@ exports.sendInvitationEmail = function(req, res, address){
 	    service: 'Gmail',
 		auth: {
 			user: "yourhsa@gmail.com",
-			pass: "[wO9uy#2]FI^#SUn("
+			pass: "hispasswordhasbeenlong"
 		}
 	});
 
@@ -64,7 +64,7 @@ exports.sendEnquiry = function(req, res, address){
 	    service: 'Gmail',
 		auth: {
 			user: "yourhsa@gmail.com",
-			pass: "[wO9uy#2]FI^#SUn("
+			pass: "hispasswordhasbeenlong"
 		}
 	});
 
@@ -102,7 +102,7 @@ exports.sendMessage = function(req, res) {
 	    service: 'Gmail',
 		auth: {
 			user: "yourhsa@gmail.com",
-			pass: "[wO9uy#2]FI^#SUn("
+			pass: "hispasswordhasbeenlong"
 		}
 	});
 

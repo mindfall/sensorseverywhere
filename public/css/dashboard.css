@@ -4,6 +4,9 @@
   font-weight: bold;
   color: #d7e0e2;
 }
+bg-splitter {
+  min-width: 300px;
+}
 .project-summary {
   width: 100%;
   float: left;
@@ -142,21 +145,90 @@ overflow hidden,
   .split-panes {
     margin-top: 100px !important;
   }
-  .create-group-button {
-    bottom: -83.5%;
-  }
+  .create-group-button,
   .create-project-button {
-    bottom: -62%;
+    width: 97%;
+    bottom: -56%;
+    position: absolute;
+  }
+  .button-spacer {
+    display: block;
+    height: 99px;
+  }
+  .split-panes.horizontal > .split-pane2 {
+    left: 100% !important;
+    min-width: 300px;
+  }
+  .split-pane1 {
+    min-width: 300px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 480px;
+  }
+  .split-pane1 {
+    min-width: 480px;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 600px;
+  }
+  .split-pane1 {
+    min-width: 600px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 480px;
+  }
+  .split-pane1 {
+    min-width: 480px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 768px;
+  }
+  .split-pane1 {
+    min-width: 768px;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 800px;
+  }
+  .split-pane1 {
+    min-width: 800px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .split-panes.horizontal > .split-pane2 {
+    min-width: 50%;
+  }
+  .split-pane1 {
+    min-width: 50%;
+  }
+  .split-panes.horizontal > .split-pane2 {
+    left: 50% !important;
   }
 }
 @media only screen and (min-width: 1224px) {
   .split-panes {
     margin-top: 0px !important;
   }
-  .create-group-button {
-    bottom: -65.5%;
-  }
+  .create-group-button,
   .create-project-button {
-    bottom: -62%;
+    width: 96%;
+    bottom: -56%;
+    position: absolute;
+  }
+  .button-spacer {
+    display: block;
+    height: 112px;
+  }
+  .split-panes.horizontal > .split-pane2 {
+    left: 50% !important;
   }
 }
