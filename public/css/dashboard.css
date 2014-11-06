@@ -20,7 +20,7 @@ bg-splitter {
   padding-left: 20px;
 }
 .project-controls {
-  display: inline;
+  display: block;
   padding: 20px;
 }
 .project-headings,

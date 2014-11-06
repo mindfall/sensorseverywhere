@@ -27,6 +27,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
 									td.control-cell
 										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+								tr.project-controls
 									td.control-cell
 										div(ng-show="project.project_owner" class="btn btn-default" ng-click="editProject(project._id)") Edit
 									td.control-cell

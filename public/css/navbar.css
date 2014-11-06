@@ -19,6 +19,17 @@
 .navbar-header a.navbar-brandlink {
   color: #000;
 }
+.navbar-nav > li.dropdown > a:hover,
+.navbar-nav > li.dropdown > a:active,
+.navbar-nav > li.dropdown > a:focus {
+  color: #000;
+}
+.navbar-nav > li.dropdown {
+  background-color: #fff;
+}
+.navbar-nav > li.dropdown > a {
+  color: #999;
+}
 #logo {
   width: 33px;
   height: 50px;
@@ -97,7 +108,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
     display: inline-flex;
     text-align: center;
     margin-left: -130px;
-    margin-top: 4px;
+    margin-top: 122px;
     position: absolute;
     width: 300px;
   }
@@ -114,9 +125,10 @@ ul.nav.navbar-nav a.navbar-nav-link {
     margin: 0 auto;
   }
   .navbar-right {
+    position: absolute;
     width: 235px;
-    float: right;
-    margin-top: -155px;
+    top: 10px;
+    right: -20%;
   }
   .navbar-form {
     border-top: none;
@@ -139,6 +151,9 @@ ul.nav.navbar-nav a.navbar-nav-link {
     margin-left: -90px;
     margin-top: 50%;
   }
+  .navbar-right {
+    right: -10%;
+  }
 }
 @media only screen and (min-width: 600px) {
   .navbar {
@@ -146,7 +161,6 @@ ul.nav.navbar-nav a.navbar-nav-link {
     margin-top: -19%;
   }
   ul.main_links {
-    margin-left: -150%;
     margin-top: 10px;
   }
   .navbar-form {
@@ -170,6 +184,11 @@ ul.nav.navbar-nav a.navbar-nav-link {
   .navbar-form {
     margin-top: 21%;
     left: -3% !important;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .navbar {
+    margin-top: -11% !important;
   }
 }
 @media only screen and (min-width: 1224px) {
