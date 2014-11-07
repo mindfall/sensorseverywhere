@@ -6,6 +6,8 @@ angular.module('app')
 		var projectArray = [];
 		var projectAdd = {};
 
+		var testVar = 'hello';
+
 		var getUserProjects = [];
 		var projectTasks = [];
 		var userProjects = [];
@@ -34,7 +36,7 @@ angular.module('app')
 		*/
 
 		$scope.getProjects = function() {
-			projectList = wFProjectFactory.getProjects();
+			var projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
 					projectArray.push(projectList[i]);

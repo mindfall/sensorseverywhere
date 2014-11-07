@@ -8,6 +8,7 @@
 	'xeditable',
 	'angularFileUpload'
 ]);
+/* I'm writing a comment here. */
 
 angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 

@@ -204,6 +204,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
   .navbar-right {
     margin-right: 0px;
     margin-top: 20px;
+    right: -4%;
   }
   .navbar-form {
     margin-top: 0%;

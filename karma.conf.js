@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Thu Feb 20 2014 14:46:15 GMT+1100 (EST)
+// Generated on Thu Nov 06 2014 14:17:18 GMT+1100 (AEDT)
 
 module.exports = function(config) {
   config.set({
@@ -9,7 +9,7 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha', 'chai', 'sinon-chai'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -17,9 +17,9 @@ module.exports = function(config) {
       'public/vendor/angular/angular.js',
       'public/vendor/angular-resource/angular-resource.js',
       'public/vendor/angular-mocks/angular-mocks.js',
-      'test/test-app.js',
+      'public/app/app.js',
       'public/app/**/*.js',
-      'test/tests/**/*.js'
+      'spec/**/*.js'
     ],
 
 
