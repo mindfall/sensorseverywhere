@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Thu Nov 06 2014 14:17:18 GMT+1100 (AEDT)
+// Generated on Fri Nov 07 2014 12:58:55 GMT+1100 (AEDT)
 
 module.exports = function(config) {
   config.set({
@@ -15,17 +15,35 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'public/vendor/angular/angular.js',
-      'public/vendor/angular-resource/angular-resource.js',
       'public/vendor/angular-mocks/angular-mocks.js',
+      'public/vendor/angular-resource/angular-resource.js',
+      'public/vendor/angular-route/angular-route.js',
+      'public/vendor/angular-leaflet-directive.js',
+      'public/vendor/angular-bootstrap/ui-bootstrap.js',
+      'public/vendor/angular-ui-router/release/angular-ui-router.js',
+      'public/vendor/bg-splitter/js/splitter.js',
+      'public/vendor/angular-xeditable/js/xeditable.js',
+      'public/vendor/ng-file-upload/angular-file-upload.js',
+      'public/vendor/toastr/toastr.js',
+      'public/vendor/sinon/lib/sinon.js',
       'public/app/app.js',
-      'public/app/**/*.js',
-      'spec/**/*.js'
+      'public/app/common/wFNotifier.js',
+      'public/app/common/wFProjectFactory.js',
+      'public/app/common/wFMapFactory.js',
+      'public/app/projects/wFProjectCtrl.js',
+      'public/app/account/wFIdentity.js',
+      'public/app/account/wFUser.js',
+      'public/app/projects/wFProjectCtrl.js',
+      'spec/*.js'
     ],
+
+
+
 
 
     // list of files to exclude
     exclude: [
-      'public/app/app.js'
+      
     ],
 
 
@@ -44,7 +62,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -60,6 +78,11 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
     browsers: ['Chrome'],
+
+    plugins: [
+        'karma-chrome-launcher',
+        'karma-jasmine'
+    ],
 
 
     // If browser does not capture in given timeout [ms], kill it

@@ -192,6 +192,12 @@ ul.nav.navbar-nav a.navbar-nav-link {
   }
 }
 @media only screen and (min-width: 1224px) {
+  .navbar-right {
+    display: inline;
+    margin-right: 10%;
+    width: 100%;
+    margin-top: 20px;
+  }
   .navbar {
     height: 110px;
     margin-left: 1px;
@@ -200,11 +206,6 @@ ul.nav.navbar-nav a.navbar-nav-link {
     top: 8%;
     position: fixed;
     width: 100%;
-  }
-  .navbar-right {
-    margin-right: 0px;
-    margin-top: 20px;
-    right: -4%;
   }
   .navbar-form {
     margin-top: 0%;

@@ -35,6 +35,10 @@ angular.module('app')
 		*	Main projects page, shows all projects.
 		*/
 
+		$scope.testFunction = function() {
+			$scope.name = "stringName";
+		}
+
 		$scope.getProjects = function() {
 			var projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
