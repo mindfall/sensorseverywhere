@@ -45,7 +45,7 @@ angular.module('app').
             .success(function(data, success, headers, config) {
               dfd.resolve(data);
               $scope.groupImage = data;
-              console.log($scope.groupImage);
+
             }).
             error(function(data, status, headers, config) {
               dfd.reject(status);

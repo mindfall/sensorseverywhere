@@ -73,15 +73,23 @@ function moveImage(imageName, filePath, serverPath) {
 exports.getGroupFiles = function(req, res) {
 
 	var path = __dirname + '/../uploads/group-files/';
-	var file = req.params.name;
+	var file = '';
+	if(req.params.name === null ) {
+		console.log(req.params.name);
+		file = req.params.name;
+	} else {
+
+		file = 'not_available.png';
+	}
+
 	var filepath = path + file;
-	console.log(filepath);
+//	console.log('File ' + file);
 	fs.exists(filepath, function(exists) {
 		if(exists) {
 			fs.readFile(filepath, function(err, contents) {
 				if(!err) {
 					res.writeHead(200, {
-						"Content-type": "image/jpg",
+						"Content-type": "image/png",
 						"Content-length": contents.length
 					});
 					contents = contents.toString("base64");
@@ -92,9 +100,10 @@ exports.getGroupFiles = function(req, res) {
 				};
 			});
 		} else {
-			fs.readFile(page404, function(err, contents) {
+			fs.readFile(__dirname + '/../views/page404.jade', function(err, contents) {
 				if(!err) {
 					res.writeHead(404, {'Content-Type': 'text/html'});
+					//res.render(__dirname + '/../views/page404.jade');
 					res.end(contents);
 				} else {
 					console.dir(err);
@@ -102,6 +111,7 @@ exports.getGroupFiles = function(req, res) {
 			});
 		}
 	});
+
 }
 
 

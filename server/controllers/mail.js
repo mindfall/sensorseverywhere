@@ -34,7 +34,7 @@ exports.sendInvitationEmail = function(req, res, address){
 		subject: subject,
 		text: message,
 		html: "Hey " + name + ", come and join our group the <b>" + group + "</b>. <br> You can view the details <a href='http://localhost:3033/projects/viewProjectDetails/" + project +"'>here.</a>" +
-							  "<br><br><a href='http://localhost:3033/groupSignup/"+gid+"'>" + 
+							  "<br><br><a href='http://sensorseverywhere.com/groupSignup/"+gid+"'>" + 
 							  "<button style='background-color=#5cb85c; color=white'>Accept</button></a>" +
 							  "&nbsp&nbsp<button style='background-color=#f0ad4e; color=white'>Decline</button>"
 	};
