@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('wFProjectCtrl', ['$scope', '$http', '$q', '$location', '$interval', 'wFIdentity', 'wFProjectFactory', 'wFMapFactory',
-		function($scope, $http, $q, $location, $interval, wFIdentity, wFProjectFactory, wFMapFactory){
+	.controller('wFProjectCtrl', ['$scope', '$http', '$q', '$location', '$interval','$window', 'wFIdentity', 'wFProjectFactory', 'wFMapFactory', 'wFFileFactory',
+		function($scope, $http, $q, $location, $interval, $window, wFIdentity, wFProjectFactory, wFMapFactory, wFFileFactory){
 
 		var projectList = [];
 		var projectArray = [];
@@ -35,16 +35,21 @@ angular.module('app')
 		*	Main projects page, shows all projects.
 		*/
 
-		$scope.testFunction = function() {
-			$scope.name = "stringName";
-		}
-
 		$scope.getProjects = function() {
+
 			var projectList = wFProjectFactory.getProjects();
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
+					var image = wFFileFactory.getFiles('project', projectList[i].project_name, projectList[i].project_image);
+					image.then(function(files){
+			            $scope.projectImage = files;
+		            }, function(status){
+		            	console.log(status);
+		            });
+
 					projectArray.push(projectList[i]);
 				}
+
 				$scope.projects = projectArray;
 			}, function(status){
 				console.log(status);
@@ -75,10 +80,9 @@ angular.module('app')
 		/**
 		* Function to check if user is owner or member 
 		**/
-		$scope.getProjectsByUser = function() {
+	$scope.getProjectsByUser = function() {
 			
 			getUserProjects = wFProjectFactory.getProjectsByUser(user._id);
-
 			getUserProjects.then(function(getUserProjects){
 			//
 		    if(getUserProjects.length === 0) {
@@ -90,13 +94,18 @@ angular.module('app')
 		    } else {
 		      $scope.message = '';
 		      for(var i = 0; i < getUserProjects.length; i++){
+					    var image = wFFileFactory.getFiles('project', getUserProjects[i].project_name, getUserProjects[i].project_image);
+					    image.then(function(files){
+		                $scope.projectImage = files;
+		            }, function(status){
+		              console.log(status);
+		            });
 		        userProjects.push(getUserProjects[i]);
 		        //call to getProjectTasks using project id
 		        $scope.getProjectTasks(getUserProjects[i]._id);
-		       
 		      }
 		    }
-				$scope.projects = userProjects;
+			$scope.projects = userProjects;
 			}, function(status){
 				console.log(status);
 			});

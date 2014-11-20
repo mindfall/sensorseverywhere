@@ -116,7 +116,7 @@ angular.module('app')
 			groupList.then(function(groupList){
 				for(var i = 0; i < groupList.length; i++){
 					groupArray.push(groupList[i]);
-					console.log(groupArray);
+					//console.log(groupArray);
 				}
 				for(var name in groupArray) {
 					if(typeof groupArray[name] !== 'function') {

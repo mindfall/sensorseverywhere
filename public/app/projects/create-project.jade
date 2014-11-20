@@ -43,5 +43,5 @@ div(class="main-container" ng-controller="wFMainCtrl")
 			comment-popup(ng-show="commentPopup()" draggability)
 			monitor		
 			
-			project-popup(class="project-popup" ng-show="projectPopup()")
+			project-popup(ng-controller="wFFileUploadCtrl" class="project-popup" ng-show="projectPopup()")
 		button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save

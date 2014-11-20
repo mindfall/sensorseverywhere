@@ -39,8 +39,11 @@ div.popup-container
 			select(class="form-control" ng-model="orgs.type", ng-options="org.value as org.name for org in selectOrg")
 		p What is the required funding target? <br>
 			input(class="form-control" type="number" min="0" value="0" ng-model="fundingRequired")
-		p An image
-
+		div Choose an image for your project
+			input(type="hidden" ng-model="fileUpload")
+			input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')") 
+			
+	span {{project_image}}
 	div
 		b(class="popupCancel" ng-click="cancelProject()") Clear
-		b(class="popupSave" ng-click="saveProject(projectName, projectDescription, start_date, end_date, orgs.type, fundingRequired); projectPopup('hide');") Save
+		b(class="popupSave" ng-click="saveProject(projectName, projectDescription, start_date, end_date, orgs.type, fundingRequired, project_image); projectPopup('hide');") Save

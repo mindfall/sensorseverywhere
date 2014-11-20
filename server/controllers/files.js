@@ -59,7 +59,7 @@ function moveImage(imageName, filePath, serverPath) {
 	 	function(error) {
 	 		if(error) {
 	 			res.send({
-	 				error: 'Whoops, something is not quite right.'
+	 				error: 'Whoops, something is not quite right. ' + error
 	 			});
 	 			return;
 	 		} else {
@@ -70,23 +70,29 @@ function moveImage(imageName, filePath, serverPath) {
 }
 
 
-exports.getGroupFiles = function(req, res) {
+exports.getFiles = function(req, res) {
 
-	var path = __dirname + '/../uploads/group-files/';
+	var topLevel = req.params.topLevel;
+	var secondaryLevel = req.params.secondaryLevel;
+	var filename = req.params.filename;
+
+
+	var path = __dirname + '/../uploads/' + topLevel + '/' + secondaryLevel + '/' + filename;
+	console.log('THE PATH IS:  ' + path);
 	var file = '';
-	if(req.params.name === null ) {
-		console.log(req.params.name);
-		file = req.params.name;
+	if(filename === null ) {
+
+		file = filename;
 	} else {
 
 		file = 'not_available.png';
 	}
 
 	var filepath = path + file;
-//	console.log('File ' + file);
-	fs.exists(filepath, function(exists) {
+
+	fs.exists(path, function(exists) {
 		if(exists) {
-			fs.readFile(filepath, function(err, contents) {
+			fs.readFile(path, function(err, contents) {
 				if(!err) {
 					res.writeHead(200, {
 						"Content-type": "image/png",

@@ -1,6 +1,6 @@
 angular.module('app').
-  controller('wFDashboardCtrl', ['$scope', '$location', '$q', '$http', 'wFIdentity', 'wFProjectFactory', 'wFGroupFactory',
-    function($scope, $location, $q, $http, wFIdentity, wFProjectFactory, wFGroupFactory) {
+  controller('wFDashboardCtrl', ['$scope', '$location', '$q', '$http', 'wFIdentity', 'wFProjectFactory', 'wFGroupFactory', 'wFFileFactory',
+    function($scope, $location, $q, $http, wFIdentity, wFProjectFactory, wFGroupFactory, wFFileFactory) {
 
       var emailPopup = false;
       var chatPopup = false;
@@ -38,20 +38,22 @@ angular.module('app').
           counter++;
 
         }
-        
-        $scope.getFiles = function(name, type) {
-          var dfd = $q.defer();
-          $http({method: 'GET', url: '/api/'+type+'Files/' + name})
-            .success(function(data, success, headers, config) {
-              dfd.resolve(data);
-              $scope.groupImage = data;
+        /*
+        * This function is used to retrieve documents held on the server side.
+        * Top level files can be group. project or task
+        * Secondary folders contain the group or project name 
+        *
+        */        
+        $scope.getFiles = function(topLevel, secondaryLevel, filename) {
 
-            }).
-            error(function(data, status, headers, config) {
-              dfd.reject(status);
-              $scope.msg = 'There are no ' + type + 'files to display.';
-          });
-          return dfd.promise;
+            getFiles = wFFileFactory.getFiles(topLevel, secondaryLevel, filename);
+
+            getFiles.then(function(files){
+                console.log(files);
+                $scope.groupImage = files;
+            }, function(status){
+              console.log(status);
+            });
         } 
 
         $scope.toggleDocumentOverlay = function() {

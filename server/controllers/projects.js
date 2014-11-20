@@ -50,7 +50,7 @@ exports.createProject = function(req, res, next){
 	var monitor = {};
 	var project_monitors = [];
 
-
+	var projectImage = projectData.project_image;
 /*	var wildlifeComments = {
 		poster: req.body.wildlife_comment_owner,
 		comment: req.body.wildlife_comment
@@ -115,6 +115,7 @@ exports.createProject = function(req, res, next){
 				"distance_to_town": projectTownDistance
 		    },
 		    "project_description": projectDescription,
+		    "project_image": projectImage,
 	        "project_start_date": projectStartDate,
 	        "project_end_date": projectEndDate,
 	        "project_funding_required": projectFundingRequired,

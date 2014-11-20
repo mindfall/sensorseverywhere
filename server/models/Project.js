@@ -31,6 +31,7 @@ var ProjectSchema = new Schema({
         distance_to_town: {type: Number}
     },
     project_description: String,
+    project_image: String,
     project_start_date: Date,
     project_end_date: Date,
     project_funding_required: Number,

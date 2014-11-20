@@ -156,7 +156,7 @@ angular.module('app')
 	}
 
 	
-	$scope.saveProject = function(name, description, start, end, type, total){
+	$scope.saveProject = function(name, description, start, end, type, total, image){
 		//console.log('owner: ' + wFIdentity.currentUser.firstname);
 		var project_name = name;
 		var project_description;
@@ -171,8 +171,9 @@ angular.module('app')
 		var project_funding_required = total;
 
 		var nearestTown = $scope.nearestTownName;
-	 	var nearestTownDistance = $scope.nearestTownDistance;	
-
+	 	var nearestTownDistance = $scope.nearestTownDistance;
+	 	var image = image;	
+	 	console.log("This is the path to the image: " + image);
 	 	/*
 			Need to include wildlife and monitor info.
 	 	*/
@@ -193,11 +194,14 @@ angular.module('app')
 			project_map_layer_type: corridorData.geopoints.geometry.type,
 			project_area: corridorData.area,
 			project_town: nearestTown,
-			project_distance_to_town: nearestTownDistance
+			project_distance_to_town: nearestTownDistance,
+			project_image: image
 
 		//	project_monitors : corridorData.monitors
 		}
+
 		var inspectProjectData = JSON.stringify(projectData);
+		console.log(inspectProjectData);
 		projectAdd = wFProjectFactory.addProject(projectData);
 		$location.url('/dashboard');
 	}

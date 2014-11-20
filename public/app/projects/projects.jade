@@ -2,18 +2,20 @@ div(class="main-container" ng-controller="wFProjectCtrl")
 	.container
 		.col-md-9(class="col-9-project-container")
 			h4 Projects	
-			div(class="projectOutline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+			div(class="project-outline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 				div(class="col-{{$index % 4}}")
 					p
-					b Name: 
-					a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
-					b Description: 
-					{{project.project_description}} <br> 
-					b Amount Required: 
-					{{project.project_funding_required}} <br> 
-					b Total to Date:
-					{{project.total_contributions}} <br>
-					b End Date:
-					{{project.project_end_date | date}} <br>
-					a(ng-href="/projects/contribute/{{project._id}}") Contribute
+					img(ng-src="data:image/png;base64, {{projectImage}}")
+					b 
+						a(class="project-thumb-project-name" href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
+					div
+						{{project.project_description}} <br> 
+						b Amount Required: 
+						{{project.project_funding_required}} <br> 
+						b Total to Date:
+						{{project.total_contributions}} <br>
+						b End Date:
+						{{project.project_end_date | date}} <br>
+					div progress bar
+					a(class="project-thumb-project-contribution" ng-href="/projects/contribute/{{project._id}}") Contribute
 	

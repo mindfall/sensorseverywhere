@@ -20,7 +20,9 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										div.accordion-project-summary
 											span {{project.project_description}}
 								tr.project-controls
-									td.control-cell(ng-controller="wFFileUploadCtrl")
+									td.control-cell
+										img(ng-src="data:image/png;base64, {{projectImage}}")
+									td.control-cell(ng-controller="wFFileUploadCtrl" ng-hide="true")
 										input(type="hidden" ng-model="fileUpload")
 										input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
 									td.control-cell
@@ -108,7 +110,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										span(class="accordion-group-heading button btn-default accordion-remove-group" ng-click="removeGroup(group._id)") X
 
 								//img(ng-src="data:image/png;base64,{{groupImage}}")
-								button(class="btn btn-default" ng-click="getFiles(group.filename, 'group'); toggleDocumentOverlay();") View Group Documents
+								button(class="btn btn-default" ng-click="getFiles('group', 'groupOne', 'Abbotts_Booby.jpg'); toggleDocumentOverlay();") View Group Documents
 								br
 								span {{group.groupDescription}}
 
@@ -182,4 +184,3 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 			div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
 				div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbspX
 					img(ng-src="data:image/png;base64,{{groupImage}}")
-					{{groupImage}}

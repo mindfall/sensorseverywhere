@@ -6,6 +6,8 @@ angular.module('app')
         //$files: an array of files selected, each file has name, size, and type.
         for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
+          console.log(file.name);
+          $scope.project_image = file.name;
           $scope.upload = $upload.upload({
             url: '/api/' + model + 'FileUploads', //upload.php script, node.js route, or servlet url
             method: 'POST',
