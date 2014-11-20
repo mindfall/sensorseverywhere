@@ -1,4 +1,4 @@
-;angular.module('app')
+angular.module('app')
   .factory('wFFileFactory', ['$rootScope', '$http', '$q', '$location', 'wFNotifier', 
     function($rootScope, $http, $q, $location, wFNotifier){
 

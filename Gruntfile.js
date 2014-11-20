@@ -96,6 +96,7 @@ module.exports = function (grunt) {
 					  'public/app/common/wFWildlifeFactory.js',
 					  'public/app/common/wFProjectFactory.js',
 					  'public/app/common/wFGroupFactory.js',
+					  'public/app/common/wFFileFactory.js',
 					  'public/app/common/wFMailService.js',
 					  'public/app/common/wFSocketIOFactory.js',
 					  'public/app/common/wFTaskFactory.js',
