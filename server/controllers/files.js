@@ -41,9 +41,12 @@ exports.taskFiles = function(req, res){
 
 exports.projectFiles = function(req, res){
 
-	var projectFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName;
-	var groupFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName + '/group';
-	var taskFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName + '/task';
+	var server = '/var/www/sensorsevery.com/';
+	var local = '/home/miriad/codes/wildfire/';
+
+	var projectFolderPath = server + 'server/uploads/project/' + req.params.folderName;
+	var groupFolderPath =  server + 'server/uploads/project/' + req.params.folderName + '/group';
+	var taskFolderPath =  server + 'server/uploads/project/' + req.params.folderName + '/task';
 	mkdirp(projectFolderPath, function(err) {
 		if(err) console.error(err)
 		else {
