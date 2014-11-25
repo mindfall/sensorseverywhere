@@ -5,8 +5,9 @@ div(class="main-container" ng-controller="wFProjectCtrl")
 			div(class="project-outline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 				div(class="col-{{$index % 4}}")
 					p
-					img(ng-src="data:image/png;base64, {{projectImage}}")
-					b 
+					img(ng-src="data:image/png;base64, {{project.image}}")
+					b
+						br 
 						a(class="project-thumb-project-name" href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
 					div
 						{{project.project_description}} <br> 

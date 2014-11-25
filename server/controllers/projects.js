@@ -1,7 +1,12 @@
 var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
 	Group = mongoose.model('Group'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	fs = require('fs');
+/*var util = require('util');
+var mime = require('mime'); 
+var path = require('path');
+var group = require('../controllers/groups');*/
 
 exports.getProjects = function(req, res){
 	Project.find({}).exec(function(err, collection){
@@ -51,6 +56,8 @@ exports.createProject = function(req, res, next){
 	var project_monitors = [];
 
 	var projectImage = projectData.project_image;
+
+
 /*	var wildlifeComments = {
 		poster: req.body.wildlife_comment_owner,
 		comment: req.body.wildlife_comment

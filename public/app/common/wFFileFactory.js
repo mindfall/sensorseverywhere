@@ -12,11 +12,10 @@ angular.module('app')
                 secondaryLevel: secondaryLevel,
                 filename: filename
               };
-              $http({method: 'GET', url: '/api/getFiles/' + fileObj.topLevel + '/' + fileObj.secondaryLevel + '/' + fileObj.filename })
+              $http({method: 'GET', url: '/api/getProjectFiles/' + fileObj.topLevel + '/' + fileObj.secondaryLevel + '/' + fileObj.filename })
                 .success(function(data, success, headers, config) {
                   dfd.resolve(data);
                   var image = data;
-
                 }).
                 error(function(data, status, headers, config) {
                   dfd.reject(status);

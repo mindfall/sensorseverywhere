@@ -2,6 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var mime = require('mime'); 
 var path = require('path');
+var mkdirp = require('mkdirp');
 var group = require('../controllers/groups');
 
 var imageName = null;
@@ -10,7 +11,7 @@ exports.groupFiles = function(req, res){
 
 	imageName = req.files.file.name;
 	var filePath = req.files.file.path;
-	var serverPath = '/uploads/group-files/' + req.files.file.name;
+	var serverPath = '/uploads/group/' + req.files.file.name;
 	moveImage(imageName, filePath, serverPath);
 
 	res.send({
@@ -29,7 +30,7 @@ exports.taskFiles = function(req, res){
 
 	var imageName = req.files.file.name;
 	var filePath = req.files.file.path;
-	var serverPath = '/uploads/task-files/' + req.files.file.name;
+	var serverPath = '/uploads/task/' + req.files.file.name;
 
 	moveImage(imageName, filePath, serverPath);
 
@@ -40,9 +41,27 @@ exports.taskFiles = function(req, res){
 
 exports.projectFiles = function(req, res){
 
+	var projectFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName;
+	var groupFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName + '/group';
+	var taskFolderPath = '/home/miriad/codes/wildfire/server/uploads/project/' + req.params.folderName + '/task';
+	mkdirp(projectFolderPath, function(err) {
+		if(err) console.error(err)
+		else {
+			mkdirp(groupFolderPath, function(err) {
+				if(err) console.log(err);
+				else console.log('Group Folder created.');
+			})
+			mkdirp(taskFolderPath, function(err) {
+				if(err) console.log(err);
+				else console.log('Task folder created.');
+			})
+			console.log('Success' + projectFolderPath);
+		}
+	});
+	var serverPath = projectFolderPath + '/' + req.files.file.name;
+
 	var imageName = req.files.file.name;
 	var filePath = req.files.file.path;
-	var serverPath = '/uploads/project-files/' + req.files.file.name;
 
 	moveImage(imageName, filePath, serverPath);
 
@@ -55,12 +74,10 @@ exports.projectFiles = function(req, res){
 function moveImage(imageName, filePath, serverPath) {
 	fs.rename(
 	 	filePath,
-	 	'/home/miriad/codes/wildfire/server/' + serverPath,
+	 	serverPath,
 	 	function(error) {
 	 		if(error) {
-	 			res.send({
-	 				error: 'Whoops, something is not quite right. ' + error
-	 			});
+	 			console.log("ERROR: " + error);
 	 			return;
 	 		} else {
 	 			return imageName;
@@ -70,26 +87,25 @@ function moveImage(imageName, filePath, serverPath) {
 }
 
 
-exports.getFiles = function(req, res) {
+exports.getProjectFiles = function(req, res) {
 
 	var topLevel = req.params.topLevel;
 	var secondaryLevel = req.params.secondaryLevel;
 	var filename = req.params.filename;
-
+	console.log('Req.params.filename is: ' + filename);
 
 	var path = __dirname + '/../uploads/' + topLevel + '/' + secondaryLevel + '/' + filename;
-	console.log('THE PATH IS:  ' + path);
 	var file = '';
-	if(filename === null ) {
+	if(filename !== null ) {
 
-		file = filename;
+		console.log('The file name is: ' + filename);
 	} else {
 
 		file = 'not_available.png';
 	}
 
-	var filepath = path + file;
-
+	var filepath = path;
+	console.log(filepath);
 	fs.exists(path, function(exists) {
 		if(exists) {
 			fs.readFile(path, function(err, contents) {

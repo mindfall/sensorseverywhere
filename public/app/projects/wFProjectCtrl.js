@@ -36,19 +36,31 @@ angular.module('app')
 		*/
 
 		$scope.getProjects = function() {
-
+			var imageArray = [];
 			var projectList = wFProjectFactory.getProjects();
+		
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
 					var image = wFFileFactory.getFiles('project', projectList[i].project_name, projectList[i].project_image);
-					image.then(function(files){
-			            $scope.projectImage = files;
-		            }, function(status){
-		            	console.log(status);
-		            });
-
-					projectArray.push(projectList[i]);
+					image.then(function(image){
+						imageArray.push(image);
+					}), function(status) {
+						console.log(status);
+					};
+					
 				}
+
+				setTimeout(function() { 
+					for(var i = 0; i < imageArray.length; i++) {
+						//$scope.projectImage = imageArray[0];
+						projectList[i].image = imageArray[i];
+						console.log(imageArray[4]);
+						projectArray.push(projectList[i]);
+					}
+					
+					$scope.$apply();
+				}, 1000);
+			
 
 				$scope.projects = projectArray;
 			}, function(status){

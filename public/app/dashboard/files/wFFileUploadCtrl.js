@@ -2,14 +2,16 @@ angular.module('app')
   .controller('wFFileUploadCtrl', ['$scope', '$upload',
     function($scope, $upload) {
      $scope.onFileSelect = function($files, model) {
-
         //$files: an array of files selected, each file has name, size, and type.
         for (var i = 0; i < $files.length; i++) {
+          var folderName = '';
           var file = $files[i];
-          console.log(file.name);
+          if($scope.projectName !== '') {
+            folderName = $scope.projectName;
+          }
           $scope.project_image = file.name;
           $scope.upload = $upload.upload({
-            url: '/api/' + model + 'FileUploads', //upload.php script, node.js route, or servlet url
+            url: '/api/' + model + 'FileUploads/' + folderName, 
             method: 'POST',
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined},

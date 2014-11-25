@@ -67,9 +67,8 @@ module.exports = function(app){
 	//app.post('/api/mailAttachments', files.mailUploads);
 	app.post('/api/groupFileUploads', files.groupFiles);
 	app.post('/api/taskFileUploads', files.taskFiles);
-	app.post('/api/projectFileUploads', files.projectFiles);
-	app.get('/api/getFiles/:topLevel/:secondaryLevel/:filename', files.getFiles);
-	//app.get('/api/projectFiles/:name', files.getProjectFiles);
+	app.post('/api/projectFileUploads/:folderName', files.projectFiles);
+	app.get('/api/getProjectFiles/:topLevel/:secondaryLevel/:filename', files.getProjectFiles);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params);
