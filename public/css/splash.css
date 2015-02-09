@@ -43,6 +43,7 @@
   .splash-content {
     width: 50% !important;
     margin-left: 0 auto;
-    top: 0%;
+    top: 0;
+    left: 0;
   }
 }
