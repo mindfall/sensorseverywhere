@@ -1,27 +1,25 @@
-
 .container(ng-controller="wFContributionCtrl")
+	
+	h3 Thanks for thinking of us here at {{project_name}}
+	div(ng-show="contributeForm")
+		div(ng-model="contributeForm") How much would you like to contribute?
+			input(ng-model="c_amount" type="number")
+		div
+			b(ng-click="contributionAmount(c_amount)") Contribute
+	div(ng-show="creditCardForm")
+		div You are contributing {{contribution | currency}} to project {{project_name}}
+			span(style="color: blue" ng-click="changeContribution()") Change
+		div(ng-model="creditCardForm")
+			
+			form(stripe-form="stripeCallback" name="checkoutForm")
+				input(placeholder="Card Number" ng-model="number" payment-format="card" payments-validate="card" name="card")
+				input(placeholder="Expiration" ng-model="expiry" payment-format="expiry" payments-validate="expiry" name="expiry")
+				input(placeholder="CVC" ng-model="cvc" payment-format="cvc" payments-validate="cvc" name="cvc")
 
-
-	.well
-		form.form-horizontal(name="contributeForm")
-			fieldset
-				legend Contributions to {{project_name}}
-
-					.form-group
-						.col-md-8
-							input.form-control(name="amount", type="text", placeholder="Contribution" ng-model="amount" )
-					.form-group
-						.col-md-8
-							input.form-control(name="cc_number", type="text", placeholder="Credit Card Number" ng-model="cc_number" )
-					.form-group
-						.col-md-8
-							input.form-control(name="cc_exp_month", type="number", placeholder="Credit Card Expiration Month" min="0" max="12" ng-model="cc_exp_month" )
-					.form-group
-						.col-md-8
-							input.form-control(name="cc_exp_year", type="number", placeholder="Credit Card Expiration Year" min="2014" max="2020" ng-model="cc_exp_year" )
-					.form-group
-						.col-md-8
-							input.form-control(name="cc_csv", type="number", placeholder="Credit Card CSV" ng-model="cc_csv" )
-
-		button(ng-click="contribution(amount, project_name)") Pay with Credit Card		
-
+				button(type="submit") Submit	
+			div(ng-if="checkoutForm.card.$invalid")
+				span Error: invalid card number!
+			div(ng-if="checkoutForm.expiry.$invalid")
+				span Error: invalid expiry number!
+			div(ng-if="checkoutForm.cvc.$invalid")
+				span Error: invalid cvc number!	

@@ -1,0 +1,17 @@
+
+.container(ng-controller="wFContributionCtrl")
+
+	
+
+		form(stripe-form="stripeCallback" name="checkoutForm")
+			input(placeholder="Card Number" ng-model="number" payment-format="card" payments-validate="card" name="card")
+			input(placeholder="Expiration" ng-model="expiry" payment-format="expiry" payments-validate="expiry" name="expiry")
+			input(placeholder="CVC" ng-model="cvc" payment-format="cvc" payments-validate="cvc" name="cvc")
+
+			button(type="submit") Submit	
+		div(ng-if="checkoutForm.card.$invalid")
+			span Error: invalid card number!
+		div(ng-if="checkoutForm.expiry.$invalid")
+			span Error: invalid expiry number!
+		div(ng-if="checkoutForm.cvc.$invalid")
+			span Error: invalid cvc number!	

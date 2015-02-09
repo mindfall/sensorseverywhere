@@ -169,7 +169,32 @@ angular.module('app')
 					return dfd.promise;
 				},
 
+				makePayment : function(token, amount, project){
+
+					var dfd = $q.defer();
+					$http.post('/api/makePayment/' + token + '/' + amount + '/' + project)
+						.success(function(data, status, headers, config) {
+							
+							var dfd = $q.defer();
+							$http({method: 'PUT', url: '/api/projects/' + project, data:{amount: amount}})
+								.success(function(data, status, headers, config) {
+									wFNotifier.notify('Thanks. You\'ve just made a contribution of $' + amount + ' to project ' + name + ' was successfully recieved.');
+									$location.path('/projects');
+								})
+								.error(function(data, status, headers, config){
+									console.log(status);
+								});
+
+						})
+						.error(function(data, status, headers, config) {
+							dfd.reject(data);
+						});
+
+					return dfd.promise;
+				}/*,
+
 				contributeToProject: function(id, amount, name) {
+					console.log('cTP called');
 					var dfd = $q.defer();
 					$http({method: 'PUT', url: '/api/projects/' + id, data:{amount: amount}})
 						.success(function(data, status, headers, config) {
@@ -181,6 +206,6 @@ angular.module('app')
 						});
 					return dfd.promise;
 					
-				}
+				}*/
 		} 
 	}]);

@@ -6,7 +6,8 @@
 	'ui.router',
 	'bgDirectives',
 	'xeditable',
-	'angularFileUpload'
+	'angularFileUpload',
+	'angularPayments'
 ]);
 /* I'm writing a comment here. */
 
@@ -26,7 +27,7 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 	$stateProvider
 		.state('/', {
 				url: '/',
-				templateUrl: '/partials/main/home', 
+				templateUrl: '/partials/main/how-to-use', 
 				controller: 'wFMainCtrl'
 		})
 		.state('dashboard', {

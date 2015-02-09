@@ -2,7 +2,9 @@ angular.module('app')
 	.controller('wFContributionCtrl', ['$scope','$stateParams','$location','wFProjectFactory','wFIdentity','wFNotifier',
 		function($scope, $stateParams, $location, wFProjectFactory, wFIdentity, wFNotifier){
 
-
+	$scope.contribution = '';
+	$scope.contributeForm = true;
+	$scope.creditCardForm = false;
 
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 	if(userIsLoggedIn == true){
@@ -14,37 +16,49 @@ angular.module('app')
    		//console.log('You must be signed in to access this page.');
    	}
 	
-//	var contribute = [];
-	var cc_name = $scope.name;
-	var cc_amount = $scope.amount;
-	var cc_number = $scope.cc_number;			
-	var cc_exp_month = $scope.cc_exp_month;
-	var cc_exp_year = $scope.cc_exp_year;
-	var cc_csv = $scope.cc_csv;
+	var cc_number = $scope.number;			
+	var cc_expiry = $scope.expiry;
+	var cc_csv = $scope.cvc;
 
 	$scope.project_id = $stateParams.id;
 
-	var contribute = wFProjectFactory.viewProjectDetails($stateParams.id);
+	var contribute = wFProjectFactory.getProjectById($stateParams.id);
 
 	contribute.then(function(contribute){
+		console.log(contribute);
 		$scope.project_name = contribute.project_name;
 	}, function(status){
 		console.log(status);
 	});
 
+	$scope.contributionAmount = function(amount) {
+		$scope.contribution = amount;
+		$scope.contributeForm = false;
+		$scope.creditCardForm = true;
+	}
 
-	$scope.contribution = function(amount, name) {
+	$scope.changeContribution = function() {
+		$scope.c_amount = '';
+		$scope.creditCardForm = false;
+		$scope.contributeForm = true;
+	}
 
-		var contribtionAmount = wFProjectFactory.contributeToProject($stateParams.id, amount, name);
-
-		contribtionAmount.then(function(contribtionAmount){
-			console.log('The amount you have contributed is: ' + contributionAmount);
-		}, function(status){
+	$scope.stripeCallback = function(code, result) {
+		console.log('Youre contributing ' + $scope.contribution + ' to project ' + $scope.project_id);
+		if(result.error) {
+			console.log('It failed: ' + result.error.message);
+		} else {
+			console.log('Success: ' + result.id);
+		}
+		var sendToken = wFProjectFactory.makePayment(result.id, $scope.contribution, $scope.project_id);
+		sendToken.then(function(tokenResponse){
+			$scope.message = tokenResponse;
+		}, function(status) {
 			console.log(status);
 		});
 	//	console.log("Thanks for contributing " + amount + ", your cc will be debited upon success of the funding application.");
 	//	$location.url('/fund/' + $stateParams.id);
-	}
+	};
 
 
 

@@ -32,6 +32,7 @@ module.exports = function(app){
 	app.post('/api/createProject', projects.createProject);
 	app.post('/api/addGroupToProject', projects.addGroupToProject);
 	app.post('/api/removeProject/:id', projects.removeProject);
+	app.post('/api/makePayment/:token/:amount/:project', projects.makePayment);
 
 	app.get('/api/groups', groups.getGroups);
 	app.get('/api/groupById/:id', groups.getGroupById);

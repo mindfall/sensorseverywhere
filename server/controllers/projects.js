@@ -2,7 +2,9 @@ var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
 	Group = mongoose.model('Group'),
 	User = mongoose.model('User'),
-	fs = require('fs');
+	fs = require('fs'),
+	stripe = require("stripe")("sk_test_5vk3CX0YjSCSipm9B0Bmuu7U");
+
 /*var util = require('util');
 var mime = require('mime'); 
 var path = require('path');
@@ -291,6 +293,29 @@ exports.addTaskToProject = function(req, res) {
 		function(){
 			res.send(req.body);
 		});
+}
+
+exports.makePayment = function(req, res) {
+	var token = req.params.token;
+	var amount = req.params.amount;
+	var project = req.params.project;
+	console.log(token);
+	console.log(amount);
+	console.log(project);
+	//console.log(data.token + '    ' + data.amount + '    ' + data.project);
+	var charge = stripe.charges.create({
+		amount: amount, 
+		currency: "aud",
+		token: token,
+		description: "payment to project " + project
+	}, function(err, charge) {
+		if(err && err.type === 'StripeCardError') {
+			console.log('The card has been declined.');
+		} else {
+			res.send('success');
+		}
+	});
+
 }
 
 exports.updateTotalContributions = function(req, res){
