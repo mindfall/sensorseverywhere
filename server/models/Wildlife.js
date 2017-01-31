@@ -13603,7 +13603,7 @@ function createDefaultWildlife(){
 		  	console.log('Wildlife collection created with classifications.');
 		  }
 		);
-	
+
 	})
 }
 

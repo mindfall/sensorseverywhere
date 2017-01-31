@@ -199,47 +199,47 @@ exports.updateProject = function(req, res) {
 
 	});
 
-	Project.findById(req.params.id, function(err, project) {
-		Project.update(
-		{ 
-			$set: {
-				project_name: name,
-			},
-		},
+	// Project.findById(req.params.id, function(err, project) {
+	// 	Project.update(
+	// 	{ 
+	// 		$set: {
+	// 			project_name: name,
+	// 		},
+	// 	},
 
-		function(err, project) {
-			res.send(project);
-		});
+	// 	function(err, project) {
+	// 		res.send(project);
+	// 	});
 
-	});
+	// });
 
-	Project.findById(req.params.id, function(err, project) {
-		Project.update(
-		{ 
-			$set: {
-				project_description: description,
-			},
-		},
+	// Project.findById(req.params.id, function(err, project) {
+	// 	Project.update(
+	// 	{ 
+	// 		$set: {
+	// 			project_description: description,
+	// 		},
+	// 	},
 
-		function(err, project) {
-			res.send(project);
-		});
+	// 	function(err, project) {
+	// 		res.send(project);
+	// 	});
 
-	});
+	// });
 
-	Project.findById(req.params.id, function(err, project) {
-		Project.update(
-		{ 
-			$set: {
-				project_type: type,
-			},
-		},
+	// Project.findById(req.params.id, function(err, project) {
+	// 	Project.update(
+	// 	{ 
+	// 		$set: {
+	// 			project_type: type,
+	// 		},
+	// 	},
 
-		function(err, project) {
-			res.send(project);
-		});
+	// 	function(err, project) {
+	// 		res.send(project);
+	// 	});
 
-	});
+	// });
 
 }
 

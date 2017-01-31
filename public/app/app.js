@@ -9,7 +9,6 @@
 	'angularFileUpload',
 	'angularPayments'
 ]);
-/* I'm writing a comment here. */
 
 angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 
@@ -27,27 +26,27 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 	$stateProvider
 		.state('/', {
 				url: '/',
-				templateUrl: '/partials/main/how-to-use', 
+				templateUrl: '/partials/main/home',
 				controller: 'wFMainCtrl'
 		})
 		.state('dashboard', {
 				url: '/dashboard',
-				templateUrl: '/partials/dashboard/dashboard', 
+				templateUrl: '/partials/dashboard/dashboard',
 				controller: 'wFDashboardCtrl'
 		})
 		.state('create-project', {
 				url: '/create-project',
-				templateUrl: '/partials/projects/create-project', 
+				templateUrl: '/partials/projects/create-project',
 				controller: 'wFWildlifeSelectCtrl'
 		})
 		.state('how-to-use', {
 				url: '/how-to-use',
-				templateUrl: '/partials/main/how-to-use', 
+				templateUrl: '/partials/main/how-to-use',
 				controller: 'wFHowToCtrl'
 		})
 		.state('about', {
 				url: '/about',
-				templateUrl: '/partials/main/about', 
+				templateUrl: '/partials/main/about',
 				controller: 'wFAboutCtrl'
 		})
 		.state('contact', {
@@ -57,12 +56,12 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 		})
 		.state('projects', {
 				url: '/projects',
-				templateUrl: '/partials/projects/projects', 
+				templateUrl: '/partials/projects/projects',
 				controller: 'wFProjectCtrl'
 		})
 		.state('projects/contribute/:id', {
 				url: '/projects/contribute/:id',
-				templateUrl: '/partials/projects/contribute', 
+				templateUrl: '/partials/projects/contribute',
 				controller: 'wFContributionCtrl'
 		})
 		.state('projects/getProject/:id/', {
@@ -72,19 +71,19 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 		})
 		.state('projects/project-details/:id', {
 				url: '/projects/project-details/:id',
-				templateUrl: '/partials/projects/project-details', 
+				templateUrl: '/partials/projects/project-details',
 				controller: 'wFProjectDetailsCtrl'
 		})
 		.state('admin/users', {
 				url: '/admin/users',
-				templateUrl: '/partials/admin/user-list', 
+				templateUrl: '/partials/admin/user-list',
 				controller: 'wFUserListCtrl',
 				resolve: routeRoleChecks.admin
 		})
 		.state('signup', {
 				url: '/signup',
 				templateUrl: '/partials/account/signup',
-				controller: 'wFSignupCtrl', 
+				controller: 'wFSignupCtrl',
 		})
 		.state('groupSignup/:gid', {
 				url: '/groupSignup/:gid',

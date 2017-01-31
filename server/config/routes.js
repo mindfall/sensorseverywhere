@@ -64,7 +64,7 @@ module.exports = function(app){
 	app.post('/api/sendInvite', mail.sendInvitationEmail);
 	app.post('/api/sendEnquiry', mail.sendEnquiry);
 	app.post('/api/sendMessage', mail.sendMessage);
-	
+
 	//app.post('/api/mailAttachments', files.mailUploads);
 	app.post('/api/groupFileUploads', files.groupFiles);
 	app.post('/api/taskFileUploads', files.taskFiles);
@@ -88,7 +88,9 @@ module.exports = function(app){
 
 	//set to all so that any unspecified views will default to index
 	//this is designed for client side routing
-	app.get('*', function(req, res) {
+	//change to app.get('*', function(req, res)... ) on server
+	app.get('/', function(req, res) {
+
 		res.render('index', {
 			bootstrappedUser: req.user
 		});
