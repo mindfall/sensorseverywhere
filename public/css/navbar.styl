@@ -1,54 +1,44 @@
 /* NAVBAR */
 
 .navbar 
-	background-color #fff
-	height 100px
+	background-color #616161
+	height 50px
 
 .navbar-header a.navbar-brand
 	margin-top -5px
 	padding-left 25px
 	h6
 		color #ccc
-	&hover 
-		color black
-	&active
-		color black
-	&link
-		color black
-
-.navbar-nav > li.dropdown > a:hover, .navbar-nav > li.dropdown > a:active, .navbar-nav > li.dropdown > a:focus
-	color black
 
 .navbar-nav > li.dropdown 
-	background-color white
+	background-color #616161
+	height 40px
 
 .navbar-nav > li.dropdown > a
 	color #999999
 
 #logo 
 	width 33px
-	height 50px
+	height 33px
 	margin-top 5px
-	
 	display block
-	background url('../img/wFlogo.png')
+	background url('../img/logo.png')
+	background-repeat no-repeat
 	float left
 
 .slogan
 	width 230px
 
-.navbar-header:hover a.navbar-brand:hover
-	color black
+.navbar-header:hover a.navbar-brand:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:active,
+.navbar-nav > li.dropdown > a:hover, 
+.navbar-nav > li.dropdown > a:active, 
+.navbar-nav > li.dropdown > a:focus
+	color #fff !important
 
 .navbar-inverse .navbar-nav > li > a
-	&hover 
-		color black
-	&active
-		color black
-	&link
-		color black
-	&focus
-		color black
+	color #999
 
 
 
@@ -64,6 +54,16 @@
 .navbar-form
 	.form-group
 		margin-left 10px
+		.form-control, .btn 
+			height 25px
+	.btn-primary
+		background-color rgba(0,0,0,0)
+		border-color rgba(0,0,0,0)
+		color #999
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary 
+		background-color rgba(0,0,0,0)
+		border-color rgba(0,0,0,0)
+		color #fff
 	button
 		margin-left 10px
 
@@ -82,14 +82,17 @@ ul.nav.navbar-nav a.navbar-nav-link
 .toast-success
 	background-color #009900
 
+.navbar
+	height 50px
+	margin-left 1px
+	position fixed
+	width 100%
+	top: 0
+
 /* END NAVBAR */
 
 
 @media only screen and (min-width: 320px)
-	.navbar	
-		height 240px
-		margin-top -35%
-		border none
 	#small-screen-login
 		list-style-type none
 		li a
@@ -105,12 +108,10 @@ ul.nav.navbar-nav a.navbar-nav-link
 		display inline-flex
 		text-align center
 		margin-left -130px
-		margin-top 122px
 		position absolute
 		width 300px
 	.navbar-form
 		position absolute
-		margin-top 180px
 		left 50px
 	#logo 
 		margin-left 10px
@@ -120,7 +121,6 @@ ul.nav.navbar-nav a.navbar-nav-link
 	.navbar-right
 		position absolute
 		width 235px
-		top 10px
 		right -20%
 	.navbar-form
 		border-top none
@@ -130,46 +130,27 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 
 @media only screen and (min-width: 480px)
-	.navbar
-		height 180px
-		margin-top -23%
 	.navbar-form
-		margin-top 17%
 		margin-left 38%
 	ul.main_links
 		margin-left -90px
-		margin-top 50%
 	.navbar-right
 		right -10%
 
 
 
 @media only screen and (min-width: 600px)
-	.navbar
-		height 145px
-		margin-top -19%
-	ul.main_links
-		margin-top 10px
 	.navbar-form
-		margin-top 14%
 		margin-left 50%
 
 @media only screen and (min-width: 768px)
-	.navbar	
-		margin-top -14% !important
-	ul.main_links
-		margin-top 40px 
 	.navbar-header
 		padding-left 5px
 	#logo 
 		margin-left -18px
 	.navbar-form
-		margin-top 21%
 		left -3% !important
 
-@media only screen and (min-width: 1024px)
-	.navbar	
-		margin-top -11% !important
 
 		
 
@@ -178,23 +159,12 @@ ul.nav.navbar-nav a.navbar-nav-link
 		display inline
 		margin-right 10%
 		width 100%
-		margin-top 20px
-	.navbar
-		height 110px
-		margin-left 1px
-		margin-top -4% !important
-		padding-top 10px
-		top 8%
-		position fixed
-		width 100%
 	.navbar-nav > li.dropdown 
 		position absolute
 		right 13%
 	.navbar-form
-		margin-top 0%
 		left 20% !important
 	ul.main_links
-		margin-top 5px !important
 		width 50%
 		margin-left 25%
 		left -25%

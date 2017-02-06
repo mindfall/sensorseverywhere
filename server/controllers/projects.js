@@ -12,8 +12,14 @@ var group = require('../controllers/groups');*/
 
 exports.getProjects = function(req, res){
 	Project.find({}).exec(function(err, collection){
-		res.send(collection);
-	})
+
+		if(err){
+			res.status(400);
+			return res.send({reason:err.toString()});
+		} else {
+			res.send(collection);
+		}
+	});
 };
 
 exports.createProject = function(req, res, next){

@@ -77,7 +77,7 @@ module.exports = function (grunt) {
 					  'public/vendor/leaflet-0.7.1/js/draw/edit/EditToolbar.js',
 					  'public/vendor/leaflet-0.7.1/js/draw/edit/handler/EditToolbar.Edit.js',
 					  'public/vendor/leaflet-0.7.1/js/draw/edit/handler/EditToolbar.Delete.js',
-					  'publichttp://www.mapquestapi.com/sdk/leaflet/v1.0/mq-map.js?key=Fmjtd%7Cluur2du2l9%2C8l%3Do5-9ar2qa',
+					  //'publichttp://www.mapquestapi.com/sdk/leaflet/v1.0/mq-map.js?key=Fmjtd%7Cluur2du2l9%2C8l%3Do5-9ar2qa',
 					  'public/vendor/terraformer/terraformer.js',
 					  'public/vendor/terraformer-wkt-parser/terraformer-wkt-parser.js',
 					  'public/vendor/leaflet-google.js',

@@ -24,8 +24,7 @@ html,
 .row-map-container,
 .content,
 .main-container {
-  height: 75%;
-  margin-top: 50px;
+  height: 100%;
 }
 .col-3-selection-container {
   margin-left: 75%;
@@ -42,7 +41,6 @@ html,
 }
 body {
   height: 700px;
-  padding-top: 61px;
 }
 .container {
   height: 5% !important;
@@ -100,6 +98,9 @@ footer p {
   border-top: 1px solid #d7e0e2;
 }
 /* PROJECT / FUND LIST PAGE */
+section.content {
+  margin-top: 50px;
+}
 #center-pane {
   margin-left: 15%;
 }

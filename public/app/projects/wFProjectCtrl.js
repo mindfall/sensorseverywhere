@@ -36,21 +36,22 @@ angular.module('app')
 		*/
 
 		$scope.getProjects = function() {
-			var imageArray = [];
+			var imageArray, projectArray = [];
 			var projectList = wFProjectFactory.getProjects();
 		
 			projectList.then(function(projectList){
 				for(var i = 0; i < projectList.length; i++){
-					var image = wFFileFactory.getFiles('project', projectList[i].project_name, projectList[i].project_image);
+					projectArray.push(projectList[i])
+			/*		var image = wFFileFactory.getFiles('project', projectList[i].project_name, projectList[i].project_image);
 					image.then(function(image){
 						imageArray.push(image);
 					}), function(status) {
 						console.log(status);
-					};
+					};*/
 					
 				}
 
-				setTimeout(function() { 
+/*				setTimeout(function() { 
 					for(var i = 0; i < imageArray.length; i++) {
 						//$scope.projectImage = imageArray[0];
 						projectList[i].image = imageArray[i];
@@ -59,7 +60,7 @@ angular.module('app')
 					}
 					
 					$scope.$apply();
-				}, 1000);
+				}, 1000);*/
 			
 
 				$scope.projects = projectArray;
@@ -106,12 +107,12 @@ angular.module('app')
 		    } else {
 		      $scope.message = '';
 		      for(var i = 0; i < getUserProjects.length; i++){
-					    var image = wFFileFactory.getFiles('project', getUserProjects[i].project_name, getUserProjects[i].project_image);
-					    image.then(function(files){
-		                $scope.projectImage = files;
-		            }, function(status){
-		              console.log(status);
-		            });
+					    // var image = wFFileFactory.getFiles('project', getUserProjects[i].project_name, getUserProjects[i].project_image);
+					    // image.then(function(files){
+		       //          $scope.projectImage = files;
+		       //      }, function(status){
+		       //        console.log(status);
+		       //      });
 		        userProjects.push(getUserProjects[i]);
 		        //call to getProjectTasks using project id
 		        $scope.getProjectTasks(getUserProjects[i]._id);

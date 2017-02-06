@@ -6,11 +6,9 @@ angular.module('app')
 	L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
-	var mapquestLink = '<a href="http://www.mapquest.com//">MapQuest</a>';
-	var mapquestPic = '<img src="http://developer.mapquest.com/content/osm/mq_logo.png\">';
-	var mapQuestUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
-	var basemap = new L.TileLayer(mapQuestUrl, {
-										attibution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency. Tiles courtesy of '+mapquestLink+mapquestPic,
+	var esriUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+	var basemap = new L.TileLayer(esriUrl, {
+										attibution: '&copy; IGN',
 										maxZoom: 20, 
 										subdomains: ['otile1','otile2','otile3','otile4'],
 									});

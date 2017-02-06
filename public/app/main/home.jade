@@ -1,35 +1,16 @@
 div(class="main-container" ng-controller="wFMainCtrl")
 	//splash(ng-hide="splash")
-	div.front-page-top-row
-		.col-md-5.front-page-top-left-col
-			h3 OVERVIEW
-			div 
-				span Sensors Everywhere has been developed to empower people and their communities by creating a platform where the connection with their land and what it holds can be accessible and utilised with modern technology in a valuable way.
-				span It is designed to be easily adapted to the appropriate area of interest, allowing the specific information to be controlled and managed by those with local knowledge.
-				p
-				span Sensors Everywhere focuses on three major areas that contribute to the managing and safeguarding of our environment.
-			div
-				h5 
-					strong Monitoring
-				span Through the Sensors Everywhere interface, monitors can be attached to areas to capture data such as temperature, moisture, video and much more.
-			div 
-				h5 
-					strong Protection
-				span Sensors Everywhere provides the interface for your group to collboratively raise funds via crowdfunding to purchase lands. Or you can use this application to place a covenant on a parcel of land or form a trust around it.
-			div
-				h5 
-					Strong Community
-				span Sensors Everywhere has a mountain of tools to keep you in touch with members of your group and to manage the projects they are involved in.
-			p
-			div If you would like to find out how to use this application and what it could do for you click 
-				a(href="/how-to-use" target="_blank") here
+	//- div.front-page-top-row
+	//- 	.col-md-4.front-page-top-left-col
+	//- 		h3 OVERVIEW
+		
 
-		.col-md-7.front-page-map
-			.row(class="row-map-container")
-				.col-md-12(class="col-8-map-container")
-					div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
-						leaflet
-					span here is some filler text
+	//- 	.col-md-4.front-page-map
+	//- 		.row(class="row-map-container")
+	//- 			.col-md-12(class="col-8-map-container")
+	//- 				div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
+	//- 					leaflet
+	//- 				span here is some filler text
 		//- .col-md-2.front-page-top-right-col
 			//- .row
 			//- 	h4 Stuff
@@ -41,9 +22,11 @@ div(class="main-container" ng-controller="wFMainCtrl")
 	div.front-page-bottom-row
 		//- .col-md-1
 		.col-md-4.front-page-bottom-left-col
-			img(src="../../../img/page_images/soil-compaction.jpg" width="70%" height="60%" class="")
-			h4 Precision Agriculture
-			div Monitor the moisture and nutritional content of your farms soil. Track your animals or get alerts notifying you of open gates.
+			.row(class="row-map-container")
+				.col-md-12(class="col-8-map-container")
+					h4 Build a biolink
+					div(ng-controller="wFMapCtrl" id="map" class="map-frontpage")
+						leaflet
 
 		.col-md-4.front-page-bottom-middle-col
 			img(src="../../../img/page_images/koala.jpeg" width="70%" height="60%" class="")

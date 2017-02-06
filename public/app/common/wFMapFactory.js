@@ -149,8 +149,12 @@ angular.module('app')
 				.success(function(data, status, headers, config) {
 					dfd.resolve(data);
 					data  = JSON.stringify(data.geonames[0])
+					if(data === 'undefined') {
+						console.log('Could not find a nearest town.');
+					}
 				}).error(function(data, status, headers, config) {
 					dfd.reject(status);
+					
 				});
 
 			return dfd.promise;

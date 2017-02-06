@@ -4,11 +4,7 @@ div(class="main-container" ng-controller="wFProjectCtrl")
 			h4 Projects	
 			div(class="project-outline" ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 				div(class="col-{{$index % 4}}")
-					p
-					img(ng-src="data:image/png;base64, {{project.image}}")
-					b
-						br 
-						a(class="project-thumb-project-name" href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
+					h4 {{project.project_name}}	
 					div
 						{{project.project_description}} <br> 
 						b Amount Required: 
@@ -20,3 +16,8 @@ div(class="main-container" ng-controller="wFProjectCtrl")
 					div progress bar
 					a(class="project-thumb-project-contribution" ng-href="/projects/contribute/{{project._id}}") Contribute
 	
+		//- 		p
+			//- 		img(ng-src="data:image/png;base64, {{project.image}}")
+			//- 		b
+			//- 			br 
+			//- 			a(class="project-thumb-project-name" href="/projects/project-details/{{project.project_name}}") {{project.project_name}}<br>
