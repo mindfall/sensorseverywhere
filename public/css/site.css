@@ -2,6 +2,15 @@
 /*.ng-dirty { border 1px solid yellow }
 .ng-invalid.ng-dirty { border 1px solid red }
 .ng-valid.ng-dirty { border 1px solid green }*/
+body {
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 .document-overlay {
   display: block;
   position: relative;
@@ -20,12 +29,6 @@
   margin-right: 10px;
   border: 1px solid #808080;
 }
-html,
-.row-map-container,
-.content,
-.main-container {
-  height: 100%;
-}
 .col-3-selection-container {
   margin-left: 75%;
 }
@@ -38,9 +41,6 @@ html,
   border-left: 5px solid #d7e0e2;
   height: 100%;
   min-width: 100px;
-}
-body {
-  height: 700px;
 }
 .container {
   height: 5% !important;

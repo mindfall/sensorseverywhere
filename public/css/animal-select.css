@@ -1,10 +1,13 @@
 /* ANIMAL SELECTION AREA (.toolbar) */
+.selection-container {
+  height: 90%;
+  width: 19%;
+  float: left;
+}
 .selection-layout {
   height: 100%;
-  width: 95%;
-  margin-top: 1%;
+  width: 100%;
   margin-bottom: 30px;
-  position: absolute;
 }
 .selection-layout input {
   width: 100%;
@@ -18,15 +21,10 @@
   clear: both;
 }
 .selected-wildlife-container {
-  border: 3px solid #d7e0e2;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
   float: right;
   width: 100%;
   height: 91%;
   display: block;
-  margin-top: 4%;
   overflow-x: hidden;
 }
 .selectedWildlife {

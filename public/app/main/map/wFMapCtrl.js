@@ -2,7 +2,10 @@ angular.module('app')
 	.controller('wFMapCtrl', ['$scope', '$rootScope', '$location', '$timeout', 'wFMapFactory', 'wFIdentity', 'wFWildlifeFactory', 'wFProjectFactory',
 		function($scope, $rootScope, $location, $timeout, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
-	setMapHeight();
+	if($location.path().split('/')[1] === 'create-project') {
+		$("#map").height($(window).height() * .8).width($(window).width() * .75);
+	}
+
 	L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
@@ -29,6 +32,8 @@ angular.module('app')
 		scrollWheelZoom: false,
 		dragging: false
 	});
+
+	map.invalidateSize();
 
     new L.Control.GeoSearch({
         provider: new L.GeoSearch.Provider.OpenStreetMap(),
@@ -297,12 +302,6 @@ angular.module('app')
 	}
 
 }]);
-
-function setMapHeight(){
-	var map = document.getElementById('map');
-	map.style.height = '100%';
-}
-
 
 function customMarker() {
 	var customMarker;
