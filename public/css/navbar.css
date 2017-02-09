@@ -8,14 +8,14 @@
   padding-left: 25px;
 }
 .navbar-header a.navbar-brand h6 {
-  color: #00b0ff;
+  color: #ccc;
 }
 .navbar-nav > li.dropdown {
   background-color: #616161;
   height: 40px;
 }
 .navbar-nav > li.dropdown > a {
-  color: #999;
+  color: #ccc;
 }
 #logo {
   width: 33px;
@@ -38,7 +38,7 @@
   color: #00b0ff !important;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #999;
+  color: #ccc;
 }
 .navbar-inverse {
   border-bottom: 5px solid #d7e0e2;
@@ -57,7 +57,7 @@
 .navbar-form .btn-primary {
   background-color: rgba(0,0,0,0);
   border-color: rgba(0,0,0,0);
-  color: #999;
+  color: #ccc;
 }
 .navbar-form .btn-primary:hover,
 .navbar-form .btn-primary:focus,
@@ -78,7 +78,7 @@
 }
 ul.nav.navbar-nav a.navbar-nav-link {
   font-size: 1.1em;
-  color: #999;
+  color: #ccc;
 }
 .toast-top-right {
   top: 70px;
@@ -100,7 +100,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
   }
   #small-screen-login li a {
     text-decoration: none;
-    color: #999;
+    color: #ccc;
     position: absolute;
     margin-left: 110px;
     top: 25px;
@@ -127,7 +127,6 @@ ul.nav.navbar-nav a.navbar-nav-link {
     margin: 0 auto;
   }
   .navbar-right {
-    position: absolute;
     width: 235px;
     right: -20%;
   }
@@ -145,9 +144,6 @@ ul.nav.navbar-nav a.navbar-nav-link {
   }
   ul.main_links {
     margin-left: -90px;
-  }
-  .navbar-right {
-    right: -10%;
   }
 }
 @media only screen and (min-width: 600px) {
@@ -169,8 +165,7 @@ ul.nav.navbar-nav a.navbar-nav-link {
 @media only screen and (min-width: 1224px) {
   .navbar-right {
     display: inline;
-    margin-right: 10%;
-    width: 100%;
+    width: 50%;
   }
   .navbar-nav > li.dropdown {
     position: absolute;

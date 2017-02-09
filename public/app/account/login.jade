@@ -1,0 +1,10 @@
+.container.col-md-6.col-md-offset-3(ng-controller="wFNavBarLoginCtrl")
+  .well
+    form.form-horizontal(name="loginForm")
+      fieldset
+        legend Login
+        .form-group
+            input.form-control(placeholder="email", ng-model="username")
+        .form-group
+            input.form-control(type="password", placeholder="password", ng-model="password")
+        button.btn.btn-primary(ng-click="signin(username, password)") Sign In

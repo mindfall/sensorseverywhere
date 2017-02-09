@@ -10,9 +10,12 @@
 	'angularPayments'
 ]);
 
-angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
+angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider', 
+	function($routeProvider, $locationProvider, $stateProvider, $urlRouterProvider){
 
+	
 	$locationProvider.html5Mode(true);
+	$locationProvider.hashPrefix('');
 	var routeRoleChecks = {
 		admin: {	auth: function(wFAuth){
 				return wFAuth.authorizeCurrentUserForRoute('admin')
@@ -84,6 +87,11 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 				url: '/signup',
 				templateUrl: '/partials/account/signup',
 				controller: 'wFSignupCtrl',
+		})
+		.state('login', {
+				url: '/login',
+				templateUrl: '/partials/account/login',
+				controller: 'wFNavBarLoginCtrl',
 		})
 		.state('groupSignup/:gid', {
 				url: '/groupSignup/:gid',
