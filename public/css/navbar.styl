@@ -1,10 +1,6 @@
 @import "variables"
 
 /* NAVBAR */
-.glyphicon
-	color $font
-
-
 .navbar 
 	background-color $background
 	height 50px
@@ -13,14 +9,14 @@
 	margin-top -5px
 	padding-left 25px
 	h6
-		color #ccc
+		color $font-link-hover
 
 .navbar-nav > li.dropdown 
 	background-color #616161
 	height 40px
 
 .navbar-nav > li.dropdown > a
-	color #999999
+	color $font
 
 #logo 
 	width 33px
@@ -40,10 +36,10 @@
 .navbar-nav > li.dropdown > a:hover, 
 .navbar-nav > li.dropdown > a:active, 
 .navbar-nav > li.dropdown > a:focus
-	color #fff !important
+	color $font-link-hover !important
 
 .navbar-inverse .navbar-nav > li > a
-	color #999
+	color $font
 
 
 
@@ -64,7 +60,7 @@
 	.btn-primary
 		background-color rgba(0,0,0,0)
 		border-color rgba(0,0,0,0)
-		color #999
+		color $font
 	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary 
 		background-color rgba(0,0,0,0)
 		border-color rgba(0,0,0,0)
@@ -79,7 +75,7 @@
 
 ul.nav.navbar-nav a.navbar-nav-link
 	font-size 1.1em
-	color #999
+	color $font
 
 .toast-top-right
 	top 70px
@@ -102,7 +98,7 @@ ul.nav.navbar-nav a.navbar-nav-link
 		list-style-type none
 		li a
 			text-decoration none
-			color #999999
+			color $font
 			position absolute
 			margin-left 110px
 			top 25px

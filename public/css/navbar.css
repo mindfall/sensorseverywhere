@@ -1,7 +1,4 @@
 /* NAVBAR */
-.glyphicon {
-  color: #999;
-}
 .navbar {
   background-color: #616161;
   height: 50px;
@@ -11,7 +8,7 @@
   padding-left: 25px;
 }
 .navbar-header a.navbar-brand h6 {
-  color: #ccc;
+  color: #00b0ff;
 }
 .navbar-nav > li.dropdown {
   background-color: #616161;
@@ -38,7 +35,7 @@
 .navbar-nav > li.dropdown > a:hover,
 .navbar-nav > li.dropdown > a:active,
 .navbar-nav > li.dropdown > a:focus {
-  color: #fff !important;
+  color: #00b0ff !important;
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #999;
