@@ -90,9 +90,10 @@ footer {
   padding-right: 15px;
   bottom: 0;
   position: fixed;
-  height: 20px;
+  height: 10px;
   z-index: 300;
-  background-color: #fff;
+  background-color: #616161;
+  color: #999;
 }
 footer p {
   border-top: 1px solid #d7e0e2;

@@ -1,4 +1,7 @@
 /* NAVBAR */
+.glyphicon {
+  color: #999;
+}
 .navbar {
   background-color: #616161;
   height: 50px;

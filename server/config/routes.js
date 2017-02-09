@@ -89,7 +89,7 @@ module.exports = function(app){
 	//set to all so that any unspecified views will default to index
 	//this is designed for client side routing
 	//change to app.get('*', function(req, res)... ) on server
-	app.get('/', function(req, res) {
+	app.get('/*', function(req, res) {
 
 		res.render('index', {
 			bootstrappedUser: req.user
