@@ -28,7 +28,7 @@ angular.module('app')
 	var map = new L.Map('map', {
 		layers: [basemap],
 		center: new L.LatLng(-25, 135), //25, 135
-		zoom: 5,
+		zoom: 6,
 		scrollWheelZoom: false,
 		dragging: true
 	});
