@@ -30,7 +30,7 @@ angular.module('app')
 		center: new L.LatLng(-25, 135), //25, 135
 		zoom: 5,
 		scrollWheelZoom: false,
-		dragging: false
+		dragging: true
 	});
 
 	map.invalidateSize();
