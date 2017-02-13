@@ -12,7 +12,7 @@ angular.module('app')
 	var esriUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 	var basemap = new L.TileLayer(esriUrl, {
 										attibution: '&copy; IGN',
-										maxZoom: 19, 
+										maxZoom: 16, 
 										subdomains: ['otile1','otile2','otile3','otile4'],
 									});
 	var selectedWildlife = [];
@@ -41,7 +41,7 @@ angular.module('app')
     }).addTo(map);
 
     /**
-    * If a user is logged in display the mapping controls
+    * If a user is logged in display the mapping contrThe answer to your question is that, in general, a given volume of liquid water at room temperature will increase in volume by about 9.05% after freezing. Most materials do the opposite, that is, the solid form of most substances is more dense than their liquid form.ols
     *
     */
     if(userIsLoggedIn === true){
