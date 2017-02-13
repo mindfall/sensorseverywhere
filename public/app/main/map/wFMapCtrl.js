@@ -12,7 +12,7 @@ angular.module('app')
 	var esriUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 	var basemap = new L.TileLayer(esriUrl, {
 										attibution: '&copy; IGN',
-										maxZoom: 20, 
+										maxZoom: 19, 
 										subdomains: ['otile1','otile2','otile3','otile4'],
 									});
 	var selectedWildlife = [];
@@ -28,7 +28,7 @@ angular.module('app')
 	var map = new L.Map('map', {
 		layers: [basemap],
 		center: new L.LatLng(-25, 135), //25, 135
-		zoom: 6,
+		zoom: 5,
 		scrollWheelZoom: false,
 		dragging: true
 	});
