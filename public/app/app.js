@@ -47,10 +47,10 @@ angular.module('app').config(['$routeProvider', '$locationProvider', '$stateProv
 				templateUrl: '/partials/main/how-to-use',
 				controller: 'wFHowToCtrl'
 		})
-		.state('about', {
-				url: '/about',
-				templateUrl: '/partials/main/about',
-				controller: 'wFAboutCtrl'
+		.state('pricing', {
+				url: '/pricing',
+				templateUrl: '/partials/main/pricing',
+				controller: 'wFPricingCtrl'
 		})
 		.state('contact', {
 				url: '/contact',

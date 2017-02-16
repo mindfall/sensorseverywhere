@@ -25,4 +25,8 @@ angular.module('app')
 				$location.path('/');
 			})
 		}
+
+		$scope.mobileMenu = function() {
+			alert('some');
+		}
 }]);

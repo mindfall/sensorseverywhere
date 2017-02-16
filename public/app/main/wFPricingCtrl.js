@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('wFAboutCtrl', ['$scope', 
+	.controller('wFPricingCtrl', ['$scope', 
 		function($scope){ 
 
 			$scope.test = 'Yo';

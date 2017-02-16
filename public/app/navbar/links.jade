@@ -2,10 +2,13 @@ div(ng-controller="wFNavBarLoginCtrl" class="main-nav-links")
 
 	ul.nav.navbar-nav.main_links
 		li
-			a.navbar-nav-link(href="/about") About
+			a.navbar-nav-link(href="/pricing") Pricing
 		li(ng-show="identity.currentUser.isAdmin()")
 			a.navbar-nav-link(href="/create-project") Create
 		li
-			a.navbar-nav-link(href="/projects") View
+			a.navbar-nav-link(href="/projects") Projects
+		//- li
+		//- 	a.navbar-nav-link(href="/contact") Contact
 		li
-			a.navbar-nav-link(href="/contact") Contact
+			a
+				i(class="hamburger fa fa-bars 2x" ng-click="mobileMenu()")
