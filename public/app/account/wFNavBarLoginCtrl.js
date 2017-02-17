@@ -26,7 +26,4 @@ angular.module('app')
 			})
 		}
 
-		$scope.mobileMenu = function() {
-			alert('some');
-		}
 }]);

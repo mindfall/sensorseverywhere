@@ -1,10 +1,10 @@
-.navbar-right(ng-controller="wFNavBarLoginCtrl")
-	ul.nav.navbar-nav.navbar-right(ng-hide="identity.isAuthenticated()") 
+.authentication-nav(ng-controller="wFNavBarLoginCtrl")
+	ul(ng-hide="identity.isAuthenticated()") 
 		li
-			a.navbar-nav-link(href="/login") Login
+			a.res-nav(href="/login") Login
 		li
-			a.navbar-nav-link(href="/signup") Sign Up
-	ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()") 
+			a.res-nav(href="/signup") Sign Up
+	ul(ng-show="identity.isAuthenticated()") 
 		li.dropdown
 			a.dropdown-toggle(href="", data-toggle="dropdown")
 				| {{identity.currentUser.firstname + " " + identity.currentUser.lastname}}

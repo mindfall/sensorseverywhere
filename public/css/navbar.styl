@@ -2,71 +2,60 @@
 
 /* NAVBAR */
 
-.navbar 
+.main-nav
 	background-color $background
-	height 50px
-	height 50px
-	margin-left 1px
+	height 45px
 	position fixed
 	width 100%
 	top: 0
 
-.navbar-header a.navbar-brand
-	margin-top -3px
-	padding-left 20px
-	font-size 11pt
-	color $font
+.se-header 
+	a
+		margin-top -3px
+		padding-left 20px
+		font-size 11pt
+		color $font
+		float left
+	a:hover
+		text-decoration none
+		color $font-link-hover
 
-.navbar-nav > li.dropdown 
+.main-nav > li.dropdown 
 	background-color $background
 	height 40px
 
-.navbar-nav > li.dropdown > a
+.main-nav > li.dropdown > a
 	color $font
 
 #logo 
 	width 33px
 	height 33px
-	margin-top 5px
+	margin-top -7px
 	display block
 	background url('../img/logo.png')
 	background-repeat no-repeat
 	float left
 
-.slogan
-	width 230px
+.top-nav 
+	text-decoration none
+	margin-top 5px
+	li
+		list-style-type none
+		display inline
+		float left
+		margin-right 10px
+		a
+			color $font
+			font-size 10pt
+		a:hover, a:active
+			text-decoration none
+			color $font-link-hover
 
-.navbar-header:hover a.navbar-brand:hover,
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:active,
-.navbar-nav > li.dropdown > a:hover, 
-.navbar-nav > li.dropdown > a:active, 
-.navbar-nav > li.dropdown > a:focus
-	color $font-link-hover !important
+.centre-links
+	margin-left 40%
 
-.navbar-inverse .navbar-nav > li > a
-	color $font
-
-.navbar-inverse
-	border-bottom 5px solid #d7e0e2
-	-webkit-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	-moz-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	z-index 1002	
-
-
-
-.main-nav-links
-	margin 0 auto
-	position relative
-	width 30%
-
-ul.nav .navbar-nav .main_links
-	display inline
-
-ul.nav.navbar-nav a.navbar-nav-link
-	font-size 1.1em
-	color $font
+.authentication-nav 
+	float right
 
 .toast-top-right
 	top 70px
@@ -76,6 +65,21 @@ ul.nav.navbar-nav a.navbar-nav-link
 
 li a i.hamburger 
 	display none
+	
+
+.main-nav > li.dropdown > a:hover, 
+.main-nav > li.dropdown > a:active, 
+.main-nav > li.dropdown > a:focus
+	color $font-link-hover !important
+
+.main-nav
+	border-bottom 5px solid #d7e0e2
+	-webkit-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	-moz-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
+	z-index 1002	
+	
+
 
 /* END NAVBAR */
 
@@ -88,7 +92,35 @@ li a i.hamburger
 @media only screen and (max-width: 680px)
 	li a i.hamburger
 		display block
+		margin-left 100%
 		
-	ul.nav.navbar-nav a.navbar-nav-link
+	a.res-nav
 		display none
+	
+	div.mob
+		background-color $background
+		width 102%
+		height 105px
+		display block
+		position absolute
+		margin 31px -42%
+		
+		ul
+			margin 0
+			padding 0
+			width 100%
+			li 
+				margin-left 0px
+				margin-top 10px
+				a
+					background-color $background
+					height 25px
+					color $font
+					display block
+					width 800px
+		
+	
+	a.mob:hover
+		color $font-link-hover
+	
 

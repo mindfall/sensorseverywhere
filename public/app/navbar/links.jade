@@ -1,14 +1,28 @@
-div(ng-controller="wFNavBarLoginCtrl" class="main-nav-links")
+div.centre-links(ng-controller="wFNavBarLoginCtrl" id="mainNav")
 
-	ul.nav.navbar-nav.main_links
+	ul
 		li
-			a.navbar-nav-link(href="/pricing") Pricing
+			a.res-nav(href="/pricing") Pricing
 		li(ng-show="identity.currentUser.isAdmin()")
-			a.navbar-nav-link(href="/create-project") Create
+			a.res-nav(href="/create-project") Create
 		li
-			a.navbar-nav-link(href="/projects") Projects
+			a.res-nav(href="/projects") Projects
 		//- li
 		//- 	a.navbar-nav-link(href="/contact") Contact
 		li
 			a
-				i(class="hamburger fa fa-bars 2x" ng-click="mobileMenu()")
+				i(class="hamburger fa fa-bars 2x" ng-click="mobileMenu = !mobileMenu")
+
+	div.mob(ng-show="mobileMenu")
+		ul
+			li
+				a(href="/login" ng-click="mobileMenu = !mobileMenu") Login
+			li
+				a(href="/signup" ng-click="mobileMenu = !mobileMenu") Sign Up
+			li
+				a(href="/pricing" ng-click="mobileMenu = !mobileMenu") Pricing
+			li(ng-show="identity.currentUser.isAdmin()")
+				a(href="/create-project" ng-click="mobileMenu = !mobileMenu") Create
+			li
+				a(href="/projects" ng-click="mobileMenu = !mobileMenu") Projects
+
