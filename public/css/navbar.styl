@@ -47,8 +47,6 @@
 .navbar-inverse .navbar-nav > li > a
 	color $font
 
-
-
 .navbar-inverse
 	border-bottom 5px solid #d7e0e2
 	-webkit-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
@@ -62,6 +60,9 @@
 	margin 0 auto
 	position relative
 	width 30%
+
+ul.nav .navbar-nav .main_links
+	display inline
 
 ul.nav.navbar-nav a.navbar-nav-link
 	font-size 1.1em
@@ -79,79 +80,15 @@ li a i.hamburger
 /* END NAVBAR */
 
 
-@media only screen and (min-width: 320px)
-	#small-screen-login
-		list-style-type none
-		li a
-			text-decoration none
-			color $font
-			position absolute
-			margin-left 110px
-			top 25px
-		#small-screen-login li a:hover
-			color black
-
-	ul.main_links 
-		display inline-flex
-		text-align center
-		margin-left -130px
-		position absolute
-		width 300px
-	.navbar-form
-		position absolute
-		left 50px
-	#logo 
-		margin-left 10px
-	ul.nav.navbar-nav a.navbar-nav-link
-		width 90px
-		margin 0 auto
-	.navbar-form
-		border-top none
-		border-bottom none
-	.navbar-collapse
-		border-top none
 
 
-@media only screen and (min-width: 480px)
-	.navbar-form
-		margin-left 38%
-	ul.main_links
-		margin-left -90px
 
 
 
 @media only screen and (max-width: 680px)
-	.navbar-form
-		margin-left 50%
 	li a i.hamburger
 		display block
-
-@media only screen and (min-width: 768px)
-	.navbar-header
-		padding-left 5px
-	#logo 
-		margin-left -18px
-	.navbar-form
-		left -3% !important
-
-
 		
-
-@media only screen and (min-width: 1224px)
-	.navbar-right
-		display inline
-		width 25%
-	.navbar-nav > li.dropdown 
-		position absolute
-		right 13%
-	.navbar-form
-		left 20% !important
-	ul.main_links
-		width 50%
-		margin-left 25%
-		left -25%
-	#logo
-		margin-left -5px
-
-
+	ul.nav.navbar-nav a.navbar-nav-link
+		display none
 
