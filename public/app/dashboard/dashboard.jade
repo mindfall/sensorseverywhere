@@ -10,7 +10,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 						accordion-group.project-headings(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
 							accordion-heading(style="display: inline;") 
 										span(class="accordion-group-heading") {{project.project_name}} 
-										span(class="accordion-group-heading button btn-default accordion-remove-project" ng-click="removeProject(project._id)") X
+										span(class="accordion-group-heading button accordion-remove-project" ng-click="removeProject(project._id)") X
 							table
 								tr.project-summary
 									td

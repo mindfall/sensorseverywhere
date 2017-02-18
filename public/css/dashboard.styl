@@ -1,3 +1,4 @@
+@import "variables"
 /* DASHBOARD */
 
 .dashboard-message
@@ -19,6 +20,12 @@ bg-splitter
 .accordion-project-summary
 	float left
 	padding-left 20px
+
+.panel-default > .panel-heading {
+    background-color: $background;
+    // border-color: #dddddd;
+    // color: #333333;
+}
 
 .project-controls
 	display block
@@ -103,10 +110,10 @@ bg-splitter
 
 .group-container
 	min-height 60px
-	margin-top 170px
+	margin-top 60px
 
 .group-list-container, .group-form-container
-	top -50px
+	margin-top 50px
 	position absolute
 	width 98%
 
@@ -216,9 +223,10 @@ bg-splitter
 	.split-panes
 		margin-top 0px !important
 	.create-group-button, .create-project-button
-		bottom 52px
-		position fixed
-		width 49%
+	    background: #4e4e4e none repeat scroll 0 0;
+	    bottom: 16px;
+	    position: fixed;
+	    width: 48%;
 	.button-spacer 
 		display block
 		height 112px
