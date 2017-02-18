@@ -11,6 +11,10 @@ body {
   height: 100%;
   width: 100%;
 }
+html {
+  border-left: 3px solid #616161;
+  border-right: 3px solid #616161;
+}
 .document-overlay {
   display: block;
   position: relative;
@@ -94,9 +98,7 @@ footer {
   z-index: 300;
   background-color: #616161;
   color: #999;
-}
-footer p {
-  border-top: 1px solid #d7e0e2;
+  width: 100%;
 }
 /* PROJECT / FUND LIST PAGE */
 section.content {

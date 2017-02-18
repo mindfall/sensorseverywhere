@@ -4,10 +4,15 @@
 
 .main-nav
 	background-color $background
-	height 45px
-	position fixed
+	height 40px
+	position relative
 	width 100%
 	top: 0
+	border-bottom 1px solid #d7e0e2
+	-webkit-box-shadow 1px 1px 20px 5px rgba(155,157,157,0.5)
+	-moz-box-shadow 1px 1px 20px 5px rgba(155,157,157,0.5)
+	box-shadow 1px 1px 20px 5px rgba(155,157,157,0.5)
+	z-index 1
 
 .se-header 
 	a
@@ -71,15 +76,6 @@ li a i.hamburger
 .main-nav > li.dropdown > a:active, 
 .main-nav > li.dropdown > a:focus
 	color $font-link-hover !important
-
-.main-nav
-	border-bottom 5px solid #d7e0e2
-	-webkit-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	-moz-box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	box-shadow 5px 1px 20px 5px rgba(155,157,157,0.5)
-	z-index 1002	
-	
-
 
 /* END NAVBAR */
 
