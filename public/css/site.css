@@ -11,10 +11,6 @@ body {
   height: 100%;
   width: 100%;
 }
-html {
-  border-left: 3px solid #4e4e4e;
-  border-right: 3px solid #4e4e4e;
-}
 .document-overlay {
   display: block;
   position: relative;
@@ -35,16 +31,6 @@ html {
 }
 .col-3-selection-container {
   margin-left: 75%;
-}
-.col-6-dashboard-container {
-  margin-top: 60px;
-  width: 100%;
-}
-.col-6-group-container {
-  margin-top: 50px;
-  border-left: 5px solid #d7e0e2;
-  height: 100%;
-  min-width: 100px;
 }
 .container {
   height: 5% !important;
@@ -94,11 +80,15 @@ footer {
   padding-right: 15px;
   bottom: 0;
   position: fixed;
-  height: 10px;
+  height: 25px;
   z-index: 300;
   background-color: #4e4e4e;
-  color: #999;
+  color: #ccc;
   width: 100%;
+  border-top: 1px solid #fff;
+  -webkit-box-shadow: 1px -5px 20px 5px rgba(155,157,157,0.5);
+  -moz-box-shadow: 1px -5px 20px 5px rgba(155,157,157,0.5);
+  box-shadow: 1px -5px 20px 5px rgba(155,157,157,0.5);
 }
 /* PROJECT / FUND LIST PAGE */
 section.content {

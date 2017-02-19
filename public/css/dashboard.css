@@ -1,8 +1,20 @@
 /* DASHBOARD */
+.dashboard-pane {
+  border-right: 3px solid #4e4e4e;
+}
 .dashboard-message {
   font-family: arial;
   font-weight: bold;
   color: #d7e0e2;
+}
+.col-6-dashboard-container {
+  margin-top: 60px;
+  width: 100%;
+}
+.col-6-group-container {
+  border-left: 5px solid #d7e0e2;
+  height: 100%;
+  min-width: 100px;
 }
 bg-splitter {
   min-width: 300px;
@@ -20,7 +32,7 @@ bg-splitter {
   padding-left: 20px;
 }
 .panel-default > .panel-heading {
-  background-color: #616161;
+  background-color: #4e4e4e;
 }
 .project-controls {
   display: block;
@@ -51,6 +63,18 @@ overflow hidden,
   float: right;
   width: 10px !important;
 }
+.split-panes {
+  margin-top: 0px !important;
+  background-color: #616161;
+}
+.create-group-button,
+.create-project-button {
+  background: #4e4e4e none repeat scroll 0 0;
+  bottom: 55px;
+  position: fixed;
+  width: 48%;
+  color: #ccc;
+}
 /* END DASHBOARD */
 /* EMAIL */
 #sidebar {
@@ -59,7 +83,7 @@ overflow hidden,
   min-height: 300px;
   width: 228px;
   position: relative;
-  z-index: 1s crs;
+  z-index: 1;
 }
 #emailListing {
   margin-top: 20px;
@@ -89,6 +113,7 @@ overflow hidden,
 .accordion-group-heading {
   width: 25%;
   display: inline-block;
+  color: #ccc;
 }
 .group-container {
   min-height: 60px;
@@ -143,89 +168,7 @@ overflow hidden,
   margin-left: 10px;
 }
 /* END GROUPS */
-@media only screen and (min-width: 320px) {
-  .split-panes {
-    margin-top: 100px !important;
-  }
-  .create-group-button,
-  .create-project-button {
-    width: 97%;
-    bottom: -56%;
-    position: absolute;
-  }
-  .button-spacer {
-    display: block;
-    height: 99px;
-  }
-  .split-panes.horizontal > .split-pane2 {
-    left: 100% !important;
-    min-width: 300px;
-  }
-  .split-pane1 {
-    min-width: 300px;
-  }
-}
-@media only screen and (min-width: 480px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 480px;
-  }
-  .split-pane1 {
-    min-width: 480px;
-  }
-}
-@media only screen and (min-width: 600px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 600px;
-  }
-  .split-pane1 {
-    min-width: 600px;
-  }
-}
-@media only screen and (min-width: 480px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 480px;
-  }
-  .split-pane1 {
-    min-width: 480px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 768px;
-  }
-  .split-pane1 {
-    min-width: 768px;
-  }
-}
-@media only screen and (min-width: 800px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 800px;
-  }
-  .split-pane1 {
-    min-width: 800px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .split-panes.horizontal > .split-pane2 {
-    min-width: 50%;
-  }
-  .split-pane1 {
-    min-width: 50%;
-  }
-  .split-panes.horizontal > .split-pane2 {
-    left: 50% !important;
-  }
-}
 @media only screen and (min-width: 1224px) {
-  .split-panes {
-    margin-top: 0px !important;
-  }
-  .create-group-button,
-  .create-project-button {
-    bottom: 52px;
-    position: fixed;
-    width: 49%;
-  }
   .button-spacer {
     display: block;
     height: 112px;

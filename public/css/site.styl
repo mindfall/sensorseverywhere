@@ -11,9 +11,9 @@ html, body
 	height 100%
 	width 100%
 
-html
-	border-left 3px solid $background
-	border-right 3px solid $background
+html, body
+	// border-left 3px solid $raised-dark-grey
+	// border-right 3px solid $raised-dark-grey
 		
 // html, .row-map-container, .content, .main-container
 // 	height 100%
@@ -42,15 +42,15 @@ html
 .col-3-selection-container
 	margin-left 75%
 
-.col-6-dashboard-container
-	margin-top 60px
-	width 100%
+// .col-6-dashboard-container
+// 	margin-top 60px
+// 	width 100%
 
-.col-6-group-container
-	margin-top 50px
-	border-left 5px solid #d7e0e2
-	height 100%
-	min-width 100px
+// .col-6-group-container
+// 	margin-top 50px
+// 	border-left 5px solid #d7e0e2
+// 	height 100%
+// 	min-width 100px
 
 .container
 	height 5% !important
@@ -100,11 +100,15 @@ footer
 	padding-right 15px
 	bottom 0
 	position fixed
-	height 10px
+	height 25px
 	z-index 300
-	background-color $background
-	color #999
+	background-color $raised-dark-grey
+	color $font
 	width 100%
+	border-top $chrome-border
+	-webkit-box-shadow 1px -5px 20px 5px rgba(155,157,157,0.5)
+	-moz-box-shadow 1px -5px 20px 5px rgba(155,157,157,0.5)
+	box-shadow 1px -5px 20px 5px rgba(155,157,157,0.5)
 
 /* PROJECT / FUND LIST PAGE */
 

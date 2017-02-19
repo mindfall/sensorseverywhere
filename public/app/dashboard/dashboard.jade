@@ -94,12 +94,12 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 				.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
 					.col-md-12(class="group-list-container" ng-model="groupList")
 						h4 Group list
-						table(class="table")
-							tr(style="font-weight: bold;")
-								td(class="accordion-group-heading") Name
-								td(class="accordion-group-heading") Members
-								td(class="accordion-group-heading") Project
-								td(class="accordion-group-heading")
+						//- table(class="table")
+						//- 	tr(style="font-weight: bold;")
+						//- 		td(class="accordion-group-heading") Name
+						//- 		td(class="accordion-group-heading") Members
+						//- 		td(class="accordion-group-heading") Project
+						//- 		td(class="accordion-group-heading")
 
 						accordion(close-others="oneAtATime")
 							accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
@@ -107,7 +107,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										span(class="accordion-group-heading") {{group.groupName}} 
 										span(class="accordion-group-heading") {{members}}
 										span(class="accordion-group-heading") {{group.groupProject}}	
-										span(class="accordion-group-heading button btn-default accordion-remove-group" ng-click="removeGroup(group._id)") X
+										span(class="accordion-group-heading button accordion-remove-group" ng-click="removeGroup(group._id)") X
 
 								//img(ng-src="data:image/png;base64,{{groupImage}}")
 								button(class="btn btn-default" ng-click="getFiles('group', 'groupOne', 'Abbotts_Booby.jpg'); toggleDocumentOverlay();") View Group Documents
