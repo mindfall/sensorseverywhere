@@ -1,7 +1,7 @@
 div.centre-links(ng-controller="wFNavBarLoginCtrl" id="mainNav")
 
 	ul
-		li
+		li(ng-hide="identity.currentUser.isAdmin()")
 			a.res-nav(href="/pricing") Pricing
 		li(ng-show="identity.currentUser.isAdmin()")
 			a.res-nav(href="/create-project") Create
@@ -19,7 +19,7 @@ div.centre-links(ng-controller="wFNavBarLoginCtrl" id="mainNav")
 				a(href="/login" ng-click="mobileMenu = !mobileMenu") Login
 			li
 				a(href="/signup" ng-click="mobileMenu = !mobileMenu") Sign Up
-			li
+			li(ng-hide="identity.currentUser.isAdmin()")
 				a(href="/pricing" ng-click="mobileMenu = !mobileMenu") Pricing
 			li(ng-show="identity.currentUser.isAdmin()")
 				a(href="/create-project" ng-click="mobileMenu = !mobileMenu") Create
