@@ -1,0 +1,32 @@
+.login-container,
+.register-container {
+  height: 400px;
+  left: -300px;
+  margin-left: 50%;
+  margin-top: 10%;
+  position: absolute;
+  width: 600px;
+}
+.login-container legend,
+.register-container legend {
+  border-color: #4e4e4e;
+}
+.login-container .well,
+.register-container .well {
+  background-color: #616161;
+  color: #ccc;
+}
+.login-container .login-btn,
+.register-container .login-btn {
+  color: #4e4e4e;
+  width: 80%;
+  margin-left: 10%;
+}
+.login-container .register h5,
+.register-container .register h5 {
+  display: inline;
+}
+.login-container .register a,
+.register-container .register a {
+  display: inline;
+}

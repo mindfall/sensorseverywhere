@@ -7,4 +7,7 @@
             input.form-control(placeholder="email", ng-model="username")
         .form-group
             input.form-control(type="password", placeholder="password", ng-model="password")
-        button.btn.btn-primary(ng-click="signin(username, password)") Sign In
+        button.btn.login-btn(ng-click="signin(username, password)") Sign In
+  span(class="register")
+    h5 Don't have an account? 
+    a(href="/signup") Register here.
