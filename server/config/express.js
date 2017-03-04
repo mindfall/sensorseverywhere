@@ -1,4 +1,5 @@
 var express = require('express'),
+	session = require('express-session'),
 	stylus = require('stylus'),
 	passport = require('passport');
 
@@ -16,7 +17,11 @@ module.exports = function(app, config) {
 		app.use(express.cookieParser());
 		app.use(express.bodyParser());
 		app.use(express.multipart());
-		app.use(express.session({secret: 'you are on wild fire'}));
+		app.use(express.session({
+									secret: 'you are on wild fire',
+									resave: true,
+									saveUninitialized: true
+								}));
 		app.use(passport.initialize());
 		app.use(passport.session());
 		app.use(stylus.middleware(
