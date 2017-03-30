@@ -33,14 +33,14 @@ footer {
 }
 .home-hero {
   position: fixed;
-  width: 100%;
+  width: 100% !important;
   height: 100%;
   margin-left: -3px;
 }
 .home-hero img {
-  width: 100%;
   height: auto;
   margin-top: -20px;
+  width: 100%;
 }
 .home-hero .home-btn {
   width: 300px;
