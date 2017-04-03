@@ -20,6 +20,7 @@
     "blueimp-file-upload": "~9.5.7",
     "ng-file-upload": "~1.4.0",
     "ng-file-upload-shim": "~1.4.0",
-    "angular-payments": "*"
+    "angular-payments": "*",
+    "mapbox.js": "^2.4.0"
   }
 }
