@@ -32,7 +32,7 @@ angular.module('app')
 						showArea: true,
 						metric: true
 					},
-/*					marker: true,*/
+					marker: true,
 				},
 				edit: {
 					featureGroup: drawnItems,
