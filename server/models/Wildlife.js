@@ -21,7 +21,7 @@ function createDefaultWildlife(){
 
 	Wildlife.find({}).remove(function(){
 
-		Wildlife.create(
+	Wildlife.create(
  {
     "id":1,
     "name":"Abbotts Booby",
@@ -13599,6 +13599,13 @@ function createDefaultWildlife(){
     "image_thumb":"/img/wildlife_thumbs/Z-ynskjen-fallowdeer.jpg",
     "image_full":"/img/wildlife_full/Z-ynskjen-fallowdeer.jpg",
     "classification":"mammal"
+  },
+  {
+    "id": 1940,
+    "name": "Crack Willow",
+    "image_thumb":"/img/wildlife_thumbs/crack_willow.jpg",
+    "image_full":"/img/wildlife_full/crack_willow.jpg",
+    "classification":"flora"
   }, function(){
 		  	console.log('Wildlife collection created with classifications.');
 		  }
