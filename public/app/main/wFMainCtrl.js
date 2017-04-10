@@ -58,6 +58,12 @@ angular.module('app')
    		}
    	}
 
+   	$scope.addLayer = function(layerData) {
+   		var layers = {};
+   		var layerData = layerData;
+   		
+   	}
+
 
     $scope.saveCorridor = function(user){
 

@@ -3,19 +3,43 @@ angular.module('app')
 		function($scope, $rootScope, $location, $timeout, wFMapFactory, wFIdentity, wFWildlifeFactory, wFProjectFactory){
 
 	if($location.path().split('/')[1] === 'create-project') {
-		$("#map").height($(window).height() * .8).width($(window).width() * .75);
+		$("#map").height($(window).height() * .9).width($(window).width() * .75);
 	}
 
 	L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 	var userIsLoggedIn = wFIdentity.isAuthenticated();
 
-	var esriUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-	var basemap = new L.TileLayer(esriUrl, {
+	var esriUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+		hereHybridUrl = 'http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/{type}/{mapID}/hybrid.day/{z}/{x}/{y}/{size}/{format}?app_id={app_id}&app_code={app_code}&lg={language}',
+		openMapSurferRoadsUrl = 'http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}';
+
+	var esriTiles = new L.TileLayer(esriUrl, {
 										attibution: '&copy; IGN',
 										maxNativeZoom: 17,
 										maxZoom: 19, 
 										subdomains: ['otile1','otile2','otile3','otile4'],
 									});
+
+	var openMapSurferRoadsTiles = L.tileLayer(openMapSurferRoadsUrl, {
+		maxZoom: 20,
+		attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	});
+
+	var hereHybridTiles = new L.TileLayer(hereHybridUrl, {
+		attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+		subdomains: '1234',
+		mapID: 'newest',
+		app_id: '<your app_id>',
+		app_code: '<your app_code>',
+		base: 'aerial',
+		maxZoom: 20,
+		type: 'maptile',
+		language: 'eng',
+		format: 'png8',
+		size: '256'
+	});
+
+
 	var selectedWildlife = [];
 	var markerWildlifeIcons = ['mammal', 'bird', 'reptile'];
 	var markerMonitorIcons = ['audio', 'video'];
@@ -27,12 +51,25 @@ angular.module('app')
 	var coords = [];
 
 	var map = new L.Map('map', {
-		layers: [basemap],
+		layers: [openMapSurferRoadsTiles, esriTiles],
 		center: new L.LatLng(-25, 135), //25, 135
 		zoom: 5,
 		scrollWheelZoom: false,
 		dragging: true
 	});
+
+	var baseMaps = {
+		"Esri": esriTiles,
+		"OpenMap": openMapSurferRoadsTiles
+	};
+
+	var weeds = {};
+
+	var overLays = {
+		"Weeds": weeds
+	}
+
+	L.control.layers(baseMaps, overLays).addTo(map);
 
 	map.invalidateSize();
 

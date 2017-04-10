@@ -13,7 +13,9 @@ div(class="main-container" ng-controller="wFMainCtrl")
 		
 		
 		div(class="selection-container")
-			p
+			div
+				button(class="add-project-button" ng-click="addLayer(identity.currentUser._id);" ) Add Layer
+			div
 				.selection-layout
 					div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
 						form.selectAnimalInput(ng-submit="selectWildlife()")
@@ -38,8 +40,8 @@ div(class="main-container" ng-controller="wFMainCtrl")
 										td.wildlifeBtnCell
 											div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
 						
-		div
-			button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
+			div
+				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
 		wildlife-popup(ng-show="wildlifePopup()")
 		comment-popup(ng-show="commentPopup()" draggability)
 		monitor		
