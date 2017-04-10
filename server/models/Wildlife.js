@@ -13606,7 +13606,157 @@ function createDefaultWildlife(){
     "image_thumb":"/img/wildlife_thumbs/crack_willow.jpg",
     "image_full":"/img/wildlife_full/crack_willow.jpg",
     "classification":"flora"
-  }, function(){
+  },
+  {
+    "id": 1941,
+    "name": "Bidgee Widgee",
+    "species": "Acaena novae-zelandiae",
+    "family": "Rosaceae",
+    "image_thumb":"/img/wildlife_thumbs/acaena_novae-zelandiae.jpg",
+    "image_full":"/img/wildlife_full/acaena_novae-zelandiae.jpg",
+    "classification":"flora"
+  },
+    {
+    "id": 1942,
+    "name": "Tall Sedge",
+    "species": "Carex appressa",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/carex_appressa.jpg",
+    "image_full":"/img/wildlife_full/carex_appressa.jpg",
+    "classification":"flora",
+    "image_credit": "By John Tann from Sydney, Australia - Tall sedge, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=38234150" 
+  },
+  {
+    "id": 1943,
+    "name": "Flax Lilly",
+    "species": "Dianella tasmanica",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/carex_appressa.jpg",
+    "image_full":"/img/wildlife_full/carex_appressa.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1944,
+    "name": "Lomandra",
+    "species": "Lomandra longifolia",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/lomandra_longifolia.jpg",
+    "image_full":"/img/wildlife_full/lomandra_longifolia.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1945,
+    "name": "KnotWeed",
+    "species": "Persicaria Decipiens",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/persicaria_decipiens.jpg",
+    "image_full":"/img/wildlife_full/persicaria_decipiens.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1946,
+    "name": "River Club Rush",
+    "species": "Schoenoplectus validus",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/schoenoplectus_validus.jpg",
+    "image_full":"/img/wildlife_full/schoenoplectus_validus.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1947,
+    "name": "Red Fruit Saw Sedge",
+    "species": "Gahnia sieberiana",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/gahnia_sieberaniana.jpg",
+    "image_full":"/img/wildlife_full/gahnia_sieberaniana.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1948,
+    "name": "Manna gum",
+    "species": "Eucalyptus viminalis",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/eucalyptus_viminalis.jpg",
+    "image_full":"/img/wildlife_full/eucalyptus_viminalis.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1949,
+    "name": "Candle bark gum",
+    "species": "Eucalyptus rubida",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/eucalyptus_rubida.jpg",
+    "image_full":"/img/wildlife_full/eucalyptus_rubida.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1950,
+    "name": "Blackwood",
+    "species": "Acacia melanoxylon",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/acacia_melanoxylon.jpg",
+    "image_full":"/img/wildlife_full/acacia_melanoxylon.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1951,
+    "name": "Snowy daisy-bush",
+    "species": "Olearia lirata",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/olearia_lirata.jpg",
+    "image_full":"/img/wildlife_full/olearia_lirata.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1952,
+    "name": "Prickly Moses",
+    "species": "Acacia Verticillata",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/acacia_verticillata.jpg",
+    "image_full":"/img/wildlife_full/acacia_verticillata.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1953,
+    "name": "Pomederris aspera",
+    "species": "Pomaderris aspera",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/pomaderris_aspera.jpg",
+    "image_full":"/img/wildlife_full/pomaderris_aspera.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1955,
+    "name": "Goodenia ovata",
+    "species": "Goodenia ovata",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/goodenia_ovata.jpg",
+    "image_full":"/img/wildlife_full/goodenia_ovata.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  {
+    "id": 1956,
+    "name": "Tussock Grass",
+    "species": "Poa labillardieri",
+    "family": "",
+    "image_thumb":"/img/wildlife_thumbs/poa.jpg",
+    "image_full":"/img/wildlife_full/poa.jpg",
+    "classification":"flora",
+    "image_credit": "" 
+  },
+  function(){
 		  	console.log('Wildlife collection created with classifications.');
 		  }
 		);
