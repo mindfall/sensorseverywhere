@@ -13,32 +13,44 @@ div(class="main-container" ng-controller="wFMainCtrl")
 		
 		
 		div(class="selection-container")
-			div
-				button(class="add-project-button" ng-click="addLayer(identity.currentUser._id);" ) Add Layer
-			div
-				.selection-layout
-					div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
-						form.selectAnimalInput(ng-submit="selectWildlife()")
-							input(id='wildlife_search' 
-								type='search' 
-								ng-model="wildlifeSelect" 
-								typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
-								class="form-control" 
-								placeholder="Search for wildlife...")
+			accordion(close-others="oneAtATime")
+				accordion-group(heading="Add Layer")
+					span 
+						b Layer Name
+				accordion-group(heading="Add Wildlife")
+					.selection-layout
+						div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
+							form.selectAnimalInput(ng-submit="selectWildlife()")
+								input(id='wildlife_search' 
+									type='search' 
+									ng-model="wildlifeSelect" 
+									typeahead="creature as creature.name for creature in wildlife | filter:$viewValue | limitTo:8" 
+									class="form-control" 
+									placeholder="Search for wildlife...")
 
-					div.selected-wildlife-container
-						div(ng-repeat="creature in selectedWildlife track by $index")
-							.well
-								table.selectedWildlife
-									tr
-										td.wildlifeCell
-											input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
-										td.wildlifeCell
-											div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
-										td.wildlifeCell
-											div(class="selectedWildlifeName") {{creature.name}}
-										td.wildlifeBtnCell
-											div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
+						div.selected-wildlife-container
+							div(ng-repeat="creature in selectedWildlife track by $index")
+								.well
+									table.selectedWildlife
+										tr
+											td.wildlifeCell
+												input.wildlifeCount(class="wildlifeCounter" ng-model="wildlifeCounter" ng-blur="setWildlifeNumbers(creature._id, creature.name, wildlifeCounter)" value="0" type="number" min="0")
+											td.wildlifeCell
+												div(class="selectedThumb" ng-click="wildlifePopup('show', creature);")<img ng-src="{{creature.image_thumb}}"> 
+											td.wildlifeCell
+												div(class="selectedWildlifeName") {{creature.name}}
+											td.wildlifeBtnCell
+												div(class="remove-selected-wildlilfe-btn" ng-click='removeSelectedWildlife()') X
+				accordion-group(heading="Monitors")
+					span 
+						b Monitor
+				accordion-group(heading="Sponsors")
+					span 
+						b Sponsor
+				accordion-group(heading="Group")
+					span 
+						b Create
+
 						
 			div
 				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
