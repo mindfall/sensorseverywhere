@@ -14,10 +14,7 @@ div(class="main-container" ng-controller="wFMainCtrl")
 		
 		div(class="selection-container")
 			accordion(close-others="oneAtATime")
-				accordion-group(heading="Add Layer")
-					span 
-						b Layer Name
-				accordion-group(heading="Add Wildlife")
+				accordion-group(heading="Wildlife")
 					.selection-layout
 						div.selectionInput(ng-controller="wFWildlifeSelectCtrl")
 							form.selectAnimalInput(ng-submit="selectWildlife()")
@@ -44,16 +41,87 @@ div(class="main-container" ng-controller="wFMainCtrl")
 				accordion-group(heading="Monitors")
 					span 
 						b Monitor
+						div
+							input(ng-model="monitorName" placeholder="Monitor Name") 
+						//- div(class="monitor-intro" ng-show="monitorIntro")
+						//- 	span You are about to create a monitor, would you like to continue?
+						//- 	br
+						//- 	div(class="btn btn-warning monitor-intro-no-thanks-btn" ng-click="monitorNoThanks()") No Thanks 
+						//- 	div(class="btn btn-success monitor-intro-continue-btn" ng-click="monitorContinue()") Continue
+						div(class="monitor-details" ng-show="monitorDetails")
+							span What is the name of this monitor?
+							br
+							input(class="form-control" ng-model="monitorName" type="text")
+							br
+							span What type of monitor is this?
+							select(class="form-control" ng-model="monitorType" ng-change="selectMonitor()" ng-options="monitor.value as monitor.name for monitor in monitors")
+							div(ng-show="monitorTypeText")
+								span Enter the monitor type here:
+								br
+								input(class="form-control" type="text" ng-model="monitorOther") 
+							br
+							span Are you using it to monitor specific wildlife
+							br
+							div(class="btn btn-warning monitor-specific-no" ng-click="monitorSpecificWildlifeNo()") No 
+							div(class="btn btn-success monitor-specific-yes" ng-click="monitorSpecificWildlifeYes()") Yes
+							br
+							br
+							div(ng-show="monitorWildlife")
+								select(class="form-control" ng-model="setWildlife.type" ng-change="selectWildlife()" ng-options="wildlife.value as wildlife.name for wildlife in wildlifeSelection")
+							span Is this monitor active?
+							select(class="form-control" ng-model="monitorActive" ng-change="selectActive()" ng-options="state.value as state.name for state in active")
+							div(class="btn btn-default monitor-popup-save-btn" ng-click="saveMonitor(monitorName, monitorType, monitorActive, wildlifeName)") Save
+							div(class="btn btn-default monitor-popup-close-btn" ng-click="closeMonitorPanel()") Close
+				accordion-group(heading="Groups")
+					div(ng-controller="wFGroupCtrl" ng-model="groupList")
+						h4 Invite someone 
+							br
+							i(class="fa fa-envelope") &nbsp; &nbsp; &nbsp;
+							i(class="fa fa-mobile 3x")
+				
+						div(ng-controller="wFEmailContentCtrl")
+							div(ng-controller="wFUserCtrl")
+								table(class="table table-hover table-condensed")
+									tr(style="font-weight: bold;")
+										td(style="width: 100%") Users
+									tr(ng-repeat="member in group.groupMembers track by $index")
+										td
+											span(ng-model="member.username") {{member.username}}
+										td
+											span {{member.status}}
+										td
+											button(class="btn btn-default" ng-click="emailPopup('show')") Email
+											//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
+											button(class="btn btn-default" ng-click="chatPopup('show');") Chat
+										td
+											button(class="btn btn-default" ng-click="removeUserFromGroup($index, group.groupName, member.username)") Delete
+									tr(style="font-weight: bold;") Send Invitation
+										td(style="width: 25%;") Email
+										td(style="width: 25%") Name
+										td(style="width: 25%") Send Invite
+										td(style="width: 25%") Cancel
+									tr
+										td
+											input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
+										td
+											input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
+										td
+											button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
+										td
+											button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
+				
+				
 				accordion-group(heading="Sponsors")
 					span 
 						b Sponsor
-				accordion-group(heading="Group")
-					span 
-						b Create
+
 
 						
 			div
 				button(class="save-project-button" ng-click="saveCorridor(identity.currentUser._id); projectPopup('show')" ) Save
+				
+		email-popup(ng-show="emailPopup()" draggability)
+		chat-popup(ng-show="chatPopup()" draggability)
 		wildlife-popup(ng-show="wildlifePopup()")
 		comment-popup(ng-show="commentPopup()" draggability)
 		monitor		

@@ -69,9 +69,9 @@ overflow hidden,
 .create-group-button,
 .create-project-button {
   background: #4e4e4e none repeat scroll 0 0;
-  bottom: 55px;
+  bottom: 35px;
   position: fixed;
-  width: 48%;
+  width: 95%;
   color: #ccc;
 }
 /* END DASHBOARD */

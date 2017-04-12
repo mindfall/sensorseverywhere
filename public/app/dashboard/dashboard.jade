@@ -1,186 +1,95 @@
 div(class="main-container" ng-controller="wFDashboardCtrl")
 	.container(ng-if="isLoggedIn")
-		bg-splitter(orientation="horizontal" class="dashboard-pane")
-			bg-pane
-				.col-md-12(class="col-6-dashboard-container" ng-controller="wFProjectCtrl")
+		//- bg-splitter(orientation="horizontal" class="dashboard-pane")
+		//- 	bg-pane
+		.col-md-12(class="col-6-dashboard-container" ng-controller="wFProjectCtrl")
 
-					h4 Project Dashboard for {{user.firstname}}
-					h4(class="dashboard-message") {{message}}
-					accordion(close-others="oneAtATime")
-						accordion-group.project-headings(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
-							accordion-heading(style="display: inline;") 
-										span(class="accordion-group-heading") {{project.project_name}} 
-										span(class="accordion-group-heading button accordion-remove-project" ng-click="removeProject(project._id)") X
-							table
-								tr.project-summary
-									td
-										div.accordion-project-name 
-											a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}
-									td(colspan="4")
-										div.accordion-project-summary
-											span {{project.project_description}}
-								tr.project-controls
-									td.control-cell
-										img(ng-src="data:image/png;base64, {{projectImage}}")
-									td.control-cell(ng-controller="wFFileUploadCtrl" ng-hide="true")
-										input(type="hidden" ng-model="fileUpload")
-										input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
-									td.control-cell
-										button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
-									td.control-cell
-										select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
-								tr.project-controls
-									td.control-cell
-										div(ng-show="project.project_owner" class="btn btn-default" ng-click="editProject(project._id)") Edit
-									td.control-cell
-										div(ng-show="project.project_owner" class="btn btn-default" ng-click="removeProject(project._id)") Delete
-										
-							div(ng-controller="wFTaskCtrl")
-								accordion(close-others="oneAtATime")
-									accordion-group(heading="View Tasks")
-										table(class="table table-bordered table-hover table-condensed")
-											tr(style="font-weight: bold;")
-												td(style="width: 12%;") Priority
-												td(style="width: 20%;") Name
-												td(style="width: 36%;") Description
-												td(style="width: 9%;") Owner
-												td(style="width: 12%") Status
-												td(style="width: 11%") Save
-												//- td(style="width: 8%") Upload Task File
-												td(style="width: 5%") Delete
-											tr(ng-repeat="task in tasks track by $index")
-												td
-													{{task.taskPriority}}
-												td
-													span(editable-text="task.taskName") {{task.taskName}}	
-												td
-													span(editable-text="task.taskDescription") {{task.taskDescription}}
-												td
-													{{task.taskOwner}}
-												td
-													{{task.taskStatus}}
-												td
-				
-													button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
-												td
-													button(ng-show="identity.currentUser.isOwner()" class="btn btn-default" ng-click="removeTask($index)") Delete
-
-											tr(class="add-task")
-
-												td
-													select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
-												td
-													input(class="form-control" ng-model="taskName" type="text" placeholder="Enter task name...")
-												td
-													input(class="form-control" ng-model="taskDesc" type="text" placeholder="Enter task description...")
-												td
-													select(class="form-control" ng-model="taskOwner", ng-click="findActiveMembers(project.project_name)" ng-options="owner.value as owner.name for owner in selectOwner") 
-												//	{{selectOwner[0].value}}
-												td
-													select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
-												//- td(ng-controller="wFFileUploadCtrl")
-												//- 	input(type="hidden" ng-model="fileUpload")
-												//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
-												td
-				
-													button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
-												td
-													button(class="btn btn-default" ng-click="removeTask($index)") Delete
-
-										button(class="btn btn-default" ng-click="addTask()") Add task
-					//- div(ui-view="project-pane")
-					button(class="create-project-button" ng-click="createProject()" ) Create Project
-			bg-pane
-				.col-md-12(class="group-container" ng-controller="wFGroupCtrl" ui-view="group-pane")
-					.col-md-12(class="group-list-container" ng-model="groupList")
-						h4 Group list
-						//- table(class="table")
-						//- 	tr(style="font-weight: bold;")
-						//- 		td(class="accordion-group-heading") Name
-						//- 		td(class="accordion-group-heading") Members
-						//- 		td(class="accordion-group-heading") Project
-						//- 		td(class="accordion-group-heading")
-
-						accordion(close-others="oneAtATime")
-							accordion-group(ng-repeat="group in groups track by $index | filter:searchText | orderBy:sortOrder")
-								accordion-heading(style="display: inline;") 
-										span(class="accordion-group-heading") {{group.groupName}} 
-										span(class="accordion-group-heading") {{members}}
-										span(class="accordion-group-heading") {{group.groupProject}}	
-										span(class="accordion-group-heading button accordion-remove-group" ng-click="removeGroup(group._id)") X
-
-								//img(ng-src="data:image/png;base64,{{groupImage}}")
-								button(class="btn btn-default" ng-click="getFiles('group', 'groupOne', 'Abbotts_Booby.jpg'); toggleDocumentOverlay();") View Group Documents
-								br
-								span {{group.groupDescription}}
-
-								br 
-								h4 Share the love!!
-								small To ask someone to join first fill in the form then verify it with them via the 'invite' button.
-								br
+			h4 Project Dashboard for {{user.firstname}}
+			h4(class="dashboard-message") {{message}}
+			accordion(close-others="oneAtATime")
+				accordion-group.project-headings(ng-repeat="project in projects track by $index | filter:searchText | orderBy:sortOrder")
+					accordion-heading(style="display: inline;") 
+								span(class="accordion-group-heading") {{project.project_name}} 
+								span(class="accordion-group-heading button accordion-remove-project" ng-click="removeProject(project._id)") X
+					table
+						tr.project-summary
+							td
+								div.accordion-project-name 
+									a(href="/projects/project-details/{{project.project_name}}") {{project.project_name}}
+							td(colspan="4")
+								div.accordion-project-summary
+									span {{project.project_description}}
+						tr.project-controls
+							td.control-cell
+								img(ng-src="data:image/png;base64, {{projectImage}}")
+							td.control-cell(ng-controller="wFFileUploadCtrl" ng-hide="true")
+								input(type="hidden" ng-model="fileUpload")
+								input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
+							td.control-cell
+								button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
+							td.control-cell
+								select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+						tr.project-controls
+							td.control-cell
+								div(ng-show="project.project_owner" class="btn btn-default" ng-click="editProject(project._id)") Edit
+							td.control-cell
+								div(ng-show="project.project_owner" class="btn btn-default" ng-click="removeProject(project._id)") Delete
 								
-								div(ng-controller="wFEmailContentCtrl")
-									div(ng-controller="wFUserCtrl")
-										table(class="table table-bordered table-hover table-condensed")
-											tr(style="font-weight: bold;")
-												td(style="width: 25%;") Name
-												td(style="width: 25%") Status
-												td(style="width: 25%") Contact
-												td(style="width: 25%") Delete
-											tr(ng-repeat="member in group.groupMembers track by $index")
-												td
-													span(ng-model="member.username") {{member.username}}
-												td
-													span {{member.status}}
-												td
-													button(class="btn btn-default" ng-click="emailPopup('show')") Email
-													//ng-click="sendEmail(invite.email, invite.name, group._id, group.groupName, group.groupProject);
-													button(class="btn btn-default" ng-click="chatPopup('show');") Chat
-												td
-													button(class="btn btn-default" ng-click="removeUserFromGroup($index, group.groupName, member.username)") Delete
-											tr(style="font-weight: bold;") Send Invitation
-												td(style="width: 25%;") Email
-												td(style="width: 25%") Name
-												td(style="width: 25%") Send Invite
-												td(style="width: 25%") Cancel
-											tr
-												td
-													input(class="form-control" ng-model="invite.email" type="text" placeholder="Enter email...")
-												td
-													input(class="form-control" ng-model="invite.name" type="text" placeholder="Enter name...")
-												td
-													button(class="btn btn-default" ng-click="sendInvite(invite.email, invite.name, group._id, group.groupName, group.groupProject); addUserToGroup(invite.email, invite.name, group._id)") Invite
-												td
-													button(class="btn btn-default" ng-click="removeUserFromGroup($index)") Cancel
-					.col-md-12(class="group-form-container" ng-model="groupForm" ng-show="groupForm")
-						.well
-							span(class="btn btn-default" style="float: right;" ng-click="toggleGroupForm()") x
-							form.form-horizontal(class="create-group-form" name="createGroupForm")
-								fieldset
-									legend Create a Group
-										.form-group
-											.col-md-12
-												input.form-control(name="groupname", type="text", placeholder="Group Name" ng-model="groupName" required)
-										.form-group
-											.col-md-12
-												select(class="form-control" ng-model="projectName", ng-options="project.name as project.value for project in projectNames" required)
-										.form-group
-											.col-md-12
-												textarea(class="form-control" ng-model="groupDescription", rows=5 cols=15 required)
-										.form-group
-											.col-md-12(ng-controller="wFFileUploadCtrl")
-												input(type="text" ng-model="fileUpload")
-												input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'group')")
-										.form-group
-											.col-md-12
-												span(class="btn btn-default" ng-click="createGroup(groupName, projectName, groupDescription);" ng-disabled="createGroupForm.$invalid") Create Group
-				
-			
-										
-					div.button-spacer
-						button(class="create-group-button" ng-model="clickModel" ng-click="toggleGroupForm();") {{buttonLabel}}
-			email-popup(ng-show="emailPopup()" draggability)
-			chat-popup(ng-show="chatPopup()" draggability)
-			div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
-				div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbspX
-					img(ng-src="data:image/png;base64,{{groupImage}}")
+					div(ng-controller="wFTaskCtrl")
+						accordion(close-others="oneAtATime")
+							accordion-group(heading="View Tasks")
+								table(class="table table-bordered table-hover table-condensed")
+									tr(style="font-weight: bold;")
+										td(style="width: 12%;") Priority
+										td(style="width: 20%;") Name
+										td(style="width: 36%;") Description
+										td(style="width: 9%;") Owner
+										td(style="width: 12%") Status
+										td(style="width: 11%") Save
+										//- td(style="width: 8%") Upload Task File
+										td(style="width: 5%") Delete
+									tr(ng-repeat="task in tasks track by $index")
+										td
+											{{task.taskPriority}}
+										td
+											span(editable-text="task.taskName") {{task.taskName}}	
+										td
+											span(editable-text="task.taskDescription") {{task.taskDescription}}
+										td
+											{{task.taskOwner}}
+										td
+											{{task.taskStatus}}
+										td
+		
+											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
+										td
+											button(ng-show="identity.currentUser.isOwner()" class="btn btn-default" ng-click="removeTask($index)") Delete
+
+									tr(class="add-task")
+
+										td
+											select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
+										td
+											input(class="form-control" ng-model="taskName" type="text" placeholder="Enter task name...")
+										td
+											input(class="form-control" ng-model="taskDesc" type="text" placeholder="Enter task description...")
+										td
+											select(class="form-control" ng-model="taskOwner", ng-click="findActiveMembers(project.project_name)" ng-options="owner.value as owner.name for owner in selectOwner") 
+										//	{{selectOwner[0].value}}
+										td
+											select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
+										//- td(ng-controller="wFFileUploadCtrl")
+										//- 	input(type="hidden" ng-model="fileUpload")
+										//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
+										td
+		
+											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
+										td
+											button(class="btn btn-default" ng-click="removeTask($index)") Delete
+
+								button(class="btn btn-default" ng-click="addTask()") Add task
+			//- div(ui-view="project-pane")
+			button(class="create-project-button" ng-click="createProject()" ) Create Project
+	div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
+		div(class="document-overlay-close-btn" ng-click="toggleDocumentOverlay()") &nbsp;X
+			img(ng-src="data:image/png;base64,{{groupImage}}")

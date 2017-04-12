@@ -59,14 +59,18 @@ angular.module('app')
 	});
 
 	var baseMaps = {
-		"Esri": esriTiles,
-		"OpenMap": openMapSurferRoadsTiles
+		"OpenMap": openMapSurferRoadsTiles,
+		"Esri": esriTiles
 	};
 
-	var weeds = {};
+	var weeds = {},
+		plantings = {},
+		monitors = {};
 
 	var overLays = {
-		"Weeds": weeds
+		"Weeds": weeds, 
+		"Plantings": plantings,
+		"Monitors": monitors
 	}
 
 	L.control.layers(baseMaps, overLays).addTo(map);

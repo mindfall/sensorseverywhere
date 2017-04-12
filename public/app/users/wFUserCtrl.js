@@ -2,6 +2,8 @@ angular.module('app')
 	.controller('wFUserCtrl', ['$scope', 'wFUserFactory', 'wFMailService', 'wFNotifier', 
 		function($scope, wFUserFactory, wFMailService, wFNotifier) {
 
+			$scope.users = [];
+
 		    $scope.userStatus = [
 		    	{name: 'not sent', value: 'not sent'},
 		    	{name: 'accepted', value: 'accepted'},
