@@ -5,11 +5,11 @@ div
 				slide-panel
 	.row(class="view-content-container")
 		.col-md-12
-			.col-md-6(class="map-details-container")
+			.col-md-3(class="map-details-container")
 				div(ng-controller="wFMapCtrl" id="map" class="map-details")
 					leaflet
-			.col-md-6(class="view-info-block")
-				h1 {{project.project_name}}
+			.col-md-7(class="view-info-block")
+				h2 {{project.project_name}}
 				div {{project.project_type}}
 				//h3(ng-show="fund.featured") featured
 				div Started on {{project.project_start_date | date}}

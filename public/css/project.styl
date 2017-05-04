@@ -1,3 +1,5 @@
+@import "variables"
+
 .create-project-container 
 	width 99%
 	height 100%	
@@ -80,14 +82,19 @@ editable-bsdate
 	margin-left 12.5%
 
 .project-outline
-	border 1px solid #d3d3d3
-	border-radius 1px
+	border 1px solid $raised-dark-grey
+	-webkit-box-shadow 1px 1px 20px -5px rgba(0, 123,0,0.3)
+	-moz-box-shadow 1px 1px 20px -5px rgba(0, 123, 0,0.3)
+	box-shadow 1px 1px 20px -5px rgba(0, 123, 0,0.3)
+	border-radius 4px
 	float left
 	margin 40px
 	padding 10px
 	max-width 200px
 	max-height 500px
 	position relative
+	background-color white
+	
 
 .project-thumb-project-name
 	color #999
