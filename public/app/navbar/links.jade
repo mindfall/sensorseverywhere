@@ -1,8 +1,8 @@
 div.centre-links(ng-controller="wFNavBarLoginCtrl" id="mainNav")
 
 	ul
-		li(ng-hide="identity.currentUser.isAdmin()")
-			a.res-nav(href="/pricing") Pricing
+		//- li(ng-hide="identity.currentUser.isAdmin()")
+		//- 	a.res-nav(href="/pricing") Pricing
 		li(ng-show="identity.currentUser.isAdmin()")
 			a.res-nav(href="/create-project") Create
 		li

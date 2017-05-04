@@ -68,10 +68,13 @@ angular.module('app')
 		monitors = {};
 
 	var overLays = {
-		"Weeds": weeds, 
-		"Plantings": plantings,
-		"Monitors": monitors
+
 	}
+
+	
+	map.on('click', function() {
+		overLays.weeds = 'weeds';
+	});
 
 	L.control.layers(baseMaps, overLays).addTo(map);
 
@@ -121,6 +124,7 @@ angular.module('app')
     	wFMapFactory.setMapData(geojson);
 		drawnItems.addLayer(e.layer);
 	});
+
 
 	/*
 	* get all maps for the home page
