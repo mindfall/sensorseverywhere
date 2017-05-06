@@ -18,15 +18,15 @@ angular.module('app')
 				
 				addTaskToProject = wFTaskFactory.addTaskToProject(taskData);
 				addTaskToProject.then(function(task) {
-					console.log(task);
+					//console.log(task);
 				}, function(status) {
-					console.log(status);
+					//console.log(status);
 				});
 			}
 
 			$scope.addTask = function() {
 				var task = {
-					id: $scope.tasks.length + 1,
+					id: $scope.tasks.length,
 					priority: 0,
 					name: 'Enter task name...',
 					description: 'Enter task description...',

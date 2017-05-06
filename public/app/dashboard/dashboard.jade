@@ -63,7 +63,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 		
 											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
 										td
-											button(ng-show="identity.currentUser.isOwner()" class="btn btn-default" ng-click="removeTask($index)") Delete
+											button(class="btn btn-default" ng-click="removeTask($index)") Delete
 
 									tr(class="add-task")
 
@@ -81,11 +81,12 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										//- td(ng-controller="wFFileUploadCtrl")
 										//- 	input(type="hidden" ng-model="fileUpload")
 										//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
+										//- ng-show="identity.currentUser.isOwner()" 
 										td
 		
 											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
 										td
-											button(class="btn btn-default" ng-click="removeTask($index)") Delete
+											button(class="btn btn-default" ng-click="removeTask($index)") Cancel
 
 								button(class="btn btn-default" ng-click="addTask()") Add task
 			//- div(ui-view="project-pane")

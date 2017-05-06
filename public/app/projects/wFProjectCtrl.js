@@ -79,7 +79,8 @@ angular.module('app')
 
 			getProjectTasks.then(function(tasks) {
 				if(tasks.length === 0 ) {
-					//
+					console.log('0 tasks');
+					return;
 				} else {
 					for(var i = 0; i < tasks.length; i++ ) {
 						projectTasks.push(tasks[i]);
