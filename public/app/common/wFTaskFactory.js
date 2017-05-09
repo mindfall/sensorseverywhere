@@ -13,6 +13,18 @@ angular.module('app')
 						dfd.reject();
 					});
 				return dfd.promise;
+			},
+
+			removeTaskFromProject: function(pid, tid){
+				var dfd = $q.defer();
+				$http.post('/api/removeTaskFromProject/' + pid + '/' + tid )
+					.success(function(data, status, headers, config){
+						dfd.resolve();
+					})
+					.error(function(data, status, headers, config) {
+						dfd.reject();
+					});
+				return dfd.promise;
 			},		
 		
 

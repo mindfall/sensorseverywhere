@@ -24,21 +24,21 @@ angular.module('app')
 				});
 			}
 
-			$scope.addTask = function() {
-				var task = {
-					id: $scope.tasks.length,
-					priority: 0,
-					name: 'Enter task name...',
-					description: 'Enter task description...',
-					owner: "",
-					status: 0
-				};
-				$scope.tasks.push(task);
+
+			$scope.removeTask = function(pid, tid) {
+				var pid = pid, 
+					tid = tid;
+
+				removeTaskFromProject = wFTaskFactory.removeTaskFromProject(pid, tid);
+				removeTaskFromProject.then(function(task){
+					var id = $scope.tasks[0]._id;
+					$scope.tasks.splice(id, 1);
+				}, function(status){	
+					console.log(status);
+				})
+
 			}
 
-			$scope.removeTask = function(index) {
-				$scope.tasks.splice(index, 1);
-			}
 
 			$scope.uploadTaskFile = function() {
 				console.log('uploading task file');
@@ -62,8 +62,6 @@ angular.module('app')
 						}
 						$scope.selectOwner = selectOwner;
 						$scope.setOwner = {type: $scope.selectOwner[0].value};
-
-						console.log($scope.selectOwner);
 					}
 				});
 			}

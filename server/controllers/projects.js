@@ -301,6 +301,13 @@ exports.addTaskToProject = function(req, res) {
 		});
 }
 
+exports.removeTaskFromProject = function(req, res) {
+	console.log(req.params);
+	// var updateTask = Project.update({id: req.body.pid},
+	// console.log(updateTask);
+	// );
+}
+
 exports.makePayment = function(req, res) {
 	var token = req.params.token;
 	var amount = req.params.amount;

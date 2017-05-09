@@ -121,7 +121,8 @@ angular.module('app')
 		    }
 			$scope.projects = userProjects;
 			}, function(status){
-				console.log(status);
+				return status;
+				//
 			});
 		}
 

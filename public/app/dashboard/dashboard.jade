@@ -27,13 +27,12 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 								input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'project')")
 							td.control-cell
 								button(class="btn btn-default" ng-click="getFiles(task.filename, task)") View Project Files
-							td.control-cell
-								select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
-						tr.project-controls
-							td.control-cell
 								div(ng-show="project.project_owner" class="btn btn-default" ng-click="editProject(project._id)") Edit
-							td.control-cell
-								div(ng-show="project.project_owner" class="btn btn-default" ng-click="removeProject(project._id)") Delete
+							//- td.control-cell
+							//- 	select(class="form-control" ng-model="setStatus" ng-options="status.name for status in selectStatus")
+	
+							//- td.control-cell
+							//- 	div(ng-show="project.project_owner" class="btn btn-default" ng-click="removeProject(project._id)") Delete
 								
 					div(ng-controller="wFTaskCtrl")
 						accordion(close-others="oneAtATime")
@@ -63,7 +62,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 		
 											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
 										td
-											button(class="btn btn-default" ng-click="removeTask($index)") Delete
+											button(class="btn btn-default" ng-click="removeTask(project._id, $index)") Delete
 
 									tr(class="add-task")
 
@@ -76,8 +75,8 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										td
 											select(class="form-control" ng-model="taskOwner", ng-click="findActiveMembers(project.project_name)" ng-options="owner.value as owner.name for owner in selectOwner") 
 										//	{{selectOwner[0].value}}
-										td
-											select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
+										//- td
+										//- 	select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
 										//- td(ng-controller="wFFileUploadCtrl")
 										//- 	input(type="hidden" ng-model="fileUpload")
 										//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
@@ -88,7 +87,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										td
 											button(class="btn btn-default" ng-click="removeTask($index)") Cancel
 
-								button(class="btn btn-default" ng-click="addTask()") Add task
+								//- button(class="btn btn-default" ng-click="addTask()") Add task
 			//- div(ui-view="project-pane")
 			button(class="create-project-button" ng-click="createProject()" ) Create Project
 	div(class="document-overlay" ng-model="documentOverlay" ng-show="documentOverlay")
