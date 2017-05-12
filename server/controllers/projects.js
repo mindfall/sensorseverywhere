@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
 	Group = mongoose.model('Group'),
 	User = mongoose.model('User'),
+	Task = mongoose.model('Task'),
 	fs = require('fs'),
 	stripe = require("stripe")("sk_test_5vk3CX0YjSCSipm9B0Bmuu7U");
 
@@ -302,10 +303,25 @@ exports.addTaskToProject = function(req, res) {
 }
 
 exports.removeTaskFromProject = function(req, res) {
-	console.log(req.params);
-	// var updateTask = Project.update({id: req.body.pid},
-	// console.log(updateTask);
-	// );
+	var taskId = req.params.tid;
+	
+	Project.findById(req.params.pid, function(err, project) {
+		
+		var task = Project.find({projectTasks: {_id: taskId}});
+		Project.remove(function(err, task) {
+			res.send(task);
+		});
+
+		
+	});
+}
+
+exports.removeGroup = function(req, res, next){
+	Group.findById(req.params.id, function(err, group) {
+		group.remove(function(err, group) {
+			res.send(group);
+		});
+	});
 }
 
 exports.makePayment = function(req, res) {
