@@ -15,9 +15,9 @@ angular.module('app')
 				return dfd.promise;
 			},
 
-			removeTaskFromProject: function(pid, tid){
+			removeTaskFromProject: function(pid, name){
 				var dfd = $q.defer();
-				$http.post('/api/removeTaskFromProject/' + pid + '/' + tid )
+				$http.post('/api/removeTaskFromProject/' + pid + '/' + name )
 					.success(function(data, status, headers, config){
 						dfd.resolve();
 					})

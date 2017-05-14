@@ -47,7 +47,7 @@ module.exports = function(app){
 
 	app.get('/api/tasks', tasks.getTasks);
 	app.post('/api/addTaskToProject', projects.addTaskToProject);
-	app.post('/api/removeTaskFromProject/:pid/:tid', projects.removeTaskFromProject);
+	app.post('/api/removeTaskFromProject/:pid/:name', projects.removeTaskFromProject);
 
 	app.get('/api/chat', chat.getChatLogs);
 

@@ -76,5 +76,13 @@ exports.getTaskById = function(req, res){
 */
 
 exports.removeTaskFromProject = function(req, res, next){
-	console.log(req.params);
+
+	Task.findById(req.params.tid, function(err, task) {
+		console.log(task);
+	});
 }
+
+
+
+
+

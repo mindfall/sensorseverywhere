@@ -206,48 +206,6 @@ exports.updateProject = function(req, res) {
 
 	});
 
-	// Project.findById(req.params.id, function(err, project) {
-	// 	Project.update(
-	// 	{ 
-	// 		$set: {
-	// 			project_name: name,
-	// 		},
-	// 	},
-
-	// 	function(err, project) {
-	// 		res.send(project);
-	// 	});
-
-	// });
-
-	// Project.findById(req.params.id, function(err, project) {
-	// 	Project.update(
-	// 	{ 
-	// 		$set: {
-	// 			project_description: description,
-	// 		},
-	// 	},
-
-	// 	function(err, project) {
-	// 		res.send(project);
-	// 	});
-
-	// });
-
-	// Project.findById(req.params.id, function(err, project) {
-	// 	Project.update(
-	// 	{ 
-	// 		$set: {
-	// 			project_type: type,
-	// 		},
-	// 	},
-
-	// 	function(err, project) {
-	// 		res.send(project);
-	// 	});
-
-	// });
-
 }
 
 exports.removeProject = function(req, res, next){
@@ -303,25 +261,17 @@ exports.addTaskToProject = function(req, res) {
 }
 
 exports.removeTaskFromProject = function(req, res) {
-	var taskId = req.params.tid;
+	console.log(req.params.name);
+	Project.update( {'project.projectTasks._id': req.body.pid},
+				{ $pull: {
+					projectTasks: {
+						taskName: req.params.name
+					}
+				}},
+	function(){
+		res.send(req.body);
+	});
 	
-	Project.findById(req.params.pid, function(err, project) {
-		
-		var task = Project.find({projectTasks: {_id: taskId}});
-		Project.remove(function(err, task) {
-			res.send(task);
-		});
-
-		
-	});
-}
-
-exports.removeGroup = function(req, res, next){
-	Group.findById(req.params.id, function(err, group) {
-		group.remove(function(err, group) {
-			res.send(group);
-		});
-	});
 }
 
 exports.makePayment = function(req, res) {
