@@ -39,35 +39,35 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 							accordion-group(heading="View Tasks")
 								table(class="table table-bordered table-hover table-condensed")
 									tr(style="font-weight: bold;")
-										td(style="width: 12%;") Priority
+										//- td(style="width: 12%;") Priority
 										td(style="width: 20%;") Name
 										td(style="width: 36%;") Description
-										td(style="width: 9%;") Owner
-										td(style="width: 12%") Status
+										//- td(style="width: 9%;") Owner
+										//- td(style="width: 12%") Status
 										td(style="width: 11%") Save
 										//- td(style="width: 8%") Upload Task File
 										td(style="width: 5%") Delete
 									tr(ng-repeat="task in tasks track by $index")
-										td
-											{{task.taskPriority}}
+										//- td
+										//- 	{{task.taskPriority}}
 										td
 											span(editable-text="task.taskName") {{task.taskName}}	
 										td
 											span(editable-text="task.taskDescription") {{task.taskDescription}}
-										td
-											{{task.taskOwner}}
-										td
-											{{task.taskStatus}}
+										//- td
+										//- 	{{task.taskOwner}}
+										//- td
+										//- 	{{task.taskStatus}}
 										td
 		
-											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Edit task
+											button(class="btn btn-default" ng-click="saveTask(project._id, taskName, taskDesc, taskOwner)") Edit task
 										td
 											button(class="btn btn-default" ng-click="removeTask(project._id, task._id, $index)") Delete
 
 									tr(class="add-task")
 
-										td
-											select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
+										//- td
+										//- 	select(class="form-control" ng-model="taskPriority", ng-options="priority.value as priority.name for priority in selectPriority")
 										td
 											input(class="form-control" ng-model="taskName" type="text" placeholder="Enter task name...")
 										td
@@ -75,15 +75,15 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 										//- td
 										//- 	select(class="form-control" ng-model="taskOwner", ng-click="findActiveMembers(project.project_name)" ng-options="owner.value as owner.name for owner in selectOwner") 
 										//- //	{{selectOwner[0].value}}
-										td
-											select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
-										td(ng-controller="wFFileUploadCtrl")
-											input(type="hidden" ng-model="fileUpload")
-											input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
+										//- td
+										//- 	select(class="form-control" ng-model="taskStatus", ng-options="status.value as status.name for status in selectStatus")
+										//- td(ng-controller="wFFileUploadCtrl")
+										//- 	input(type="hidden" ng-model="fileUpload")
+										//- 	input(class="button btn-default" type="file" ng-file-select="onFileSelect($files, 'task')")
 											//- ng-show="identity.currentUser.isOwner()" 
 										td
 		
-											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Save task
+											button(class="btn btn-default" ng-click="saveTask(project._id, taskName, taskDesc, taskOwner)") Save task
 										td
 											button(class="btn btn-default" ng-click="removeTask($index)") Cancel
 

@@ -4,16 +4,16 @@ angular.module('app')
 
 			var user = wFIdentity.currentUser;
 
-			$scope.saveTask = function(pid, taskPriority, taskName, taskDesc, taskOwner, taskStatus) {
+			$scope.saveTask = function(pid, taskName, taskDesc, taskOwner) {
 
 				
 				var taskData = {
 					pid: pid,
-					taskPriority: taskPriority,
+					// taskPriority: taskPriority,
 					taskName: taskName,
 					taskDescription: taskDesc,
 					taskOwner: taskOwner,
-					taskStatus: taskStatus
+					// taskStatus: taskStatus
 				};
 				
 				addTaskToProject = wFTaskFactory.addTaskToProject(taskData);
@@ -30,7 +30,7 @@ angular.module('app')
 				removeTaskFromProject = wFTaskFactory.removeTaskFromProject(pid, tid);
 				removeTaskFromProject.then(function(task){
 					//var id = $scope.tasks[0]._id;
-					$scope.tasks.splice(index, 1);
+					$scope.tasks.splice(index, 1); 
 				}, function(status){	
 					console.log(status);
 				});
