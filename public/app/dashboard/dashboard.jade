@@ -62,7 +62,7 @@ div(class="main-container" ng-controller="wFDashboardCtrl")
 		
 											button(class="btn btn-default" ng-click="saveTask(project._id, taskPriority, taskName, taskDesc, taskOwner, taskStatus)") Edit task
 										td
-											button(class="btn btn-default" ng-click="removeTask(project._id, task.taskName)") Delete
+											button(class="btn btn-default" ng-click="removeTask(project._id, task._id, $index)") Delete
 
 									tr(class="add-task")
 

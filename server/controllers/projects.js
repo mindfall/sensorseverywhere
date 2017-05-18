@@ -261,11 +261,11 @@ exports.addTaskToProject = function(req, res) {
 }
 
 exports.removeTaskFromProject = function(req, res) {
-	console.log(req.params.name);
+	console.log(req.params.tid);
 	Project.update( {'project.projectTasks._id': req.body.pid},
 				{ $pull: {
 					projectTasks: {
-						taskName: req.params.name
+						_id: req.params.tid
 					}
 				}},
 	function(){

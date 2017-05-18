@@ -18,27 +18,22 @@ angular.module('app')
 				
 				addTaskToProject = wFTaskFactory.addTaskToProject(taskData);
 				addTaskToProject.then(function(task) {
-					$scope.tasks.push(task);
+					$scope.tasks.push(taskData);
 				}, function(status) {
 					//console.log(status);
 				});
 			}
 
 
-			$scope.removeTask = function(pid, name) {
-				console.log(name);
-				if(name !== '' || name !== undefined) {
-					var name = name;
+			$scope.removeTask = function(pid, tid, index) {
 				
-					removeTaskFromProject = wFTaskFactory.removeTaskFromProject(pid, name);
-					removeTaskFromProject.then(function(task){
-						var id = $scope.tasks[0]._id;
-						$scope.tasks.splice(id, 1);
-					}, function(status){	
-						console.log(status);
-					});
-				}
-
+				removeTaskFromProject = wFTaskFactory.removeTaskFromProject(pid, tid);
+				removeTaskFromProject.then(function(task){
+					//var id = $scope.tasks[0]._id;
+					$scope.tasks.splice(index, 1);
+				}, function(status){	
+					console.log(status);
+				});
 
 			}
 
